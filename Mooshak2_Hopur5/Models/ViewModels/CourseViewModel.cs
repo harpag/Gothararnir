@@ -7,5 +7,7 @@ namespace Mooshak_Hopur5.Models.ViewModels
 {
     public class CourseViewModel
     {
+        public string CourseName { get; set; } 
+        public string CourseNumber { get; set; }
     }
 }
