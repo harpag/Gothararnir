@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Mooshak2_Hopur5.Models.Entities
 {
-    public class UserAssignmetEntity
+    public class UserAssignmentEntity
     {
         int userAssignmentId { get; set; }
         int userId { get; set; }

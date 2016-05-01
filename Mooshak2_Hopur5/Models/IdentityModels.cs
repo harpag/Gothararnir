@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Mooshak_Hopur5.Models.Entities;
+using Mooshak2_Hopur5.Models.Entities;
 
 namespace Mooshak2_Hopur5.Models
 {
@@ -28,7 +28,16 @@ namespace Mooshak2_Hopur5.Models
         public DbSet<CourseEntity> Course { get; set; }
         public DbSet<CourseTeacherEntity> CourseTeacher { get; set; }
         public DbSet<DiscussionEntity> Discussion { get; set; }
-        //public DbSet<AssignmentEntity> Assignment { get; set; }
+        public DbSet<ProgrammingLanguageEntity> ProgrammingLanguage { get; set; }
+        public DbSet<SemesterEntity> Semester { get; set; }
+        public DbSet<SubmissionEntity> Submission { get; set; }
+        public DbSet<UserEntity> User { get; set; }
+        public DbSet<UserAssignmentEntity> UserAssignment { get; set; }
+        public DbSet<UserCourseEntity> UserCouse { get; set; }
+        public DbSet<UserGroupEntity> UserGroup { get; set; }
+        public DbSet<UserGroupMemberEntity> UserMember { get; set; }
+        public DbSet<UserLoginEntity> UserLogin { get; set; }
+        public DbSet<UserTypeEntity> UserType { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
