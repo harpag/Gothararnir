@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Mooshak_Hopur5.Models.Entities;
 
 namespace Mooshak2_Hopur5.Models
 {
@@ -20,6 +21,14 @@ namespace Mooshak2_Hopur5.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<AnnouncementEntity> Announcement { get; set; }
+        public DbSet<AssignmentEntity> Assignment { get; set; }
+        public DbSet<AssignmentPartEntity> AssignmentPart { get; set; }
+        public DbSet<AssignmentTestCaseEntity> AssignmentTestCase { get; set; }
+        public DbSet<CourseEntity> Course { get; set; }
+        public DbSet<CourseTeacherEntity> CourseTeacher { get; set; }
+        public DbSet<DiscussionEntity> Discussion { get; set; }
+        //public DbSet<AssignmentEntity> Assignment { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
