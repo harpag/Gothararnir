@@ -217,7 +217,9 @@
     <Compile Include="Models\Entities\ProgrammingLanguageEntity.cs" />
     <Compile Include="Models\Entities\SemesterEntity.cs" />
     <Compile Include="Models\Entities\SubmissionEntity.cs" />
+    <Compile Include="Models\Entities\UserAssignmetEntity.cs" />
     <Compile Include="Models\Entities\UserCourseEntity.cs" />
+    <Compile Include="Models\Entities\UserEntity.cs" />
     <Compile Include="Models\Entities\UserGroupEntity.cs" />
     <Compile Include="Models\Entities\UserGroupMemberEntity.cs" />
     <Compile Include="Models\Entities\UserLoginEntity.cs" />
