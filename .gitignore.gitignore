@@ -59,3 +59,16 @@ obj\*
 *.cachefile
 *.backup
 _UpgradeReport_Files
+#C sharp files
+bin\*
+obj\*
+*.exe
+
+#Visual studio
+*.suo
+*.ncb
+*.user
+*.aps
+*.cachefile
+*.backup
+_UpgradeReport_Files
