@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Mooshak_Hopur5.Controllers
+namespace Mooshak2_Hopur5.Controllers
 {
     public class CourseController : Controller
     {
