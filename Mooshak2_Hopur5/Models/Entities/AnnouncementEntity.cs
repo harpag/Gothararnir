@@ -12,9 +12,9 @@ namespace Mooshak2_Hopur5.Models.Entities
     public class AnnouncementEntity
     {
         [Key]
-        int announcementId { get; set; }
-        int userId { get; set; }
-        string announcement { get; set; }
-        DateTime dateCreate { get; set; }
+        public int announcementId { get; set; }
+        public int userId { get; set; }
+        public string announcement { get; set; }
+        public DateTime dateCreate { get; set; }
     }
 }

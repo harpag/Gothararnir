@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Mooshak2_Hopur5.Models.Entities;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Mooshak2_Hopur5.Models
 {
@@ -33,7 +34,7 @@ namespace Mooshak2_Hopur5.Models
         public DbSet<SubmissionEntity> Submission { get; set; }
         public DbSet<UserEntity> User { get; set; }
         public DbSet<UserAssignmentEntity> UserAssignment { get; set; }
-        public DbSet<UserCourseEntity> UserCouse { get; set; }
+        public DbSet<UserCourseEntity> UserCourse { get; set; }
         public DbSet<UserGroupEntity> UserGroup { get; set; }
         public DbSet<UserGroupMemberEntity> UserMember { get; set; }
         public DbSet<UserLoginEntity> UserLogin { get; set; }

@@ -33,7 +33,7 @@ namespace Mooshak2_Hopur5.Services
             var viewModel = new CourseViewModel
             {
                 CourseName = course.courseName,
-                CourseNumber = course.courseName
+                CourseNumber = course.courseNumber
             };
 
             return viewModel;

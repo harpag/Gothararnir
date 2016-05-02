@@ -9,8 +9,8 @@ namespace Mooshak2_Hopur5.Models.Entities
     public class UserGroupMemberEntity
     {
         [Key]
-        int userGroupMemberId { get; set; }
-        int userId { get; set; }
-        int userGroupId { get; set; }
+        public int userGroupMemberId { get; set; }
+        public int userId { get; set; }
+        public int userGroupId { get; set; }
     }
 }

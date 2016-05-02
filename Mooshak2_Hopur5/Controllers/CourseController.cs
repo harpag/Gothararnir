@@ -16,7 +16,7 @@ namespace Mooshak_Hopur5.Controllers
         {
             int courseId = 1;
             var viewModel = _service.getCourseById(courseId);
-            return View();
+            return View(viewModel);
         }
     }
 }
