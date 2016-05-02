@@ -17,13 +17,13 @@ namespace Mooshak2_Hopur5.Services
             _db = new DataModel();
         }
 
-        public List<CourseViewModel> getAllCourses()
+        public CourseViewModel getAllCourses()
         {
             //Todo
             var courses = _db.Course.ToList();
-            //var viewModel = new List<CourseViewModel>();
-            List<CourseViewModel> CourseList;
-            CourseList = new List<CourseViewModel>();
+            
+            List<CourseViewModel> courseList;
+            courseList = new List<CourseViewModel>();
 
             foreach (var entity in courses)
             {
@@ -32,10 +32,15 @@ namespace Mooshak2_Hopur5.Services
                     CourseName = entity.courseName,
                     CourseNumber = entity.courseNumber
                 };
-                CourseList.Add(result);
+                courseList.Add(result);
             }
 
-            return CourseList;
+            CourseViewModel viewModel = new CourseViewModel
+            {
+                CourseList = courseList
+            };
+
+            return viewModel;
         }
 
         public CourseViewModel getCourseById(int courseId)

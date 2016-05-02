@@ -9,5 +9,7 @@ namespace Mooshak2_Hopur5.Models.ViewModels
     {
         public string CourseName { get; set; } 
         public string CourseNumber { get; set; }
+        public List<CourseViewModel> CourseList { get; set; }
+
     }
 }

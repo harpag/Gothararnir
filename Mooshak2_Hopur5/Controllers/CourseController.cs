@@ -1,4 +1,5 @@
-﻿using Mooshak2_Hopur5.Services;
+﻿using Mooshak2_Hopur5.Models.ViewModels;
+using Mooshak2_Hopur5.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,13 @@ namespace Mooshak2_Hopur5.Controllers
         {
             int courseId = 1;
             var viewModel = _service.getCourseById(courseId);
+            return View(viewModel);
+        }
+
+        public ActionResult GetAllCourses()
+        {
+            var viewModel = new CourseViewModel();
+            viewModel = _service.getAllCourses();
             return View(viewModel);
         }
     }
