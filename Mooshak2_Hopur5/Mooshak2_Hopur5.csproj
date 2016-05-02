@@ -306,13 +306,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Course\GetCourse.cshtml" />
     <Content Include="Views\Course\GetAllCourses.cshtml" />
+    <Content Include="Views\User\GetUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Announcement\" />
     <Folder Include="Views\Assignment\" />
     <Folder Include="Views\Semester\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
