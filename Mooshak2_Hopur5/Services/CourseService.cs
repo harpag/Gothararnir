@@ -4,22 +4,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Mooshak2_Hopur5.Models.Entities;
 
 namespace Mooshak2_Hopur5.Services
 {
     public class CourseService
     {
-        private ApplicationDbContext _db;
+        private DataModel _db;
 
         public CourseService()
         {
-            _db = new ApplicationDbContext();
+            _db = new DataModel();
         }
 
         public List<CourseViewModel> getAllCourses()
         {
             //Todo
-            return null;
+            var courses = _db.Course.ToList();
+            //var viewModel = new List<CourseViewModel>();
+            List<CourseViewModel> CourseList;
+            CourseList = new List<CourseViewModel>();
+
+            foreach (var entity in courses)
+            {
+                var result = new CourseViewModel
+                {
+                    CourseName = entity.courseName,
+                    CourseNumber = entity.courseNumber
+                };
+                CourseList.Add(result);
+            }
+
+            return CourseList;
         }
 
         public CourseViewModel getCourseById(int courseId)
