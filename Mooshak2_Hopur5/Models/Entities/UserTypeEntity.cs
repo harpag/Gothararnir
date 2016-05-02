@@ -10,7 +10,7 @@ namespace Mooshak2_Hopur5.Models.Entities
     public class UserTypeEntity
     {
         [Key]
-        int userTypeId { get; set; }
-        string userTypeName { get; set; }
+        public int userTypeId { get; set; }
+        public string userTypeName { get; set; }
     }
 }
