@@ -306,6 +306,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Course\GetCourse.cshtml" />
     <Content Include="Views\Course\GetAllCourses.cshtml" />
+    <Content Include="Views\Course\GetAllCoursesOnSemester.cshtml" />
+    <Content Include="Views\Course\GetAllUserCourses.cshtml" />
+    <Content Include="Views\Course\GetAllUserCoursesOnSemester.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
