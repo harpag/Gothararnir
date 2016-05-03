@@ -60,8 +60,8 @@ obj\*
 *.backup
 _UpgradeReport_Files
 #C sharp files
-bin\*
-obj\*
+bin/
+obj/
 *.exe
 
 #Visual studio

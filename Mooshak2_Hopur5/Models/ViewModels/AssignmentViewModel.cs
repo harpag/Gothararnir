@@ -11,7 +11,7 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public int AssignmentId { get; set; }
         public int CourseId { get; set; }
         public string CourseName { get; set; }
-        public string CourseNumber { get; set}
+        public string CourseNumber { get; set; }
         public string AssignmentName { get; set; }
         public string AssignmentDescription { get; set; }
         public byte[] AssignmentFile { get; set; }
