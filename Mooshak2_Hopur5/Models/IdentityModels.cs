@@ -22,23 +22,6 @@ namespace Mooshak2_Hopur5.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        //public DbSet<AnnouncementEntity> Announcement { get; set; }
-        //public DbSet<AssignmentEntity> Assignment { get; set; }
-        //public DbSet<AssignmentPartEntity> AssignmentPart { get; set; }
-        //public DbSet<AssignmentTestCaseEntity> AssignmentTestCase { get; set; }
-        //public DbSet<CourseEntity> Course { get; set; }
-        //public DbSet<CourseTeacherEntity> CourseTeacher { get; set; }
-        //public DbSet<DiscussionEntity> Discussion { get; set; }
-        //public DbSet<ProgrammingLanguageEntity> ProgrammingLanguage { get; set; }
-        //public DbSet<SemesterEntity> Semester { get; set; }
-        //public DbSet<SubmissionEntity> Submission { get; set; }
-        //public DbSet<UserEntity> User { get; set; }
-        //public DbSet<UserAssignmentEntity> UserAssignment { get; set; }
-        //public DbSet<UserCourseEntity> UserCourse { get; set; }
-        //public DbSet<UserGroupEntity> UserGroup { get; set; }
-        //public DbSet<UserGroupMemberEntity> UserMember { get; set; }
-        //public DbSet<UserLoginEntity> UserLogin { get; set; }
-        //public DbSet<UserTypeEntity> UserType { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

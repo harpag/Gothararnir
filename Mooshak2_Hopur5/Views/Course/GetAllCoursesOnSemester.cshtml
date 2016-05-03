@@ -1,0 +1,13 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.CourseViewModel
+
+@{
+    ViewBag.Title = "GetAllCourse";
+}
+
+<h2>GetAllCourse</h2>
+@foreach (var course in Model.CourseList)
+{
+    <p>Nafn: @course.CourseName</p>
+    <p>Númer: @course.CourseNumber</p>
+}
+
