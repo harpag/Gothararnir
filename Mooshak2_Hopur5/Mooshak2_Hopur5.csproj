@@ -230,7 +230,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\AnnouncementViewModel.cs" />
+    <Compile Include="Models\ViewModels\AssignmentPartViewModel.cs" />
     <Compile Include="Models\ViewModels\AssignmentViewModel.cs" />
+    <Compile Include="Models\ViewModels\CourseTeacherViewModel.cs" />
     <Compile Include="Models\ViewModels\CourseViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
     <Compile Include="Models\ViewModels\SemesterViewModel.cs" />

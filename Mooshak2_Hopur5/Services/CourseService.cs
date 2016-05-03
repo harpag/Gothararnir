@@ -25,6 +25,8 @@ namespace Mooshak2_Hopur5.Services
         {
             //Sæki áfanga með ákveðnu ID ofan í gagnagrunn
             var course = _db.Course.SingleOrDefault(x => x.courseId == courseId);
+            var courseUsers = getAllUsersInCourse(courseId);
+            var courseTeachers = getAllTeachersInCourse(courseId);
 
             //Kasta villu ef ekki fannst áfangi með þessu ID-i
             if (course == null)
@@ -36,7 +38,10 @@ namespace Mooshak2_Hopur5.Services
             var viewModel = new CourseViewModel
             {
                 CourseName = course.courseName,
-                CourseNumber = course.courseNumber
+                CourseNumber = course.courseNumber,
+                SemesterId = course.semesterId,
+                UserList = courseUsers.UserList,
+                TeacherList = courseTeachers.TeacherList
             };
 
             //Returna ViewModelinu með áfanganum í
@@ -280,5 +285,45 @@ namespace Mooshak2_Hopur5.Services
                 return false;
             }
         }
+
+        public CourseViewModel getAllTeachersInCourse(int courseId)
+        {
+            //Sæki alla kennara námskeiðs
+            var teacher = (from courses in _db.Course
+                         join courseTeacher in _db.CourseTeacher on courses.courseId equals courseTeacher.courseId
+                         join user in _db.User on courseTeacher.userId equals user.userId
+                         where courses.courseId == courseId
+                         select new { courses, user, courseTeacher }).ToList();
+
+            //Bý til lista af kennurum(CourseTeacherViewModel)
+            List<CourseTeacherViewModel> teacherList;
+            teacherList = new List<CourseTeacherViewModel>();
+
+            //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
+            foreach (var entity in teacher)
+            {
+                var result = new CourseTeacherViewModel
+                {
+                    CourseTeacherId = entity.courseTeacher.courseTeacherId,
+                    CourseId = entity.courses.courseId,
+                    UserId = entity.courseTeacher.userId,
+                    MainTeacher = entity.courseTeacher.mainTeacher,
+                    TeacherName = entity.user.name,
+                    TeacherUserName = entity.user.userName
+
+                };
+                teacherList.Add(result);
+            }
+
+            //Bý til nýtt CourseViewModel og set listann inn í það
+            CourseViewModel viewModel = new CourseViewModel
+            {
+                TeacherList = teacherList
+            };
+
+            //Returna viewModelinu með listanum
+            return viewModel;
+        }
+
     }
 }
