@@ -2,7 +2,7 @@
 bin/
 obj/*
 Debug/
-vs/
+.vs/
 *.exe
 .vs/*
 
