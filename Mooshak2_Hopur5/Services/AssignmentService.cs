@@ -1,4 +1,3 @@
-﻿//using Mooshak2_Hopur5.Models.Entities;
 using Mooshak2_Hopur5.Models.Entities;
 using Mooshak2_Hopur5.Models.ViewModels;
 using System;
@@ -134,6 +133,16 @@ namespace Mooshak2_Hopur5.Services
             //Returna viewModelinu með listanum
             return viewModel;
         }
+
+        //getAllAssignments()
+        //getAllAssignmentsOnSemester()
+        //getAllUserAssignments()
+        //getAllUserAssignmentsOnSemester()
+        //getAssignmentGrade()
+        //getAssignmentStatistics()
+        //editAssignment()
+        //addAssignment()
+        //addAssignmentTestCase()
 
         //Sækir öll verkefni
         public AssignmentViewModel getAllAssignments()

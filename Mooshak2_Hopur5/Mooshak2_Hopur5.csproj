@@ -314,10 +314,12 @@
     <Content Include="Views\Course\GetAllUserCoursesOnSemester.cshtml" />
     <Content Include="Views\User\GetUser.cshtml" />
     <Content Include="Views\Course\ViewAllMyCourses.cshtml" />
+    <Content Include="Views\User\GetAllUsers.cshtml" />
+    <Content Include="Views\Announcement\GetAnnouncement.cshtml" />
+    <Content Include="Views\Announcement\GetAllAnnouncements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Announcement\" />
     <Folder Include="Views\Assignment\" />
     <Folder Include="Views\Semester\" />
   </ItemGroup>

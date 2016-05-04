@@ -1,0 +1,11 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "GetAllUsers";
+}
+
+<h2>GetAllUsers</h2>
+@foreach (var user in Model.UserList)
+{
+    <p>Nafn: @user.UserName</p>
+}

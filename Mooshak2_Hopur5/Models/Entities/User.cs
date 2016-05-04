@@ -9,6 +9,9 @@ namespace Mooshak2_Hopur5.Models.Entities
     [Table("User")]
     public partial class User
     {
+        internal int courseId;
+        internal int announcementId;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {

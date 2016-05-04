@@ -4,6 +4,7 @@ obj/*
 Debug/
 vs/
 *.exe
+.vs/*
 
 # Windows image file caches
 Thumbs.db
