@@ -11,11 +11,14 @@ namespace Mooshak2_Hopur5.Controllers
     public class CourseController : Controller
     {
         private CourseService _service = new CourseService();
+        private AssignmentService _assignmentService = new AssignmentService();
 
         // GET: Course
         public ActionResult ViewCourse(int id)
         {
+            int userId = 3;
             var viewModel = _service.getCourseById(id);
+            viewModel.AssignmentList = _assignmentService.getAllUserAssignmentsInCourse(userId, id).AssignmentList;
             return View(viewModel);
         }
 
