@@ -13,10 +13,9 @@ namespace Mooshak2_Hopur5.Controllers
         private CourseService _service = new CourseService();
 
         // GET: Course
-        public ActionResult GetCourse()
+        public ActionResult ViewCourse(int id)
         {
-            int courseId = 1;
-            var viewModel = _service.getCourseById(courseId);
+            var viewModel = _service.getCourseById(id);
             return View(viewModel);
         }
 
@@ -24,6 +23,14 @@ namespace Mooshak2_Hopur5.Controllers
         {
             var viewModel = new CourseViewModel();
             viewModel = _service.getAllCourses();
+            return View(viewModel);
+        }
+
+        public ActionResult ViewAllMyCourses()
+        {
+            int userId = 3;
+            var viewModel = new CourseViewModel();
+            viewModel = _service.getAllUsersCourses(userId);
             return View(viewModel);
         }
 

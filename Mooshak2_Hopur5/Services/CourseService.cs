@@ -32,20 +32,24 @@ namespace Mooshak2_Hopur5.Services
             if (course == null)
             {
                 //TODO: Kasta villu
+                return null;
             }
 
-            //Set áfangann inn í ViewModelið
-            var viewModel = new CourseViewModel
-            {
-                CourseName = course.courseName,
-                CourseNumber = course.courseNumber,
-                SemesterId = course.semesterId,
-                UserList = courseUsers.UserList,
-                TeacherList = courseTeachers.TeacherList
-            };
+            else { 
+                //Set áfangann inn í ViewModelið
+                var viewModel = new CourseViewModel
+                {
+                    CourseId = course.courseId,
+                    CourseName = course.courseName,
+                    CourseNumber = course.courseNumber,
+                    SemesterId = course.semesterId,
+                    UserList = courseUsers.UserList,
+                    TeacherList = courseTeachers.TeacherList
+                };
 
-            //Returna ViewModelinu með áfanganum í
-            return viewModel;
+                //Returna ViewModelinu með áfanganum í
+                return viewModel;
+            }
         }
 
         //Sækir alla áfanga
@@ -61,10 +65,16 @@ namespace Mooshak2_Hopur5.Services
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
             foreach(var entity in courses)
             {
+                var courseUsers = getAllUsersInCourse(entity.courseId);
+                var courseTeachers = getAllTeachersInCourse(entity.courseId);
                 var result = new CourseViewModel
                 {
+                    CourseId = entity.courseId,
                     CourseName = entity.courseName,
-                    CourseNumber = entity.courseNumber
+                    CourseNumber = entity.courseNumber,
+                    SemesterId = entity.semesterId,
+                    UserList = courseUsers.UserList,
+                    TeacherList = courseTeachers.TeacherList
                 };
                 courseList.Add(result);
             }
@@ -94,10 +104,16 @@ namespace Mooshak2_Hopur5.Services
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
             foreach (var entity in courses)
             {
+                var courseUsers = getAllUsersInCourse(entity.courseId);
+                var courseTeachers = getAllTeachersInCourse(entity.courseId);
                 var result = new CourseViewModel
                 {
+                    CourseId = entity.courseId,
                     CourseName = entity.courseName,
-                    CourseNumber = entity.courseNumber
+                    CourseNumber = entity.courseNumber,
+                    SemesterId = entity.semesterId,
+                    UserList = courseUsers.UserList,
+                    TeacherList = courseTeachers.TeacherList
                 };
                 courseList.Add(result);
             }
@@ -128,10 +144,16 @@ namespace Mooshak2_Hopur5.Services
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
             foreach (var entity in userCourses)
             {
+                var courseUsers = getAllUsersInCourse(entity.courseId);
+                var courseTeachers = getAllTeachersInCourse(entity.courseId);
                 var result = new CourseViewModel
                 {
+                    CourseId = entity.courseId,
                     CourseName = entity.courseName,
-                    CourseNumber = entity.courseNumber
+                    CourseNumber = entity.courseNumber,
+                    SemesterId = entity.semesterId,
+                    UserList = courseUsers.UserList,
+                    TeacherList = courseTeachers.TeacherList
                 };
                 courseList.Add(result);
             }

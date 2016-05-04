@@ -307,12 +307,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Course\GetCourse.cshtml" />
+    <Content Include="Views\Course\ViewCourse.cshtml" />
     <Content Include="Views\Course\GetAllCourses.cshtml" />
     <Content Include="Views\Course\GetAllCoursesOnSemester.cshtml" />
     <Content Include="Views\Course\GetAllUserCourses.cshtml" />
     <Content Include="Views\Course\GetAllUserCoursesOnSemester.cshtml" />
     <Content Include="Views\User\GetUser.cshtml" />
+    <Content Include="Views\Course\ViewAllMyCourses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
