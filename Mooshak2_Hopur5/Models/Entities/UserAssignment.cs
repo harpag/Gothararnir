@@ -31,5 +31,6 @@ namespace Mooshak2_Hopur5.Models.Entities
         public virtual User User { get; set; }
 
         public virtual UserGroup UserGroup { get; set; }
+        public int assignmentId { get; set; }
     }
 }

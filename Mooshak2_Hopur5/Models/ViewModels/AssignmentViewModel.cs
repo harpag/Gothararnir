@@ -15,14 +15,15 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public string AssignmentName { get; set; }
         public string AssignmentDescription { get; set; }
         public byte[] AssignmentFile { get; set; }
-        public double Weight { get; set; }
+        public int Weight { get; set; }
         public int? MaxSubmission { get; set; }
         public DateTime? AssignDate { get; set; }
         public DateTime? DueDate { get; set; }
         public int? GradePublished { get; set; }
         public List<AssignmentViewModel> AssignmentList { get; set; }
-        public List<AssignmentPartViewModel> AssignmentPartList {get; set;}
+        public List<AssignmentPartViewModel> AssignmentPartList { get; set; }
         public List<Submission> AssignmentSubmissionsList { get; set; }
         public List<Discussion> DiscussionsList { get; set; }
+        public UserAssignment UserAssignment {get; set;}
     }
 }
