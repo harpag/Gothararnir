@@ -1,3 +1,9 @@
+#C sharp files
+bin/
+obj/*
+Debug/
+*.exe
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -46,25 +52,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-#C sharp files
-bin\*
-obj\*
-*.exe
-
 #Visual studio
-*.suo
-*.ncb
-*.user
-*.aps
-*.cachefile
-*.backup
-_UpgradeReport_Files
-#C sharp files
-bin/
-obj/
-*.exe
-
-#Visual studio
+.suo
 *.suo
 *.ncb
 *.user
