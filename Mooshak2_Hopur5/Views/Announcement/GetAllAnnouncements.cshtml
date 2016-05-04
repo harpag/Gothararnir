@@ -1,0 +1,11 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.AnnouncementViewModel
+@{
+    ViewBag.Title = "GetAllAnnouncements";
+}
+
+<h2>GetAllAnnouncements</h2>
+@foreach (var announce in Model.AnnouncementList)
+{
+    <p>Tilk: @announce.Announcement</p>
+}
+

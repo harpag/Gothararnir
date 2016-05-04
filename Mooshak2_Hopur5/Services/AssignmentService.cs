@@ -1,5 +1,4 @@
-﻿//using Mooshak2_Hopur5.Models.Entities;
-using Mooshak2_Hopur5.Models.Entities;
+﻿using Mooshak2_Hopur5.Models.Entities;
 using Mooshak2_Hopur5.Models.ViewModels;
 using System;
 using System.Collections.Generic;
