@@ -1,4 +1,5 @@
-﻿using Mooshak2_Hopur5.Services;
+﻿using Mooshak2_Hopur5.Models.ViewModels;
+using Mooshak2_Hopur5.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,18 @@ namespace Mooshak2_Hopur5.Controllers
         public ActionResult GetUser(int? userId)
         {
             Models.ViewModels.UserViewModel viewModel = null;
-            if ( userId == null)
+            if (userId == null)
                 viewModel = _service.getUserById(3);
             else
                 viewModel = _service.getUserById((int)userId);
 
+            return View(viewModel);
+        }
+
+        public ActionResult GetAllUsers()
+        {
+            var viewModel = new UserViewModel();
+            viewModel = _service.getAllUsers();
             return View(viewModel);
         }
     }

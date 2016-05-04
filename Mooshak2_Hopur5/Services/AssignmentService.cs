@@ -1,5 +1,4 @@
-﻿//using Mooshak2_Hopur5.Models.Entities;
-using Mooshak2_Hopur5.Models.Entities;
+﻿using Mooshak2_Hopur5.Models.Entities;
 using Mooshak2_Hopur5.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -22,10 +21,10 @@ namespace Mooshak2_Hopur5.Services
         {
             //Sæki verkefni með ákveðnu ID ofan í gagnagrunn
             var assignment = (from assign in _db.Assignment
-                             join course in _db.Course on assign.courseId equals course.courseId
-                             where assign.assignmentId == assignmentId
-                             select new { assign, course }).SingleOrDefault();
-            
+                              join course in _db.Course on assign.courseId equals course.courseId
+                              where assign.assignmentId == assignmentId
+                              select new { assign, course }).SingleOrDefault();
+
             var assignmentPart = getAssignmentParts(assignmentId);
 
             //Kasta villu ef ekki fannst verkefni með þessu ID-i
@@ -60,9 +59,9 @@ namespace Mooshak2_Hopur5.Services
         {
             //Sæki alla hluta úr verkefni
             var assignmentParts = (from assignmentPart in _db.AssignmentPart
-                               join assignment in _db.Assignment on assignmentPart.assignmentId equals assignment.assignmentId
-                               where assignmentPart.assignmentId == assignmentId
-                               select new { assignmentPart, assignment }).ToList();
+                                   join assignment in _db.Assignment on assignmentPart.assignmentId equals assignment.assignmentId
+                                   where assignmentPart.assignmentId == assignmentId
+                                   select new { assignmentPart, assignment }).ToList();
 
 
             //Bý til lista af verkefna hlutum
@@ -102,11 +101,11 @@ namespace Mooshak2_Hopur5.Services
         {
             //Sæki öll prófunartilvik fyrir verkefnis hluta
             var testCases = (from assignmentTestCase in _db.AssignmentTestCase
-                                   join assignmentPart in _db.AssignmentPart on assignmentTestCase.assignmentPartId equals assignmentPart.assignmentPartId
-                                   where assignmentTestCase.assignmentPartId == assignmentPartId
-                                   select new { assignmentTestCase }).ToList();
+                             join assignmentPart in _db.AssignmentPart on assignmentTestCase.assignmentPartId equals assignmentPart.assignmentPartId
+                             where assignmentTestCase.assignmentPartId == assignmentPartId
+                             select new { assignmentTestCase }).ToList();
 
-           
+
             //Bý til lista af prófunartilvikum
             List<AssignmentTestCase> assignmentTestCaseList;
             assignmentTestCaseList = new List<AssignmentTestCase>();
@@ -135,13 +134,23 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
+        //getAllAssignments()
+        //getAllAssignmentsOnSemester()
+        //getAllUserAssignments()
+        //getAllUserAssignmentsOnSemester()
+        //getAssignmentGrade()
+        //getAssignmentStatistics()
+        //editAssignment()
+        //addAssignment()
+        //addAssignmentTestCase()
+
         //Sækir öll verkefni
         public AssignmentViewModel getAllAssignments()
         {
             //Sæki öll gögn í verkefna töfluna
             var assignments = (from assign in _db.Assignment
-                              join course in _db.Course on assign.courseId equals course.courseId
-                              select new { assign, course }).ToList();
+                               join course in _db.Course on assign.courseId equals course.courseId
+                               select new { assign, course }).ToList();
 
             //Bý til lista af verkefnum
             List<AssignmentViewModel> assignmentsList;
@@ -157,19 +166,19 @@ namespace Mooshak2_Hopur5.Services
                     CourseId = entity.assign.courseId,
                     CourseName = entity.course.courseName,
                     CourseNumber = entity.course.courseNumber,
-                    AssignmentName =entity.assign.assignmentName,
-                    AssignmentDescription =entity.assign.assignmentDescription,
-                    AssignmentFile =entity.assign.assignmentFile,
+                    AssignmentName = entity.assign.assignmentName,
+                    AssignmentDescription = entity.assign.assignmentDescription,
+                    AssignmentFile = entity.assign.assignmentFile,
                     Weight = entity.assign.weight,
                     MaxSubmission = entity.assign.maxSubmission,
                     AssignDate = entity.assign.assignDate,
                     DueDate = entity.assign.dueDate,
-                    GradePublished =entity.assign.gradePublished,
+                    GradePublished = entity.assign.gradePublished,
                     AssignmentPartList = assignmentParts.AssignmentPartList
                     //AssignmentSubmissionsList =
                     //DiscussionsList =
-                 };
-                 assignmentsList.Add(result);
+                };
+                assignmentsList.Add(result);
             }
 
             //Bý til nýtt AssingmentViewModel og set listann inn í það
@@ -278,7 +287,7 @@ namespace Mooshak2_Hopur5.Services
         }
 
         public AssignmentViewModel getAllUserAssignmentsOnSemester(int userId, int semesterId)
-         {
+        {
             //Sæki öll gögn í verkefna töfluna
             var assignments = (from assign in _db.Assignment
                                join course in _db.Course on assign.courseId equals course.courseId
@@ -330,11 +339,11 @@ namespace Mooshak2_Hopur5.Services
         {
             //Sæki öll gögn í verkefna töfluna
             var assignment = (from assign in _db.Assignment
-                               join userAssignment in _db.UserAssignment on assign.assignmentId equals userAssignment.assignmentId
-                               where assign.assignmentId == assignmentId && userAssignment.userId == userId
-                               select new { assign, userAssignment }).SingleOrDefault();
+                              join userAssignment in _db.UserAssignment on assign.assignmentId equals userAssignment.assignmentId
+                              where assign.assignmentId == assignmentId && userAssignment.userId == userId
+                              select new { assign, userAssignment }).SingleOrDefault();
 
-            UserAssignment userAssign = null; 
+            UserAssignment userAssign = null;
             if (assignment.assign.gradePublished == 1)
             {
                 userAssign = new UserAssignment
@@ -356,7 +365,7 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        
+
         public AssignmentViewModel editAssignment(AssignmentViewModel assignmentToChange)
         {
             // Sæki færsluna sem á að breyta í gagnagrunninn
@@ -416,12 +425,13 @@ namespace Mooshak2_Hopur5.Services
                 return false;
             }
         }
-        
+
         public Boolean addAssignmentTestCase(AssignmentTestCase assignmentTestCaseToAdd)
         {
             var newAssignmentTestCase = new AssignmentTestCase();
             var testCaseCount = (from testCase in _db.AssignmentTestCase
-                              where testCase.assignmentPartId == assignmentTestCaseToAdd.assignmentPartId select testCase).Count();
+                                 where testCase.assignmentPartId == assignmentTestCaseToAdd.assignmentPartId
+                                 select testCase).Count();
             //setja propery-in
             newAssignmentTestCase.assignmentPartId = assignmentTestCaseToAdd.assignmentPartId;
             newAssignmentTestCase.testNumber = testCaseCount + 1;
