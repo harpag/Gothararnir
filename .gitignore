@@ -2,6 +2,7 @@
 bin/
 obj/*
 Debug/
+vs/
 *.exe
 
 # Windows image file caches
