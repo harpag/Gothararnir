@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mooshak2_Hopur5.Models.ViewModels;
+using Mooshak2_Hopur5.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +10,17 @@ namespace Mooshak2_Hopur5.Controllers
 {
     public class HomeController : Controller
     {
+        private CourseService _courseService = new CourseService();
+        private AssignmentService _assignmentService = new AssignmentService();
+        private AnnouncementService _announcementService = new AnnouncementService();
+
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var viewModel = new HomeViewModel();
+            viewModel.CourseList = _courseService.getAllCourses().CourseList;
+            viewModel.AssignmentList = _assignmentService.getAllAssignments().AssignmentList;
+            viewModel.AnnouncementList = _announcementService.getAllAnnouncements().AnnouncementList;
+            return View(viewModel);
         }
     }
 }

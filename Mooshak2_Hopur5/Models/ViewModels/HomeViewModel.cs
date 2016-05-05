@@ -11,5 +11,7 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public UserViewModel LoggedInUser { get; set; }
         public List<UserLogin> NewestUserLogin { get; set; }
         public List<AnnouncementViewModel> AnnouncementList { get; set; }
+        public List<AssignmentViewModel> AssignmentList { get; set; }
+        public List<CourseViewModel> CourseList { get; set; }
     }
 }
