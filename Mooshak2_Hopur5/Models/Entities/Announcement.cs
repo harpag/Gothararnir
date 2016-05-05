@@ -15,7 +15,7 @@ namespace Mooshak2_Hopur5.Models.Entities
 
         [Column("announcement")]
         [Required]
-        public string announcement1 { get; set; }
+        public string announcement { get; set; }
 
         public DateTime dateCreate { get; set; }
 

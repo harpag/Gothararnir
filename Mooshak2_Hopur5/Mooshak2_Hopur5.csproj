@@ -321,6 +321,7 @@
     <Content Include="Views\User\GetAllUsers.cshtml" />
     <Content Include="Views\Assignment\AddAssignment.cshtml" />
     <Content Include="Views\Course\ViewAllMyCourses.cshtml" />
+    <Content Include="Views\Announcement\AddAnnouncement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

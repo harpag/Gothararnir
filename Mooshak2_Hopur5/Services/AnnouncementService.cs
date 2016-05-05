@@ -1,9 +1,13 @@
-﻿using Mooshak2_Hopur5.Models.Entities;
+﻿using Mooshak2_Hopur5.Utilities;
+using Mooshak2_Hopur5.Models.Entities;
 using Mooshak2_Hopur5.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Data.Entity.Validation;
 
 namespace Mooshak2_Hopur5.Services
 {
@@ -32,7 +36,7 @@ namespace Mooshak2_Hopur5.Services
             var viewModel = new AnnouncementViewModel
             {
                 DateCreate = announcement.dateCreate,
-                Announcement = announcement.announcement1
+                Announcement = announcement.announcement
             };
 
             //Returna ViewModelinu með tilkynningunni í
@@ -53,7 +57,7 @@ namespace Mooshak2_Hopur5.Services
             {
                 var result = new AnnouncementViewModel
                 {
-                    Announcement = entity.announcement1,
+                    Announcement = entity.announcement,
                     DateCreate = entity.dateCreate
                 };
 
@@ -76,21 +80,22 @@ namespace Mooshak2_Hopur5.Services
             var newAnnouncement = new Announcement();
 
             //setja propery-in
-            newAnnouncement.announcement1 = announcementToAdd.Announcement;
-            newAnnouncement.dateCreate = announcementToAdd.DateCreate;
+            newAnnouncement.announcement = announcementToAdd.Announcement;
+            newAnnouncement.userId = announcementToAdd.UserId;
+            newAnnouncement.dateCreate = DateTime.Now;
             //Todo setja inn öll property
 
-            try
-            {
-                //Vista ofan í gagnagrunn
-                _db.Announcement.Add(newAnnouncement);
+            //try
+            //{
+            //Vista ofan í gagnagrunn
+            _db.Announcement.Add(newAnnouncement);
                 _db.SaveChanges();
                 return true;
-            }
-            catch
-            {
-                return false;
-            }
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
         }
 
         //Breyta tilkynningu
@@ -102,7 +107,7 @@ namespace Mooshak2_Hopur5.Services
                          select announcement).SingleOrDefault();
 
             // Set inn breyttu upplýsingarnar
-            query.announcement1 = announcementToChange.Announcement;
+            query.announcement = announcementToChange.Announcement;
             query.dateCreate = announcementToChange.DateCreate;
             //Todo setja inn rest
 
