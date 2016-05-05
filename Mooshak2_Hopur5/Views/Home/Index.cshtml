@@ -1,41 +1,47 @@
 ﻿@model  Mooshak2_Hopur5.Models.ViewModels.HomeViewModel
 @{
-    ViewBag.Title = "Home Page";
+     ViewBag.Title = "Home Page";
 }
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <div class="col-md-5">
+        <h2>Assignments</h2>    
+        <ul class="list-group">
+            @foreach (var assignment in Model.AssignmentList.Take(3))
+            {
+                string assignmentName = assignment.AssignmentName;
+                <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</li>
+            }
+        </ul>
+    </div id="dataListItem">
 
 
-<div class="col-md-5">
-    <h2>Assignments</h2>    
-    <ul>
-        @foreach (var assignment in Model.AssignmentList.Take(3))
-        {
-            string assignmentName = assignment.AssignmentName;
-            <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</li>
-        }
-    </ul>
-</div id="dataListItem">
+
+    <div class="col-md-5">
+        <h2>Courses</h2>
+        <ul class="list-group">
+            @foreach (var course in Model.CourseList.Take(3))
+            {
+                string courseName = course.CourseNumber + "-" + course.CourseName;
+                <li class="list-group-item">@Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)</li>
+            }
+        </ul>
+    </div>
 
 
-
-<div class="col-md-5">
-    <h2>Courses</h2>
-    <ul class="list-group">
-        @foreach (var course in Model.CourseList.Take(3))
-        {
-            string courseName = course.CourseNumber + "-" + course.CourseName;
-            <li class="list-group-item">@Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)</li>
-        }
-    </ul>
-</div>
-
-    
-<div class="col-md-5">
-    <h2>Announcements</h2>
-    <ul class="list-group">
-        @foreach (var announcement in Model.AnnouncementList.Take(3))
-        {
-            string announcementName = announcement.Announcement;
-            <li class="list-group-item">@Html.ActionLink(announcementName, "ViewAnnouncement", "Announcement", new { id = announcement.AnnouncementId }, null)</li>
-        }
-    </ul>
-</div>
+    <div class="col-md-5">
+        <h2>Announcements</h2>
+        <ul class="list-group">
+            @foreach (var announcement in Model.AnnouncementList.Take(3))
+            {
+                string announcementName = announcement.Announcement;
+                <li class="list-group-item">@Html.ActionLink(announcementName, "ViewAnnouncement", "Announcement", new { id = announcement.AnnouncementId }, null)</li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    @Html.Action("Login", "Account", null)
+}
