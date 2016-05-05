@@ -34,7 +34,7 @@ namespace Mooshak2_Hopur5.Models.Entities
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Announcement>()
-                .Property(e => e.announcement1)
+                .Property(e => e.announcement)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Assignment>()

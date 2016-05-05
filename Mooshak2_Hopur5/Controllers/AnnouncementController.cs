@@ -18,12 +18,30 @@ namespace Mooshak2_Hopur5.Controllers
             return View();
         }
 
+
         public ActionResult GetAnnouncement()
         {
             int announcementId = 5;
             var viewModel = _service.getAnnouncementById(announcementId);
             return View(viewModel);
         }
+
+        public ActionResult AddAnnouncement()
+        {
+            AnnouncementViewModel viewModel = new AnnouncementViewModel();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddAnnouncement(AnnouncementViewModel newAnnouncement)
+        {
+            newAnnouncement.UserId = 5;
+            Boolean announcement = _service.addAnnouncement(newAnnouncement);
+            
+            return RedirectToAction("GetAllAnnouncements", "Announcement");
+
+        }
+        
 
         public ActionResult GetAllAnnouncements()
         {
