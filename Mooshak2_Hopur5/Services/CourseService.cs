@@ -272,6 +272,7 @@ namespace Mooshak2_Hopur5.Services
             //setja propery-in
             newCourse.courseName = courseToAdd.CourseName;
             newCourse.courseNumber = courseToAdd.CourseNumber;
+            newCourse.semesterId = courseToAdd.SemesterId;
             //Todo setja inn öll property
 
             try
@@ -344,6 +345,28 @@ namespace Mooshak2_Hopur5.Services
             };
 
             //Returna viewModelinu með listanum
+            return viewModel;
+        }
+
+        //Sækir allar annir
+        public SemesterViewModel getAllSemesters()
+        {
+            var semesters = _db.Semester.ToList();
+            
+            List<SemesterViewModel> semesterlist = new List<SemesterViewModel>();
+
+            foreach (var entity in semesters)
+            {
+                var result = new SemesterViewModel
+                {
+                    SemesterId = entity.semesterId,
+                    SemesterName = entity.semesterName
+                };
+                semesterlist.Add(result);
+            }
+
+            SemesterViewModel viewModel = new SemesterViewModel();
+            viewModel.SemesterList = semesterlist;
             return viewModel;
         }
 
