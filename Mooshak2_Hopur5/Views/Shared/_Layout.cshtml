@@ -20,13 +20,11 @@
             </div>
           
              <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">      
-
-                    @Html.Partial("_LoginPartial")       
-                         
+                <ul class="nav navbar-nav">           
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Courses</a>
                         @Html.Action("ViewAllMyCourses", "Course", null)
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Assignments</a>
                         <div class="dropdown-content">
@@ -35,33 +33,29 @@
                             <a href="#">Create Assignment</a>
                             <a href="#">My Assignments</a>
                         </div>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Users</a>
-                        <div class="dropdown-content
-                            <a href="#">Create User</a>
-                            <a href="#">Edit User</a>
-                            <a href="#">See All</a>
-                            <a href="#">D</a>
+                        <div class="dropdown-content">
+                            @Html.ActionLink("Create user", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            @Html.ActionLink("View All", "ViewAllUsers", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })
                         </div>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Grades</a>
                         <div class="dropdown-content">
                             <a href="#">All Grades</a>
-                            <a href="#">B</a>
-                            <a href="#">C</a>
-                            <a href="#">D</a>
                         </div>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Other</a>
                         <div class="dropdown-content">
-                            <a href="#">Edit Information</a>
-                            <a href="#">B</a>
-                            <a href="#">C</a>
-                            <a href="#">D</a>
+                            @Html.ActionLink("Change password", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            <a href="#">Add announcement</a>
                         </div>
-            </div>
-            </ul>
-  
+                    </li>
+                </ul>
+                 @Html.Partial("_LoginPartial")
         </div>
         </div>
     </div>

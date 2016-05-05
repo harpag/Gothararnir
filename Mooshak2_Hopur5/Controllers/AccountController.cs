@@ -7,8 +7,10 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Mooshak2_Hopur5.Models;
+using System.Web.Security;
 
 namespace Mooshak2_Hopur5.Controllers
 {
@@ -75,7 +77,8 @@ namespace Mooshak2_Hopur5.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
+            var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -134,15 +137,20 @@ namespace Mooshak2_Hopur5.Controllers
             }
         }
 
-        //
+        
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var Role = new IdentityRole();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+            RegisterViewModel viewModel = new RegisterViewModel();
+            var roles = roleManager.Roles.ToList();
+            viewModel.Roles = new SelectList(roleManager.Roles.ToList(), "name", "name");
+            
+            return View(viewModel);
         }
 
-        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -151,8 +159,10 @@ namespace Mooshak2_Hopur5.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                //var newUser = UserManager.FindByName(model.UserName);
+                UserManager.AddToRole(user.Id, model.RoleName);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

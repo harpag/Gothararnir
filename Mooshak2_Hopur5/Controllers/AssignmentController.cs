@@ -52,5 +52,11 @@ namespace Mooshak2_Hopur5.Controllers
             //ViewBag.MovieCategoryID = new SelectList(db.MovieCategories, "ID", "Name", movie.MovieCategoryID);
             return View(assignment);
         }
+
+        public ActionResult ViewAssignment(int id)
+        {
+            var viewModel = _service.getAssignmentById(id);
+            return View(viewModel);
+        }
     }
 }

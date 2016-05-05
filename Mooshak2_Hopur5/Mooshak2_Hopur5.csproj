@@ -320,8 +320,13 @@
     <Content Include="Views\Announcement\GetAnnouncement.cshtml" />
     <Content Include="Views\User\GetAllUsers.cshtml" />
     <Content Include="Views\Assignment\AddAssignment.cshtml" />
+    <Content Include="Views\Assignment\ViewAssignment.cshtml" />
     <Content Include="Views\Course\ViewAllMyCourses.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Announcement\AddAnnouncement.cshtml" />
+=======
+    <Content Include="Views\Shared\_Logon_Layout.cshtml" />
+>>>>>>> 90dc4927fe683da444bbdf777d680a97b252f4e4
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
