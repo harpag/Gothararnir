@@ -1,9 +1,13 @@
-﻿using Mooshak2_Hopur5.Models.Entities;
+﻿using Mooshak2_Hopur5.Utilities;
+using Mooshak2_Hopur5.Models.Entities;
 using Mooshak2_Hopur5.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Data.Entity.Validation;
 
 namespace Mooshak2_Hopur5.Services
 {
@@ -286,6 +290,55 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
+        public AssignmentViewModel getAllUserAssignmentsInCourse(int userId, int courseId)
+        {
+            //Sæki öll gögn í verkefna töfluna
+            var assignments = (from assign in _db.Assignment
+                               join course in _db.Course on assign.courseId equals course.courseId
+                               join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
+                               where userCourse.userId == userId && course.courseId == courseId
+                               select new { assign, course }).ToList();
+
+            //Bý til lista af verkefnum
+            List<AssignmentViewModel> assignmentsList;
+            assignmentsList = new List<AssignmentViewModel>();
+
+            //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
+            foreach (var entity in assignments)
+            {
+                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+                var result = new AssignmentViewModel
+                {
+                    AssignmentId = entity.assign.assignmentId,
+                    CourseId = entity.assign.courseId,
+                    CourseName = entity.course.courseName,
+                    CourseNumber = entity.course.courseNumber,
+                    AssignmentName = entity.assign.assignmentName,
+                    AssignmentDescription = entity.assign.assignmentDescription,
+                    AssignmentFile = entity.assign.assignmentFile,
+                    Weight = entity.assign.weight,
+                    MaxSubmission = entity.assign.maxSubmission,
+                    AssignDate = entity.assign.assignDate,
+                    DueDate = entity.assign.dueDate,
+                    GradePublished = entity.assign.gradePublished,
+                    AssignmentPartList = assignmentParts.AssignmentPartList
+                    //AssignmentSubmissionsList =
+                    //DiscussionsList =
+                };
+                assignmentsList.Add(result);
+            }
+
+            //Bý til nýtt AssingmentViewModel og set listann inn í það
+            AssignmentViewModel viewModel = new AssignmentViewModel
+            {
+                AssignmentList = assignmentsList
+            };
+
+            //Returna viewModelinu með listanum
+            return viewModel;
+        }
+
+
         public AssignmentViewModel getAllUserAssignmentsOnSemester(int userId, int semesterId)
         {
             //Sæki öll gögn í verkefna töfluna
@@ -397,7 +450,7 @@ namespace Mooshak2_Hopur5.Services
             return assignmentToChange;
         }
 
-        public Boolean addAssignment(AssignmentViewModel assignmentToAdd)
+        public AssignmentViewModel addAssignment(AssignmentViewModel assignmentToAdd)
         {
             var newAssignment = new Assignment();
 
@@ -416,13 +469,24 @@ namespace Mooshak2_Hopur5.Services
             try
             {
                 //Vista ofan í gagnagrunn
-                _db.Assignment.Add(newAssignment);
+                newAssignment = _db.Assignment.Add(newAssignment);
                 _db.SaveChanges();
-                return true;
+                assignmentToAdd.AssignmentId = newAssignment.assignmentId;
+                return assignmentToAdd;
             }
-            catch
+            catch (DbEntityValidationException e)
             {
-                return false;
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
             }
         }
 
@@ -450,6 +514,66 @@ namespace Mooshak2_Hopur5.Services
             {
                 return false;
             }
+        }
+
+        public Boolean addAssignmentFile(string serverPath,AssignmentViewModel assignment)
+        {
+            string filePathFull = serverPath + "\\Content\\Files\\Assignments\\Full\\";
+            string filePathThumb = serverPath + "\\Content\\Files\\Assignments\\Thumb\\";
+
+            if (!Directory.Exists(filePathFull))
+            {
+                Directory.CreateDirectory(filePathFull);
+            }
+            if (!Directory.Exists(filePathThumb))
+            {
+                Directory.CreateDirectory(filePathThumb);
+            }
+
+            if (assignment.ImageUploaded != null)
+            {
+
+                string fileExtension = System.IO.Path.GetExtension(assignment.ImageUploaded.FileName);
+                string fileContentType = assignment.ImageUploaded.ContentType;
+
+                AssignmentFile newFile = new AssignmentFile();
+                newFile.assignmentId = assignment.AssignmentId;
+                newFile.fileType = fileContentType;
+                newFile.fileExtension = fileExtension;
+
+                try
+                { 
+                    newFile = _db.AssignmentFile.Add(newFile);
+                    _db.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+                }
+                string fileName = newFile.assignmentFileId.ToString();
+                newFile.path = filePathFull + fileName + fileExtension;
+                newFile.pathThumb = filePathThumb + fileName + fileExtension;
+                newFile.fileExtension = fileExtension;
+
+                _db.Entry(newFile).State = EntityState.Modified;
+                _db.SaveChanges();
+
+                FileHelper.ResizeAndSave(filePathFull, fileName, assignment.ImageUploaded.InputStream, 800, false);
+                FileHelper.ResizeAndSave(filePathThumb, fileName, assignment.ImageUploaded.InputStream, 190, false);
+                return true;
+            }
+
+            return false;
         }
 
         //submittAssignment()

@@ -1,0 +1,63 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.AssignmentViewModel
+
+@{
+    ViewBag.Title = "Create Assignment";
+}
+
+<h2>Create new assignment</h2>
+
+@using (Html.BeginForm("CreateAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+<div class="container">
+    <ul class="nav nav-pills">
+        <li class="active"><a href="#tab_a" data-toggle="tab">Assignment info</a></li>
+        <li><a href="#tab_b" data-toggle="tab">Assignment Parts</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab_a">
+            <div class="form-group">
+                @Html.LabelFor(m => m.AssignmentName, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentName)
+                @Html.EditorFor(m => m.AssignmentName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AssignmentDescription, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentDescription)
+                @Html.EditorFor(m => m.AssignmentDescription, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Weight, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.Weight)
+                @Html.EditorFor(m => m.Weight, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MaxSubmission, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.MaxSubmission)
+                @Html.EditorFor(m => m.MaxSubmission, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AssignDate, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignDate)
+                @Html.EditorFor(m => m.AssignDate, new { htmlAttributes = new { @class = "form-control", id = "datepicker" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DueDate, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.DueDate)
+                @Html.EditorFor(m => m.DueDate, new { htmlAttributes = new { @class = "form-control", id = "datepicker" } })
+            </div>
+            <div class="product-attachments">
+                <div class="form-group product-attachment">
+                    @Html.LabelFor(m => m.ImageUploaded, new { @class = "control-label" })
+                    @Html.ValidationMessageFor(m => m.ImageUploaded)
+                    @Html.TextBoxFor(m => m.ImageUploaded, new { type = "file", @class = "form-control" })
+                    @*<input name="ImageUploaded" type="file" class="form-control" />*@
+                </div>
+            </div>
+            @Html.TextBoxFor(m => m.CourseId, new { style = "visibility:hidden" })
+        </div>
+        <div class="tab-pane" id="tab_b">
+            <!-- á eftir að setja hér inn virkni-->
+        </div>
+    </div><!-- tab content -->
+</div><!-- end of container -->
+}
