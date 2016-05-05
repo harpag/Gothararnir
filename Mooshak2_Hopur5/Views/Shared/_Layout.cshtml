@@ -6,47 +6,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <style>
-li a:hover, .dropdown:hover .dropbtn 
-{
-}
-
-li.dropdown 
-{
-    display: inline-block;
-}
-
-.dropdown-content 
-{
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a 
-{
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover 
-{
-    background-color: #f1f1f1
-
-}
-
-.dropdown:hover .dropdown-content 
-{
-    display: block;
-}
-
-
-    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -60,27 +19,12 @@ li.dropdown
                 @Html.ActionLink("Mooshak 2.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
           
-              <!-- <div class="navbar-collapse collapse">
-             <ul class="nav navbar-nav">
-                 <li>@Html.ActionLink("Courses", "ViewAllMyCourses", "Course")</li>
-                 <li>@Html.ActionLink("Assignments", "Assignments", "Assignment")</li>
-                 <li>@Html.ActionLink("Users", "Users", "User")</li>
-                 <li>@Html.ActionLink("Other", "Other", "Home")</li>
-            -->
-           
              <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-      
-                    @Html.Partial("_LoginPartial")
-            
+                <ul class="nav navbar-nav">           
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Courses</a>
-                        <div class="dropdown-content">
-                            <a href="http://localhost:49299/Course/ViewCourse/2">USTY-Grunnatriði stýrikerfa</a>
-                            <a href="http://localhost:49299/Course/ViewCourse/3">PROG-Forritun</a>
-                            <a href="http://localhost:49299/Course/ViewCourse/3">PROG-Forritun</a>
-                            <a href="http://localhost:49299/Course/ViewCourse/1">FMAL-Forritunarmál</a>
-                        </div>
+                        @Html.Action("ViewAllMyCourses", "Course", null)
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Assignments</a>
                         <div class="dropdown-content">
@@ -89,33 +33,29 @@ li.dropdown
                             <a href="#">Create Assignment</a>
                             <a href="#">My Assignments</a>
                         </div>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Users</a>
                         <div class="dropdown-content">
-                            <a href="#">Create User</a>
-                            <a href="#">Edit User</a>
-                            <a href="#">See All</a>
-                            <a href="#">D</a>
+                            @Html.ActionLink("Create user", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            @Html.ActionLink("View All", "ViewAllUsers", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })
                         </div>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Grades</a>
                         <div class="dropdown-content">
                             <a href="#">All Grades</a>
-                            <a href="#">B</a>
-                            <a href="#">C</a>
-                            <a href="#">D</a>
                         </div>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Other</a>
                         <div class="dropdown-content">
-                            <a href="#">Edit Information</a>
-                            <a href="#">B</a>
-                            <a href="#">C</a>
-                            <a href="#">D</a>
+                            @Html.ActionLink("Change password", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            <a href="#">Add announcement</a>
                         </div>
-            </div>
-            </ul>
-  
+                    </li>
+                </ul>
+                 @Html.Partial("_LoginPartial")
         </div>
         </div>
     </div>

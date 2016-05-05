@@ -4,5 +4,21 @@
 
 }
 
-<h2>@Model.CourseNumber - @Model.CourseName</h2>
+<h2>Assignments</h2>
+<ul class="list-group">
+    @foreach (var assignment in Model.AssignmentList)
+    {
+        string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
+        <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = Model.CourseId }, null)</li>
+    }
+</ul>
+
+
+
 @Html.ActionLink("Create new assignment", "AddAssignment", "Assignment", new { id = Model.CourseId }, new { @class = "btn btn-primary" })
+
+
+
+
+
+

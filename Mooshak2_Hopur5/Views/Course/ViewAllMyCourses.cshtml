@@ -1,14 +1,11 @@
 ﻿@model  Mooshak2_Hopur5.Models.ViewModels.CourseViewModel
-
 @{
-    ViewBag.Title = "My Courses";
+    Layout = null;
 }
-
-<h2>My Courses</h2>
-<ul class="list-group">
+<div class="dropdown-content">
     @foreach (var course in Model.CourseList)
     {
         string courseName = course.CourseNumber + "-" + course.CourseName;
-        <li class="list-group-item">@Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)</li>
+        @Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)
     }
-</ul>
+</div>
