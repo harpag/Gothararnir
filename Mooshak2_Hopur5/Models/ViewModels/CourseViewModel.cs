@@ -16,5 +16,6 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public List<CourseViewModel> CourseList { get; set; }
         public List<UserViewModel> UserList { get; set; }
         public List<CourseTeacherViewModel> TeacherList { get; set; }
+        public List<AssignmentViewModel> AssignmentList { get; set; }
     }
 }

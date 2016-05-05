@@ -5,4 +5,4 @@
 }
 
 <h2>@Model.CourseNumber - @Model.CourseName</h2>
-<button type="button" class="btn btn-primary">Create new assignment</button>
+@Html.ActionLink("Create new assignment", "AddAssignment", "Assignment", new { id = Model.CourseId }, new { @class = "btn btn-primary" })
