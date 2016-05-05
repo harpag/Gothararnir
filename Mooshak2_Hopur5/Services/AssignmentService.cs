@@ -35,28 +35,31 @@ namespace Mooshak2_Hopur5.Services
             if (assignment == null)
             {
                 //TODO: Kasta villu
+                return null;
             }
-
-            //Set verkefni inn í ViewModelið
-            var viewModel = new AssignmentViewModel
+            else
             {
-                AssignmentId = assignment.assign.assignmentId,
-                CourseId = assignment.assign.courseId,
-                CourseName = assignment.course.courseName,
-                CourseNumber = assignment.course.courseNumber,
-                AssignmentName = assignment.assign.assignmentName,
-                AssignmentDescription = assignment.assign.assignmentDescription,
-                AssignmentFile = assignment.assign.assignmentFile,
-                Weight = assignment.assign.weight,
-                MaxSubmission = assignment.assign.maxSubmission,
-                AssignDate = assignment.assign.assignDate,
-                DueDate = assignment.assign.dueDate,
-                GradePublished = assignment.assign.gradePublished,
-                AssignmentPartList = assignmentPart.AssignmentPartList
-            };
+                //Set verkefni inn í ViewModelið
+                var viewModel = new AssignmentViewModel
+                {
+                    AssignmentId = assignment.assign.assignmentId,
+                    CourseId = assignment.assign.courseId,
+                    CourseName = assignment.course.courseName,
+                    CourseNumber = assignment.course.courseNumber,
+                    AssignmentName = assignment.assign.assignmentName,
+                    AssignmentDescription = assignment.assign.assignmentDescription,
+                    AssignmentFile = assignment.assign.assignmentFile,
+                    Weight = assignment.assign.weight,
+                    MaxSubmission = assignment.assign.maxSubmission,
+                    AssignDate = assignment.assign.assignDate,
+                    DueDate = assignment.assign.dueDate,
+                    GradePublished = assignment.assign.gradePublished,
+                    AssignmentPartList = assignmentPart.AssignmentPartList
+                };
 
-            //Returna ViewModelinu með áfanganum í
-            return viewModel;
+                //Returna ViewModelinu með áfanganum í
+                return viewModel;
+            }
         }
 
         public AssignmentPartViewModel getAssignmentParts(int assignmentId)

@@ -1,0 +1,16 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.AssignmentViewModel
+
+@{
+    ViewBag.Title = "ViewAssignment";
+}
+
+<h2>@Model.AssignmentName</h2>
+
+<div class="form-inline">
+    <div class="list-group-item">
+        <p>Grade: @Model.GradePublished</p>
+        <p>Weight of assignment: @Model.Weight</p>
+        <p>Deadline: @Model.DueDate</p>
+        <p>Max submissions: @Model.MaxSubmission</p>
+    </div>
+</div>
