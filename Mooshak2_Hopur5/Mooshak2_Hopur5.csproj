@@ -316,11 +316,11 @@
     <Content Include="Views\Course\GetAllUserCourses.cshtml" />
     <Content Include="Views\Course\GetAllUserCoursesOnSemester.cshtml" />
     <Content Include="Views\User\GetUser.cshtml" />
-    <Content Include="Views\Course\ViewAllMyCourses.cshtml" />
     <Content Include="Views\Announcement\GetAllAnnouncements.cshtml" />
     <Content Include="Views\Announcement\GetAnnouncement.cshtml" />
     <Content Include="Views\User\GetAllUsers.cshtml" />
     <Content Include="Views\Assignment\AddAssignment.cshtml" />
+    <Content Include="Views\Course\ViewAllMyCourses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
