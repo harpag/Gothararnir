@@ -22,5 +22,12 @@ namespace Mooshak2_Hopur5.Controllers
             viewModel.AnnouncementList = _announcementService.getAllAnnouncements().AnnouncementList;
             return View(viewModel);
         }
+
+        public ActionResult AdminIndex()
+        {
+            var viewModel = new HomeViewModel();
+            viewModel.AnnouncementList = _announcementService.getAllAnnouncements().AnnouncementList;
+            return View(viewModel);
+        }
     }
 }
