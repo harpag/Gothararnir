@@ -38,6 +38,8 @@
                 string announcementName = announcement.Announcement;
                 <li class="list-group-item">@Html.ActionLink(announcementName, "ViewAnnouncement", "Announcement", new { id = announcement.AnnouncementId }, null)</li>
             }
+            @Html.ActionLink("Add announcement ", "AddAnnouncement", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            @Html.ActionLink(" View all", "GetAllAnnouncements", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
         </ul>
     </div>
 }
