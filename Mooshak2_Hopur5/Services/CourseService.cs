@@ -370,5 +370,57 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
+        public Boolean addSemester(SemesterViewModel semesterToAdd)
+        {
+            var newSemester = new Semester();
+
+            //setja propery-in
+            newSemester.semesterNumber = semesterToAdd.SemesterNumber;
+            newSemester.semesterName = semesterToAdd.SemesterName;
+            newSemester.dateFrom = semesterToAdd.DateFrom;
+            newSemester.dateTo = semesterToAdd.DateTo;
+            
+
+            try
+            {
+                //Vista ofan í gagnagrunn
+                _db.Semester.Add(newSemester);
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //Breyta ákveðnum áfanga
+        public SemesterViewModel editSemester(SemesterViewModel semesterToChange)
+        {
+            // Sæki færsluna sem á að breyta í gagnagrunninn
+            var query = (from semester in _db.Semester
+                         where semester.semesterId == semesterToChange.SemesterId
+                         select semester).SingleOrDefault();
+
+            // Set inn breyttu upplýsingarnar
+            query.semesterNumber = semesterToChange.SemesterNumber;
+            query.semesterName = semesterToChange.SemesterName;
+            query.dateFrom = semesterToChange.DateFrom;
+            query.dateTo = semesterToChange.DateTo;
+
+
+            //Vista breytingar í gagnagrunn
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // TODO
+            }
+            return semesterToChange;
+        }
+
     }
 }
