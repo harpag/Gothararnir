@@ -7,7 +7,7 @@
 @if (Request.IsAuthenticated)
 {
 
-<h2>AdminIndex</h2>
+<h2>Admin</h2>
 
 <div class="col-md-5">
     <h2>Announcements</h2>
@@ -20,9 +20,15 @@
     </ul>
 </div>
 
+<div class="col-md-5">
+    <h2>Shortcuts</h2>
+    @Html.ActionLink("Create user", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-large" })
+    @Html.ActionLink("Create course", "CreateCourse", "Course", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-large" })
+</div>
+
 }
 else
 {
     @Html.Action("Login", "Account", null)
-}
+    }
 
