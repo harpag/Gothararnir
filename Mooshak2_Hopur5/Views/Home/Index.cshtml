@@ -16,7 +16,9 @@
         </ul>
     </div id="dataListItem">
 
-
+    if (Request.IsAuthenticated && User.IsInRole("Administrators"))
+    {
+    }
 
     <div class="col-md-5">
         <h2>Courses</h2>
