@@ -212,7 +212,7 @@ namespace Mooshak2_Hopur5.Services
                                join userCourse in _db.UserCourse on courses.courseId equals userCourse.courseId
                                join user in _db.User on userCourse.userId equals user.userId
                                where courses.courseId == courseId
-                               select user).ToList();
+                         select user).ToList();
 
             //Bý til lista af notendur(UserViewModel)
             List<UserViewModel> userList;
