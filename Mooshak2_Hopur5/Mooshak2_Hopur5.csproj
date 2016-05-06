@@ -329,6 +329,7 @@
     <Content Include="Views\Course\AddUsersToCourse.cshtml" />
     <Content Include="Views\Semester\AddSemester.cshtml" />
     <Content Include="Views\Semester\GetAllSemesters.cshtml" />
+    <Content Include="Views\Semester\ViewSemester.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
