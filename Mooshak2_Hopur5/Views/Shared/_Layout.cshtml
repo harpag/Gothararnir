@@ -59,7 +59,52 @@
                     @Html.Partial("_LoginPartial")
                 </div>
             </div>
+<<<<<<< HEAD
 </div>
+=======
+          
+             <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">           
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Courses</a>
+                        @Html.Action("ViewAllMyCourses", "Course", null)
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Assignments</a>
+                        <div class="dropdown-content">
+                            <a href="#">Closed Assignments</a>
+                            <a href="#">Open Assignments</a>
+                            <a href="#">Create Assignment</a>
+                            <a href="#">My Assignments</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Users</a>
+                        <div class="dropdown-content">
+                            @Html.ActionLink("Create user", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            @Html.ActionLink("View All", "ViewAllUsers", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Grades</a>
+                        <div class="dropdown-content">
+                            <a href="#">All Grades</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Other</a>
+                        <div class="dropdown-content">
+                            @Html.ActionLink("Change password", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            @Html.ActionLink("Add announcement", "AddAnnouncement", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            <!--<a href="http://localhost:49299/Announcement/AddAnnouncement">Add announcement</a>-->
+                        </div>
+                    </li>
+                </ul>
+                 @Html.Partial("_LoginPartial")
+        </div>
+        </div>
+    </div>
+>>>>>>> a67a12c474a7a022aafff9497d22744f1090c90f
     <div class="container body-content">
         @RenderBody()
         <hr />
