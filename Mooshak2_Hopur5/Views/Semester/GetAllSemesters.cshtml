@@ -1,0 +1,18 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.SemesterViewModel
+@{
+    ViewBag.Title = "GetAllSemesters";
+}
+
+<h2>All Semesters</h2>
+
+
+
+<ul class="list-group">
+        @foreach (var semester in Model.SemesterList)
+        {
+        <p>@semester.SemesterName </p>
+        <p>@semester.SemesterId </p>
+
+        <li class="list-group-item">@Html.ActionLink(semester.SemesterName, "ViewSemester", "Semester", new { id = semester.SemesterId }, null)</li>
+    }
+</ul>

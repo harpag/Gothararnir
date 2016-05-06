@@ -327,10 +327,11 @@
     <Content Include="Views\Home\AdminIndex.cshtml" />
     <Content Include="Views\Course\CreateCourse.cshtml" />
     <Content Include="Views\Course\AddUsersToCourse.cshtml" />
+    <Content Include="Views\Semester\AddSemester.cshtml" />
+    <Content Include="Views\Semester\GetAllSemesters.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Semester\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
