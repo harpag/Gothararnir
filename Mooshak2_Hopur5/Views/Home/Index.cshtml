@@ -26,6 +26,7 @@
                 string courseName = course.CourseNumber + "-" + course.CourseName;
                 <li class="list-group-item">@Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)</li>
             }
+            @Html.ActionLink(" View all", "GetAllCourses", "Course", routeValues: null, htmlAttributes: new { id = "registerLink" })
         </ul>
     </div>
 
