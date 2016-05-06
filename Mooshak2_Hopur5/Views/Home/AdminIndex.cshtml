@@ -1,0 +1,28 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "AdminIndex";
+}
+
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+<h2>AdminIndex</h2>
+
+<div class="col-md-5">
+    <h2>Announcements</h2>
+    <ul class="list-group">
+        @foreach (var announcement in Model.AnnouncementList.Take(3))
+            {
+                string announcementName = announcement.Announcement;
+            <li class="list-group-item">@Html.ActionLink(announcementName, "ViewAnnouncement", "Announcement", new { id = announcement.AnnouncementId }, null)</li>
+        }
+    </ul>
+</div>
+
+}
+else
+{
+    @Html.Action("Login", "Account", null)
+}
+
