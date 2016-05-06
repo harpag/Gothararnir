@@ -8,4 +8,5 @@
         string courseName = course.CourseNumber + "-" + course.CourseName;
         @Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)
     }
+    @Html.ActionLink("Add new course", "CreateCourse", "Course")
 </div>

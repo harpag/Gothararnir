@@ -322,8 +322,11 @@
     <Content Include="Views\Assignment\AddAssignment.cshtml" />
     <Content Include="Views\Assignment\ViewAssignment.cshtml" />
     <Content Include="Views\Course\ViewAllMyCourses.cshtml" />
+    <Content Include="Views\Announcement\AddAnnouncement.cshtml" />
     <Content Include="Views\Shared\_Logon_Layout.cshtml" />
     <Content Include="Views\Home\AdminIndex.cshtml" />
+    <Content Include="Views\Course\CreateCourse.cshtml" />
+    <Content Include="Views\Course\AddUsersToCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

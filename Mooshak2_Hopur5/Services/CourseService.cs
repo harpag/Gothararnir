@@ -212,7 +212,7 @@ namespace Mooshak2_Hopur5.Services
                                join userCourse in _db.UserCourse on courses.courseId equals userCourse.courseId
                                join user in _db.User on userCourse.userId equals user.userId
                                where courses.courseId == courseId
-                               select user).ToList();
+                         select user).ToList();
 
             //Bý til lista af notendur(UserViewModel)
             List<UserViewModel> userList;
@@ -272,6 +272,7 @@ namespace Mooshak2_Hopur5.Services
             //setja propery-in
             newCourse.courseName = courseToAdd.CourseName;
             newCourse.courseNumber = courseToAdd.CourseNumber;
+            newCourse.semesterId = courseToAdd.SemesterId;
             //Todo setja inn öll property
 
             try
@@ -345,6 +346,80 @@ namespace Mooshak2_Hopur5.Services
 
             //Returna viewModelinu með listanum
             return viewModel;
+        }
+
+        //Sækir allar annir
+        public SemesterViewModel getAllSemesters()
+        {
+            var semesters = _db.Semester.ToList();
+            
+            List<SemesterViewModel> semesterlist = new List<SemesterViewModel>();
+
+            foreach (var entity in semesters)
+            {
+                var result = new SemesterViewModel
+                {
+                    SemesterId = entity.semesterId,
+                    SemesterName = entity.semesterName
+                };
+                semesterlist.Add(result);
+            }
+
+            SemesterViewModel viewModel = new SemesterViewModel();
+            viewModel.SemesterList = semesterlist;
+            return viewModel;
+        }
+
+        public Boolean addSemester(SemesterViewModel semesterToAdd)
+        {
+            var newSemester = new Semester();
+
+            //setja propery-in
+            newSemester.semesterNumber = semesterToAdd.SemesterNumber;
+            newSemester.semesterName = semesterToAdd.SemesterName;
+            newSemester.dateFrom = semesterToAdd.DateFrom;
+            newSemester.dateTo = semesterToAdd.DateTo;
+            
+
+            try
+            {
+                //Vista ofan í gagnagrunn
+                _db.Semester.Add(newSemester);
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //Breyta ákveðnum áfanga
+        public SemesterViewModel editSemester(SemesterViewModel semesterToChange)
+        {
+            // Sæki færsluna sem á að breyta í gagnagrunninn
+            var query = (from semester in _db.Semester
+                         where semester.semesterId == semesterToChange.SemesterId
+                         select semester).SingleOrDefault();
+
+            // Set inn breyttu upplýsingarnar
+            query.semesterNumber = semesterToChange.SemesterNumber;
+            query.semesterName = semesterToChange.SemesterName;
+            query.dateFrom = semesterToChange.DateFrom;
+            query.dateTo = semesterToChange.DateTo;
+
+
+            //Vista breytingar í gagnagrunn
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // TODO
+            }
+            return semesterToChange;
         }
 
     }

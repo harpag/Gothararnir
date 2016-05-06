@@ -1,10 +1,14 @@
-﻿using Mooshak2_Hopur5.Models.ViewModels;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Mooshak2_Hopur5.Models;
+using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Mooshak2_Hopur5.Controllers
 {
@@ -12,6 +16,7 @@ namespace Mooshak2_Hopur5.Controllers
     {
         private CourseService _service = new CourseService();
         private AssignmentService _assignmentService = new AssignmentService();
+        private UserService _userService = new UserService();
 
         // GET: Course
         public ActionResult ViewCourse(int id)
@@ -61,5 +66,44 @@ namespace Mooshak2_Hopur5.Controllers
             viewModel = _service.getAllUsersCoursesOnSemester(userId, semesterId);
             return View(viewModel);
         }
+
+        //Stofna nýjan áfanga
+        public ActionResult CreateCourse()
+        {
+            CourseViewModel viewModel = new CourseViewModel();
+            viewModel.Semesters = new SelectList(_service.getAllSemesters().SemesterList , "SemesterId", "SemesterName");
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult CreateCourse(CourseViewModel newCourse)
+        {
+            if (ModelState.IsValid)
+            {
+                Boolean course = _service.addCourse(newCourse);
+                return RedirectToAction("Index", "Home");
+            }
+            
+            return View(newCourse);
+        }
+
+        //public ActionResult AddUsersToCourse()
+        //{
+        //    CourseViewModel viewModel = new CourseViewModel();
+        //    viewModel.UsersSelect = new SelectList(Membership.GetAllUsers(), "Id", "UserName");
+        //    return View(viewModel);
+        //}
+
+        //[HttpPost]
+        //public ActionResult AddUsersToCourse(CourseViewModel newCourse)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Boolean course = _service.addCourse(newCourse);
+        //        return RedirectToAction("Index", "Home");
+        //    }
+
+        //    return View(newCourse);
+        //}
     }
 }
