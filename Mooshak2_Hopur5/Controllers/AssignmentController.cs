@@ -1,4 +1,5 @@
-﻿using Mooshak2_Hopur5.Models.ViewModels;
+﻿using Microsoft.AspNet.Identity;
+using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Mooshak2_Hopur5.Controllers
     public class AssignmentController : Controller
     {
         private AssignmentService _service = new AssignmentService();
+        private CourseService _courseService = new CourseService();
 
         // GET: Assignment
         public ActionResult Index()
@@ -28,6 +30,9 @@ namespace Mooshak2_Hopur5.Controllers
             { 
                 viewModel.CourseId = id.Value;
             }
+            string userId = User.Identity.GetUserId();
+            viewModel.UserCourses = new SelectList(_courseService.getAllUsersCourses(userId).CourseList, "CourseId", "CourseName");
+            viewModel.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
             return View(viewModel);
         }
 
@@ -36,20 +41,19 @@ namespace Mooshak2_Hopur5.Controllers
         {
             if (ModelState.IsValid)
             {
-                assignment = _service.addAssignment(assignment);
+                string serverPath = Server.MapPath("~");
+                assignment = _service.addAssignment(assignment,serverPath);
 
-                if (ModelState.IsValid)
-                {
-                    //Save Picture
-
-                    string serverPath = Server.MapPath("~");
-                    bool fileUpload = _service.addAssignmentFile(serverPath,assignment);
-                }
+                //if (ModelState.IsValid)
+                //{
+                //    //Save Picture
+                //    string serverPath = Server.MapPath("~");
+                //    bool fileUpload = _service.addAssignmentFile(serverPath,assignment);
+                //}
 
                 return RedirectToAction("ViewCourse", "Course", new { id = assignment.CourseId });
             }
-
-            //ViewBag.MovieCategoryID = new SelectList(db.MovieCategories, "ID", "Name", movie.MovieCategoryID);
+            
             return View(assignment);
         }
 

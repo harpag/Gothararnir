@@ -5,12 +5,14 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Mooshak2_Hopur5.Models.ViewModels
 {
     public class AssignmentViewModel
     {
         public int AssignmentId { get; set; }
+        [DisplayName("Course")]
         public int CourseId { get; set; }
         public string CourseName { get; set; }
         public string CourseNumber { get; set; }
@@ -30,11 +32,14 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public DateTime? DueDate { get; set; }
         public int? GradePublished { get; set; }
         public List<AssignmentViewModel> AssignmentList { get; set; }
+        public List<AssignmentViewModel> OpenAssignmentList { get; set; }
+        public List<AssignmentViewModel> ClosedAssignmentList { get; set; }
         public List<AssignmentPartViewModel> AssignmentPartList { get; set; }
         public List<Submission> AssignmentSubmissionsList { get; set; }
         public List<Discussion> DiscussionsList { get; set; }
         public UserAssignment UserAssignment {get; set;}
-
+        public IEnumerable<SelectListItem> UserCourses { get; set; }
+        public IEnumerable<SelectListItem> ProgrammingLanguages { get; set; }
         #region extra properties
 
 

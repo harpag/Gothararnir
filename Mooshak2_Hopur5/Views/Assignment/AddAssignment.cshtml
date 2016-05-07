@@ -16,6 +16,11 @@
     <div class="tab-content">
         <div class="tab-pane active" id="tab_a">
             <div class="form-group">
+                @Html.LabelFor(m => m.CourseId, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.CourseId)
+                @Html.DropDownListFor(m => m.CourseId, (Model.UserCourses as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(m => m.AssignmentName, new { @class = "control-label" })
                 @Html.ValidationMessageFor(m => m.AssignmentName)
                 @Html.EditorFor(m => m.AssignmentName, new { htmlAttributes = new { @class = "form-control" } })
@@ -54,11 +59,63 @@
                 </div>
             </div>
             @Html.TextBoxFor(m => m.CourseId, new { style = "visibility:hidden" })
-            <button type="submit"  class="btn btn-primary">Submit</button>
         </div>
         <div class="tab-pane" id="tab_b">
-            <!-- á eftir að setja hér inn virkni-->
+            <div class="form-group">
+                @Html.LabelFor(m => m.AssignmentPartList[0].AssignmentPartName, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentPartList[0].AssignmentPartName)
+                @Html.EditorFor(m => m.AssignmentPartList[0].AssignmentPartName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AssignmentPartList[0].AssignmentPartDescription, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentPartList[0].AssignmentPartDescription)
+                @Html.EditorFor(m => m.AssignmentPartList[0].AssignmentPartDescription, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AssignmentPartList[0].Weight, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentPartList[0].Weight)
+                @Html.EditorFor(m => m.AssignmentPartList[0].Weight, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AssignmentPartList[0].ProgrammingLanguageId, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentPartList[0].ProgrammingLanguageId)
+                @Html.DropDownListFor(m => m.AssignmentPartList[0].ProgrammingLanguageId, (Model.ProgrammingLanguages as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+            </div>
+            <div class="product-attachments">
+                <div class="form-group product-attachment">
+                    @Html.LabelFor(m => m.AssignmentPartList[0].ImageUploaded, new { @class = "control-label" })
+                    @Html.ValidationMessageFor(m => m.AssignmentPartList[0].ImageUploaded)
+                    @Html.TextBoxFor(m => m.AssignmentPartList[0].ImageUploaded, new { type = "file", @class = "form-control" })
+                    @*<input name="ImageUploaded" type="file" class="form-control" />*@
+                </div>
+            </div>
+            @Html.ActionLink("Add another part", "#", "", null, new { onclick = "addFields()" });
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-    </div><!-- tab content -->
-</div><!-- end of container -->
+    </div>
+</div>
 }
+
+<script type='text/javascript'>
+        function addFields(){
+            // Number of inputs to create
+            var number = document.getElementById("member").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("container");
+            // Clear previous contents of the container
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i=0;i<number;i++){
+                // Append a node with a random text
+                container.appendChild(document.createTextNode("Member " + (i+1)));
+                // Create an <input> element, set its type and name attributes
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "member" + i;
+                container.appendChild(input);
+                // Append a line break
+                container.appendChild(document.createElement("br"));
+            }
+        }
+</script>

@@ -22,7 +22,7 @@ namespace Mooshak2_Hopur5.Controllers
         // GET: Course
         public ActionResult ViewCourse(int id)
         {
-            string userId = "3";
+            string userId = User.Identity.GetUserId();
             var viewModel = _service.getCourseById(id);
             viewModel.AssignmentList = _assignmentService.getAllUserAssignmentsInCourse(userId, id).AssignmentList;
             return View(viewModel);
