@@ -5,3 +5,10 @@ $(document).ready(function () {
     });
 });
 
+//til að velja allt í lista 
+$(function () {
+    $('#selectAll').click(function () {
+
+        $('[id*=UserList]').prop("checked", this.checked);
+    });
+});

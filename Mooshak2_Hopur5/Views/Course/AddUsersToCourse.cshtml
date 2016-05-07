@@ -10,6 +10,7 @@
     <div class="form-group">
         @Html.ValidationMessageFor(m => m.CourseId)
         @Html.DropDownListFor(m => m.CourseId, (Model.Courses as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+        <input type="checkbox" id="selectAll" />Select All
     </div>
     <div id="checkboxes">
         <ul class="userCourseList">
@@ -22,17 +23,8 @@
                 </li>
             }
         </ul>
-
-        <script>
-            $(function () {
-                $('th > :checkboxes').click(function () {
-                    $(this).closest('table')
-                        .find('td > :checkboxes')
-                        .attr('checked', $(this).is(':checked'));
-                });
-            });
-        </script>
-      
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 }
+
+
