@@ -9,7 +9,7 @@
     @foreach (var assignment in Model.AssignmentList)
     {
         string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
-        <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = Model.CourseId }, null)</li>
+        <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId}, null)</li>
     }
 </ul>
 

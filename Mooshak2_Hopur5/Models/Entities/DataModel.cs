@@ -19,6 +19,7 @@ namespace Mooshak2_Hopur5.Models.Entities
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Assignment> Assignment { get; set; }
         public virtual DbSet<AssignmentFile> AssignmentFile { get; set; }
+        public virtual DbSet<AssignmentPartFile> AssignmentPartFile { get; set; }
         public virtual DbSet<AssignmentPart> AssignmentPart { get; set; }
         public virtual DbSet<AssignmentTestCase> AssignmentTestCase { get; set; }
         public virtual DbSet<Course> Course { get; set; }

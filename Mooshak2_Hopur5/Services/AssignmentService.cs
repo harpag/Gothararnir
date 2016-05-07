@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Data.Entity.Validation;
+using System.Web.Mvc;
 
 namespace Mooshak2_Hopur5.Services
 {
@@ -341,6 +342,84 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
+        public AssignmentViewModel getAllAssignmentsInCourse(int courseId)
+        {
+            //Sæki öll opin verkefni í verkefna töfluna
+            var openAssignments = (from assign in _db.Assignment
+                               join course in _db.Course on assign.courseId equals course.courseId
+                               where course.courseId == courseId && assign.dueDate >= DateTime.Now
+                               select new { assign, course }).ToList();
+
+            var closedAssignments = (from assign in _db.Assignment
+                                     join course in _db.Course on assign.courseId equals course.courseId
+                                     where course.courseId == courseId && assign.dueDate < DateTime.Now
+                                     select new { assign, course }).ToList();
+
+            //Bý til lista af verkefnum
+            List<AssignmentViewModel> openAssignmentsList;
+            openAssignmentsList = new List<AssignmentViewModel>();
+
+            List<AssignmentViewModel> closedAssignmentsList;
+            closedAssignmentsList = new List<AssignmentViewModel>();
+
+            //Loopa í gegnum opin verkefni
+            foreach (var entity in openAssignments)
+            {
+                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+                var result = new AssignmentViewModel
+                {
+                    AssignmentId = entity.assign.assignmentId,
+                    CourseId = entity.assign.courseId,
+                    CourseName = entity.course.courseName,
+                    CourseNumber = entity.course.courseNumber,
+                    AssignmentName = entity.assign.assignmentName,
+                    AssignmentDescription = entity.assign.assignmentDescription,
+                    AssignmentFile = entity.assign.assignmentFile,
+                    Weight = entity.assign.weight,
+                    MaxSubmission = entity.assign.maxSubmission,
+                    AssignDate = entity.assign.assignDate,
+                    DueDate = entity.assign.dueDate,
+                    GradePublished = entity.assign.gradePublished,
+                    AssignmentPartList = assignmentParts.AssignmentPartList
+                };
+                openAssignmentsList.Add(result);
+            }
+
+            foreach (var entity in closedAssignments)
+            {
+                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+                var result = new AssignmentViewModel
+                {
+                    AssignmentId = entity.assign.assignmentId,
+                    CourseId = entity.assign.courseId,
+                    CourseName = entity.course.courseName,
+                    CourseNumber = entity.course.courseNumber,
+                    AssignmentName = entity.assign.assignmentName,
+                    AssignmentDescription = entity.assign.assignmentDescription,
+                    AssignmentFile = entity.assign.assignmentFile,
+                    Weight = entity.assign.weight,
+                    MaxSubmission = entity.assign.maxSubmission,
+                    AssignDate = entity.assign.assignDate,
+                    DueDate = entity.assign.dueDate,
+                    GradePublished = entity.assign.gradePublished,
+                    AssignmentPartList = assignmentParts.AssignmentPartList
+                };
+                closedAssignmentsList.Add(result);
+            }
+
+
+
+            //Bý til nýtt AssingmentViewModel og set listann inn í það
+            AssignmentViewModel viewModel = new AssignmentViewModel
+            {
+                OpenAssignmentList = openAssignmentsList,
+                ClosedAssignmentList = closedAssignmentsList
+            };
+
+            //Returna viewModelinu með listanum
+            return viewModel;
+        }
+
 
         public AssignmentViewModel getAllUserAssignmentsOnSemester(string userId, int semesterId)
         {
@@ -453,7 +532,7 @@ namespace Mooshak2_Hopur5.Services
             return assignmentToChange;
         }
 
-        public AssignmentViewModel addAssignment(AssignmentViewModel assignmentToAdd)
+        public AssignmentViewModel addAssignment(AssignmentViewModel assignmentToAdd, string serverPath)
         {
             var newAssignment = new Assignment();
 
@@ -467,7 +546,6 @@ namespace Mooshak2_Hopur5.Services
             newAssignment.assignDate = assignmentToAdd.AssignDate;
             newAssignment.dueDate = assignmentToAdd.DueDate;
             newAssignment.gradePublished = assignmentToAdd.GradePublished;
-            //Todo setja inn öll property
 
             try
             {
@@ -475,20 +553,13 @@ namespace Mooshak2_Hopur5.Services
                 newAssignment = _db.Assignment.Add(newAssignment);
                 _db.SaveChanges();
                 assignmentToAdd.AssignmentId = newAssignment.assignmentId;
+                //Vista skránna sem fylgir verkefninu
+                addAssignmentFile(serverPath, assignmentToAdd);
+                addAssignmentPart(assignmentToAdd, serverPath);
                 return assignmentToAdd;
             }
             catch (DbEntityValidationException e)
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
                 throw;
             }
         }
@@ -519,7 +590,7 @@ namespace Mooshak2_Hopur5.Services
             }
         }
 
-        public Boolean addAssignmentFile(string serverPath,AssignmentViewModel assignment)
+        public Boolean addAssignmentFile(string serverPath, AssignmentViewModel assignment)
         {
             string filePathFull = serverPath + "\\Content\\Files\\Assignments\\Full\\";
             string filePathThumb = serverPath + "\\Content\\Files\\Assignments\\Thumb\\";
@@ -545,7 +616,7 @@ namespace Mooshak2_Hopur5.Services
                 newFile.fileExtension = fileExtension;
 
                 try
-                { 
+                {
                     newFile = _db.AssignmentFile.Add(newFile);
                     _db.SaveChanges();
                 }
@@ -577,6 +648,99 @@ namespace Mooshak2_Hopur5.Services
             }
 
             return false;
+        }
+
+        public Boolean addAssignmentPartFile(string serverPath, AssignmentPartViewModel assignmentPart)
+        {
+            string filePathFull = serverPath + "\\Content\\Files\\AssignmentParts\\Full\\";
+            string filePathThumb = serverPath + "\\Content\\Files\\AssignmentParts\\Thumb\\";
+
+            if (!Directory.Exists(filePathFull))
+            {
+                Directory.CreateDirectory(filePathFull);
+            }
+            if (!Directory.Exists(filePathThumb))
+            {
+                Directory.CreateDirectory(filePathThumb);
+            }
+
+            if (assignmentPart.ImageUploaded != null)
+            {
+
+                string fileExtension = System.IO.Path.GetExtension(assignmentPart.ImageUploaded.FileName);
+                string fileContentType = assignmentPart.ImageUploaded.ContentType;
+
+                AssignmentPartFile newFile = new AssignmentPartFile();
+                newFile.assignmentPartId = assignmentPart.AssignmentPartId;
+                newFile.fileType = fileContentType;
+                newFile.fileExtension = fileExtension;
+
+                try
+                {
+                    newFile = _db.AssignmentPartFile.Add(newFile);
+                    _db.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+                }
+                string fileName = newFile.assignmentPartFileId.ToString();
+                newFile.path = filePathFull + fileName + fileExtension;
+                newFile.pathThumb = filePathThumb + fileName + fileExtension;
+                newFile.fileExtension = fileExtension;
+
+                _db.Entry(newFile).State = EntityState.Modified;
+                _db.SaveChanges();
+
+                FileHelper.ResizeAndSave(filePathFull, fileName, assignmentPart.ImageUploaded.InputStream, 800, false);
+                FileHelper.ResizeAndSave(filePathThumb, fileName, assignmentPart.ImageUploaded.InputStream, 190, false);
+                return true;
+            }
+
+            return false;
+        }
+
+        public AssignmentViewModel getAllProgrammingLanguages()
+        {
+            //Sæki öll forritunarmál
+            var programmingLanguages = _db.ProgrammingLanguage.ToList();
+            var languages = new SelectList(programmingLanguages, "ProgrammingLanguageId", "ProgrammingLanguageName");
+            //Returna viewModelinu með listanum
+            AssignmentViewModel viewModel = new AssignmentViewModel
+            {
+                ProgrammingLanguages = languages
+            };
+            return viewModel;
+        }
+
+        public AssignmentViewModel addAssignmentPart(AssignmentViewModel assignmentToAdd, string serverPath)
+        {
+            //setja propery-in
+            for(int i = 0; i < assignmentToAdd.AssignmentPartList.Count; i++)
+            {
+                var newAssignmentPart = new AssignmentPart();
+                newAssignmentPart.assignmentId = assignmentToAdd.AssignmentId;
+                newAssignmentPart.assignmentPartName = assignmentToAdd.AssignmentPartList[i].AssignmentPartName;
+                newAssignmentPart.assignmentPartDescription = assignmentToAdd.AssignmentPartList[i].AssignmentPartDescription;
+                newAssignmentPart.weight = assignmentToAdd.AssignmentPartList[i].Weight;
+                newAssignmentPart.programmingLanguageId = assignmentToAdd.AssignmentPartList[i].ProgrammingLanguageId;
+
+                newAssignmentPart = _db.AssignmentPart.Add(newAssignmentPart);
+                _db.SaveChanges();
+                assignmentToAdd.AssignmentPartList[i].AssignmentPartId = newAssignmentPart.assignmentPartId;
+                addAssignmentPartFile(serverPath, assignmentToAdd.AssignmentPartList[i]);
+            }
+            return null;
         }
 
         //submittAssignment()
