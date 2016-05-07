@@ -1,12 +1,12 @@
-﻿@model  Mooshak2_Hopur5.Models.ViewModels.CourseViewModel
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.AssignmentViewModel
 @{
     ViewBag.Title = "Course";
 
 }
 
-<h2>Assignments</h2>
+<h2>Open assignments</h2>
 <ul class="list-group">
-    @foreach (var assignment in Model.AssignmentList)
+    @foreach (var assignment in Model.OpenAssignmentList)
     {
         string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
         <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId}, null)</li>
@@ -14,11 +14,13 @@
 </ul>
 
 
+<h2>Closed assignments</h2>
+<ul class="list-group">
+    @foreach (var assignment in Model.ClosedAssignmentList)
+    {
+        string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
+        <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</li>
+    }
+</ul>
 
 @Html.ActionLink("Create new assignment", "AddAssignment", "Assignment", new { id = Model.CourseId }, new { @class = "btn btn-primary" })
-
-
-
-
-
-
