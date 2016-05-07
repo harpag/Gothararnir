@@ -1,4 +1,5 @@
 ﻿using Mooshak2_Hopur5.Models.ViewModels;
+using Mooshak2_Hopur5.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Mooshak2_Hopur5.Controllers
 {
     public class SemesterController : Controller
     {
-        private SemesterService _service = new SemesterService();
+        private CourseService _service = new CourseService();
         // GET: Semester
         public ActionResult Index()
         {
@@ -19,7 +20,7 @@ namespace Mooshak2_Hopur5.Controllers
         public ActionResult GetAllSemester()
         {
             var viewModel = new SemesterViewModel();
-            viewModel = _service.getAllSemester();
+            //viewModel = _service.getAllSemester();
             return View(viewModel);
         }
     }
