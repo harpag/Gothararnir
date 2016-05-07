@@ -5,6 +5,15 @@ $(document).ready(function () {
     });
 });
 
+<<<<<<< HEAD
+//til að velja allt í lista 
+$(function () {
+    $('#selectAll').click(function () {
+
+        $('[id*=UserList]').prop("checked", this.checked);
+    });
+});
+=======
 $(document).ready(function () {
     var showChar = 150;
     var ellipsestext = "...";
@@ -39,3 +48,4 @@ $(document).ready(function () {
 });
 
 
+>>>>>>> 0e15ac482c77a0c79972077b65253a1f4a21ed98
