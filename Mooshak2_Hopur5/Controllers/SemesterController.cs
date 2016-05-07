@@ -17,10 +17,40 @@ namespace Mooshak2_Hopur5.Controllers
             return View();
         }
 
-        public ActionResult GetAllSemester()
+        public ActionResult AddSemester()
+        {
+            SemesterViewModel viewModel = new SemesterViewModel();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddSemester(SemesterViewModel newSemester)
+        {
+            bool announcement = _service.addSemester(newSemester);
+
+            return RedirectToAction("GetAllSemesters");
+
+        }
+
+        [HttpPost]
+        public ActionResult EditSemester(SemesterViewModel newSemester)
+        {
+            _service.editSemester(newSemester);
+
+            return RedirectToAction("GetAllSemesters");
+
+        }
+
+        public ActionResult GetAllSemesters()
         {
             var viewModel = new SemesterViewModel();
-            //viewModel = _service.getAllSemester();
+            viewModel = _service.getAllSemesters();
+            return View(viewModel);
+        }
+
+        public ActionResult ViewSemester(int id)
+        {
+            var viewModel = _service.getSemesterById(id);
             return View(viewModel);
         }
     }
