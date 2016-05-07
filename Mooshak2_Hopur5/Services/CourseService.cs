@@ -370,6 +370,37 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
+        public SemesterViewModel getSemesterById(int semesterId)
+        {
+            //Sæki verkefni með ákveðnu ID ofan í gagnagrunn
+            var semester = (from Semester in _db.Semester
+                              where Semester.semesterId == semesterId
+                              select new { Semester }).SingleOrDefault();
+
+            //Kasta villu ef ekki fannst verkefni með þessu ID-i
+            if (semester == null)
+            {
+                //TODO: Kasta villu
+                return null;
+            }
+            else
+            {
+                //Set verkefni inn í ViewModelið
+                var viewModel = new SemesterViewModel
+                {
+                    SemesterName = semester.Semester.semesterName,
+                    SemesterId = semester.Semester.semesterId,
+                    SemesterNumber = semester.Semester.semesterNumber,
+                    DateFrom = semester.Semester.dateFrom,
+                    DateTo = semester.Semester.dateTo,
+                   
+                };
+
+                //Returna ViewModelinu með áfanganum í
+                return viewModel;
+            }
+        }
+
         public Boolean addSemester(SemesterViewModel semesterToAdd)
         {
             var newSemester = new Semester();

@@ -17,8 +17,11 @@
         public string path { get; set; }
 
         public string pathThumb { get; set; }
+
         public string fileType { get; set; }
+
         public string fileExtension { get; set; }
+
         public virtual Assignment Assignment { get; set; }
     }
 }

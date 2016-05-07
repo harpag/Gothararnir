@@ -16,7 +16,18 @@
         </ul>
     </div id="dataListItem">
 
+    if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <div class="col-md-5">
+            <h2>Administrator</h2>
+            <ul class="list-group">
+                @Html.ActionLink(" View all users", "GetAllUsers", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                @Html.ActionLink(" View all semesters", "GetAllSemesters", "Semester", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                @Html.ActionLink(" View all courses", "GetAllCourses", "Course", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            </ul>
+        </div>
 
+    }
 
     <div class="col-md-5">
         <h2>Courses</h2>
@@ -26,6 +37,8 @@
                 string courseName = course.CourseNumber + "-" + course.CourseName;
                 <li class="list-group-item">@Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)</li>
             }
+            @Html.ActionLink(" This semester", "GetAllCoursesOnSemester", "Course", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            @Html.ActionLink(" View all", "GetAllCourses", "Course", routeValues: null, htmlAttributes: new { id = "registerLink" })
         </ul>
     </div>
 
@@ -38,6 +51,8 @@
                 string announcementName = announcement.Announcement;
                 <li class="list-group-item">@Html.ActionLink(announcementName, "ViewAnnouncement", "Announcement", new { id = announcement.AnnouncementId }, null)</li>
             }
+            @Html.ActionLink("Add announcement ", "AddAnnouncement", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            @Html.ActionLink(" View all", "GetAllAnnouncements", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
         </ul>
     </div>
 }
