@@ -738,9 +738,26 @@ namespace Mooshak2_Hopur5.Services
                 newAssignmentPart = _db.AssignmentPart.Add(newAssignmentPart);
                 _db.SaveChanges();
                 assignmentToAdd.AssignmentPartList[i].AssignmentPartId = newAssignmentPart.assignmentPartId;
+                addAssignmentPartTestCase(assignmentToAdd.AssignmentPartList[i]);
                 addAssignmentPartFile(serverPath, assignmentToAdd.AssignmentPartList[i]);
             }
             return null;
+        }
+
+        public void addAssignmentPartTestCase(AssignmentPartViewModel assignmentPart)
+        {
+            //setja propery-in
+            for (int i = 0; i < assignmentPart.AssignmentTestCaseList.Count; i++)
+            {
+                var newAssignmentTestCase = new AssignmentTestCase();
+                newAssignmentTestCase.assignmentPartId = assignmentPart.AssignmentPartId;
+                newAssignmentTestCase.input = assignmentPart.AssignmentTestCaseList[i].input;
+                newAssignmentTestCase.output = assignmentPart.AssignmentTestCaseList[i].output;
+                newAssignmentTestCase.testNumber = i+1;
+
+                newAssignmentTestCase = _db.AssignmentTestCase.Add(newAssignmentTestCase);
+                _db.SaveChanges();
+            }
         }
 
         //submittAssignment()

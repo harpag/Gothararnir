@@ -48,8 +48,11 @@
         <ul class="list-group">
             @foreach (var announcement in Model.AnnouncementList.Take(3))
             {
-                string announcementName = announcement.Announcement;
-                <li class="list-group-item">@Html.ActionLink(announcementName, "ViewAnnouncement", "Announcement", new { id = announcement.AnnouncementId }, null)</li>
+                <li class="list-group-item">
+                    <div class="comment more">
+                        @Html.Raw(announcement.Announcement)
+                    </div>
+                </li>
             }
             @Html.ActionLink("Add announcement ", "AddAnnouncement", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
             @Html.ActionLink(" View all", "GetAllAnnouncements", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })

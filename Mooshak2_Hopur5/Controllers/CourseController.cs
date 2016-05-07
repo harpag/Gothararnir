@@ -23,8 +23,8 @@ namespace Mooshak2_Hopur5.Controllers
         public ActionResult ViewCourse(int id)
         {
             string userId = User.Identity.GetUserId();
-            var viewModel = _service.getCourseById(id);
-            viewModel.AssignmentList = _assignmentService.getAllUserAssignmentsInCourse(userId, id).AssignmentList;
+            var viewModel = new AssignmentViewModel();
+            viewModel = _assignmentService.getAllAssignmentsInCourse(id);
             return View(viewModel);
         }
 
@@ -111,5 +111,6 @@ namespace Mooshak2_Hopur5.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
     }
 }
