@@ -9,65 +9,65 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="@Url.Action("Index", "Home")" title="Mooshak 2.0" class="">
-                        <img alt="Widget View" src="@Url.Content("~/Content/images/Moos.png")" alt="Moos logo" style="width:50px;height:50px;">
-                    </a>
-                </div>
-
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropbtn">Courses</a>
-                            @Html.Action("ViewAllMyCourses", "Course", null)
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropbtn">Assignments</a>
-                            <div class="dropdown-content">
-                                <a href="#">Closed Assignments</a>
-                                <a href="#">Open Assignments</a>
-                                <a href="#">Create Assignment</a>
-                                <a href="#">My Assignments</a>
-                            </div>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropbtn">Users</a>
-                            <div class="dropdown-content">
-                                @Html.ActionLink("Create user", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                                @Html.ActionLink("View All", "ViewAllUsers", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                            </div>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropbtn">Grades</a>
-                            <div class="dropdown-content">
-                                <a href="#">All Grades</a>
-                            </div>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropbtn">Other</a>
-                            <div class="dropdown-content">
-                                @Html.ActionLink("Change password", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                                @Html.ActionLink("Add announcement", "AddAnnouncement", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                                @Html.ActionLink("Add Semester", "AddSemester", "Semester", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                            </div>
-                        </li>
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Index", "Home")" title="Mooshak 2.0" class="">
+                    <img alt="Widget View" src="@Url.Content("~/Content/images/Moos.png")" alt="Moos logo" style="width:50px;height:50px;">
+                </a>
             </div>
-</div>          
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Courses</a>
+                        @Html.Action("ViewAllMyCourses", "Course", null)
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Assignments</a>
+                        <div class="dropdown-content">
+                            <a href="#">Closed assignments</a>
+                            <a href="#">Open assignments</a>
+                            @Html.ActionLink("Create assignment", "AddAssignment", "Assignment", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            <a href="#">My assignments</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Users</a>
+                        <div class="dropdown-content">
+                            @Html.ActionLink("Create user", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            @Html.ActionLink("View all", "ViewAllUsers", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Grades</a>
+                        <div class="dropdown-content">
+                            <a href="#">All grades</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Other</a>
+                        <div class="dropdown-content">
+                            @Html.ActionLink("Change password", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            @Html.ActionLink("Add announcement", "AddAnnouncement", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            @Html.ActionLink("All announcements", "GetAllAnnouncements", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            @Html.ActionLink("Add semester", "AddSemester", "Semester", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            @Html.ActionLink("All semesters", "GetAllSemesters", "Semester", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                        </div>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-        
-        </footer>
+        <footer></footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

@@ -3,17 +3,15 @@
     ViewBag.Title = "Add users to course";
 }
 
-<h2>Add user to @Model.CourseName</h2>
+<h2>Add user to course</h2>
 
 @using (Html.BeginForm("AddUsersToCourse", "Course", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
-
-    
-    @*<div class="form-group">
-        @Html.LabelFor(m => m.UserList, new { @class = "control-label" })
-        @Html.ValidationMessageFor(m => m.UserList)
-        @Html.ListBoxFor(m => m.UserList, (Model.UsersSelect as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
-    </div>*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.CourseId, new { @class = "control-label" })
+        @Html.ValidationMessageFor(m => m.CourseId)
+        @Html.DropDownListFor(m => m.CourseId, (Model.Courses as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+    </div>
     <div id="checkboxes">
         <ul class="userCourseList">
             @for (int i = 0; i < Model.AllUsers.Count; i++)
@@ -26,6 +24,5 @@
             }
         </ul>
     </div>
-    @Html.TextBoxFor(m => m.CourseId, new { id = "courseId", style = "visibility:hidden" })
     <button type="submit" class="btn btn-primary">Submit</button>
 }
