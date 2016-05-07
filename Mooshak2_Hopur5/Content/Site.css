@@ -65,3 +65,16 @@ ul.userCourseList
 {
     list-style-type: none;
 }
+
+/* Hér eru atriði vegna more/less */
+a.morelink {
+    text-decoration:none;
+    outline: none;
+}
+.morecontent span {
+    display: none;
+}
+.comment {
+    width: 400px;
+    margin: 10px;
+}

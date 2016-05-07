@@ -12,30 +12,15 @@
 <div class="col-md-5">
     <h2>Announcements</h2>
     <ul class="list-group">
-
         @foreach (var announcement in Model.AnnouncementList.Take(3))
         {
-            string announcementName = announcement.Announcement;
-            int maxLength = 100;
-            if (announcementName.Length > maxLength)
-            {
-                announcementName = announcementName.Substring(0, Math.Min(announcementName.Length - 1, maxLength)) + "...";
-                string announcementFull = announcement.Announcement;
-                <li>
-                    <span class="teaser list-group-item">@Html.Label("asdf", announcementName, null)</span>
-
-                    <span class="complete list-group-item">@Html.Label("asdf", announcementFull, null)</span>
-                    
-                    <span class="more list-group-item"> meira</span>
-                </li>
-
-            }
-            else
-            {
-                <li class="list-group-item">@Html.Label("asdf", announcementName, null)</li>
-            }
+            <li class="list-group-item">
+                <div class="comment more">
+                    @Html.Raw(announcement.Announcement)
+                </div>
+            </li>
         }
-</ul>
+    </ul>
 </div>
 
 
@@ -49,5 +34,5 @@
 else
 {
     @Html.Action("Login", "Account", null)
-    }
+}
 
