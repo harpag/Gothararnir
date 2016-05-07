@@ -17,5 +17,6 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public string Email { get; set; }
         public int? Valid { get; set; }
         public List<UserViewModel> UserList { get; set; }
+        public List<ApplicationUser> AllUsers { get; set; }
     }
 }
