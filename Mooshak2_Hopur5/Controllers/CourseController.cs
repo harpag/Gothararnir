@@ -18,7 +18,6 @@ namespace Mooshak2_Hopur5.Controllers
         private CourseService _service = new CourseService();
         private AssignmentService _assignmentService = new AssignmentService();
         private UserService _userService = new UserService();
-        private CourseService _courseService = new CourseService();
 
         // GET: Course
         public ActionResult ViewCourse(int id)
@@ -89,13 +88,11 @@ namespace Mooshak2_Hopur5.Controllers
             return View(newCourse);
         }
 
-        public ActionResult AddUsersToCourse(int? id)
+        public ActionResult AddUsersToCourse()
         {
-            int courseId = 7;
             CourseUsersViewModel viewModel = new CourseUsersViewModel();
             viewModel.AllUsers = IdentityManager.GetUsers();
-            viewModel.CourseId = courseId;
-            viewModel.CourseName = _courseService.getCourseById(courseId).CourseName;
+            viewModel.Courses = new SelectList(_service.getAllCourses().CourseList, "CourseId", "CourseName");
             return View(viewModel);
         }
 
@@ -107,7 +104,7 @@ namespace Mooshak2_Hopur5.Controllers
                 for (int i = 0; i < newCourseUsers.AllUsers.Count; i++)
                 {
                     if(newCourseUsers.CheckedUsers[i]) {
-                        _courseService.addUsersToCourse(newCourseUsers.AllUsers[i].Id, newCourseUsers.CourseId);
+                        _service.addUsersToCourse(newCourseUsers.AllUsers[i].Id, newCourseUsers.CourseId);
                     }
                 }
             }
