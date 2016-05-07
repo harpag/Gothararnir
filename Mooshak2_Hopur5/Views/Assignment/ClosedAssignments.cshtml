@@ -1,0 +1,14 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.AssignmentViewModel
+@{
+    ViewBag.Title = "ClosedAssignments";
+}
+
+
+<h2>Closed assignments</h2>
+<ul class="list-group">
+    @foreach (var assignment in Model.ClosedAssignmentList)
+    {
+        string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
+        <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</li>
+    }
+</ul>

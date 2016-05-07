@@ -338,6 +338,8 @@
     <Content Include="Views\Semester\AddSemester.cshtml" />
     <Content Include="Views\Semester\GetAllSemesters.cshtml" />
     <Content Include="Views\Semester\ViewSemester.cshtml" />
+    <Content Include="Views\Assignment\OpenAssignments.cshtml" />
+    <Content Include="Views\Assignment\ClosedAssignments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

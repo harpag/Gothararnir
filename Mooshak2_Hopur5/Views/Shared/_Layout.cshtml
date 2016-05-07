@@ -30,8 +30,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Assignments</a>
                         <div class="dropdown-content">
-                            <a href="#">Closed assignments</a>
-                            <a href="#">Open assignments</a>
+                            @Html.ActionLink("Closed assignments", "ClosedAssignments", "Assignment", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            @Html.ActionLink("Open assignments", "OpenAssignments", "Assignment", routeValues: null, htmlAttributes: new { id = "registerLink" })
                             @Html.ActionLink("Create assignment", "AddAssignment", "Assignment", routeValues: null, htmlAttributes: new { id = "registerLink" })
                             <a href="#">My assignments</a>
                         </div>
