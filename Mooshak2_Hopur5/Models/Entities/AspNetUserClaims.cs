@@ -6,19 +6,18 @@ namespace Mooshak2_Hopur5.Models.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("UserCourse")]
-    public partial class UserCourse
+    public partial class AspNetUserClaims
     {
-        public int userCourseId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(128)]
-        public string userId { get; set; }
+        public string UserId { get; set; }
 
-        public int courseId { get; set; }
+        public string ClaimType { get; set; }
+
+        public string ClaimValue { get; set; }
 
         public virtual AspNetUsers AspNetUsers { get; set; }
-
-        public virtual Course Course { get; set; }
     }
 }

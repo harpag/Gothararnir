@@ -251,7 +251,7 @@ namespace Mooshak2_Hopur5.Services
             var assignments = (from assign in _db.Assignment
                                join course in _db.Course on assign.courseId equals course.courseId
                                join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
-                               where userCourse.userId == userId
+                               where userCourse.userId.Equals(userId)
                                select new { assign, course }).ToList();
 
             //Bý til lista af verkefnum
@@ -293,7 +293,7 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentViewModel getAllUserAssignmentsInCourse(int userId, int courseId)
+        public AssignmentViewModel getAllUserAssignmentsInCourse(string userId, int courseId)
         {
             //Sæki öll gögn í verkefna töfluna
             var assignments = (from assign in _db.Assignment
@@ -342,7 +342,7 @@ namespace Mooshak2_Hopur5.Services
         }
 
 
-        public AssignmentViewModel getAllUserAssignmentsOnSemester(int userId, int semesterId)
+        public AssignmentViewModel getAllUserAssignmentsOnSemester(string userId, int semesterId)
         {
             //Sæki öll gögn í verkefna töfluna
             var assignments = (from assign in _db.Assignment
@@ -391,7 +391,7 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentViewModel getAssignmentGrade(int userId, int assignmentId)
+        public AssignmentViewModel getAssignmentGrade(string userId, int assignmentId)
         {
             //Sæki öll gögn í verkefna töfluna
             var assignment = (from assign in _db.Assignment

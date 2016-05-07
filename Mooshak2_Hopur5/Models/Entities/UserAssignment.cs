@@ -17,7 +17,9 @@ namespace Mooshak2_Hopur5.Models.Entities
 
         public int userAssignmentId { get; set; }
 
-        public int userId { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string userId { get; set; }
 
         public int userGroupId { get; set; }
 
@@ -25,12 +27,13 @@ namespace Mooshak2_Hopur5.Models.Entities
 
         public string gradeComment { get; set; }
 
+        public int? assignmentId { get; set; }
+
+        public virtual AspNetUsers AspNetUsers { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Submission> Submission { get; set; }
 
-        public virtual User User { get; set; }
-
         public virtual UserGroup UserGroup { get; set; }
-        public int assignmentId { get; set; }
     }
 }

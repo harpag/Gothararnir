@@ -6,19 +6,20 @@ namespace Mooshak2_Hopur5.Models.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("UserGroupMember")]
-    public partial class UserGroupMember
+    public partial class AspNetUserLogins
     {
-        public int userGroupMemberId { get; set; }
+        [Key]
+        [Column(Order = 0)]
+        public string LoginProvider { get; set; }
 
-        [Required]
-        [StringLength(128)]
-        public string userId { get; set; }
+        [Key]
+        [Column(Order = 1)]
+        public string ProviderKey { get; set; }
 
-        public int userGroupId { get; set; }
+        [Key]
+        [Column(Order = 2)]
+        public string UserId { get; set; }
 
         public virtual AspNetUsers AspNetUsers { get; set; }
-
-        public virtual UserGroup UserGroup { get; set; }
     }
 }

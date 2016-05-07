@@ -14,11 +14,10 @@ namespace Mooshak2_Hopur5.Models.Entities
         public int userId { get; set; }
 
         [Column("announcement")]
-
         [Required]
         public string announcement { get; set; }
 
-        public DateTime dateCreate { get; set; }
+        public DateTime? dateCreate { get; set; }
 
         public virtual User User { get; set; }
     }

@@ -35,7 +35,7 @@ namespace Mooshak2_Hopur5.Controllers
         [HttpPost]
         public ActionResult EditSemester(SemesterViewModel newSemester)
         {
-           _service.editSemester(newSemester);
+            _service.editSemester(newSemester);
 
             return RedirectToAction("GetAllSemesters");
 
@@ -50,7 +50,7 @@ namespace Mooshak2_Hopur5.Controllers
 
         public ActionResult ViewSemester(int id)
         {
-            var viewModel = _service.getSemesterById (id);
+            var viewModel = _service.getSemesterById(id);
             return View(viewModel);
         }
     }

@@ -13,6 +13,10 @@ namespace Mooshak2_Hopur5.Models.Entities
         }
 
         public virtual DbSet<Announcement> Announcement { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Assignment> Assignment { get; set; }
         public virtual DbSet<AssignmentFile> AssignmentFile { get; set; }
         public virtual DbSet<AssignmentPart> AssignmentPart { get; set; }
@@ -37,6 +41,51 @@ namespace Mooshak2_Hopur5.Models.Entities
                 .Property(e => e.announcement)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<AspNetRoles>()
+                .HasMany(e => e.AspNetUsers)
+                .WithMany(e => e.AspNetRoles)
+                .Map(m => m.ToTable("AspNetUserRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.AspNetUserClaims)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.AspNetUserLogins)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.CourseTeacher)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.userId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.Discussion)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.userId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.UserAssignment)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.userId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.UserCourse)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.userId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.UserGroupMember)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.userId)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Assignment>()
                 .Property(e => e.assignmentName)
                 .IsUnicode(false);
@@ -44,6 +93,11 @@ namespace Mooshak2_Hopur5.Models.Entities
             modelBuilder.Entity<Assignment>()
                 .Property(e => e.assignmentDescription)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Assignment>()
+                .HasMany(e => e.AssignmentFile1)
+                .WithRequired(e => e.Assignment)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Assignment>()
                 .HasMany(e => e.AssignmentPart)
@@ -54,6 +108,22 @@ namespace Mooshak2_Hopur5.Models.Entities
                 .HasMany(e => e.Discussion)
                 .WithRequired(e => e.Assignment)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AssignmentFile>()
+                .Property(e => e.path)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AssignmentFile>()
+                .Property(e => e.pathThumb)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AssignmentFile>()
+                .Property(e => e.fileType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AssignmentFile>()
+                .Property(e => e.fileExtension)
+                .IsUnicode(false);
 
             modelBuilder.Entity<AssignmentPart>()
                 .Property(e => e.assignmentPartName)
@@ -174,31 +244,6 @@ namespace Mooshak2_Hopur5.Models.Entities
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Announcement)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.CourseTeacher)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Discussion)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.UserAssignment)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.UserCourse)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.UserGroupMember)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 

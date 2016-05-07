@@ -25,7 +25,7 @@ namespace Mooshak2_Hopur5.Services
         {
             //Sæki áfanga með ákveðnu ID ofan í gagnagrunn
             var course = _db.Course.SingleOrDefault(x => x.courseId == courseId);
-            var courseUsers = getAllUsersInCourse(courseId);
+            //var courseUsers = getAllUsersInCourse(courseId);
             var courseTeachers = getAllTeachersInCourse(courseId);
 
             //Kasta villu ef ekki fannst áfangi með þessu ID-i
@@ -43,7 +43,7 @@ namespace Mooshak2_Hopur5.Services
                     CourseName = course.courseName,
                     CourseNumber = course.courseNumber,
                     SemesterId = course.semesterId,
-                    UserList = courseUsers.UserList,
+                    //UserList = courseUsers.UserList,
                     TeacherList = courseTeachers.TeacherList
                 };
 
@@ -65,7 +65,7 @@ namespace Mooshak2_Hopur5.Services
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
             foreach(var entity in courses)
             {
-                var courseUsers = getAllUsersInCourse(entity.courseId);
+                //var courseUsers = getAllUsersInCourse(entity.courseId);
                 var courseTeachers = getAllTeachersInCourse(entity.courseId);
                 var result = new CourseViewModel
                 {
@@ -73,7 +73,7 @@ namespace Mooshak2_Hopur5.Services
                     CourseName = entity.courseName,
                     CourseNumber = entity.courseNumber,
                     SemesterId = entity.semesterId,
-                    UserList = courseUsers.UserList,
+                    //UserList = courseUsers.UserList,
                     TeacherList = courseTeachers.TeacherList
                 };
                 courseList.Add(result);
@@ -104,7 +104,7 @@ namespace Mooshak2_Hopur5.Services
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
             foreach (var entity in courses)
             {
-                var courseUsers = getAllUsersInCourse(entity.courseId);
+                //var courseUsers = getAllUsersInCourse(entity.courseId);
                 var courseTeachers = getAllTeachersInCourse(entity.courseId);
                 var result = new CourseViewModel
                 {
@@ -112,7 +112,7 @@ namespace Mooshak2_Hopur5.Services
                     CourseName = entity.courseName,
                     CourseNumber = entity.courseNumber,
                     SemesterId = entity.semesterId,
-                    UserList = courseUsers.UserList,
+                    //UserList = courseUsers.UserList,
                     TeacherList = courseTeachers.TeacherList
                 };
                 courseList.Add(result);
@@ -129,7 +129,7 @@ namespace Mooshak2_Hopur5.Services
         }
 
         //Sækir alla áfanga sem notandi er skráður í
-        public CourseViewModel getAllUsersCourses(int userId)
+        public CourseViewModel getAllUsersCourses(string userId)
         {
             //Sæki alla áfanga sem nemandi með ID userId er skráður í 
             var userCourses =  (from courses in _db.Course
@@ -144,7 +144,7 @@ namespace Mooshak2_Hopur5.Services
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
             foreach (var entity in userCourses)
             {
-                var courseUsers = getAllUsersInCourse(entity.courseId);
+                //var courseUsers = getAllUsersInCourse(entity.courseId);
                 var courseTeachers = getAllTeachersInCourse(entity.courseId);
                 var result = new CourseViewModel
                 {
@@ -152,7 +152,7 @@ namespace Mooshak2_Hopur5.Services
                     CourseName = entity.courseName,
                     CourseNumber = entity.courseNumber,
                     SemesterId = entity.semesterId,
-                    UserList = courseUsers.UserList,
+                    //UserList = courseUsers.UserList,
                     TeacherList = courseTeachers.TeacherList
                 };
                 courseList.Add(result);
@@ -169,7 +169,7 @@ namespace Mooshak2_Hopur5.Services
         }
 
         //Sækir alla áfanga sem notandi er skráður í á ákveðinni önn
-        public CourseViewModel getAllUsersCoursesOnSemester(int userId, int semesterId)
+        public CourseViewModel getAllUsersCoursesOnSemester(string userId, int semesterId)
         {
             //Sæki alla áfanga sem nemandi með ID userId er skráður í á önn semesterId
             var userCourses = (from courses in _db.Course
@@ -210,9 +210,9 @@ namespace Mooshak2_Hopur5.Services
             //Sæki alla áfanga sem nemandi með ID userId er skráður í á önn semesterId
             var users = (from courses in _db.Course
                                join userCourse in _db.UserCourse on courses.courseId equals userCourse.courseId
-                               join user in _db.User on userCourse.userId equals user.userId
+                               //join user in _db.Identity on userCourse.userId equals user.userId
                                where courses.courseId == courseId
-                         select user).ToList();
+                               select userCourse).ToList();
 
             //Bý til lista af notendur(UserViewModel)
             List<UserViewModel> userList;
@@ -289,24 +289,24 @@ namespace Mooshak2_Hopur5.Services
         }
 
         //Bæta við notendum í áfanga
-        public Boolean addUsersToCourse(int userId, int courseId)
+        public Boolean addUsersToCourse(string userId, int courseId)
         { 
             var newUserCourse = new UserCourse();
 
             //Setja property-in
             newUserCourse.courseId = courseId;
             newUserCourse.userId = userId;
-            try
-            {
+            //try
+            //{
                 //Vista ofan í gagnagrunn
                 _db.UserCourse.Add(newUserCourse);
                 _db.SaveChanges();
                 return true;
-            }
-            catch
-            {
-                return false;
-            }
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
         }
 
         public CourseViewModel getAllTeachersInCourse(int courseId)
@@ -314,9 +314,9 @@ namespace Mooshak2_Hopur5.Services
             //Sæki alla kennara námskeiðs
             var teacher = (from courses in _db.Course
                          join courseTeacher in _db.CourseTeacher on courses.courseId equals courseTeacher.courseId
-                         join user in _db.User on courseTeacher.userId equals user.userId
+                         //join user in _db.User on courseTeacher.userId equals user.userId
                          where courses.courseId == courseId
-                         select new { courses, user, courseTeacher }).ToList();
+                         select new { courses, courseTeacher }).ToList();
 
             //Bý til lista af kennurum(CourseTeacherViewModel)
             List<CourseTeacherViewModel> teacherList;
@@ -331,8 +331,8 @@ namespace Mooshak2_Hopur5.Services
                     CourseId = entity.courses.courseId,
                     UserId = entity.courseTeacher.userId,
                     MainTeacher = entity.courseTeacher.mainTeacher,
-                    TeacherName = entity.user.name,
-                    TeacherUserName = entity.user.userName
+                    //TeacherName = entity.user.name,
+                    //TeacherUserName = entity.user.userName
 
                 };
                 teacherList.Add(result);
