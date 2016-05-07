@@ -65,3 +65,9 @@ ul.userCourseList
 {
     list-style-type: none;
 }
+
+label#textBoxArea
+{
+    display:block;
+    text-align:left;
+}
