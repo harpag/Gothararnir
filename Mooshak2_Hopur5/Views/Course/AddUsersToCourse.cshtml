@@ -20,13 +20,12 @@
             {
                 <li>
                     @Html.CheckBoxFor(m => m.CheckedUsers[i], new { id = "UserList_" + i })
-                    @Html.HiddenFor(m => m.AllUsers[i].Email)
+                    @Html.HiddenFor(m => m.AllUsers[i].Id)
                     @Html.DisplayFor(m => m.AllUsers[i].Email)
                 </li>
             }
         </ul>
     </div>
-    @Html.TextBoxFor(m => m.CourseId, new { id = "DepartmentCodeBox", style = "visibility:hidden" })
-
+    @Html.TextBoxFor(m => m.CourseId, new { id = "courseId", style = "visibility:hidden" })
     <button type="submit" class="btn btn-primary">Submit</button>
 }

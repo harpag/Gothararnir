@@ -314,9 +314,9 @@ namespace Mooshak2_Hopur5.Services
             //Sæki alla kennara námskeiðs
             var teacher = (from courses in _db.Course
                          join courseTeacher in _db.CourseTeacher on courses.courseId equals courseTeacher.courseId
-                         join user in _db.User on courseTeacher.userId equals user.userId
+                         //join user in _db.User on courseTeacher.userId equals user.userId
                          where courses.courseId == courseId
-                         select new { courses, user, courseTeacher }).ToList();
+                         select new { courses, courseTeacher }).ToList();
 
             //Bý til lista af kennurum(CourseTeacherViewModel)
             List<CourseTeacherViewModel> teacherList;
@@ -331,8 +331,8 @@ namespace Mooshak2_Hopur5.Services
                     CourseId = entity.courses.courseId,
                     UserId = entity.courseTeacher.userId,
                     MainTeacher = entity.courseTeacher.mainTeacher,
-                    TeacherName = entity.user.name,
-                    TeacherUserName = entity.user.userName
+                    //TeacherName = entity.user.name,
+                    //TeacherUserName = entity.user.userName
 
                 };
                 teacherList.Add(result);

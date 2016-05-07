@@ -13,13 +13,15 @@ namespace Mooshak2_Hopur5.Models.Entities
 
         public int assignmentId { get; set; }
 
-        public int userId { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string userId { get; set; }
 
         [Required]
         public string discussionText { get; set; }
 
-        public virtual Assignment Assignment { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual Assignment Assignment { get; set; }
     }
 }

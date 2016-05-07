@@ -9,7 +9,7 @@ namespace Mooshak2_Hopur5.Models.ViewModels
     {
         public int CourseTeacherId { get; set; }
         public int CourseId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int? MainTeacher { get; set; }
         public string TeacherName { get; set; }
         public string TeacherUserName { get; set; }

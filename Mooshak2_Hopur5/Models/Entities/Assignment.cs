@@ -12,6 +12,7 @@ namespace Mooshak2_Hopur5.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Assignment()
         {
+            AssignmentFile1 = new HashSet<AssignmentFile>();
             AssignmentPart = new HashSet<AssignmentPart>();
             Discussion = new HashSet<Discussion>();
         }
@@ -39,6 +40,9 @@ namespace Mooshak2_Hopur5.Models.Entities
         public int? gradePublished { get; set; }
 
         public virtual Course Course { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssignmentFile> AssignmentFile1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssignmentPart> AssignmentPart { get; set; }

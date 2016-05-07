@@ -13,12 +13,14 @@ namespace Mooshak2_Hopur5.Models.Entities
 
         public int courseId { get; set; }
 
-        public int userId { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string userId { get; set; }
 
         public int? mainTeacher { get; set; }
 
-        public virtual Course Course { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual Course Course { get; set; }
     }
 }
