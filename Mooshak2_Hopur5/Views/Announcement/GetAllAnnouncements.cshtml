@@ -3,8 +3,21 @@
     ViewBag.Title = "GetAllAnnouncements";
 }
 
-<h2>GetAllAnnouncements</h2>
-@foreach (var announce in Model.AnnouncementList)
+<h2>All announcements</h2>
+<!--@foreach (var announce in Model.AnnouncementList)
 {
     <p>Tilk: @announce.Announcement</p>
-}
+}-->
+<div class="col-md-5">
+
+    <ul class="list-group">
+        @foreach (var announcement in Model.AnnouncementList)
+            {
+            <li class="list-group-item">
+                <div class="comment more">
+                    @Html.Raw(announcement.Announcement)
+                </div>
+            </li>
+        }
+    </ul>
+</div>

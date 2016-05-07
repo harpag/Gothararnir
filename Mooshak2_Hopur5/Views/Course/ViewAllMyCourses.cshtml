@@ -8,6 +8,10 @@
         string courseName = course.CourseNumber + "-" + course.CourseName;
         @Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)
     }
-    @Html.ActionLink("Add new course", "CreateCourse", "Course")
-    @Html.ActionLink("Add users to course", "AddUsersToCourse", "Course")
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Add new course", "CreateCourse", "Course")
+        @Html.ActionLink("Add users to course", "AddUsersToCourse", "Course")
+        @Html.ActionLink(" View all courses", "GetAllCourses", "Course")
+    }
 </div>

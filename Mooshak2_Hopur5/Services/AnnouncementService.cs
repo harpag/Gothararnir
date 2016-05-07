@@ -46,7 +46,9 @@ namespace Mooshak2_Hopur5.Services
         public AnnouncementViewModel getAllAnnouncements()
         {
             //Sæki allar tilkynningar í töfluna
-            var announcements = _db.Announcement.ToList();
+            var announcements = (from a in _db.Announcement
+                                 orderby a.dateCreate descending
+                                 select a).ToList();
 
             //Bý til lista af tilkynningum(AnnouncementViewModel)
             List<AnnouncementViewModel> announcementList;

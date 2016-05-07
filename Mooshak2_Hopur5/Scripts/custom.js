@@ -5,6 +5,14 @@ $(document).ready(function () {
     });
 });
 
+//til að velja allt í lista 
+$(function () {
+    $('#selectAll').click(function () {
+
+        $('[id*=UserList]').prop("checked", this.checked);
+    });
+});
+
 $(document).ready(function () {
     var showChar = 150;
     var ellipsestext = "...";
