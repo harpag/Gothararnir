@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Mooshak2_Hopur5.Utilities;
 
 namespace Mooshak2_Hopur5.Controllers
 {
@@ -17,11 +18,12 @@ namespace Mooshak2_Hopur5.Controllers
         private CourseService _service = new CourseService();
         private AssignmentService _assignmentService = new AssignmentService();
         private UserService _userService = new UserService();
+        private CourseService _courseService = new CourseService();
 
         // GET: Course
         public ActionResult ViewCourse(int id)
         {
-            int userId = 3;
+            string userId = "3";
             var viewModel = _service.getCourseById(id);
             viewModel.AssignmentList = _assignmentService.getAllUserAssignmentsInCourse(userId, id).AssignmentList;
             return View(viewModel);
@@ -36,7 +38,7 @@ namespace Mooshak2_Hopur5.Controllers
 
         public ActionResult ViewAllMyCourses()
         {
-            int userId = 3;
+            string userId = User.Identity.GetUserId();
             var viewModel = new CourseViewModel();
             viewModel = _service.getAllUsersCourses(userId);
             return View(viewModel);
@@ -52,15 +54,15 @@ namespace Mooshak2_Hopur5.Controllers
 
         public ActionResult GetAllUserCourses()
         {
-            int userId = 3;
+            string userID = User.Identity.GetUserId();
             var viewModel = new CourseViewModel();
-            viewModel = _service.getAllUsersCourses(userId);
+            viewModel = _service.getAllUsersCourses(userID);
             return View(viewModel);
         }
 
         public ActionResult GetAllUserCoursesOnSemester()
         {
-            int userId = 3;
+            string userId = "3";
             int semesterId = 1;
             var viewModel = new CourseViewModel();
             viewModel = _service.getAllUsersCoursesOnSemester(userId, semesterId);
@@ -87,23 +89,30 @@ namespace Mooshak2_Hopur5.Controllers
             return View(newCourse);
         }
 
-        //public ActionResult AddUsersToCourse()
-        //{
-        //    CourseViewModel viewModel = new CourseViewModel();
-        //    viewModel.UsersSelect = new SelectList(Membership.GetAllUsers(), "Id", "UserName");
-        //    return View(viewModel);
-        //}
+        public ActionResult AddUsersToCourse(int? id)
+        {
+            int courseId = 7;
+            CourseUsersViewModel viewModel = new CourseUsersViewModel();
+            viewModel.AllUsers = IdentityManager.GetUsers();
+            viewModel.CourseId = courseId;
+            viewModel.CourseName = _courseService.getCourseById(courseId).CourseName;
+            return View(viewModel);
+        }
 
-        //[HttpPost]
-        //public ActionResult AddUsersToCourse(CourseViewModel newCourse)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Boolean course = _service.addCourse(newCourse);
-        //        return RedirectToAction("Index", "Home");
-        //    }
+        [HttpPost]
+        public ActionResult AddUsersToCourse(CourseUsersViewModel newCourseUsers)
+        {
+            if (ModelState.IsValid)
+            {
+                for (int i = 0; i < newCourseUsers.AllUsers.Count; i++)
+                {
+                    if(newCourseUsers.CheckedUsers[i]) {
+                        _courseService.addUsersToCourse(newCourseUsers.AllUsers[i].Id, newCourseUsers.CourseId);
+                    }
+                }
+            }
 
-        //    return View(newCourse);
-        //}
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

@@ -11,12 +11,12 @@ namespace Mooshak2_Hopur5.Models.Entities
     {
         public int userCourseId { get; set; }
 
-        public int userId { get; set; }
+        public string userId { get; set; }
 
         public int courseId { get; set; }
 
         public virtual Course Course { get; set; }
 
-        public virtual User User { get; set; }
+        //public virtual User User { get; set; }
     }
 }

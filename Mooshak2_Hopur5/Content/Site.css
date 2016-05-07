@@ -60,3 +60,8 @@ li.dropdown
 {
     display: block;
 }
+
+ul.userCourseList
+{
+    list-style-type: none;
+}

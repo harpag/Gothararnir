@@ -234,6 +234,7 @@
     <Compile Include="Models\ViewModels\AssignmentPartViewModel.cs" />
     <Compile Include="Models\ViewModels\AssignmentViewModel.cs" />
     <Compile Include="Models\ViewModels\CourseTeacherViewModel.cs" />
+    <Compile Include="Models\ViewModels\CourseUsersViewModel.cs" />
     <Compile Include="Models\ViewModels\CourseViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
     <Compile Include="Models\ViewModels\SemesterViewModel.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\FileHelper.cs" />
+    <Compile Include="Utilities\IdentityManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

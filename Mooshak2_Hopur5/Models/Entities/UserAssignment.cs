@@ -17,7 +17,7 @@ namespace Mooshak2_Hopur5.Models.Entities
 
         public int userAssignmentId { get; set; }
 
-        public int userId { get; set; }
+        public string userId { get; set; }
 
         public int userGroupId { get; set; }
 

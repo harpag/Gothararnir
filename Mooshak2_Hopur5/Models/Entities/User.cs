@@ -12,13 +12,13 @@ namespace Mooshak2_Hopur5.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            Announcement = new HashSet<Announcement>();
-            CourseTeacher = new HashSet<CourseTeacher>();
-            Discussion = new HashSet<Discussion>();
-            UserAssignment = new HashSet<UserAssignment>();
-            UserCourse = new HashSet<UserCourse>();
-            UserGroupMember = new HashSet<UserGroupMember>();
-            UserLogin = new HashSet<UserLogin>();
+            //Announcement = new HashSet<Announcement>();
+            //CourseTeacher = new HashSet<CourseTeacher>();
+            //Discussion = new HashSet<Discussion>();
+            //UserAssignment = new HashSet<UserAssignment>();
+            //UserCourse = new HashSet<UserCourse>();
+            //UserGroupMember = new HashSet<UserGroupMember>();
+            //UserLogin = new HashSet<UserLogin>();
         }
 
         public int userId { get; set; }

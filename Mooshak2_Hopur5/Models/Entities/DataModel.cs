@@ -177,39 +177,39 @@ namespace Mooshak2_Hopur5.Models.Entities
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.CourseTeacher)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<User>()
+            //    .HasMany(e => e.CourseTeacher)
+            //    .WithRequired(e => e.User)
+            //    .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Discussion)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<User>()
+            //    .HasMany(e => e.Discussion)
+            //    .WithRequired(e => e.User)
+            //    .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.UserAssignment)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<User>()
+            //    .HasMany(e => e.UserAssignment)
+            //    .WithRequired(e => e.User)
+            //    .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.UserCourse)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<User>()
+            //    .HasMany(e => e.UserCourse)
+            //    .WithRequired(e => e.User)
+            //    .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.UserGroupMember)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<User>()
+            //    .HasMany(e => e.UserGroupMember)
+            //    .WithRequired(e => e.User)
+            //    .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.UserLogin)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<User>()
+            //    .HasMany(e => e.UserLogin)
+            //    .WithRequired(e => e.User)
+            //    .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<UserAssignment>()
-                .Property(e => e.gradeComment)
-                .IsUnicode(false);
+            //modelBuilder.Entity<UserAssignment>()
+            //    .Property(e => e.gradeComment)
+            //    .IsUnicode(false);
 
             modelBuilder.Entity<UserAssignment>()
                 .HasMany(e => e.Submission)
