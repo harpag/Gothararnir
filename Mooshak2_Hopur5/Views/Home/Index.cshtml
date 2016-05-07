@@ -16,8 +16,17 @@
         </ul>
     </div id="dataListItem">
 
-    if (Request.IsAuthenticated && User.IsInRole("Administrators"))
+    if (Request.IsAuthenticated && User.IsInRole("Admin"))
     {
+        <div class="col-md-5">
+            <h2>Administrator</h2>
+            <ul class="list-group">
+                @Html.ActionLink(" View all users", "GetAllUsers", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                @Html.ActionLink(" View all semesters", "GetAllSemesters", "Semester", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                @Html.ActionLink(" View all courses", "GetAllCourses", "Course", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            </ul>
+        </div>
+
     }
 
     <div class="col-md-5">
