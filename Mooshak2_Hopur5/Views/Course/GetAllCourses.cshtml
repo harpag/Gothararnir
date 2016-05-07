@@ -4,10 +4,14 @@
     ViewBag.Title = "GetAllCourse";
 }
 
-<h2>GetAllCourse</h2>
+<h2>All Courses</h2>
 @foreach (var course in Model.CourseList)
 {
-    <p>Nafn: @course.CourseName</p>
-    <p>Númer: @course.CourseNumber</p>
-}
+    <div class="col-md-5">
+        <ul class="list-group">
+            <li class="list-group-item">Nafn: @course.CourseName <br> Númer: @course.CourseNumber </li>
+        </ul>
+        </div>
+        }
+       
 
