@@ -745,23 +745,18 @@ namespace Mooshak2_Hopur5.Services
 
         public Boolean addAssignmentFile(string serverPath, AssignmentViewModel assignment)
         {
-            string filePathFull = serverPath + "\\Content\\Files\\Assignments\\Full\\";
-            string filePathThumb = serverPath + "\\Content\\Files\\Assignments\\Thumb\\";
+            string filePathFull = serverPath + "\\Content\\Files\\Assignments\\";
 
             if (!Directory.Exists(filePathFull))
             {
                 Directory.CreateDirectory(filePathFull);
             }
-            if (!Directory.Exists(filePathThumb))
-            {
-                Directory.CreateDirectory(filePathThumb);
-            }
 
-            if (assignment.ImageUploaded != null)
+            if (assignment.AssignmentUploaded != null)
             {
 
-                string fileExtension = System.IO.Path.GetExtension(assignment.ImageUploaded.FileName);
-                string fileContentType = assignment.ImageUploaded.ContentType;
+                string fileExtension = System.IO.Path.GetExtension(assignment.AssignmentUploaded.FileName);
+                string fileContentType = assignment.AssignmentUploaded.ContentType;
 
                 AssignmentFile newFile = new AssignmentFile();
                 newFile.assignmentId = assignment.AssignmentId;
@@ -789,14 +784,13 @@ namespace Mooshak2_Hopur5.Services
                 }
                 string fileName = newFile.assignmentFileId.ToString();
                 newFile.path = filePathFull + fileName + fileExtension;
-                newFile.pathThumb = filePathThumb + fileName + fileExtension;
                 newFile.fileExtension = fileExtension;
 
                 _db.Entry(newFile).State = EntityState.Modified;
                 _db.SaveChanges();
 
-                FileHelper.ResizeAndSave(filePathFull, fileName, assignment.ImageUploaded.InputStream, 800, false);
-                FileHelper.ResizeAndSave(filePathThumb, fileName, assignment.ImageUploaded.InputStream, 190, false);
+                assignment.AssignmentUploaded.SaveAs(newFile.path);
+
                 return true;
             }
 
@@ -805,23 +799,18 @@ namespace Mooshak2_Hopur5.Services
 
         public Boolean addAssignmentPartFile(string serverPath, AssignmentPartViewModel assignmentPart)
         {
-            string filePathFull = serverPath + "\\Content\\Files\\AssignmentParts\\Full\\";
-            string filePathThumb = serverPath + "\\Content\\Files\\AssignmentParts\\Thumb\\";
+            string filePathFull = serverPath + "\\Content\\Files\\AssignmentParts\\";
 
             if (!Directory.Exists(filePathFull))
             {
                 Directory.CreateDirectory(filePathFull);
             }
-            if (!Directory.Exists(filePathThumb))
-            {
-                Directory.CreateDirectory(filePathThumb);
-            }
 
-            if (assignmentPart.ImageUploaded != null)
+            if (assignmentPart.AssignmentPartUploaded != null)
             {
 
-                string fileExtension = System.IO.Path.GetExtension(assignmentPart.ImageUploaded.FileName);
-                string fileContentType = assignmentPart.ImageUploaded.ContentType;
+                string fileExtension = System.IO.Path.GetExtension(assignmentPart.AssignmentPartUploaded.FileName);
+                string fileContentType = assignmentPart.AssignmentPartUploaded.ContentType;
 
                 AssignmentPartFile newFile = new AssignmentPartFile();
                 newFile.assignmentPartId = assignmentPart.AssignmentPartId;
@@ -849,14 +838,13 @@ namespace Mooshak2_Hopur5.Services
                 }
                 string fileName = newFile.assignmentPartFileId.ToString();
                 newFile.path = filePathFull + fileName + fileExtension;
-                newFile.pathThumb = filePathThumb + fileName + fileExtension;
                 newFile.fileExtension = fileExtension;
 
                 _db.Entry(newFile).State = EntityState.Modified;
                 _db.SaveChanges();
 
-                FileHelper.ResizeAndSave(filePathFull, fileName, assignmentPart.ImageUploaded.InputStream, 800, false);
-                FileHelper.ResizeAndSave(filePathThumb, fileName, assignmentPart.ImageUploaded.InputStream, 190, false);
+                assignmentPart.AssignmentPartUploaded.SaveAs(newFile.path);
+
                 return true;
             }
 

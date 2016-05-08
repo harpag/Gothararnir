@@ -51,7 +51,7 @@ namespace Mooshak2_Hopur5.Models.ViewModels
 
 
         [DisplayName("Attachment")]
-        public HttpPostedFileBase ImageUploaded { get; set; }
+        public HttpPostedFileBase AssignmentUploaded { get; set; }
 
         [DisplayName("Attachment")]
         public HttpPostedFileBase SubmissionUploaded { get; set; }

@@ -36,7 +36,20 @@ namespace Mooshak2_Hopur5.Controllers
             viewModel.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
             return View(viewModel);
         }
-        
+
+        [HttpPost]
+        public ActionResult AddAssignment(AssignmentViewModel assignment)
+        {
+            if (ModelState.IsValid)
+            {
+                string serverPath = Server.MapPath("~");
+                assignment = _service.addAssignment(assignment, serverPath);
+                
+                return RedirectToAction("ViewCourse", "Course", new { id = assignment.CourseId });
+            }
+
+            return View(assignment);
+        }
 
         public ActionResult OpenAssignments()
         {
@@ -54,26 +67,7 @@ namespace Mooshak2_Hopur5.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
-        public ActionResult CreateAssignment(AssignmentViewModel assignment)
-        {
-            if (ModelState.IsValid)
-            {
-                string serverPath = Server.MapPath("~");
-                assignment = _service.addAssignment(assignment,serverPath);
-
-                //if (ModelState.IsValid)
-                //{
-                //    //Save Picture
-                //    string serverPath = Server.MapPath("~");
-                //    bool fileUpload = _service.addAssignmentFile(serverPath,assignment);
-                //}
-
-                return RedirectToAction("ViewCourse", "Course", new { id = assignment.CourseId });
-            }
-            
-            return View(assignment);
-        }
+        
 
         public ActionResult ViewAssignment(int id)
         {

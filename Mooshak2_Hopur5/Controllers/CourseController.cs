@@ -31,7 +31,16 @@ namespace Mooshak2_Hopur5.Controllers
         public ActionResult GetAllCourses()
         {
             var viewModel = new CourseViewModel();
-            viewModel = _service.getAllCourses();
+            if (User.IsInRole("Teacher") || User.IsInRole("Student"))
+            {
+                string userId = User.Identity.GetUserId();
+
+                viewModel = _service.getAllUsersCourses(userId);
+            }
+            else if (User.IsInRole("Admin"))
+            {
+                viewModel = _service.getAllCourses();
+            }
             return View(viewModel);
         }
 

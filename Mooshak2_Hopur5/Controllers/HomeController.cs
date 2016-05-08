@@ -1,4 +1,5 @@
-﻿using Mooshak2_Hopur5.Models.ViewModels;
+﻿using Microsoft.AspNet.Identity;
+using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,8 @@ namespace Mooshak2_Hopur5.Controllers
         public ActionResult Index()
         {
             var viewModel = new HomeViewModel();
-            viewModel.CourseList = _courseService.getAllCourses().CourseList;
+            string userId = User.Identity.GetUserId();
+            viewModel.CourseList = _courseService.getAllUsersCourses(userId).CourseList;
             viewModel.AssignmentList = _assignmentService.getAllAssignments().AssignmentList;
             viewModel.AnnouncementList = _announcementService.getAllAnnouncements().AnnouncementList;
             return View(viewModel);
