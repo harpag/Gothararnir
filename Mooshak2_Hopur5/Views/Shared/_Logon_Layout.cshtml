@@ -11,12 +11,15 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <a href="@Url.Action("Index", "Home")" title="Mooshak 2.0" class="">
+                    <img alt="Mooshak 2.0" src="@Url.Content("~/Content/images/Moos.png")" style="width:50px;height:50px;">
+                </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Mooshak 2.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+         
             </div>
 
             <div class="navbar-collapse collapse">
