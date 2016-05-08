@@ -82,7 +82,7 @@ namespace Mooshak2_Hopur5.Controllers
             if (ModelState.IsValid)
             {
                 Boolean course = _service.addCourse(newCourse);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("GetAllCourses");
             }
             
             return View(newCourse);
