@@ -1,6 +1,6 @@
 ﻿@model  Mooshak2_Hopur5.Models.ViewModels.HomeViewModel
 @{
-     ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 }
 @using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
@@ -8,50 +8,69 @@
     if (User.IsInRole("Teacher") || User.IsInRole("Student"))
     {
         <div class="col-md-5">
-            <h2>Assignments</h2>    
-            <ul class="list-group">
+            <table class="table assignmentTable">
+                <caption><span class="glyphicon glyphicon-th-list"></span>Assignments</caption>
                 @foreach (var assignment in Model.AssignmentList.Take(3))
-                {
-                    string assignmentName = assignment.AssignmentName;
-                    <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</li>
+                    {
+                        string assignmentName = assignment.AssignmentName;
+                    <tr>
+                        <td>@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</td>
+                        <td>@assignment.DueDate</td>
+                    </tr>
                 }
-            </ul>
-        </div id="dataListItem">
+            </table>
+            @Html.ActionLink(" View all", "GetAllAssignments", "Assignment", routeValues: null, htmlAttributes: new { @class = "btn btn-assignment" })
+        </div>
 
         <div class="col-md-5">
-            <h2>Courses</h2>
-            <ul class="list-group">
+            <table class="table courseTable">
+                <caption><span class="glyphicon glyphicon-book"></span>Courses</caption>
                 @foreach (var course in Model.CourseList.Take(3))
-                {
-                    string courseName = course.CourseNumber + "-" + course.CourseName;
-                    <li class="list-group-item">@Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)</li>
+                    {
+                        string courseName = course.CourseNumber + "-" + course.CourseName;
+                    <tr>
+                        <td>
+                            @Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)
+                        </td>
+                    </tr>
                 }
-                @Html.ActionLink(" This semester", "GetAllCoursesOnSemester", "Course", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                @Html.ActionLink(" View all", "GetAllCourses", "Course", routeValues: null, htmlAttributes: new { id = "registerLink" })
-            </ul>
+            </table>
+            @Html.ActionLink(" View all", "GetAllCourses", "Course", routeValues: null, htmlAttributes: new { @class = "btn btn-course" })
         </div>
     }
     <div class="col-md-5">
-        <h2>Announcements</h2>
-        <ul class="list-group">
+        <table class="table announcementTable">
+            <caption><span class="glyphicon glyphicon-info-sign"></span>Announcements</caption>
             @foreach (var announcement in Model.AnnouncementList.Take(3))
-            {
-                <li class="list-group-item">
-                    <div class="comment more">
+                {
+                <tr>
+                    <td>
+                        @announcement.DateCreate.Date.ToShortDateString()
+                    </td>
+                    <td class="comment more">
                         @Html.Raw(announcement.Announcement)
-                    </div>
-                </li>
+                    </td>
+                </tr>
             }
-            @Html.ActionLink("Add announcement ", "AddAnnouncement", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
-            @Html.ActionLink(" View all", "GetAllAnnouncements", "Announcement", routeValues: null, htmlAttributes: new { id = "registerLink" })
-        </ul>
+        </table>
+        @Html.ActionLink("Add announcement ", "AddAnnouncement", "Announcement", routeValues: null, htmlAttributes: new { @class = "btn btn-announcement" })
+        @Html.ActionLink(" View all", "GetAllAnnouncements", "Announcement", routeValues: null, htmlAttributes: new { @class = "btn btn-announcement" })
     </div>
-    if(User.IsInRole("Admin"))
+    if (User.IsInRole("Admin"))
     {
         <div class="col-md-5">
-            <h2>Shortcuts</h2>
-            @Html.ActionLink("Create user", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-large" })
-            @Html.ActionLink("Create course", "CreateCourse", "Course", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-large" })
+            <table class="table shourcutTable">
+                <tr>
+                    <td>
+                        @Html.ActionLink("Create user", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-course btn-large" })
+                    </td>
+                        </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Create course", "CreateCourse", "Course", routeValues: null, htmlAttributes: new { @class = "btn btn-course btn-large" })
+                    </td>
+                        </tr>
+            </table>
         </div>
     }
 }

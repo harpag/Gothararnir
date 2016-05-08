@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity.Validation;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace Mooshak2_Hopur5.Services
 {
@@ -917,7 +918,7 @@ namespace Mooshak2_Hopur5.Services
             //Vista skrána
             submission = submitFile(submission, serverPath);
 
-
+            cppProgram(serverPath);
 
             return submission;
         }
@@ -1042,14 +1043,69 @@ namespace Mooshak2_Hopur5.Services
             return submissionToChange;
         }
 
-        //submittAssignment()
+        public List<string> cppProgram(string serverPath)
+        {
+            var code = "#include <iostream>\n" +
+                        "using namespace std;\n" +
+                        "int main()\n" +
+                        "{\n" +
+                        "cout << \"Hello world\" << endl;\n" +
+                        "cout << \"The output should only contain two lines\" << endl;\n" +
+                        "return 0;\n" +
+                        "}";
 
-        //addAssignmentDiscussion()
+            var workingFolder = serverPath + "\\Content\\Files\\CPP\\";
 
-        //addAssignmentGrade()
+            if (!Directory.Exists(workingFolder))
+            {
+                Directory.CreateDirectory(workingFolder);
+            }
 
-        //editAssignmentGrade()
+            var cppFileName = "Hello.cpp";
+            var exeFilePath = workingFolder + "Hello.exe";
 
-        //getAssignmentStatistics() ætla að geyma þetta
+            File.WriteAllText(workingFolder + cppFileName, code);
+
+            //Location of c++ compiler
+            var compilerFolder = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\";
+
+            Process compiler = new Process();
+            compiler.StartInfo.FileName = "cmd.exe";
+            compiler.StartInfo.WorkingDirectory = workingFolder;
+            compiler.StartInfo.RedirectStandardInput = true;
+            compiler.StartInfo.RedirectStandardOutput = true;
+            compiler.StartInfo.UseShellExecute = false;
+
+            compiler.Start();
+            compiler.StandardInput.WriteLine("\"" + compilerFolder + "vcvars32.bat" + "\"");
+            compiler.StandardInput.WriteLine("cl.exe /nologo /EHsc " + cppFileName);
+            compiler.StandardInput.WriteLine("exit");
+            string output = compiler.StandardOutput.ReadToEnd();
+            compiler.WaitForExit();
+
+            var lines = new List<string>();
+            if (File.Exists(exeFilePath))
+            {
+                var processInfoExe = new ProcessStartInfo(exeFilePath, "");
+                processInfoExe.UseShellExecute = false;
+                processInfoExe.RedirectStandardOutput = true;
+                processInfoExe.RedirectStandardError = true;
+                processInfoExe.CreateNoWindow = true;
+                using (var processExe = new Process())
+                {
+                    processExe.StartInfo = processInfoExe;
+                    processExe.Start();
+
+                    //Read the output of the program
+                    while(!processExe.StandardOutput.EndOfStream)
+                    {
+                        lines.Add(processExe.StandardOutput.ReadLine());
+                    }
+                    
+                }
+            }
+
+            return lines;
+        }
     }
 }
