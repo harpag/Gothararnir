@@ -82,7 +82,7 @@ namespace Mooshak2_Hopur5.Controllers
             if (ModelState.IsValid)
             {
                 Boolean course = _service.addCourse(newCourse);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("GetAllCourses");
             }
             
             return View(newCourse);
@@ -112,5 +112,21 @@ namespace Mooshak2_Hopur5.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpPost]
+        public ActionResult EditCourse(CourseViewModel newCourse)
+        {
+            _service.editCourse(newCourse);
+
+            return RedirectToAction("GetAllCourses");
+
+        }
+
+        [HttpGet]
+        public ActionResult EditCourse(int id)
+        {
+            var viewModel = _service.getCourseById(id);
+            viewModel.Semesters = new SelectList(_service.getAllSemesters().SemesterList, "SemesterId", "SemesterName");
+            return View(viewModel);
+        }
     }
 }

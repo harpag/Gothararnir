@@ -22,13 +22,14 @@
                         <a href="#" class="dropbtn">Courses</a>
                         @Html.Action("ViewAllMyCourses", "Course", null)
                     </li>
+
                     @if (User.IsInRole("Teacher") || User.IsInRole("Student"))
                     { 
                         <li class="dropdown">
                             <a href="#" class="dropbtn">Assignments</a>
                             <div class="dropdown-content">
-                                <a href="#">Closed assignments</a>
-                                <a href="#">Open assignments</a>
+                                @Html.ActionLink("Closed assignments", "ClosedAssignments", "Assignment", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                                @Html.ActionLink("Open assignments", "OpenAssignments", "Assignment", routeValues: null, htmlAttributes: new { id = "registerLink" })
                                 <a href="#">All assignments</a>
                                 @if (User.IsInRole("Teacher"))
                                 {
@@ -48,6 +49,7 @@
                     }
                     @if (User.IsInRole("Admin"))
                     {
+
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Users</a>
                         <div class="dropdown-content">
@@ -63,9 +65,9 @@
                             @if (User.IsInRole("Admin"))
                             {
                                 @Html.ActionLink("Add announcement", "AddAnnouncement", "Announcement")
-                                @Html.ActionLink("View all announcements", "GetAllAnnouncements", "Announcement")
+                                @Html.ActionLink("All announcements", "GetAllAnnouncements", "Announcement")
                                 @Html.ActionLink("Add semester", "AddSemester", "Semester")
-                                @Html.ActionLink("View all semesters", "GetAllSemesters", "Semester")
+                                @Html.ActionLink("All semesters", "GetAllSemesters", "Semester")
                             }
                         </div>
                     </li>

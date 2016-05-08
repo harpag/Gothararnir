@@ -36,6 +36,23 @@ namespace Mooshak2_Hopur5.Controllers
             viewModel.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
             return View(viewModel);
         }
+        
+
+        public ActionResult OpenAssignments()
+        {
+            string userId = User.Identity.GetUserId();
+            var viewModel = new AssignmentViewModel();
+            viewModel = _service.getOpenAssignments();
+            return View(viewModel);
+        }
+
+        public ActionResult ClosedAssignments()
+        {
+            string userId = User.Identity.GetUserId();
+            var viewModel = new AssignmentViewModel();
+            viewModel = _service.getClosedAssignments();
+            return View(viewModel);
+        }
 
         [HttpPost]
         public ActionResult CreateAssignment(AssignmentViewModel assignment)
