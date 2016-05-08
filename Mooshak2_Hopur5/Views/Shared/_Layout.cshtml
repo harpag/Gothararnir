@@ -22,6 +22,7 @@
                         <a href="#" class="dropbtn">Courses</a>
                         @Html.Action("ViewAllMyCourses", "Course", null)
                     </li>
+
                     @if (User.IsInRole("Teacher") || User.IsInRole("Student"))
                     { 
                         <li class="dropdown">
