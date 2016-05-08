@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Mooshak2_Hopur5.Models.Entities;
 using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
 using System;
@@ -60,7 +61,25 @@ namespace Mooshak2_Hopur5.Controllers
         public ActionResult ViewAssignment(int id)
         {
             var viewModel = _service.getAssignmentById(id);
+            string userId = User.Identity.GetUserId();
+            if(User.IsInRole("Student"))
+            {
+                viewModel.UserAssignment =_service.getUserAssignmentById(userId, id);
+                viewModel.AssignmentSubmissionsList = _service.getUsersSubmissions(userId, id);
+            }
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult ViewAssignment(AssignmentViewModel viewModel)
+        {
+            if (ModelState.IsValid && viewModel.SubmissionUploaded != null && viewModel.SubmissionUploaded.ContentLength > 0)
+            {
+                string serverPath = Server.MapPath("~");
+                _service.studentSubmitsAssignment(viewModel, serverPath);
+            }
+
+            return RedirectToAction("ViewAssignment", "Assignment", new { id = viewModel.AssignmentId });
         }
     }
 }

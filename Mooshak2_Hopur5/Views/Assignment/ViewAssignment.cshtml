@@ -4,16 +4,78 @@
     ViewBag.Title = "ViewAssignment";
 }
 
-<h2>@Model.AssignmentName</h2>
+<h2>Assignment overview: @Model.AssignmentName</h2>
 
 <div class="form-inline">
     <div class="list-group-item">
         <table>
-            <p>Grade: @Model.GradePublished</p>
-            <p>Weight of assignment: @Model.Weight</p>
-            <p>Deadline: @Model.DueDate</p>
-            <p>Max submissions: @Model.MaxSubmission</p>
+            <tr><td>Description: @Model.AssignmentDescription </td></tr>
+            <tr><td>Weight: @Model.Weight %</td></tr>
+            <tr><td>Deadline: @Model.DueDate</td></tr>
+            <tr><td>Max submissions: @Model.MaxSubmission</td></tr>
         </table>
+        <h3>Parts</h3>
+        <div id="assignmentPart" class="list-group-item">
+            @for (int i = 0; i < Model.AssignmentPartList.Count; i++)
+            {
+                <table>
+                    <tr><td>Name: @Model.AssignmentPartList[i].AssignmentPartName</td></tr>
+                    <tr><td>Name: @Model.AssignmentPartList[i].AssignmentPartDescription</td></tr>
+                    <tr><td>Weight of part: @Model.AssignmentPartList[i].Weight %</td></tr>
+                    <tr><td>Max submissions: @Model.AssignmentPartList[i].ProgrammingLanguageId</td></tr>
+                </table>
+            }
+        </div>
+    </div>
+    <div class="studentSubmissions">
+        <h3>My submissions</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td>Submission id</td>
+                    <td>Assignment part</td>
+                    <td>Comment</td>
+                    <td>Accepted</td>
+                    <td>Number of sucess test cases</td>
+                    <td>Test case failed</td>
+                    <td>Error</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.AssignmentSubmissionsList)
+                {
+                    <tr>
+                        <td>@item.submissionId</td>
+                        <td>@item.assignmentPartId</td>
+                        <td>@item.submissionComment</td>
+                        <td>@item.accepted</td>
+                        <td>@item.numberOfSucessTestCases</td>
+                        <td>@item.testCaseFailId</td>
+                        <td>@item.error</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @using (Html.BeginForm("ViewAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+        {
+            <div id="row">
+                <div class="col-md-6">
+                    @Html.ValidationMessageFor(m => m.UserSubmission.assignmentPartId)
+                    @Html.DropDownListFor(m => m.UserSubmission.assignmentPartId, (Model.AssignmentParts as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+                </div>
+                <div class="col-md-6 product-attachment">
+                    @Html.LabelFor(m => m.SubmissionUploaded, new { @class = "control-label" })
+                    @Html.ValidationMessageFor(m => m.SubmissionUploaded)
+                    @Html.TextBoxFor(m => m.SubmissionUploaded, new { type = "file", @class = "form-control" })
+                </div>
+                @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
+                @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
+                @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
+                @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
+                @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
+                <button type="submit" class="col-md-3 btn btn-primary">Hand in my solution</button>
+            </div>
+        }
     </div>
 </div>
-

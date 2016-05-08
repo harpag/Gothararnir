@@ -4,14 +4,11 @@
 }
 
 <h2>All announcements</h2>
-<!--@foreach (var announce in Model.AnnouncementList)
-{
-    <p>Tilk: @announce.Announcement</p>
-}-->
+
 <div class="col-md-5">
 
     <ul class="list-group">
-        @foreach (var announcement in Model.AnnouncementList.Take(10))
+        @foreach (var announcement in Model.AnnouncementList)
             {
             <li class="list-group-item">
                 <div class="comment more">

@@ -30,7 +30,7 @@ namespace Mooshak2_Hopur5.Utilities
             return um.FindByName(name) != null;
         }
 
-        public ApplicationUser GetUser(string name)
+        public static ApplicationUser GetUser(string name)
         {
             var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             return um.FindByName(name);
