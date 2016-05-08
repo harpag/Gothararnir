@@ -8,11 +8,9 @@
 
 
 <ul class="list-group">
-        @foreach (var semester in Model.SemesterList)
-        {
-        <p>@semester.SemesterName </p>
-        <p>@semester.SemesterId </p>
-
-        <li class="list-group-item">@Html.ActionLink(semester.SemesterName, "ViewSemester", "Semester", new { id = semester.SemesterId }, null)</li>
+    @foreach (var semester in Model.SemesterList)
+    {
+        string semesterName = semester.SemesterName  + " " +  semester.DateFrom.Date.ToShortDateString() + " - " + semester.DateTo.Date.ToShortDateString();
+        <li class="list-group-item">@Html.ActionLink(semesterName, "ViewSemester", "Semester", new { id = semester.SemesterId }, null)</li>    
     }
 </ul>
