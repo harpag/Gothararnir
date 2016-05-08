@@ -247,6 +247,7 @@ namespace Mooshak2_Hopur5.Services
                 select course).SingleOrDefault();
 
             // Set inn breyttu upplýsingarnar
+            query.semesterId = courseToChange.SemesterId;
             query.courseName = courseToChange.CourseName;
             query.courseNumber = courseToChange.CourseNumber;
             //Todo setja inn rest
