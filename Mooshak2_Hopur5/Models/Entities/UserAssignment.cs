@@ -21,7 +21,7 @@ namespace Mooshak2_Hopur5.Models.Entities
         [StringLength(128)]
         public string userId { get; set; }
 
-        public int userGroupId { get; set; }
+        public int? userGroupId { get; set; }
 
         public double? grade { get; set; }
 

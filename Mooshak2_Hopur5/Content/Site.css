@@ -77,9 +77,20 @@ a.morelink {
 .comment {
     width: 400px;
     margin: 10px;
+}
 
 label#textBoxArea
 {
     display:block;
     text-align:left;
+}
+
+#assignmentPart
+{
+    margin-bottom: 10px;
+}
+
+.studentSubmissions
+{
+    margin-top:10px;
 }

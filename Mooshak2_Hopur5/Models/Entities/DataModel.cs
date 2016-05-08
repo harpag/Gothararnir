@@ -28,6 +28,7 @@ namespace Mooshak2_Hopur5.Models.Entities
         public virtual DbSet<ProgrammingLanguage> ProgrammingLanguage { get; set; }
         public virtual DbSet<Semester> Semester { get; set; }
         public virtual DbSet<Submission> Submission { get; set; }
+        public virtual DbSet<SubmissionFile> SubmissionFile { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserAssignment> UserAssignment { get; set; }
         public virtual DbSet<UserCourse> UserCourse { get; set; }
@@ -218,7 +219,7 @@ namespace Mooshak2_Hopur5.Models.Entities
             modelBuilder.Entity<Submission>()
                 .Property(e => e.error)
                 .IsUnicode(false);
-
+            
             modelBuilder.Entity<User>()
                 .Property(e => e.name)
                 .IsUnicode(false);

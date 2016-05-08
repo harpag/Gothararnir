@@ -14,11 +14,9 @@ namespace Mooshak2_Hopur5.Models.Entities
         public int assignmentPartId { get; set; }
 
         public int userAssignmentId { get; set; }
-
-        [Required]
+        
         public byte[] submissionFile { get; set; }
-
-        [Required]
+        
         public string submissionComment { get; set; }
 
         public int? accepted { get; set; }

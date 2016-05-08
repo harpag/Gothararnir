@@ -1,0 +1,11 @@
+Department - óbreytt
+Destination - óbreytt
+Employees - 2 nýjir dálkar - employee_id(int) og reception_id(int)
+Logs - óbreytt
+Reception - 12 nýjir dálkar email_text(varchar(4000)), reveal_text(varchar(4000)),reveal_text_ens(varchar(4000)),body_text(varchar(4000)),body_text_ens(varchar(4000)),site_header(varchar(4000)), site_header_ens(varchar(4000)),background_image(varchar(4000)),logo(varchar(4000)),print_file(varchar(4000)),reception_css_file(varchar(4000)),disabled(varchar(4000))
+Setup - óbreytt
+User_reception - óbreytt
+Users - 1 nýr dálkur salt(varchar(200))
+Users_log - óbreytt
+Visitors - 1 nýr dálkur guid(varchar(2000))
+Visitors_log - einhverjar breytingar en erum ekki að nota þetta

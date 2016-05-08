@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Mooshak2_Hopur5.Models.Entities;
 using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
 using System;
@@ -35,7 +36,20 @@ namespace Mooshak2_Hopur5.Controllers
             viewModel.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
             return View(viewModel);
         }
-        
+
+        [HttpPost]
+        public ActionResult AddAssignment(AssignmentViewModel assignment)
+        {
+            if (ModelState.IsValid)
+            {
+                string serverPath = Server.MapPath("~");
+                assignment = _service.addAssignment(assignment, serverPath);
+                
+                return RedirectToAction("ViewCourse", "Course", new { id = assignment.CourseId });
+            }
+
+            return View(assignment);
+        }
 
         public ActionResult OpenAssignments()
         {
@@ -53,31 +67,30 @@ namespace Mooshak2_Hopur5.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
-        public ActionResult CreateAssignment(AssignmentViewModel assignment)
-        {
-            if (ModelState.IsValid)
-            {
-                string serverPath = Server.MapPath("~");
-                assignment = _service.addAssignment(assignment,serverPath);
-
-                //if (ModelState.IsValid)
-                //{
-                //    //Save Picture
-                //    string serverPath = Server.MapPath("~");
-                //    bool fileUpload = _service.addAssignmentFile(serverPath,assignment);
-                //}
-
-                return RedirectToAction("ViewCourse", "Course", new { id = assignment.CourseId });
-            }
-            
-            return View(assignment);
-        }
+        
 
         public ActionResult ViewAssignment(int id)
         {
             var viewModel = _service.getAssignmentById(id);
+            string userId = User.Identity.GetUserId();
+            if(User.IsInRole("Student"))
+            {
+                viewModel.UserAssignment =_service.getUserAssignmentById(userId, id);
+                viewModel.AssignmentSubmissionsList = _service.getUsersSubmissions(userId, id);
+            }
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult ViewAssignment(AssignmentViewModel viewModel)
+        {
+            if (ModelState.IsValid && viewModel.SubmissionUploaded != null && viewModel.SubmissionUploaded.ContentLength > 0)
+            {
+                string serverPath = Server.MapPath("~");
+                _service.studentSubmitsAssignment(viewModel, serverPath);
+            }
+
+            return RedirectToAction("ViewAssignment", "Assignment", new { id = viewModel.AssignmentId });
         }
     }
 }
