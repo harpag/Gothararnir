@@ -342,6 +342,92 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
+        public AssignmentViewModel getOpenAssignments()
+        {
+            var openAssignments = (from assign in _db.Assignment
+                                   join course in _db.Course on assign.courseId equals course.courseId
+                                   where assign.dueDate >= DateTime.Now
+                                   select new { assign, course }).ToList();
+
+            List<AssignmentViewModel> openAssignmentsList;
+            openAssignmentsList = new List<AssignmentViewModel>();
+
+            foreach (var entity in openAssignments)
+            {
+                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+                var result = new AssignmentViewModel
+                {
+                    AssignmentId = entity.assign.assignmentId,
+                    CourseId = entity.assign.courseId,
+                    CourseName = entity.course.courseName,
+                    CourseNumber = entity.course.courseNumber,
+                    AssignmentName = entity.assign.assignmentName,
+                    AssignmentDescription = entity.assign.assignmentDescription,
+                    AssignmentFile = entity.assign.assignmentFile,
+                    Weight = entity.assign.weight,
+                    MaxSubmission = entity.assign.maxSubmission,
+                    AssignDate = entity.assign.assignDate,
+                    DueDate = entity.assign.dueDate,
+                    GradePublished = entity.assign.gradePublished,
+                    AssignmentPartList = assignmentParts.AssignmentPartList
+                };
+
+                openAssignmentsList.Add(result);
+            }
+
+            //Bý til nýtt AssingmentViewModel og set listann inn í það
+            AssignmentViewModel viewModel = new AssignmentViewModel
+            {
+                OpenAssignmentList = openAssignmentsList,
+            };
+            
+            //Skila viewModelinu með listanum
+            return viewModel;
+        }
+
+        public AssignmentViewModel getClosedAssignments()
+        {
+            var closedAssignments = (from assign in _db.Assignment
+                                     join course in _db.Course on assign.courseId equals course.courseId
+                                     where assign.dueDate < DateTime.Now
+                                     select new { assign, course }).ToList();
+
+            List<AssignmentViewModel> closedAssignmentsList;
+            closedAssignmentsList = new List<AssignmentViewModel>();
+
+            foreach (var entity in closedAssignments)
+            {
+                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+                var result = new AssignmentViewModel
+                {
+                    AssignmentId = entity.assign.assignmentId,
+                    CourseId = entity.assign.courseId,
+                    CourseName = entity.course.courseName,
+                    CourseNumber = entity.course.courseNumber,
+                    AssignmentName = entity.assign.assignmentName,
+                    AssignmentDescription = entity.assign.assignmentDescription,
+                    AssignmentFile = entity.assign.assignmentFile,
+                    Weight = entity.assign.weight,
+                    MaxSubmission = entity.assign.maxSubmission,
+                    AssignDate = entity.assign.assignDate,
+                    DueDate = entity.assign.dueDate,
+                    GradePublished = entity.assign.gradePublished,
+                    AssignmentPartList = assignmentParts.AssignmentPartList
+                };
+
+                closedAssignmentsList.Add(result);
+            }
+
+            //Bý til nýtt AssingmentViewModel og set listann inn í það
+            AssignmentViewModel viewModel = new AssignmentViewModel
+            {
+                ClosedAssignmentList = closedAssignmentsList
+            };
+
+            //Returna viewModelinu með listanum
+            return viewModel;
+        }
+
         public AssignmentViewModel getAllAssignmentsInCourse(int courseId)
         {
             //Sæki öll opin verkefni í verkefna töfluna
