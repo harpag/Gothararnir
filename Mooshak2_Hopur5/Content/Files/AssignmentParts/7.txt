@@ -1,0 +1,1088 @@
+2016-05-02 10:34:40.4611|WARN|thread: 1|StandardUserErrors|Showing user error Failed to create a new commit.
+GitHub.IO.ProcessException: Checking patch Mooshak2_Hopur5/Controllers/CourseController.cs...
+error: while searching for:
+        {
+            int courseId = 1;
+            var viewModel = _service.getCourseById(courseId);
+            return View();
+        }
+    }
+}
+error: patch failed: Mooshak2_Hopur5/Controllers/CourseController.cs:16
+error: Mooshak2_Hopur5/Controllers/CourseController.cs: patch does not apply
+2016-05-02 09:50:10.1900|INFO|thread:36|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'log -g --abbrev-commit --pretty=oneline HEAD -n 2500 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 09:50:10.2380|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1170 at GitClient.cs:201
+2016-05-02 09:50:10.2380|INFO|thread:188|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1170 at GitClient.cs:201 after waiting 5.01E-05s
+2016-05-02 09:50:10.2380|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1171 at RepositoryModel.cs:596
+2016-05-02 09:50:10.2380|INFO|thread:53|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1171 at RepositoryModel.cs:596 after waiting 1.77E-05s
+2016-05-02 09:50:10.2380|INFO|thread:79|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1168 at BranchSynchronizer.cs:141 after blocking 0.9501475s
+2016-05-02 09:50:10.2380|INFO|thread:195|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1172 at GitClient.cs:290
+2016-05-02 09:50:10.2380|INFO|thread:36|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1172 at GitClient.cs:290 after waiting 4.46E-05s
+2016-05-02 09:50:10.2380|INFO|thread:195|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1171 at RepositoryModel.cs:596 after blocking 0.0044311s
+2016-05-02 09:50:10.2380|INFO|thread:49|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1170 at GitClient.cs:201 after blocking 0.0094201s
+2016-05-02 09:50:10.2380|INFO|thread:201|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 09:50:10.2380|INFO|thread:201|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 09:50:10.2380|INFO|thread:201|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 09:50:10.2911|INFO|thread:82|ConcurrentRepositoryConnection|Took 39ms to git status
+2016-05-02 09:50:10.2911|INFO|thread:82|ConcurrentRepositoryConnection|Took 39ms to git status and parse output
+2016-05-02 09:50:10.2911|INFO|thread:82|NewCommitViewModel|Took 50ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 09:50:10.2911|INFO|thread:82|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1172 at GitClient.cs:290 after blocking 0.0507781s
+2016-05-02 09:50:10.2911|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 09:50:10.2911|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1173 at RepositoryViewModel.cs:318
+2016-05-02 09:50:10.2911|INFO|thread:204|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1173 at RepositoryViewModel.cs:318 after waiting 2.28E-05s
+2016-05-02 09:50:10.3031|INFO|thread:53|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1173 at RepositoryViewModel.cs:318 after blocking 0.007991s
+2016-05-02 09:55:21.2484|INFO|thread:23|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1174 at BranchSynchronizer.cs:141
+2016-05-02 09:55:21.2484|INFO|thread:79|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1174 at BranchSynchronizer.cs:141 after waiting 0.0006825s
+2016-05-02 09:55:21.2905|INFO|thread:195|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 09:55:21.2905|INFO|thread:195|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 09:55:21.2905|INFO|thread:195|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'fetch --prune --recurse-submodules=on-demand origin ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 09:55:21.7536|INFO|thread:188|BackgroundFetcher|Got a refresh period for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 300 seconds
+2016-05-02 09:55:21.7536|INFO|thread:188|BackgroundFetcher|Added a delay for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 26127 milliseconds
+2016-05-02 09:55:21.7536|INFO|thread: 1|NewPullRequestViewModel|No matching pull request found, clearing selection...
+2016-05-02 09:55:21.7776|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1175 at GitClient.cs:623
+2016-05-02 09:55:21.7776|INFO|thread:188|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1175 at GitClient.cs:623 after waiting 7.73E-05s
+2016-05-02 09:55:21.7896|INFO|thread:201|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1175 at GitClient.cs:623 after blocking 0.012016s
+2016-05-02 09:55:22.1476|INFO|thread:36|ConcurrentRepositoryConnection|Pruning merged local branches
+2016-05-02 09:55:22.1536|INFO|thread:36|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 09:55:22.1536|INFO|thread:36|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 09:55:22.1536|INFO|thread:36|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'branch --merged master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 09:55:22.1536|INFO|thread:36|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 09:55:22.1536|INFO|thread:36|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 09:55:22.1536|INFO|thread:36|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'log -g --abbrev-commit --pretty=oneline HEAD -n 2500 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 09:55:22.2006|INFO|thread:49|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1176 at GitClient.cs:201
+2016-05-02 09:55:22.2006|INFO|thread:37|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1176 at GitClient.cs:201 after waiting 2.4E-05s
+2016-05-02 09:55:22.2006|INFO|thread:49|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1177 at RepositoryModel.cs:596
+2016-05-02 09:55:22.2006|INFO|thread:188|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1177 at RepositoryModel.cs:596 after waiting 1.42E-05s
+2016-05-02 09:55:22.2006|INFO|thread:49|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1174 at BranchSynchronizer.cs:141 after blocking 0.951451s
+2016-05-02 09:55:22.2006|INFO|thread:195|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1178 at GitClient.cs:290
+2016-05-02 09:55:22.2006|INFO|thread:23|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1178 at GitClient.cs:290 after waiting 2.6E-05s
+2016-05-02 09:55:22.2006|INFO|thread:195|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1177 at RepositoryModel.cs:596 after blocking 0.0041891s
+2016-05-02 09:55:22.2116|INFO|thread:202|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1176 at GitClient.cs:201 after blocking 0.0113441s
+2016-05-02 09:55:22.2116|INFO|thread:201|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 09:55:22.2116|INFO|thread:201|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 09:55:22.2116|INFO|thread:201|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 09:55:22.2573|INFO|thread:204|ConcurrentRepositoryConnection|Took 41ms to git status
+2016-05-02 09:55:22.2573|INFO|thread:204|ConcurrentRepositoryConnection|Took 41ms to git status and parse output
+2016-05-02 09:55:22.2573|INFO|thread:204|NewCommitViewModel|Took 54ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 09:55:22.2573|INFO|thread:204|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1178 at GitClient.cs:290 after blocking 0.0541059s
+2016-05-02 09:55:22.2573|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 09:55:22.2573|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1179 at RepositoryViewModel.cs:318
+2016-05-02 09:55:22.2573|INFO|thread:37|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1179 at RepositoryViewModel.cs:318 after waiting 2.01E-05s
+2016-05-02 09:55:22.2573|INFO|thread:53|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1179 at RepositoryViewModel.cs:318 after blocking 0.0077696s
+2016-05-02 10:00:47.3794|INFO|thread:195|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1180 at BranchSynchronizer.cs:141
+2016-05-02 10:00:47.3794|INFO|thread:188|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1180 at BranchSynchronizer.cs:141 after waiting 0.0002092s
+2016-05-02 10:00:47.4145|INFO|thread:188|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:00:47.4145|INFO|thread:188|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:00:47.4145|INFO|thread:188|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'fetch --prune --recurse-submodules=on-demand origin ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:00:47.8786|INFO|thread:201|BackgroundFetcher|Got a refresh period for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 300 seconds
+2016-05-02 10:00:47.8786|INFO|thread:201|BackgroundFetcher|Added a delay for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 5268 milliseconds
+2016-05-02 10:00:47.9065|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1181 at GitClient.cs:623
+2016-05-02 10:00:47.9065|INFO|thread:49|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1181 at GitClient.cs:623 after waiting 8.21E-05s
+2016-05-02 10:00:47.9065|INFO|thread: 1|NewPullRequestViewModel|No matching pull request found, clearing selection...
+2016-05-02 10:00:47.9065|INFO|thread:23|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1181 at GitClient.cs:623 after blocking 0.0084194s
+2016-05-02 10:00:48.2553|INFO|thread:79|ConcurrentRepositoryConnection|Pruning merged local branches
+2016-05-02 10:00:48.2643|INFO|thread:79|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:00:48.2643|INFO|thread:79|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:00:48.2643|INFO|thread:79|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'branch --merged master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:00:48.2643|INFO|thread:79|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:00:48.2643|INFO|thread:79|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:00:48.2643|INFO|thread:79|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'log -g --abbrev-commit --pretty=oneline HEAD -n 2500 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:00:48.3124|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1182 at GitClient.cs:201
+2016-05-02 10:00:48.3124|INFO|thread:72|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1182 at GitClient.cs:201 after waiting 3.07E-05s
+2016-05-02 10:00:48.3124|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1183 at RepositoryModel.cs:596
+2016-05-02 10:00:48.3124|INFO|thread:201|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1183 at RepositoryModel.cs:596 after waiting 1.34E-05s
+2016-05-02 10:00:48.3124|INFO|thread:79|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1180 at BranchSynchronizer.cs:141 after blocking 0.9318079s
+2016-05-02 10:00:48.3124|INFO|thread:188|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1184 at GitClient.cs:290
+2016-05-02 10:00:48.3124|INFO|thread:49|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1184 at GitClient.cs:290 after waiting 2.44E-05s
+2016-05-02 10:00:48.3124|INFO|thread:188|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1183 at RepositoryModel.cs:596 after blocking 0.0044726s
+2016-05-02 10:00:48.3124|INFO|thread:204|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1182 at GitClient.cs:201 after blocking 0.011018s
+2016-05-02 10:00:48.3124|INFO|thread:79|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:00:48.3124|INFO|thread:79|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:00:48.3124|INFO|thread:79|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:00:48.3678|INFO|thread:195|ConcurrentRepositoryConnection|Took 40ms to git status
+2016-05-02 10:00:48.3678|INFO|thread:195|ConcurrentRepositoryConnection|Took 40ms to git status and parse output
+2016-05-02 10:00:48.3678|INFO|thread:195|NewCommitViewModel|Took 53ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:00:48.3678|INFO|thread:195|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1184 at GitClient.cs:290 after blocking 0.0538094s
+2016-05-02 10:00:48.3678|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:00:48.3728|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1185 at RepositoryViewModel.cs:318
+2016-05-02 10:00:48.3728|INFO|thread:72|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1185 at RepositoryViewModel.cs:318 after waiting 2.21E-05s
+2016-05-02 10:00:48.3728|INFO|thread:37|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1185 at RepositoryViewModel.cs:318 after blocking 0.0083175s
+2016-05-02 10:05:52.6504|INFO|thread:91|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1186 at BranchSynchronizer.cs:141
+2016-05-02 10:05:52.6504|INFO|thread:37|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1186 at BranchSynchronizer.cs:141 after waiting 7.26E-05s
+2016-05-02 10:05:52.6654|INFO|thread:60|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:05:52.6654|INFO|thread:60|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:05:52.6654|INFO|thread:60|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'fetch --prune --recurse-submodules=on-demand origin ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:05:53.1625|INFO|thread:188|BackgroundFetcher|Got a refresh period for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 300 seconds
+2016-05-02 10:05:53.1625|INFO|thread:188|BackgroundFetcher|Added a delay for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 21796 milliseconds
+2016-05-02 10:05:53.1826|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1187 at GitClient.cs:623
+2016-05-02 10:05:53.1826|INFO|thread:60|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1187 at GitClient.cs:623 after waiting 7.65E-05s
+2016-05-02 10:05:53.1826|INFO|thread: 1|NewPullRequestViewModel|No matching pull request found, clearing selection...
+2016-05-02 10:05:53.1826|INFO|thread:57|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1187 at GitClient.cs:623 after blocking 0.0061519s
+2016-05-02 10:05:53.4868|INFO|thread:201|ConcurrentRepositoryConnection|Pruning merged local branches
+2016-05-02 10:05:53.4938|INFO|thread:201|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:05:53.4938|INFO|thread:201|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:05:53.4938|INFO|thread:201|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'branch --merged master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:05:53.5038|INFO|thread:201|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:05:53.5038|INFO|thread:201|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:05:53.5038|INFO|thread:201|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'log -g --abbrev-commit --pretty=oneline HEAD -n 2500 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:05:53.5438|INFO|thread:53|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1188 at GitClient.cs:201
+2016-05-02 10:05:53.5438|INFO|thread:59|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1188 at GitClient.cs:201 after waiting 2.4E-05s
+2016-05-02 10:05:53.5438|INFO|thread:53|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1189 at RepositoryModel.cs:596
+2016-05-02 10:05:53.5438|INFO|thread:195|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1189 at RepositoryModel.cs:596 after waiting 1.57E-05s
+2016-05-02 10:05:53.5438|INFO|thread:53|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1186 at BranchSynchronizer.cs:141 after blocking 0.8960684s
+2016-05-02 10:05:53.5508|INFO|thread:201|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1190 at GitClient.cs:290
+2016-05-02 10:05:53.5508|INFO|thread:60|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1190 at GitClient.cs:290 after waiting 2.72E-05s
+2016-05-02 10:05:53.5508|INFO|thread:201|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1189 at RepositoryModel.cs:596 after blocking 0.0063635s
+2016-05-02 10:05:53.5508|INFO|thread:91|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1188 at GitClient.cs:201 after blocking 0.0115123s
+2016-05-02 10:05:53.5508|INFO|thread:57|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:05:53.5508|INFO|thread:57|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:05:53.5508|INFO|thread:57|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:05:53.5989|INFO|thread:201|ConcurrentRepositoryConnection|Took 39ms to git status
+2016-05-02 10:05:53.5989|INFO|thread:201|ConcurrentRepositoryConnection|Took 39ms to git status and parse output
+2016-05-02 10:05:53.5989|INFO|thread:201|NewCommitViewModel|Took 50ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:05:53.5989|INFO|thread:201|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1190 at GitClient.cs:290 after blocking 0.0509174s
+2016-05-02 10:05:53.5989|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:05:53.5989|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1191 at RepositoryViewModel.cs:318
+2016-05-02 10:05:53.5989|INFO|thread:91|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1191 at RepositoryViewModel.cs:318 after waiting 2.44E-05s
+2016-05-02 10:05:53.5989|INFO|thread:59|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1191 at RepositoryViewModel.cs:318 after blocking 0.0083633s
+2016-05-02 10:11:14.4605|INFO|thread:57|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1192 at BranchSynchronizer.cs:141
+2016-05-02 10:11:14.4605|INFO|thread:188|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1192 at BranchSynchronizer.cs:141 after waiting 0.00033s
+2016-05-02 10:11:14.4975|INFO|thread:188|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:11:14.4975|INFO|thread:188|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:11:14.4975|INFO|thread:188|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'fetch --prune --recurse-submodules=on-demand origin ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:11:14.9636|INFO|thread: 1|NewPullRequestViewModel|No matching pull request found, clearing selection...
+2016-05-02 10:11:14.9636|INFO|thread:60|BackgroundFetcher|Got a refresh period for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 300 seconds
+2016-05-02 10:11:14.9636|INFO|thread:60|BackgroundFetcher|Added a delay for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 16668 milliseconds
+2016-05-02 10:11:14.9913|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1193 at GitClient.cs:623
+2016-05-02 10:11:14.9913|INFO|thread:57|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1193 at GitClient.cs:623 after waiting 7.65E-05s
+2016-05-02 10:11:15.0023|INFO|thread:37|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1193 at GitClient.cs:623 after blocking 0.0114657s
+2016-05-02 10:11:15.3574|INFO|thread:201|ConcurrentRepositoryConnection|Pruning merged local branches
+2016-05-02 10:11:15.3574|INFO|thread:201|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:11:15.3574|INFO|thread:201|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:11:15.3574|INFO|thread:201|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'branch --merged master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:11:15.3724|INFO|thread:201|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:11:15.3724|INFO|thread:201|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:11:15.3724|INFO|thread:201|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'log -g --abbrev-commit --pretty=oneline HEAD -n 2500 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:11:15.4129|INFO|thread:83|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1194 at GitClient.cs:201
+2016-05-02 10:11:15.4129|INFO|thread:50|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1194 at GitClient.cs:201 after waiting 2.96E-05s
+2016-05-02 10:11:15.4129|INFO|thread:83|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1195 at RepositoryModel.cs:596
+2016-05-02 10:11:15.4129|INFO|thread:42|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1195 at RepositoryModel.cs:596 after waiting 1.5E-05s
+2016-05-02 10:11:15.4129|INFO|thread:83|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1192 at BranchSynchronizer.cs:141 after blocking 0.9524766s
+2016-05-02 10:11:15.4184|INFO|thread:37|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1196 at GitClient.cs:290
+2016-05-02 10:11:15.4184|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1196 at GitClient.cs:290 after waiting 3.43E-05s
+2016-05-02 10:11:15.4184|INFO|thread:37|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1195 at RepositoryModel.cs:596 after blocking 0.0050773s
+2016-05-02 10:11:15.4184|INFO|thread:49|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1194 at GitClient.cs:201 after blocking 0.0120302s
+2016-05-02 10:11:15.4184|INFO|thread:57|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:11:15.4184|INFO|thread:57|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:11:15.4184|INFO|thread:57|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:11:15.4714|INFO|thread:188|ConcurrentRepositoryConnection|Took 42ms to git status
+2016-05-02 10:11:15.4714|INFO|thread:188|ConcurrentRepositoryConnection|Took 42ms to git status and parse output
+2016-05-02 10:11:15.4714|INFO|thread:188|NewCommitViewModel|Took 56ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:11:15.4714|INFO|thread:188|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1196 at GitClient.cs:290 after blocking 0.0565633s
+2016-05-02 10:11:15.4714|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:11:15.4714|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1197 at RepositoryViewModel.cs:318
+2016-05-02 10:11:15.4714|INFO|thread:49|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1197 at RepositoryViewModel.cs:318 after waiting 2.32E-05s
+2016-05-02 10:11:15.4894|INFO|thread:57|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1197 at RepositoryViewModel.cs:318 after blocking 0.0121569s
+2016-05-02 10:16:31.1336|INFO|thread:49|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1198 at BranchSynchronizer.cs:141
+2016-05-02 10:16:31.1336|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1198 at BranchSynchronizer.cs:141 after waiting 0.0001346s
+2016-05-02 10:16:31.1656|INFO|thread:60|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:16:31.1656|INFO|thread:60|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:16:31.1656|INFO|thread:60|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'fetch --prune --recurse-submodules=on-demand origin ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:16:31.6487|INFO|thread:196|BackgroundFetcher|Got a refresh period for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 300 seconds
+2016-05-02 10:16:31.6487|INFO|thread:196|BackgroundFetcher|Added a delay for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 6679 milliseconds
+2016-05-02 10:16:31.6487|INFO|thread: 1|NewPullRequestViewModel|No matching pull request found, clearing selection...
+2016-05-02 10:16:31.6707|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1199 at GitClient.cs:623
+2016-05-02 10:16:31.6707|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1199 at GitClient.cs:623 after waiting 7.53E-05s
+2016-05-02 10:16:31.6797|INFO|thread:60|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1199 at GitClient.cs:623 after blocking 0.0083507s
+2016-05-02 10:16:31.9936|INFO|thread:49|ConcurrentRepositoryConnection|Pruning merged local branches
+2016-05-02 10:16:31.9936|INFO|thread:49|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:16:31.9936|INFO|thread:49|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:16:31.9936|INFO|thread:49|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'branch --merged master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:16:32.0086|INFO|thread:49|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:16:32.0086|INFO|thread:49|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:16:32.0086|INFO|thread:49|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'log -g --abbrev-commit --pretty=oneline HEAD -n 2500 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:16:32.0477|INFO|thread:196|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1200 at GitClient.cs:201
+2016-05-02 10:16:32.0477|INFO|thread:83|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1200 at GitClient.cs:201 after waiting 2.4E-05s
+2016-05-02 10:16:32.0477|INFO|thread:196|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1201 at RepositoryModel.cs:596
+2016-05-02 10:16:32.0477|INFO|thread:49|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1201 at RepositoryModel.cs:596 after waiting 1.5E-05s
+2016-05-02 10:16:32.0477|INFO|thread:196|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1198 at BranchSynchronizer.cs:141 after blocking 0.91381s
+2016-05-02 10:16:32.0477|INFO|thread:199|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1202 at GitClient.cs:290
+2016-05-02 10:16:32.0477|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1201 at RepositoryModel.cs:596 after blocking 0.0045519s
+2016-05-02 10:16:32.0477|INFO|thread:49|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1202 at GitClient.cs:290 after waiting 5.01E-05s
+2016-05-02 10:16:32.0477|INFO|thread:166|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1200 at GitClient.cs:201 after blocking 0.008974s
+2016-05-02 10:16:32.0477|INFO|thread:27|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:16:32.0477|INFO|thread:27|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:16:32.0477|INFO|thread:27|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:16:32.1007|INFO|thread:27|ConcurrentRepositoryConnection|Took 39ms to git status
+2016-05-02 10:16:32.1007|INFO|thread:27|ConcurrentRepositoryConnection|Took 39ms to git status and parse output
+2016-05-02 10:16:32.1007|INFO|thread:27|NewCommitViewModel|Took 50ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:16:32.1007|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1202 at GitClient.cs:290 after blocking 0.0503056s
+2016-05-02 10:16:32.1007|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:16:32.1007|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1203 at RepositoryViewModel.cs:318
+2016-05-02 10:16:32.1007|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1203 at RepositoryViewModel.cs:318 after waiting 3.23E-05s
+2016-05-02 10:16:32.1117|INFO|thread:166|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1203 at RepositoryViewModel.cs:318 after blocking 0.0076543s
+2016-05-02 10:21:37.8153|INFO|thread:166|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1204 at BranchSynchronizer.cs:141
+2016-05-02 10:21:37.8153|INFO|thread:49|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1204 at BranchSynchronizer.cs:141 after waiting 6.71E-05s
+2016-05-02 10:21:37.8454|INFO|thread:166|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:21:37.8454|INFO|thread:166|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:21:37.8454|INFO|thread:166|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'fetch --prune --recurse-submodules=on-demand origin ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:21:38.3652|INFO|thread:196|BackgroundFetcher|Got a refresh period for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 300 seconds
+2016-05-02 10:21:38.3652|INFO|thread:196|BackgroundFetcher|Added a delay for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 24324 milliseconds
+2016-05-02 10:21:38.3752|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1205 at GitClient.cs:623
+2016-05-02 10:21:38.3752|INFO|thread:196|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1205 at GitClient.cs:623 after waiting 1.69E-05s
+2016-05-02 10:21:38.3752|INFO|thread: 1|NewPullRequestViewModel|No matching pull request found, clearing selection...
+2016-05-02 10:21:38.6554|INFO|thread:166|ConcurrentRepositoryConnection|Pruning merged local branches
+2016-05-02 10:21:38.6554|INFO|thread:83|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1205 at GitClient.cs:623 after blocking 0.2814929s
+2016-05-02 10:21:38.6554|INFO|thread:166|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:21:38.6554|INFO|thread:166|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:21:38.6554|INFO|thread:166|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'branch --merged master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:21:38.6734|INFO|thread:166|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:21:38.6734|INFO|thread:166|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:21:38.6734|INFO|thread:166|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'log -g --abbrev-commit --pretty=oneline HEAD -n 2500 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:21:38.7184|INFO|thread:166|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1206 at GitClient.cs:201
+2016-05-02 10:21:38.7184|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1206 at GitClient.cs:201 after waiting 7.46E-05s
+2016-05-02 10:21:38.7184|INFO|thread:166|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1207 at RepositoryModel.cs:596
+2016-05-02 10:21:38.7184|INFO|thread:166|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1204 at BranchSynchronizer.cs:141 after blocking 0.9024919s
+2016-05-02 10:21:38.7184|INFO|thread:49|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1207 at RepositoryModel.cs:596 after waiting 4.02E-05s
+2016-05-02 10:21:38.7184|INFO|thread:45|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1208 at GitClient.cs:290
+2016-05-02 10:21:38.7184|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1208 at GitClient.cs:290 after waiting 3.35E-05s
+2016-05-02 10:21:38.7184|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1207 at RepositoryModel.cs:596 after blocking 0.0054705s
+2016-05-02 10:21:38.7294|INFO|thread:89|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1206 at GitClient.cs:201 after blocking 0.0116958s
+2016-05-02 10:21:38.7294|INFO|thread:27|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:21:38.7294|INFO|thread:27|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:21:38.7294|INFO|thread:27|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:21:38.7935|INFO|thread:196|ConcurrentRepositoryConnection|Took 51ms to git status
+2016-05-02 10:21:38.7935|INFO|thread:196|ConcurrentRepositoryConnection|Took 51ms to git status and parse output
+2016-05-02 10:21:38.7935|INFO|thread:196|NewCommitViewModel|Took 71ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:21:38.7935|INFO|thread:196|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1208 at GitClient.cs:290 after blocking 0.0709747s
+2016-05-02 10:21:38.7935|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:21:38.7935|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1209 at RepositoryViewModel.cs:318
+2016-05-02 10:21:38.7935|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1209 at RepositoryViewModel.cs:318 after waiting 1.77E-05s
+2016-05-02 10:21:38.8045|INFO|thread:89|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1209 at RepositoryViewModel.cs:318 after blocking 0.0075572s
+2016-05-02 10:27:02.1425|INFO|thread:196|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1210 at BranchSynchronizer.cs:141
+2016-05-02 10:27:02.1425|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1210 at BranchSynchronizer.cs:141 after waiting 2.4E-05s
+2016-05-02 10:27:02.1595|INFO|thread:196|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:27:02.1595|INFO|thread:196|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:27:02.1595|INFO|thread:196|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'fetch --prune --recurse-submodules=on-demand origin ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:27:03.0969|INFO|thread:199|BackgroundFetcher|Got a refresh period for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 300 seconds
+2016-05-02 10:27:03.0969|INFO|thread:199|BackgroundFetcher|Added a delay for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 22083 milliseconds
+2016-05-02 10:27:03.0969|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1211 at GitClient.cs:623
+2016-05-02 10:27:03.0969|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1211 at GitClient.cs:623 after waiting 6E-05s
+2016-05-02 10:27:03.0969|INFO|thread: 1|NewPullRequestViewModel|No matching pull request found, clearing selection...
+2016-05-02 10:27:03.6672|INFO|thread:196|ConcurrentRepositoryConnection|Pruning merged local branches
+2016-05-02 10:27:03.6722|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1211 at GitClient.cs:623 after blocking 0.5663108s
+2016-05-02 10:27:03.6722|INFO|thread:196|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:27:03.6722|INFO|thread:196|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:27:03.6722|INFO|thread:196|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'branch --merged master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:27:03.6882|INFO|thread:196|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:27:03.6882|INFO|thread:196|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:27:03.6882|INFO|thread:196|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'log -g --abbrev-commit --pretty=oneline HEAD -n 2500 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:27:03.7393|INFO|thread:196|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1212 at GitClient.cs:201
+2016-05-02 10:27:03.7393|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1212 at GitClient.cs:201 after waiting 3.15E-05s
+2016-05-02 10:27:03.7393|INFO|thread:196|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1213 at RepositoryModel.cs:596
+2016-05-02 10:27:03.7393|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1213 at RepositoryModel.cs:596 after waiting 1.34E-05s
+2016-05-02 10:27:03.7393|INFO|thread:196|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1210 at BranchSynchronizer.cs:141 after blocking 1.5973653s
+2016-05-02 10:27:03.7393|INFO|thread:45|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1214 at GitClient.cs:290
+2016-05-02 10:27:03.7393|INFO|thread:196|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1214 at GitClient.cs:290 after waiting 2.28E-05s
+2016-05-02 10:27:03.7393|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1213 at RepositoryModel.cs:596 after blocking 0.0042211s
+2016-05-02 10:27:03.7513|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1212 at GitClient.cs:201 after blocking 0.0119761s
+2016-05-02 10:27:03.7513|INFO|thread:27|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:27:03.7513|INFO|thread:27|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:27:03.7513|INFO|thread:27|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:27:03.7953|INFO|thread:45|ConcurrentRepositoryConnection|Took 39ms to git status
+2016-05-02 10:27:03.7953|INFO|thread:45|ConcurrentRepositoryConnection|Took 39ms to git status and parse output
+2016-05-02 10:27:03.7953|INFO|thread:45|NewCommitViewModel|Took 53ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:27:03.7953|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1214 at GitClient.cs:290 after blocking 0.0532422s
+2016-05-02 10:27:03.7953|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:27:03.7953|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1215 at RepositoryViewModel.cs:318
+2016-05-02 10:27:03.7953|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1215 at RepositoryViewModel.cs:318 after waiting 1.81E-05s
+2016-05-02 10:27:03.7953|INFO|thread:196|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1215 at RepositoryViewModel.cs:318 after blocking 0.0079583s
+2016-05-02 10:28:45.2498|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1216 at GitClient.cs:201
+2016-05-02 10:28:45.2498|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1216 at GitClient.cs:201 after waiting 3.35E-05s
+2016-05-02 10:28:45.2498|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1217 at RepositoryModel.cs:596
+2016-05-02 10:28:45.2678|INFO|thread:196|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1216 at GitClient.cs:201 after blocking 0.0175734s
+2016-05-02 10:28:45.2678|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1217 at RepositoryModel.cs:596 after waiting 0.0172896s
+2016-05-02 10:28:45.2678|INFO|thread:196|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1218 at GitClient.cs:290
+2016-05-02 10:28:45.2678|INFO|thread:196|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1217 at RepositoryModel.cs:596 after blocking 0.006806s
+2016-05-02 10:28:45.2678|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1218 at GitClient.cs:290 after waiting 0.0001042s
+2016-05-02 10:28:45.2868|INFO|thread:196|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:45.2868|INFO|thread:196|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:45.2868|INFO|thread:196|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:45.3998|INFO|thread:196|ConcurrentRepositoryConnection|Took 111ms to git status
+2016-05-02 10:28:45.3998|INFO|thread:196|ConcurrentRepositoryConnection|Took 111ms to git status and parse output
+2016-05-02 10:28:45.4108|INFO|thread:196|NewCommitViewModel|Took 136ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:45.4108|INFO|thread:196|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1218 at GitClient.cs:290 after blocking 0.1363952s
+2016-05-02 10:28:45.4108|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:45.4108|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1219 at RepositoryViewModel.cs:318
+2016-05-02 10:28:45.4108|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1219 at RepositoryViewModel.cs:318 after waiting 0.0003509s
+2016-05-02 10:28:45.4300|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1219 at RepositoryViewModel.cs:318 after blocking 0.0166615s
+2016-05-02 10:28:47.8502|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1220 at GitClient.cs:201
+2016-05-02 10:28:47.8502|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1220 at GitClient.cs:201 after waiting 3.43E-05s
+2016-05-02 10:28:47.8502|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1221 at RepositoryModel.cs:596
+2016-05-02 10:28:47.8655|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1220 at GitClient.cs:201 after blocking 0.0144205s
+2016-05-02 10:28:47.8655|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1221 at RepositoryModel.cs:596 after waiting 0.0141224s
+2016-05-02 10:28:47.8655|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1222 at GitClient.cs:290
+2016-05-02 10:28:47.8655|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1221 at RepositoryModel.cs:596 after blocking 0.0058779s
+2016-05-02 10:28:47.8655|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1222 at GitClient.cs:290 after waiting 8.8E-05s
+2016-05-02 10:28:47.8821|INFO|thread:27|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:47.8821|INFO|thread:27|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:47.8821|INFO|thread:27|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:47.9536|INFO|thread:27|ConcurrentRepositoryConnection|Took 68ms to git status
+2016-05-02 10:28:47.9536|INFO|thread:27|ConcurrentRepositoryConnection|Took 69ms to git status and parse output
+2016-05-02 10:28:47.9536|INFO|thread:27|NewCommitViewModel|Took 90ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:47.9536|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1222 at GitClient.cs:290 after blocking 0.0898856s
+2016-05-02 10:28:47.9536|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:47.9536|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1223 at RepositoryViewModel.cs:318
+2016-05-02 10:28:47.9536|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1223 at RepositoryViewModel.cs:318 after waiting 0.0010745s
+2016-05-02 10:28:47.9786|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1223 at RepositoryViewModel.cs:318 after blocking 0.0138283s
+2016-05-02 10:28:49.7743|INFO|thread: 1|RepositoryHost|Log in from cache for login 'harpag' to host 'https://api.github.com/' SUCCEEDED
+2016-05-02 10:28:49.7743|INFO|thread: 1|AsyncReaderWriterLock|Acquiring exclusive scheduler for operation 1224 at BranchSynchronizer.cs:220
+2016-05-02 10:28:49.7743|INFO|thread:199|AsyncReaderWriterLock|Acquired exclusive scheduler for operation: 1224 at BranchSynchronizer.cs:220 after waiting 1.89E-05s
+2016-05-02 10:28:49.7903|INFO|thread:196|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:49.7903|INFO|thread:196|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:49.7903|INFO|thread:196|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'pull --progress --rebase --prune origin master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:49.8523|INFO|thread:196|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:49.8523|INFO|thread:196|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:49.8523|INFO|thread:196|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'pull --progress --prune origin master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:50.9108|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1225 at RepositoryModel.cs:596
+2016-05-02 10:28:50.9108|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1226 at GitClient.cs:290
+2016-05-02 10:28:50.9108|INFO|thread:45|AsyncReaderWriterLock|Released exclusive scheduler for operation: 1224 at BranchSynchronizer.cs:220 after blocking 1.135818s
+2016-05-02 10:28:50.9108|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1225 at RepositoryModel.cs:596 after waiting 0.0014203s
+2016-05-02 10:28:50.9108|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1226 at GitClient.cs:290 after waiting 0.0012024s
+2016-05-02 10:28:50.9108|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1225 at RepositoryModel.cs:596 after blocking 0.0054926s
+2016-05-02 10:28:50.9228|INFO|thread:45|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:50.9228|INFO|thread:45|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:50.9228|INFO|thread:45|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:50.9483|WARN|thread: 1|StandardUserErrors|Showing user error Syncing would overwrite your uncommitted changes. Please commit or discard your changes and try again.
+GitHub.Helpers.PullWithWorkingDirectoryChangesGitException: From https://github.com/harpag/Gothararnir
+ * branch            master     -> FETCH_HEAD
+error: Your local changes to the following files would be overwritten by merge:
+	.vs/Mooshak2_Hopur5/v14/.suo
+Please, commit your changes or stash them before you can merge.
+Aborting
+Updating 232a7de..54610da ---> GitHub.IO.ProcessException: From https://github.com/harpag/Gothararnir
+ * branch            master     -> FETCH_HEAD
+error: Your local changes to the following files would be overwritten by merge:
+	.vs/Mooshak2_Hopur5/v14/.suo
+Please, commit your changes or stash them before you can merge.
+Aborting
+Updating 232a7de..54610da
+   --- End of inner exception stack trace ---
+2016-05-02 10:28:51.0469|INFO|thread:72|ConcurrentRepositoryConnection|Took 122ms to git status
+2016-05-02 10:28:51.0469|INFO|thread:72|ConcurrentRepositoryConnection|Took 122ms to git status and parse output
+2016-05-02 10:28:51.0469|INFO|thread:72|NewCommitViewModel|Took 143ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:51.0469|INFO|thread:72|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1226 at GitClient.cs:290 after blocking 0.1426482s
+2016-05-02 10:28:51.0469|INFO|thread: 1|NewCommitViewModel|Took 6ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:53.0445|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1227 at GitClient.cs:290
+2016-05-02 10:28:53.0445|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1227 at GitClient.cs:290 after waiting 2.36E-05s
+2016-05-02 10:28:53.0600|INFO|thread:31|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:53.0600|INFO|thread:31|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:53.0600|INFO|thread:31|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:53.1466|INFO|thread:31|ConcurrentRepositoryConnection|Took 84ms to git status
+2016-05-02 10:28:53.1466|INFO|thread:31|ConcurrentRepositoryConnection|Took 84ms to git status and parse output
+2016-05-02 10:28:53.1466|INFO|thread:31|NewCommitViewModel|Took 105ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:53.1466|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1227 at GitClient.cs:290 after blocking 0.1053475s
+2016-05-02 10:28:53.1466|INFO|thread: 1|NewCommitViewModel|Took 2ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:53.1466|INFO|thread: 1|BranchSynchronizer|Completing sync for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5 - master
+2016-05-02 10:28:53.1466|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1228 at RepositoryViewModel.cs:318
+2016-05-02 10:28:53.1466|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1228 at RepositoryViewModel.cs:318 after waiting 3.03E-05s
+2016-05-02 10:28:53.1466|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1229 at GitClient.cs:201
+2016-05-02 10:28:53.1466|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1230 at RepositoryModel.cs:596
+2016-05-02 10:28:53.1466|INFO|thread:89|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1229 at GitClient.cs:201 after waiting 0.0003229s
+2016-05-02 10:28:53.1466|INFO|thread: 1|BranchSynchronizer|Took 3378ms to sync repository C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5 - master
+2016-05-02 10:28:53.1466|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1230 at RepositoryModel.cs:596 after waiting 5.76E-05s
+2016-05-02 10:28:53.1596|INFO|thread:72|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1231 at GitClient.cs:290
+2016-05-02 10:28:53.1596|INFO|thread:72|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1230 at RepositoryModel.cs:596 after blocking 0.0058787s
+2016-05-02 10:28:53.1596|INFO|thread:72|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1231 at GitClient.cs:290 after waiting 0.0001839s
+2016-05-02 10:28:53.1596|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1228 at RepositoryViewModel.cs:318 after blocking 0.0141789s
+2016-05-02 10:28:53.1596|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1229 at GitClient.cs:201 after blocking 0.0141769s
+2016-05-02 10:28:53.1596|INFO|thread:72|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:53.1596|INFO|thread:72|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:53.1596|INFO|thread:72|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:53.2327|INFO|thread:36|ConcurrentRepositoryConnection|Took 60ms to git status
+2016-05-02 10:28:53.2327|INFO|thread:36|ConcurrentRepositoryConnection|Took 60ms to git status and parse output
+2016-05-02 10:28:53.2357|INFO|thread:36|NewCommitViewModel|Took 75ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:53.2357|INFO|thread:36|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1231 at GitClient.cs:290 after blocking 0.0756036s
+2016-05-02 10:28:53.2357|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:54.0828|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1232 at GitClient.cs:404
+2016-05-02 10:28:54.1048|INFO|thread:57|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1232 at GitClient.cs:404 after waiting 0.0217736s
+2016-05-02 10:28:54.1198|INFO|thread:57|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:54.1198|INFO|thread:57|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:54.1198|INFO|thread:57|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'diff-tree -r -z --no-renames --name-status b1bba826b6e3c72d24f95a736c300a99273ee826 affdc06ea41f5da6b3c54b104e25fbbced986b30 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:54.1288|INFO|thread:57|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:54.1288|INFO|thread:57|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:54.1288|INFO|thread:57|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'diff-tree -r -z --no-renames --numstat b1bba826b6e3c72d24f95a736c300a99273ee826 affdc06ea41f5da6b3c54b104e25fbbced986b30 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:54.2084|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1233 at ICommittedFileForklift.cs:95
+2016-05-02 10:28:54.2084|INFO|thread:89|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1233 at ICommittedFileForklift.cs:95 after waiting 0.0010078s
+2016-05-02 10:28:54.3185|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1233 at ICommittedFileForklift.cs:95 after blocking 0.1086165s
+2016-05-02 10:28:54.6598|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1232 at GitClient.cs:404 after blocking 0.5552829s
+2016-05-02 10:28:55.1583|INFO|thread: 1|SelectedCommitViewModel|Took 1077ms to load files for commit 232a7de in repo C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:57.2207|INFO|thread: 1|RepositoryHost|Log in from cache for login 'harpag' to host 'https://api.github.com/' SUCCEEDED
+2016-05-02 10:28:57.2207|INFO|thread: 1|AsyncReaderWriterLock|Acquiring exclusive scheduler for operation 1234 at BranchSynchronizer.cs:220
+2016-05-02 10:28:57.2207|INFO|thread:199|AsyncReaderWriterLock|Acquired exclusive scheduler for operation: 1234 at BranchSynchronizer.cs:220 after waiting 0.0003683s
+2016-05-02 10:28:57.2372|INFO|thread:72|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:57.2372|INFO|thread:72|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:57.2372|INFO|thread:72|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'pull --progress --rebase --prune origin master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:57.2971|INFO|thread:89|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:57.2971|INFO|thread:89|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:57.2971|INFO|thread:89|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'pull --progress --prune origin master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:58.1613|INFO|thread:45|AsyncReaderWriterLock|Released exclusive scheduler for operation: 1234 at BranchSynchronizer.cs:220 after blocking 0.9385006s
+2016-05-02 10:28:58.1613|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1235 at RepositoryModel.cs:596
+2016-05-02 10:28:58.1613|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1235 at RepositoryModel.cs:596 after waiting 0.0001247s
+2016-05-02 10:28:58.1613|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1236 at GitClient.cs:290
+2016-05-02 10:28:58.1613|WARN|thread: 1|StandardUserErrors|Showing user error Syncing would overwrite your uncommitted changes. Please commit or discard your changes and try again.
+GitHub.Helpers.PullWithWorkingDirectoryChangesGitException: From https://github.com/harpag/Gothararnir
+ * branch            master     -> FETCH_HEAD
+error: Your local changes to the following files would be overwritten by merge:
+	.vs/Mooshak2_Hopur5/v14/.suo
+Please, commit your changes or stash them before you can merge.
+Aborting
+Updating 232a7de..54610da ---> GitHub.IO.ProcessException: From https://github.com/harpag/Gothararnir
+ * branch            master     -> FETCH_HEAD
+error: Your local changes to the following files would be overwritten by merge:
+	.vs/Mooshak2_Hopur5/v14/.suo
+Please, commit your changes or stash them before you can merge.
+Aborting
+Updating 232a7de..54610da
+   --- End of inner exception stack trace ---
+2016-05-02 10:28:58.1613|INFO|thread:196|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1236 at GitClient.cs:290 after waiting 0.0008499s
+2016-05-02 10:28:58.1613|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1235 at RepositoryModel.cs:596 after blocking 0.0056288s
+2016-05-02 10:28:58.1738|INFO|thread:89|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:58.1738|INFO|thread:89|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:58.1738|INFO|thread:89|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:58.2254|INFO|thread:89|ConcurrentRepositoryConnection|Took 49ms to git status
+2016-05-02 10:28:58.2254|INFO|thread:89|ConcurrentRepositoryConnection|Took 49ms to git status and parse output
+2016-05-02 10:28:58.2254|INFO|thread:89|NewCommitViewModel|Took 65ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:58.2254|INFO|thread:89|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1236 at GitClient.cs:290 after blocking 0.070482s
+2016-05-02 10:28:58.2344|INFO|thread: 1|NewCommitViewModel|Took 7ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:59.2896|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1237 at GitClient.cs:290
+2016-05-02 10:28:59.2896|INFO|thread:89|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1237 at GitClient.cs:290 after waiting 3.11E-05s
+2016-05-02 10:28:59.2996|INFO|thread:199|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:59.2996|INFO|thread:199|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:59.2996|INFO|thread:199|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:59.3508|INFO|thread:199|ConcurrentRepositoryConnection|Took 48ms to git status
+2016-05-02 10:28:59.3508|INFO|thread:199|ConcurrentRepositoryConnection|Took 49ms to git status and parse output
+2016-05-02 10:28:59.3508|INFO|thread:199|NewCommitViewModel|Took 62ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:59.3508|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1237 at GitClient.cs:290 after blocking 0.0624238s
+2016-05-02 10:28:59.3508|INFO|thread: 1|NewCommitViewModel|Took 1ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:59.3508|INFO|thread: 1|BranchSynchronizer|Completing sync for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5 - master
+2016-05-02 10:28:59.3508|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1238 at RepositoryViewModel.cs:318
+2016-05-02 10:28:59.3508|INFO|thread:196|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1238 at RepositoryViewModel.cs:318 after waiting 3.27E-05s
+2016-05-02 10:28:59.3508|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1239 at GitClient.cs:201
+2016-05-02 10:28:59.3508|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1239 at GitClient.cs:201 after waiting 1.53E-05s
+2016-05-02 10:28:59.3508|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1240 at RepositoryModel.cs:596
+2016-05-02 10:28:59.3508|INFO|thread: 1|BranchSynchronizer|Took 2132ms to sync repository C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5 - master
+2016-05-02 10:28:59.3733|INFO|thread:89|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1239 at GitClient.cs:201 after blocking 0.0182397s
+2016-05-02 10:28:59.3733|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1240 at RepositoryModel.cs:596 after waiting 0.017978s
+2016-05-02 10:28:59.3733|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1238 at RepositoryViewModel.cs:318 after blocking 0.0188721s
+2016-05-02 10:28:59.3783|INFO|thread:89|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1241 at GitClient.cs:290
+2016-05-02 10:28:59.3783|INFO|thread:196|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1241 at GitClient.cs:290 after waiting 3.75E-05s
+2016-05-02 10:28:59.3783|INFO|thread:89|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1240 at RepositoryModel.cs:596 after blocking 0.0053012s
+2016-05-02 10:28:59.3783|INFO|thread:45|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:28:59.3783|INFO|thread:45|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:28:59.3783|INFO|thread:45|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:28:59.4332|INFO|thread:45|ConcurrentRepositoryConnection|Took 45ms to git status
+2016-05-02 10:28:59.4332|INFO|thread:45|ConcurrentRepositoryConnection|Took 45ms to git status and parse output
+2016-05-02 10:28:59.4332|INFO|thread:45|NewCommitViewModel|Took 57ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:28:59.4332|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1241 at GitClient.cs:290 after blocking 0.0574049s
+2016-05-02 10:28:59.4382|INFO|thread: 1|NewCommitViewModel|Took 2ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:29:09.7552|INFO|thread: 1|AsyncReaderWriterLock|Acquiring exclusive scheduler for operation 1242 at ICommitCreator.cs:89
+2016-05-02 10:29:09.7552|INFO|thread:89|AsyncReaderWriterLock|Acquired exclusive scheduler for operation: 1242 at ICommitCreator.cs:89 after waiting 3.43E-05s
+2016-05-02 10:29:09.7552|INFO|thread:199|ExclusiveRepositoryConnection|Creating Commit
+2016-05-02 10:29:09.7822|INFO|thread:199|ExclusiveRepositoryConnection|Creating new commit with 1 file(s). suo file
+2016-05-02 10:29:09.7822|INFO|thread:199|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:09.7822|INFO|thread:199|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:09.7822|INFO|thread:199|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'add --all ".vs/Mooshak2_Hopur5/v14/.suo" ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:09.8523|INFO|thread:36|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:09.8523|INFO|thread:36|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:09.8523|INFO|thread:36|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'commit -F "C:\Temp\40629918-f3ab-4aaa-8d7b-cb9045c78e78" ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:09.9436|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1243 at RepositoryModel.cs:596
+2016-05-02 10:29:09.9436|INFO|thread:199|AsyncReaderWriterLock|Released exclusive scheduler for operation: 1242 at ICommitCreator.cs:89 after blocking 0.1881306s
+2016-05-02 10:29:09.9436|INFO|thread:89|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1243 at RepositoryModel.cs:596 after waiting 0.0002072s
+2016-05-02 10:29:09.9436|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1244 at GitClient.cs:290
+2016-05-02 10:29:09.9436|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1244 at GitClient.cs:290 after waiting 6.94E-05s
+2016-05-02 10:29:09.9436|INFO|thread:89|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1245 at NewPullRequestViewModel.cs:246
+2016-05-02 10:29:09.9436|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1246 at BranchesViewModel.cs:534
+2016-05-02 10:29:09.9436|INFO|thread:89|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1243 at RepositoryModel.cs:596 after blocking 0.0055325s
+2016-05-02 10:29:09.9436|INFO|thread:89|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1245 at NewPullRequestViewModel.cs:246 after waiting 0.0001464s
+2016-05-02 10:29:09.9436|INFO|thread:72|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1246 at BranchesViewModel.cs:534 after waiting 0.0002435s
+2016-05-02 10:29:09.9436|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1247 at RepositoryViewModel.cs:318
+2016-05-02 10:29:09.9436|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1247 at RepositoryViewModel.cs:318 after waiting 0.0003158s
+2016-05-02 10:29:09.9536|INFO|thread:31|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:09.9536|INFO|thread:31|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:09.9536|INFO|thread:31|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:09.9536|INFO|thread:71|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1245 at NewPullRequestViewModel.cs:246 after blocking 0.0095239s
+2016-05-02 10:29:09.9536|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1246 at BranchesViewModel.cs:534 after blocking 0.0125706s
+2016-05-02 10:29:09.9536|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1247 at RepositoryViewModel.cs:318 after blocking 0.0131584s
+2016-05-02 10:29:10.0087|INFO|thread:31|ConcurrentRepositoryConnection|Took 52ms to git status
+2016-05-02 10:29:10.0087|INFO|thread:31|ConcurrentRepositoryConnection|Took 52ms to git status and parse output
+2016-05-02 10:29:10.0087|INFO|thread:31|NewCommitViewModel|Took 65ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:29:10.0087|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1244 at GitClient.cs:290 after blocking 0.0654797s
+2016-05-02 10:29:10.0087|INFO|thread: 1|NewCommitViewModel|Took 0ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:29:12.6073|INFO|thread: 1|RepositoryHost|Log in from cache for login 'harpag' to host 'https://api.github.com/' SUCCEEDED
+2016-05-02 10:29:12.6073|INFO|thread: 1|AsyncReaderWriterLock|Acquiring exclusive scheduler for operation 1248 at BranchSynchronizer.cs:220
+2016-05-02 10:29:12.6073|INFO|thread:36|AsyncReaderWriterLock|Acquired exclusive scheduler for operation: 1248 at BranchSynchronizer.cs:220 after waiting 2.17E-05s
+2016-05-02 10:29:12.6143|INFO|thread:20|BranchSynchronizer|Sync has latest unpublished commit SHA: '7e0dd3742237aacdf81bd2a3e4dff1e31e4a2896'
+2016-05-02 10:29:12.6143|INFO|thread:20|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:12.6143|INFO|thread:20|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:12.6143|INFO|thread:20|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'pull --progress --rebase --prune origin master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:14.9933|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1249 at GitClient.cs:404
+2016-05-02 10:29:15.1239|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1250 at ICommittedFileForklift.cs:95
+2016-05-02 10:29:15.3651|INFO|thread:71|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:15.3651|INFO|thread:71|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:15.3651|INFO|thread:71|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'rebase --abort ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:16.2317|INFO|thread:72|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:16.2317|INFO|thread:72|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:16.2317|INFO|thread:72|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'merge origin/master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:16.4636|INFO|thread:71|AsyncReaderWriterLock|Released exclusive scheduler for operation: 1248 at BranchSynchronizer.cs:220 after blocking 3.8554976s
+2016-05-02 10:29:16.4636|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1251 at RepositoryModel.cs:596
+2016-05-02 10:29:16.4636|INFO|thread:36|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1249 at GitClient.cs:404 after waiting 1.4708638s
+2016-05-02 10:29:16.4636|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1250 at ICommittedFileForklift.cs:95 after waiting 1.3399419s
+2016-05-02 10:29:16.4636|INFO|thread:57|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1251 at RepositoryModel.cs:596 after waiting 0.0002305s
+2016-05-02 10:29:16.4636|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1252 at GitClient.cs:290
+2016-05-02 10:29:16.4636|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1252 at GitClient.cs:290 after waiting 6.35E-05s
+2016-05-02 10:29:16.4636|WARN|thread: 1|StandardUserErrors|Showing user error Please resolve all conflicted files, commit, then try syncing again.
+GitHub.Helpers.MergeConflictsGitException: Auto-merging .vs/Mooshak2_Hopur5/v14/.suo
+CONFLICT (content): Merge conflict in .vs/Mooshak2_Hopur5/v14/.suo
+Automatic merge failed; fix conflicts and then commit the result.
+warning: Cannot merge binary files: .vs/Mooshak2_Hopur5/v14/.suo (HEAD vs. origin/master) ---> GitHub.IO.ProcessException: Auto-merging .vs/Mooshak2_Hopur5/v14/.suo
+CONFLICT (content): Merge conflict in .vs/Mooshak2_Hopur5/v14/.suo
+Automatic merge failed; fix conflicts and then commit the result.
+warning: Cannot merge binary files: .vs/Mooshak2_Hopur5/v14/.suo (HEAD vs. origin/master)
+   --- End of inner exception stack trace ---
+2016-05-02 10:29:16.4791|INFO|thread:31|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:16.4791|INFO|thread:31|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:16.4791|INFO|thread:31|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:16.4851|INFO|thread:36|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:16.4851|INFO|thread:36|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:16.4851|INFO|thread:36|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'diff-tree -r -z --no-renames --name-status affdc06ea41f5da6b3c54b104e25fbbced986b30 5c08df55abd9cbe264f16529bf4c7536ae2f083f ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:16.4851|INFO|thread:72|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1251 at RepositoryModel.cs:596 after blocking 0.0211929s
+2016-05-02 10:29:16.4851|INFO|thread:36|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:16.4851|INFO|thread:36|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:16.4851|INFO|thread:36|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'diff-tree -r -z --no-renames --numstat affdc06ea41f5da6b3c54b104e25fbbced986b30 5c08df55abd9cbe264f16529bf4c7536ae2f083f ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:16.5092|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1250 at ICommittedFileForklift.cs:95 after blocking 0.0457797s
+2016-05-02 10:29:17.2428|INFO|thread:31|ConcurrentRepositoryConnection|Took 761ms to git status
+2016-05-02 10:29:17.2428|INFO|thread:31|ConcurrentRepositoryConnection|Took 761ms to git status and parse output
+2016-05-02 10:29:17.2428|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1249 at GitClient.cs:404 after blocking 0.7816265s
+2016-05-02 10:29:17.2608|INFO|thread: 1|SelectedCommitViewModel|Took 2269ms to load files for commit 7e0dd37 in repo C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:29:17.2608|INFO|thread:31|NewCommitViewModel|Took 798ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:29:17.2608|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1252 at GitClient.cs:290 after blocking 0.7984542s
+2016-05-02 10:29:17.2608|INFO|thread:50|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1253 at GitClient.cs:497
+2016-05-02 10:29:17.2608|INFO|thread:36|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1253 at GitClient.cs:497 after waiting 1.65E-05s
+2016-05-02 10:29:17.2733|INFO|thread: 1|NewCommitViewModel|Took 10ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:29:17.2843|INFO|thread:50|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1253 at GitClient.cs:497 after blocking 0.0204271s
+2016-05-02 10:29:17.3204|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1254 at GitClient.cs:497
+2016-05-02 10:29:17.3204|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1254 at GitClient.cs:497 after waiting 1.97E-05s
+2016-05-02 10:29:17.3204|INFO|thread:36|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1255 at GitClient.cs:497
+2016-05-02 10:29:17.3204|INFO|thread:50|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1255 at GitClient.cs:497 after waiting 2.25E-05s
+2016-05-02 10:29:17.3204|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1256 at GitClient.cs:497
+2016-05-02 10:29:17.3204|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1256 at GitClient.cs:497 after waiting 7.42E-05s
+2016-05-02 10:29:17.3504|INFO|thread:36|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1255 at GitClient.cs:497 after blocking 0.0273405s
+2016-05-02 10:29:17.3504|INFO|thread:50|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1257 at GitClient.cs:497
+2016-05-02 10:29:17.3504|INFO|thread:50|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1257 at GitClient.cs:497 after waiting 7.26E-05s
+2016-05-02 10:29:17.3504|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1254 at GitClient.cs:497 after blocking 0.0309908s
+2016-05-02 10:29:17.3504|INFO|thread:36|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1258 at GitClient.cs:497
+2016-05-02 10:29:17.3504|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1258 at GitClient.cs:497 after waiting 1.97E-05s
+2016-05-02 10:29:17.3639|INFO|thread:36|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1258 at GitClient.cs:497 after blocking 0.0115395s
+2016-05-02 10:29:17.3639|INFO|thread:45|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1259 at GitClient.cs:497
+2016-05-02 10:29:17.3639|INFO|thread:36|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1260 at GitClient.cs:497
+2016-05-02 10:29:17.3639|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1259 at GitClient.cs:497 after waiting 6.27E-05s
+2016-05-02 10:29:17.3639|INFO|thread:36|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1260 at GitClient.cs:497 after waiting 4.97E-05s
+2016-05-02 10:29:17.3639|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1256 at GitClient.cs:497 after blocking 0.0382998s
+2016-05-02 10:29:17.3764|INFO|thread:36|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1260 at GitClient.cs:497 after blocking 0.0121869s
+2016-05-02 10:29:17.3764|INFO|thread:36|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1261 at GitClient.cs:497
+2016-05-02 10:29:17.3764|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1259 at GitClient.cs:497 after blocking 0.0124408s
+2016-05-02 10:29:17.3764|INFO|thread:36|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1261 at GitClient.cs:497 after waiting 6.59E-05s
+2016-05-02 10:29:17.3764|INFO|thread:50|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1257 at GitClient.cs:497 after blocking 0.0262833s
+2016-05-02 10:29:17.3764|INFO|thread:45|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1262 at GitClient.cs:497
+2016-05-02 10:29:17.3764|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1262 at GitClient.cs:497 after waiting 6.11E-05s
+2016-05-02 10:29:17.3764|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1263 at GitClient.cs:497
+2016-05-02 10:29:17.3764|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1263 at GitClient.cs:497 after waiting 7.97E-05s
+2016-05-02 10:29:17.3764|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1262 at GitClient.cs:497 after blocking 0.0124088s
+2016-05-02 10:29:17.3764|INFO|thread:36|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1261 at GitClient.cs:497 after blocking 0.0127143s
+2016-05-02 10:29:17.3764|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1264 at GitClient.cs:497
+2016-05-02 10:29:17.3764|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1264 at GitClient.cs:497 after waiting 8.09E-05s
+2016-05-02 10:29:17.3919|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1263 at GitClient.cs:497 after blocking 0.012284s
+2016-05-02 10:29:17.4114|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1264 at GitClient.cs:497 after blocking 0.0219552s
+2016-05-02 10:29:17.5570|INFO|thread:50|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1265 at GitClient.cs:497
+2016-05-02 10:29:17.5570|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1265 at GitClient.cs:497 after waiting 2.01E-05s
+2016-05-02 10:29:17.5660|INFO|thread:50|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1265 at GitClient.cs:497 after blocking 0.0087474s
+2016-05-02 10:29:20.5310|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1266 at GitClient.cs:290
+2016-05-02 10:29:20.5310|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1266 at GitClient.cs:290 after waiting 2.88E-05s
+2016-05-02 10:29:20.5310|INFO|thread:45|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:20.5310|INFO|thread:45|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:20.5310|INFO|thread:45|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:20.6508|INFO|thread:45|ConcurrentRepositoryConnection|Took 104ms to git status
+2016-05-02 10:29:20.6508|INFO|thread:45|ConcurrentRepositoryConnection|Took 104ms to git status and parse output
+2016-05-02 10:29:20.6738|INFO|thread:45|NewCommitViewModel|Took 142ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:29:20.6738|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1266 at GitClient.cs:290 after blocking 0.1424879s
+2016-05-02 10:29:20.6738|INFO|thread: 1|NewCommitViewModel|Took 5ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:29:20.6738|INFO|thread: 1|BranchSynchronizer|Completing sync for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5 - master
+2016-05-02 10:29:20.6738|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1267 at RepositoryViewModel.cs:318
+2016-05-02 10:29:20.6738|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1267 at RepositoryViewModel.cs:318 after waiting 2.88E-05s
+2016-05-02 10:29:20.6738|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1268 at GitClient.cs:201
+2016-05-02 10:29:20.6738|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1269 at RepositoryModel.cs:596
+2016-05-02 10:29:20.6738|INFO|thread: 1|BranchSynchronizer|Took 8071ms to sync repository C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5 - master
+2016-05-02 10:29:20.6738|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1268 at GitClient.cs:201 after waiting 0.002509s
+2016-05-02 10:29:20.6998|INFO|thread:50|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1267 at RepositoryViewModel.cs:318 after blocking 0.0202143s
+2016-05-02 10:29:20.6998|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1269 at RepositoryModel.cs:596 after waiting 0.0196629s
+2016-05-02 10:29:20.6998|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1268 at GitClient.cs:201 after blocking 0.020086s
+2016-05-02 10:29:20.7043|INFO|thread:50|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1270 at GitClient.cs:290
+2016-05-02 10:29:20.7043|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1270 at GitClient.cs:290 after waiting 2.09E-05s
+2016-05-02 10:29:20.7043|INFO|thread:50|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1269 at RepositoryModel.cs:596 after blocking 0.0046585s
+2016-05-02 10:29:20.7043|INFO|thread:45|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:29:20.7043|INFO|thread:45|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:29:20.7043|INFO|thread:45|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:29:20.8034|INFO|thread:45|ConcurrentRepositoryConnection|Took 86ms to git status
+2016-05-02 10:29:20.8034|INFO|thread:45|ConcurrentRepositoryConnection|Took 86ms to git status and parse output
+2016-05-02 10:29:20.8164|INFO|thread:45|NewCommitViewModel|Took 112ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:29:20.8164|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1270 at GitClient.cs:290 after blocking 0.1121385s
+2016-05-02 10:29:20.8164|INFO|thread: 1|NewCommitViewModel|Took 8ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:29:24.3196|INFO|thread:50|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1271 at GitClient.cs:497
+2016-05-02 10:29:24.3196|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1271 at GitClient.cs:497 after waiting 4.18E-05s
+2016-05-02 10:29:24.3196|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1272 at GitClient.cs:497
+2016-05-02 10:29:24.3196|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1272 at GitClient.cs:497 after waiting 2.28E-05s
+2016-05-02 10:29:24.3356|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1271 at GitClient.cs:497 after blocking 0.0164112s
+2016-05-02 10:29:24.3356|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1272 at GitClient.cs:497 after blocking 0.0105388s
+2016-05-02 10:29:24.3615|INFO|thread:199|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1273 at GitClient.cs:497
+2016-05-02 10:29:24.3615|INFO|thread:50|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1273 at GitClient.cs:497 after waiting 2.09E-05s
+2016-05-02 10:29:24.3615|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1273 at GitClient.cs:497 after blocking 0.012089s
+2016-05-02 10:29:24.3615|INFO|thread:20|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1274 at GitClient.cs:497
+2016-05-02 10:29:24.3615|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1274 at GitClient.cs:497 after waiting 2.05E-05s
+2016-05-02 10:29:24.3895|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1274 at GitClient.cs:497 after blocking 0.0140257s
+2016-05-02 10:29:24.4158|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1275 at GitClient.cs:497
+2016-05-02 10:29:24.4158|INFO|thread:89|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1275 at GitClient.cs:497 after waiting 1.89E-05s
+2016-05-02 10:29:24.4238|INFO|thread:71|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1275 at GitClient.cs:497 after blocking 0.0079054s
+2016-05-02 10:29:24.4852|INFO|thread:199|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1276 at GitClient.cs:497
+2016-05-02 10:29:24.4852|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1276 at GitClient.cs:497 after waiting 6.63E-05s
+2016-05-02 10:29:24.5122|INFO|thread:50|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1277 at GitClient.cs:497
+2016-05-02 10:29:24.5122|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1277 at GitClient.cs:497 after waiting 3.47E-05s
+2016-05-02 10:29:24.5182|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1276 at GitClient.cs:497 after blocking 0.0331569s
+2016-05-02 10:29:24.5182|INFO|thread:199|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1278 at GitClient.cs:497
+2016-05-02 10:29:24.5182|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1278 at GitClient.cs:497 after waiting 3.23E-05s
+2016-05-02 10:29:24.5422|INFO|thread:50|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1277 at GitClient.cs:497 after blocking 0.0303596s
+2016-05-02 10:29:24.5422|INFO|thread:71|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1279 at GitClient.cs:497
+2016-05-02 10:29:24.5422|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1279 at GitClient.cs:497 after waiting 0.0001176s
+2016-05-02 10:29:24.5572|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1278 at GitClient.cs:497 after blocking 0.0275545s
+2016-05-02 10:29:24.5693|INFO|thread:71|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1279 at GitClient.cs:497 after blocking 0.0255716s
+2016-05-02 10:29:26.6045|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1280 at GitClient.cs:497
+2016-05-02 10:29:26.6045|INFO|thread:89|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1280 at GitClient.cs:497 after waiting 7.3E-05s
+2016-05-02 10:29:26.6345|INFO|thread:196|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1280 at GitClient.cs:497 after blocking 0.0293403s
+2016-05-02 10:29:26.7497|INFO|thread:199|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1281 at GitClient.cs:497
+2016-05-02 10:29:26.7497|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1281 at GitClient.cs:497 after waiting 8.01E-05s
+2016-05-02 10:29:26.7828|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1281 at GitClient.cs:497 after blocking 0.0329433s
+2016-05-02 10:29:27.8663|INFO|thread:71|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1282 at GitClient.cs:497
+2016-05-02 10:29:27.8663|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1282 at GitClient.cs:497 after waiting 3E-05s
+2016-05-02 10:29:27.8663|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1283 at GitClient.cs:497
+2016-05-02 10:29:27.8663|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1283 at GitClient.cs:497 after waiting 2.21E-05s
+2016-05-02 10:29:27.8793|INFO|thread:71|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1282 at GitClient.cs:497 after blocking 0.0129599s
+2016-05-02 10:29:27.8793|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1283 at GitClient.cs:497 after blocking 0.0117748s
+2016-05-02 10:29:27.8793|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1284 at GitClient.cs:497
+2016-05-02 10:29:27.8793|INFO|thread:50|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1284 at GitClient.cs:497 after waiting 2.64E-05s
+2016-05-02 10:29:27.8983|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1284 at GitClient.cs:497 after blocking 0.0096463s
+2016-05-02 10:29:27.9334|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1285 at GitClient.cs:497
+2016-05-02 10:29:27.9334|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1285 at GitClient.cs:497 after waiting 2.17E-05s
+2016-05-02 10:29:27.9414|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1285 at GitClient.cs:497 after blocking 0.0077692s
+2016-05-02 10:29:27.9414|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1286 at GitClient.cs:497
+2016-05-02 10:29:27.9414|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1286 at GitClient.cs:497 after waiting 2.09E-05s
+2016-05-02 10:29:27.9414|INFO|thread:27|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1286 at GitClient.cs:497 after blocking 0.0078979s
+2016-05-02 10:29:27.9568|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1287 at GitClient.cs:497
+2016-05-02 10:29:27.9568|INFO|thread:196|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1287 at GitClient.cs:497 after waiting 2.4E-05s
+2016-05-02 10:29:27.9568|INFO|thread:50|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1288 at GitClient.cs:497
+2016-05-02 10:29:27.9568|INFO|thread:45|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1288 at GitClient.cs:497 after waiting 2.48E-05s
+2016-05-02 10:29:27.9568|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1287 at GitClient.cs:497 after blocking 0.0097153s
+2016-05-02 10:29:27.9748|INFO|thread:50|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1288 at GitClient.cs:497 after blocking 0.0086874s
+2016-05-02 10:29:27.9990|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1289 at GitClient.cs:497
+2016-05-02 10:29:27.9990|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1289 at GitClient.cs:497 after waiting 3.03E-05s
+2016-05-02 10:29:28.0130|INFO|thread:196|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1290 at GitClient.cs:497
+2016-05-02 10:29:28.0130|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1290 at GitClient.cs:497 after waiting 3.11E-05s
+2016-05-02 10:29:28.0260|INFO|thread:89|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1289 at GitClient.cs:497 after blocking 0.026354s
+2016-05-02 10:29:28.0260|INFO|thread:196|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1290 at GitClient.cs:497 after blocking 0.0170247s
+2016-05-02 10:29:28.4343|INFO|thread:20|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1291 at GitClient.cs:497
+2016-05-02 10:29:28.4343|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1291 at GitClient.cs:497 after waiting 3.67E-05s
+2016-05-02 10:29:28.4423|INFO|thread:50|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1292 at GitClient.cs:497
+2016-05-02 10:29:28.4423|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1292 at GitClient.cs:497 after waiting 4.38E-05s
+2016-05-02 10:29:28.4423|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1293 at GitClient.cs:497
+2016-05-02 10:29:28.4423|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1293 at GitClient.cs:497 after waiting 0.000146s
+2016-05-02 10:29:28.4613|INFO|thread:45|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1291 at GitClient.cs:497 after blocking 0.0267709s
+2016-05-02 10:29:28.4613|INFO|thread:50|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1292 at GitClient.cs:497 after blocking 0.0238694s
+2016-05-02 10:29:28.4733|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1293 at GitClient.cs:497 after blocking 0.0219607s
+2016-05-02 10:29:40.4151|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1294 at GitClient.cs:497
+2016-05-02 10:29:40.4151|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1294 at GitClient.cs:497 after waiting 7.18E-05s
+2016-05-02 10:29:40.4461|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1294 at GitClient.cs:497 after blocking 0.0307129s
+2016-05-02 10:29:45.5668|INFO|thread:199|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1295 at GitClient.cs:497
+2016-05-02 10:29:45.5668|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1295 at GitClient.cs:497 after waiting 7.65E-05s
+2016-05-02 10:29:45.5968|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1295 at GitClient.cs:497 after blocking 0.0297529s
+2016-05-02 10:29:47.5495|INFO|thread:20|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1296 at GitClient.cs:497
+2016-05-02 10:29:47.5495|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1296 at GitClient.cs:497 after waiting 3.86E-05s
+2016-05-02 10:29:47.5765|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1296 at GitClient.cs:497 after blocking 0.0269473s
+2016-05-02 10:31:51.4409|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1297 at GitClient.cs:201
+2016-05-02 10:31:51.4409|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1297 at GitClient.cs:201 after waiting 7.93E-05s
+2016-05-02 10:31:51.4409|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1298 at RepositoryModel.cs:596
+2016-05-02 10:31:51.4409|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1298 at RepositoryModel.cs:596 after waiting 5.25E-05s
+2016-05-02 10:31:51.4659|INFO|thread:199|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1299 at GitClient.cs:290
+2016-05-02 10:31:51.4659|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1298 at RepositoryModel.cs:596 after blocking 0.0232496s
+2016-05-02 10:31:51.4659|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1299 at GitClient.cs:290 after waiting 0.0005731s
+2016-05-02 10:31:51.4659|INFO|thread:20|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1300 at GitClient.cs:497
+2016-05-02 10:31:51.4719|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1300 at GitClient.cs:497 after waiting 0.0006549s
+2016-05-02 10:31:51.4899|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1297 at GitClient.cs:201 after blocking 0.0488698s
+2016-05-02 10:31:51.5146|INFO|thread:199|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:31:51.5146|INFO|thread:199|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:31:51.5146|INFO|thread:199|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:31:51.5146|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1300 at GitClient.cs:497 after blocking 0.0449329s
+2016-05-02 10:31:51.6597|INFO|thread:166|ConcurrentRepositoryConnection|Took 137ms to git status
+2016-05-02 10:31:51.6597|INFO|thread:166|ConcurrentRepositoryConnection|Took 138ms to git status and parse output
+2016-05-02 10:31:51.6597|INFO|thread:166|NewCommitViewModel|Took 205ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:31:51.6597|INFO|thread:166|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1299 at GitClient.cs:290 after blocking 0.2042944s
+2016-05-02 10:31:51.7127|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1301 at GitClient.cs:497
+2016-05-02 10:31:51.7127|INFO|thread:59|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1301 at GitClient.cs:497 after waiting 2.17E-05s
+2016-05-02 10:31:51.7127|INFO|thread:166|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1302 at GitClient.cs:497
+2016-05-02 10:31:51.7127|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1302 at GitClient.cs:497 after waiting 1.38E-05s
+2016-05-02 10:31:51.7127|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1303 at GitClient.cs:497
+2016-05-02 10:31:51.7127|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1303 at GitClient.cs:497 after waiting 7.14E-05s
+2016-05-02 10:31:51.7227|INFO|thread:20|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1304 at GitClient.cs:497
+2016-05-02 10:31:51.7227|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1304 at GitClient.cs:497 after waiting 0.0001034s
+2016-05-02 10:31:51.7227|INFO|thread: 1|NewCommitViewModel|Took 51ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:31:51.7227|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1305 at RepositoryViewModel.cs:318
+2016-05-02 10:31:51.7227|INFO|thread:59|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1305 at RepositoryViewModel.cs:318 after waiting 0.0060765s
+2016-05-02 10:31:51.7227|INFO|thread:66|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1301 at GitClient.cs:497 after blocking 0.0164322s
+2016-05-02 10:31:51.7227|INFO|thread:166|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1302 at GitClient.cs:497 after blocking 0.0158905s
+2016-05-02 10:31:51.7227|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1303 at GitClient.cs:497 after blocking 0.0164112s
+2016-05-02 10:31:51.7227|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1304 at GitClient.cs:497 after blocking 0.0120385s
+2016-05-02 10:31:51.7407|INFO|thread:59|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1305 at RepositoryViewModel.cs:318 after blocking 0.0112944s
+2016-05-02 10:31:53.1826|INFO|thread:71|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1306 at GitClient.cs:497
+2016-05-02 10:31:53.1826|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1306 at GitClient.cs:497 after waiting 7.1E-05s
+2016-05-02 10:31:53.2296|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1306 at GitClient.cs:497 after blocking 0.0463824s
+2016-05-02 10:31:54.1176|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1307 at GitClient.cs:497
+2016-05-02 10:31:54.1176|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1307 at GitClient.cs:497 after waiting 7.85E-05s
+2016-05-02 10:31:54.1642|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1307 at GitClient.cs:497 after blocking 0.0458278s
+2016-05-02 10:31:54.6793|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1308 at GitClient.cs:497
+2016-05-02 10:31:54.6793|INFO|thread:59|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1308 at GitClient.cs:497 after waiting 6.59E-05s
+2016-05-02 10:31:54.7143|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1308 at GitClient.cs:497 after blocking 0.0346194s
+2016-05-02 10:31:55.2786|INFO|thread:59|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1309 at GitClient.cs:497
+2016-05-02 10:31:55.2786|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1309 at GitClient.cs:497 after waiting 6.19E-05s
+2016-05-02 10:31:55.3016|INFO|thread:59|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1309 at GitClient.cs:497 after blocking 0.0224044s
+2016-05-02 10:32:24.2403|INFO|thread:71|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1310 at BranchSynchronizer.cs:141
+2016-05-02 10:32:24.2403|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1310 at BranchSynchronizer.cs:141 after waiting 0.0009205s
+2016-05-02 10:32:24.2553|INFO|thread:71|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:32:24.2553|INFO|thread:71|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:32:24.2553|INFO|thread:71|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'fetch --prune --recurse-submodules=on-demand origin ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:32:24.7381|INFO|thread: 1|NewPullRequestViewModel|No matching pull request found, clearing selection...
+2016-05-02 10:32:24.7381|INFO|thread:31|BackgroundFetcher|Got a refresh period for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 300 seconds
+2016-05-02 10:32:24.7381|INFO|thread:31|BackgroundFetcher|Added a delay for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\.git of 1926 milliseconds
+2016-05-02 10:32:24.7571|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1311 at GitClient.cs:623
+2016-05-02 10:32:24.7571|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1311 at GitClient.cs:623 after waiting 3.63E-05s
+2016-05-02 10:32:25.0972|INFO|thread:66|ConcurrentRepositoryConnection|Pruning merged local branches
+2016-05-02 10:32:25.0972|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1311 at GitClient.cs:623 after blocking 0.3416366s
+2016-05-02 10:32:25.0972|INFO|thread:66|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:32:25.0972|INFO|thread:66|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:32:25.0972|INFO|thread:66|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'branch --merged master ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:32:25.1152|INFO|thread:66|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:32:25.1152|INFO|thread:66|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:32:25.1152|INFO|thread:66|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'log -g --abbrev-commit --pretty=oneline HEAD -n 2500 ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:32:25.1752|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1312 at GitClient.cs:201
+2016-05-02 10:32:25.1752|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1312 at GitClient.cs:201 after waiting 4.53E-05s
+2016-05-02 10:32:25.1752|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1313 at RepositoryModel.cs:596
+2016-05-02 10:32:25.1752|INFO|thread:66|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1310 at BranchSynchronizer.cs:141 after blocking 0.934585s
+2016-05-02 10:32:25.1752|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1313 at RepositoryModel.cs:596 after waiting 4.73E-05s
+2016-05-02 10:32:25.1752|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1314 at GitClient.cs:290
+2016-05-02 10:32:25.1752|INFO|thread:66|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1313 at RepositoryModel.cs:596 after blocking 0.00569s
+2016-05-02 10:32:25.1752|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1314 at GitClient.cs:290 after waiting 8.52E-05s
+2016-05-02 10:32:25.1752|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1312 at GitClient.cs:201 after blocking 0.0133337s
+2016-05-02 10:32:25.1912|INFO|thread:199|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:32:25.1912|INFO|thread:199|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:32:25.1912|INFO|thread:199|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:32:25.3173|INFO|thread:20|ConcurrentRepositoryConnection|Took 122ms to git status
+2016-05-02 10:32:25.3173|INFO|thread:20|ConcurrentRepositoryConnection|Took 122ms to git status and parse output
+2016-05-02 10:32:25.3444|INFO|thread:20|NewCommitViewModel|Took 163ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:32:25.3444|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1314 at GitClient.cs:290 after blocking 0.1631183s
+2016-05-02 10:32:25.3474|INFO|thread:199|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1315 at GitClient.cs:497
+2016-05-02 10:32:25.3474|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1315 at GitClient.cs:497 after waiting 9.51E-05s
+2016-05-02 10:32:25.3474|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1315 at GitClient.cs:497 after blocking 0.0120831s
+2016-05-02 10:32:25.3644|INFO|thread:20|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1316 at GitClient.cs:497
+2016-05-02 10:32:25.3644|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1316 at GitClient.cs:497 after waiting 4.02E-05s
+2016-05-02 10:32:25.3644|INFO|thread: 1|NewCommitViewModel|Took 24ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:32:25.3644|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1317 at RepositoryViewModel.cs:318
+2016-05-02 10:32:25.3644|INFO|thread:199|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1318 at GitClient.cs:497
+2016-05-02 10:32:25.3644|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1317 at RepositoryViewModel.cs:318 after waiting 0.0006533s
+2016-05-02 10:32:25.3644|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1319 at GitClient.cs:497
+2016-05-02 10:32:25.3644|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1320 at GitClient.cs:497
+2016-05-02 10:32:25.3644|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1321 at GitClient.cs:497
+2016-05-02 10:32:25.3644|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1322 at GitClient.cs:497
+2016-05-02 10:32:25.3644|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1323 at GitClient.cs:497
+2016-05-02 10:32:25.3644|INFO|thread:66|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1318 at GitClient.cs:497 after waiting 0.0010895s
+2016-05-02 10:32:25.3804|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1316 at GitClient.cs:497 after blocking 0.0158688s
+2016-05-02 10:32:25.3804|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1319 at GitClient.cs:497 after waiting 0.0101105s
+2016-05-02 10:32:25.3804|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1320 at GitClient.cs:497 after waiting 0.0099676s
+2016-05-02 10:32:25.3804|INFO|thread:71|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1317 at RepositoryViewModel.cs:318 after blocking 0.0179899s
+2016-05-02 10:32:25.3804|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1321 at GitClient.cs:497 after waiting 0.0181821s
+2016-05-02 10:32:25.3804|INFO|thread:66|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1318 at GitClient.cs:497 after blocking 0.0214795s
+2016-05-02 10:32:25.3804|INFO|thread:66|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1322 at GitClient.cs:497 after waiting 0.0218222s
+2016-05-02 10:32:25.4094|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1320 at GitClient.cs:497 after blocking 0.0291773s
+2016-05-02 10:32:25.4094|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1323 at GitClient.cs:497 after waiting 0.038689s
+2016-05-02 10:32:25.4094|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1319 at GitClient.cs:497 after blocking 0.0341236s
+2016-05-02 10:32:25.4094|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1323 at GitClient.cs:497 after blocking 0.0145353s
+2016-05-02 10:32:25.4264|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1321 at GitClient.cs:497 after blocking 0.0373614s
+2016-05-02 10:32:25.4264|INFO|thread:66|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1322 at GitClient.cs:497 after blocking 0.0335473s
+2016-05-02 10:32:26.3530|INFO|thread:71|SoftwareUpdateViewModel|Checking for new version
+2016-05-02 10:32:36.4174|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1324 at GitClient.cs:201
+2016-05-02 10:32:36.4174|INFO|thread:166|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1324 at GitClient.cs:201 after waiting 5.32E-05s
+2016-05-02 10:32:36.4174|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1325 at RepositoryModel.cs:596
+2016-05-02 10:32:36.4174|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1325 at RepositoryModel.cs:596 after waiting 0.0001879s
+2016-05-02 10:32:36.4364|INFO|thread:55|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1326 at GitClient.cs:290
+2016-05-02 10:32:36.4364|INFO|thread:55|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1325 at RepositoryModel.cs:596 after blocking 0.0183791s
+2016-05-02 10:32:36.4364|INFO|thread:19|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1326 at GitClient.cs:290 after waiting 0.0002522s
+2016-05-02 10:32:36.4594|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1324 at GitClient.cs:201 after blocking 0.0425162s
+2016-05-02 10:32:36.4594|INFO|thread:20|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1327 at GitClient.cs:497
+2016-05-02 10:32:36.4594|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1327 at GitClient.cs:497 after waiting 0.0002336s
+2016-05-02 10:32:36.4594|INFO|thread:55|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:32:36.4594|INFO|thread:55|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:32:36.4594|INFO|thread:55|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:32:36.4875|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1327 at GitClient.cs:497 after blocking 0.026971s
+2016-05-02 10:32:36.5734|INFO|thread:55|ConcurrentRepositoryConnection|Took 103ms to git status
+2016-05-02 10:32:36.5734|INFO|thread:55|ConcurrentRepositoryConnection|Took 104ms to git status and parse output
+2016-05-02 10:32:36.5934|INFO|thread:55|NewCommitViewModel|Took 156ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:32:36.5934|INFO|thread:55|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1326 at GitClient.cs:290 after blocking 0.1558733s
+2016-05-02 10:32:36.5934|INFO|thread:20|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1328 at GitClient.cs:497
+2016-05-02 10:32:36.5934|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1328 at GitClient.cs:497 after waiting 1.93E-05s
+2016-05-02 10:32:36.5934|INFO|thread:55|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1329 at GitClient.cs:497
+2016-05-02 10:32:36.5934|INFO|thread:55|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1329 at GitClient.cs:497 after waiting 9E-05s
+2016-05-02 10:32:36.5989|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1330 at GitClient.cs:497
+2016-05-02 10:32:36.5989|INFO|thread:19|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1330 at GitClient.cs:497 after waiting 8.92E-05s
+2016-05-02 10:32:36.5989|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1331 at GitClient.cs:497
+2016-05-02 10:32:36.5989|INFO|thread:66|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1331 at GitClient.cs:497 after waiting 6.59E-05s
+2016-05-02 10:32:36.5989|INFO|thread:166|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1332 at GitClient.cs:497
+2016-05-02 10:32:36.5989|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1333 at GitClient.cs:497
+2016-05-02 10:32:36.5989|INFO|thread:166|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1334 at GitClient.cs:497
+2016-05-02 10:32:36.5989|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1335 at GitClient.cs:497
+2016-05-02 10:32:36.5989|INFO|thread: 1|NewCommitViewModel|Took 8ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:32:36.5989|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1336 at RepositoryViewModel.cs:318
+2016-05-02 10:32:36.5989|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1328 at GitClient.cs:497 after blocking 0.0118826s
+2016-05-02 10:32:36.5989|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1332 at GitClient.cs:497 after waiting 0.0075225s
+2016-05-02 10:32:36.5989|INFO|thread:55|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1329 at GitClient.cs:497 after blocking 0.0117878s
+2016-05-02 10:32:36.5989|INFO|thread:55|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1333 at GitClient.cs:497 after waiting 0.0087474s
+2016-05-02 10:32:36.6214|INFO|thread:71|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1332 at GitClient.cs:497 after blocking 0.0136302s
+2016-05-02 10:32:36.6214|INFO|thread:71|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1334 at GitClient.cs:497 after waiting 0.0210457s
+2016-05-02 10:32:36.6214|INFO|thread:55|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1333 at GitClient.cs:497 after blocking 0.014377s
+2016-05-02 10:32:36.6214|INFO|thread:55|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1335 at GitClient.cs:497 after waiting 0.023008s
+2016-05-02 10:32:36.6214|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1330 at GitClient.cs:497 after blocking 0.0254425s
+2016-05-02 10:32:36.6214|INFO|thread:19|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1336 at RepositoryViewModel.cs:318 after waiting 0.0217697s
+2016-05-02 10:32:36.6214|INFO|thread:66|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1331 at GitClient.cs:497 after blocking 0.0268352s
+2016-05-02 10:32:36.6364|INFO|thread:71|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1334 at GitClient.cs:497 after blocking 0.0150604s
+2016-05-02 10:32:36.6364|INFO|thread:55|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1335 at GitClient.cs:497 after blocking 0.0138848s
+2016-05-02 10:32:36.6364|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1336 at RepositoryViewModel.cs:318 after blocking 0.0136925s
+2016-05-02 10:32:56.2984|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1337 at GitClient.cs:201
+2016-05-02 10:32:56.2984|INFO|thread:204|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1337 at GitClient.cs:201 after waiting 9E-05s
+2016-05-02 10:32:56.2984|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1338 at RepositoryModel.cs:596
+2016-05-02 10:32:56.2984|INFO|thread:166|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1338 at RepositoryModel.cs:596 after waiting 4.57E-05s
+2016-05-02 10:32:56.3224|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1339 at GitClient.cs:290
+2016-05-02 10:32:56.3224|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1338 at RepositoryModel.cs:596 after blocking 0.0223054s
+2016-05-02 10:32:56.3224|INFO|thread:166|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1339 at GitClient.cs:290 after waiting 0.0002155s
+2016-05-02 10:32:56.3505|INFO|thread:79|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1337 at GitClient.cs:201 after blocking 0.0518037s
+2016-05-02 10:32:56.3505|INFO|thread:19|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:32:56.3505|INFO|thread:19|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:32:56.3505|INFO|thread:19|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:32:56.3665|INFO|thread:20|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1340 at GitClient.cs:497
+2016-05-02 10:32:56.3665|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1340 at GitClient.cs:497 after waiting 0.000324s
+2016-05-02 10:32:56.3995|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1340 at GitClient.cs:497 after blocking 0.032982s
+2016-05-02 10:32:56.4786|INFO|thread:19|ConcurrentRepositoryConnection|Took 117ms to git status
+2016-05-02 10:32:56.4786|INFO|thread:19|ConcurrentRepositoryConnection|Took 117ms to git status and parse output
+2016-05-02 10:32:56.4906|INFO|thread:19|NewCommitViewModel|Took 169ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:32:56.4906|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1339 at GitClient.cs:290 after blocking 0.1685186s
+2016-05-02 10:32:56.4906|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1341 at GitClient.cs:497
+2016-05-02 10:32:56.4906|INFO|thread:204|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1341 at GitClient.cs:497 after waiting 2.48E-05s
+2016-05-02 10:32:56.4906|INFO|thread:66|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1341 at GitClient.cs:497 after blocking 0.0083305s
+2016-05-02 10:32:56.4906|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1342 at GitClient.cs:497
+2016-05-02 10:32:56.4906|INFO|thread:166|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1342 at GitClient.cs:497 after waiting 3.71E-05s
+2016-05-02 10:32:56.5046|INFO|thread:204|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1343 at GitClient.cs:497
+2016-05-02 10:32:56.5046|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1343 at GitClient.cs:497 after waiting 1.93E-05s
+2016-05-02 10:32:56.5046|INFO|thread:199|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1344 at GitClient.cs:497
+2016-05-02 10:32:56.5046|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1344 at GitClient.cs:497 after waiting 8.36E-05s
+2016-05-02 10:32:56.5046|INFO|thread: 1|NewCommitViewModel|Took 18ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:32:56.5046|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1345 at RepositoryViewModel.cs:318
+2016-05-02 10:32:56.5046|INFO|thread:59|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1346 at GitClient.cs:497
+2016-05-02 10:32:56.5046|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1347 at GitClient.cs:497
+2016-05-02 10:32:56.5046|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1348 at GitClient.cs:497
+2016-05-02 10:32:56.5046|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1349 at GitClient.cs:497
+2016-05-02 10:32:56.5046|INFO|thread:19|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1345 at RepositoryViewModel.cs:318 after waiting 0.0016639s
+2016-05-02 10:32:56.5046|INFO|thread:66|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1350 at GitClient.cs:497
+2016-05-02 10:32:56.5046|INFO|thread:79|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1342 at GitClient.cs:497 after blocking 0.0111499s
+2016-05-02 10:32:56.5046|INFO|thread:166|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1346 at GitClient.cs:497 after waiting 0.0037363s
+2016-05-02 10:32:56.5236|INFO|thread:204|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1343 at GitClient.cs:497 after blocking 0.0189926s
+2016-05-02 10:32:56.5236|INFO|thread:20|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1347 at GitClient.cs:497 after waiting 0.0128647s
+2016-05-02 10:32:56.5236|INFO|thread:166|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1346 at GitClient.cs:497 after blocking 0.0116473s
+2016-05-02 10:32:56.5236|INFO|thread:166|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1348 at GitClient.cs:497 after waiting 0.0149763s
+2016-05-02 10:32:56.5236|INFO|thread:66|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1345 at RepositoryViewModel.cs:318 after blocking 0.0181186s
+2016-05-02 10:32:56.5236|INFO|thread:19|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1349 at GitClient.cs:497 after waiting 0.018312s
+2016-05-02 10:32:56.5236|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1344 at GitClient.cs:497 after blocking 0.0279571s
+2016-05-02 10:32:56.5236|INFO|thread:199|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1350 at GitClient.cs:497 after waiting 0.0217357s
+2016-05-02 10:32:56.5386|INFO|thread:166|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1348 at GitClient.cs:497 after blocking 0.0121846s
+2016-05-02 10:32:56.5386|INFO|thread:20|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1347 at GitClient.cs:497 after blocking 0.0145263s
+2016-05-02 10:32:56.5386|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1349 at GitClient.cs:497 after blocking 0.0108617s
+2016-05-02 10:32:56.5386|INFO|thread:199|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1350 at GitClient.cs:497 after blocking 0.0097493s
+2016-05-02 10:33:17.4844|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1351 at GitClient.cs:201
+2016-05-02 10:33:17.4844|INFO|thread:67|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1351 at GitClient.cs:201 after waiting 8.17E-05s
+2016-05-02 10:33:17.4844|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1352 at RepositoryModel.cs:596
+2016-05-02 10:33:17.4844|INFO|thread:59|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1352 at RepositoryModel.cs:596 after waiting 0.001504s
+2016-05-02 10:33:17.5105|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1353 at GitClient.cs:290
+2016-05-02 10:33:17.5105|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1352 at RepositoryModel.cs:596 after blocking 0.0231462s
+2016-05-02 10:33:17.5105|INFO|thread:59|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1353 at GitClient.cs:290 after waiting 0.0002139s
+2016-05-02 10:33:17.5355|INFO|thread:79|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1351 at GitClient.cs:201 after blocking 0.050364s
+2016-05-02 10:33:17.5355|INFO|thread:67|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1354 at GitClient.cs:497
+2016-05-02 10:33:17.5355|INFO|thread:67|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1354 at GitClient.cs:497 after waiting 0.0003023s
+2016-05-02 10:33:17.5355|INFO|thread:19|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:33:17.5355|INFO|thread:19|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:33:17.5355|INFO|thread:19|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:33:17.5715|INFO|thread:67|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1354 at GitClient.cs:497 after blocking 0.0354701s
+2016-05-02 10:33:17.6589|INFO|thread:19|ConcurrentRepositoryConnection|Took 110ms to git status
+2016-05-02 10:33:17.6589|INFO|thread:19|ConcurrentRepositoryConnection|Took 111ms to git status and parse output
+2016-05-02 10:33:17.6779|INFO|thread:19|NewCommitViewModel|Took 167ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:33:17.6779|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1353 at GitClient.cs:290 after blocking 0.1669554s
+2016-05-02 10:33:17.6779|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1355 at GitClient.cs:497
+2016-05-02 10:33:17.6779|INFO|thread:67|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1355 at GitClient.cs:497 after waiting 2.13E-05s
+2016-05-02 10:33:17.6779|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1356 at GitClient.cs:497
+2016-05-02 10:33:17.6779|INFO|thread:79|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1356 at GitClient.cs:497 after waiting 8.48E-05s
+2016-05-02 10:33:17.6779|INFO|thread:59|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1357 at GitClient.cs:497
+2016-05-02 10:33:17.6779|INFO|thread:59|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1357 at GitClient.cs:497 after waiting 7.26E-05s
+2016-05-02 10:33:17.6779|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1358 at GitClient.cs:497
+2016-05-02 10:33:17.6779|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1358 at GitClient.cs:497 after waiting 6.75E-05s
+2016-05-02 10:33:17.6779|INFO|thread: 1|NewCommitViewModel|Took 9ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:33:17.6779|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1359 at RepositoryViewModel.cs:318
+2016-05-02 10:33:17.6919|INFO|thread:67|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1355 at GitClient.cs:497 after blocking 0.0124743s
+2016-05-02 10:33:17.6919|INFO|thread:67|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1359 at RepositoryViewModel.cs:318 after waiting 0.0044528s
+2016-05-02 10:33:17.6919|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1360 at GitClient.cs:497
+2016-05-02 10:33:17.6919|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1361 at GitClient.cs:497
+2016-05-02 10:33:17.6919|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1362 at GitClient.cs:497
+2016-05-02 10:33:17.6919|INFO|thread:79|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1356 at GitClient.cs:497 after blocking 0.0124869s
+2016-05-02 10:33:17.6919|INFO|thread:79|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1360 at GitClient.cs:497 after waiting 0.0007362s
+2016-05-02 10:33:17.6919|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1363 at GitClient.cs:497
+2016-05-02 10:33:17.6919|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1364 at GitClient.cs:497
+2016-05-02 10:33:17.6919|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1365 at GitClient.cs:497
+2016-05-02 10:33:17.6919|INFO|thread:59|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1357 at GitClient.cs:497 after blocking 0.0200229s
+2016-05-02 10:33:17.6919|INFO|thread:59|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1361 at GitClient.cs:497 after waiting 0.0085638s
+2016-05-02 10:33:17.6919|INFO|thread:79|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1360 at GitClient.cs:497 after blocking 0.011641s
+2016-05-02 10:33:17.6919|INFO|thread:79|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1362 at GitClient.cs:497 after waiting 0.0120116s
+2016-05-02 10:33:17.7139|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1359 at RepositoryViewModel.cs:318 after blocking 0.0213137s
+2016-05-02 10:33:17.7139|INFO|thread:67|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1363 at GitClient.cs:497 after waiting 0.0183846s
+2016-05-02 10:33:17.7139|INFO|thread:59|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1361 at GitClient.cs:497 after blocking 0.0125769s
+2016-05-02 10:33:17.7139|INFO|thread:59|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1364 at GitClient.cs:497 after waiting 0.0198969s
+2016-05-02 10:33:17.7139|INFO|thread:79|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1362 at GitClient.cs:497 after blocking 0.0121044s
+2016-05-02 10:33:17.7139|INFO|thread:79|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1365 at GitClient.cs:497 after waiting 0.0229066s
+2016-05-02 10:33:17.7139|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1358 at GitClient.cs:497 after blocking 0.0390972s
+2016-05-02 10:33:17.7249|INFO|thread:67|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1363 at GitClient.cs:497 after blocking 0.0117037s
+2016-05-02 10:33:17.7249|INFO|thread:59|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1364 at GitClient.cs:497 after blocking 0.011789s
+2016-05-02 10:33:17.7249|INFO|thread:79|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1365 at GitClient.cs:497 after blocking 0.0101713s
+2016-05-02 10:33:19.3388|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1366 at GitClient.cs:497
+2016-05-02 10:33:19.3388|INFO|thread:19|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1366 at GitClient.cs:497 after waiting 2.52E-05s
+2016-05-02 10:33:19.3388|INFO|thread:67|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1366 at GitClient.cs:497 after blocking 0.0095448s
+2016-05-02 10:33:23.0490|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1367 at GitClient.cs:497
+2016-05-02 10:33:23.0490|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1367 at GitClient.cs:497 after waiting 6.31E-05s
+2016-05-02 10:33:23.0770|INFO|thread:79|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1367 at GitClient.cs:497 after blocking 0.0280061s
+2016-05-02 10:33:40.3067|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1368 at GitClient.cs:201
+2016-05-02 10:33:40.3067|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1368 at GitClient.cs:201 after waiting 0.0001054s
+2016-05-02 10:33:40.3067|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1369 at RepositoryModel.cs:596
+2016-05-02 10:33:40.3067|INFO|thread:79|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1369 at RepositoryModel.cs:596 after waiting 8.25E-05s
+2016-05-02 10:33:40.3277|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1370 at GitClient.cs:290
+2016-05-02 10:33:40.3277|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1369 at RepositoryModel.cs:596 after blocking 0.0199356s
+2016-05-02 10:33:40.3277|INFO|thread:79|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1370 at GitClient.cs:290 after waiting 0.0002427s
+2016-05-02 10:33:40.3577|INFO|thread:204|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1368 at GitClient.cs:201 after blocking 0.0507868s
+2016-05-02 10:33:40.3577|INFO|thread:59|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:33:40.3577|INFO|thread:59|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:33:40.3577|INFO|thread:59|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:33:40.4689|INFO|thread:59|ConcurrentRepositoryConnection|Took 102ms to git status
+2016-05-02 10:33:40.4689|INFO|thread:59|ConcurrentRepositoryConnection|Took 102ms to git status and parse output
+2016-05-02 10:33:40.4829|INFO|thread:59|NewCommitViewModel|Took 154ms to load files for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:33:40.4829|INFO|thread:59|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1370 at GitClient.cs:290 after blocking 0.1542983s
+2016-05-02 10:33:40.4829|INFO|thread:204|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1371 at GitClient.cs:497
+2016-05-02 10:33:40.4829|INFO|thread:67|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1371 at GitClient.cs:497 after waiting 1.85E-05s
+2016-05-02 10:33:40.4829|INFO|thread:167|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1372 at GitClient.cs:497
+2016-05-02 10:33:40.4829|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1372 at GitClient.cs:497 after waiting 2.05E-05s
+2016-05-02 10:33:40.4829|INFO|thread:19|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1373 at GitClient.cs:497
+2016-05-02 10:33:40.4829|INFO|thread:19|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1373 at GitClient.cs:497 after waiting 7.61E-05s
+2016-05-02 10:33:40.4829|INFO|thread:201|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1374 at GitClient.cs:497
+2016-05-02 10:33:40.4829|INFO|thread:37|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1374 at GitClient.cs:497 after waiting 1.81E-05s
+2016-05-02 10:33:40.4829|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1375 at GitClient.cs:497
+2016-05-02 10:33:40.4829|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1376 at GitClient.cs:497
+2016-05-02 10:33:40.4829|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1377 at GitClient.cs:497
+2016-05-02 10:33:40.4829|INFO|thread:79|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1378 at GitClient.cs:497
+2016-05-02 10:33:40.4894|INFO|thread:59|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1379 at GitClient.cs:497
+2016-05-02 10:33:40.4894|INFO|thread: 1|NewCommitViewModel|Took 8ms to render file list for C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5
+2016-05-02 10:33:40.4894|INFO|thread: 1|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1380 at RepositoryViewModel.cs:318
+2016-05-02 10:33:40.4894|INFO|thread:204|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1371 at GitClient.cs:497 after blocking 0.0114089s
+2016-05-02 10:33:40.4894|INFO|thread:67|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1375 at GitClient.cs:497 after waiting 0.0088212s
+2016-05-02 10:33:40.4894|INFO|thread:167|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1372 at GitClient.cs:497 after blocking 0.0135603s
+2016-05-02 10:33:40.4894|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1376 at GitClient.cs:497 after waiting 0.0113058s
+2016-05-02 10:33:40.5104|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1373 at GitClient.cs:497 after blocking 0.0240241s
+2016-05-02 10:33:40.5104|INFO|thread:19|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1377 at GitClient.cs:497 after waiting 0.0215123s
+2016-05-02 10:33:40.5104|INFO|thread:67|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1375 at GitClient.cs:497 after blocking 0.014471s
+2016-05-02 10:33:40.5104|INFO|thread:67|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1378 at GitClient.cs:497 after waiting 0.0228201s
+2016-05-02 10:33:40.5104|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1376 at GitClient.cs:497 after blocking 0.0119872s
+2016-05-02 10:33:40.5104|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1379 at GitClient.cs:497 after waiting 0.0227025s
+2016-05-02 10:33:40.5104|INFO|thread:201|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1374 at GitClient.cs:497 after blocking 0.0302088s
+2016-05-02 10:33:40.5104|INFO|thread:37|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1380 at RepositoryViewModel.cs:318 after waiting 0.0257311s
+2016-05-02 10:33:40.5104|INFO|thread:181|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1381 at GitClient.cs:497
+2016-05-02 10:33:40.5249|INFO|thread:67|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1378 at GitClient.cs:497 after blocking 0.0131517s
+2016-05-02 10:33:40.5249|INFO|thread:67|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1381 at GitClient.cs:497 after waiting 0.0063583s
+2016-05-02 10:33:40.5249|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1379 at GitClient.cs:497 after blocking 0.0135721s
+2016-05-02 10:33:40.5249|INFO|thread:19|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1377 at GitClient.cs:497 after blocking 0.0152345s
+2016-05-02 10:33:40.5249|INFO|thread:192|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1380 at RepositoryViewModel.cs:318 after blocking 0.0183179s
+2016-05-02 10:33:40.5379|INFO|thread:67|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1381 at GitClient.cs:497 after blocking 0.0128809s
+2016-05-02 10:33:56.9498|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1382 at GitClient.cs:497
+2016-05-02 10:33:56.9498|INFO|thread:37|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1382 at GitClient.cs:497 after waiting 7.46E-05s
+2016-05-02 10:33:56.9768|INFO|thread:181|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1382 at GitClient.cs:497 after blocking 0.0266485s
+2016-05-02 10:34:01.3609|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1383 at GitClient.cs:497
+2016-05-02 10:34:01.3609|INFO|thread:37|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1383 at GitClient.cs:497 after waiting 2.28E-05s
+2016-05-02 10:34:01.3709|INFO|thread:16|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1383 at GitClient.cs:497 after blocking 0.0100039s
+2016-05-02 10:34:07.3291|INFO|thread:181|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1384 at GitClient.cs:497
+2016-05-02 10:34:07.3291|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1384 at GitClient.cs:497 after waiting 6.47E-05s
+2016-05-02 10:34:07.3551|INFO|thread:49|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1384 at GitClient.cs:497 after blocking 0.0259048s
+2016-05-02 10:34:14.2091|INFO|thread:29|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1385 at GitClient.cs:497
+2016-05-02 10:34:14.2091|INFO|thread:192|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1385 at GitClient.cs:497 after waiting 2.21E-05s
+2016-05-02 10:34:14.2091|INFO|thread:181|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1385 at GitClient.cs:497 after blocking 0.0100008s
+2016-05-02 10:34:18.9183|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1386 at GitClient.cs:497
+2016-05-02 10:34:18.9183|INFO|thread:49|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1386 at GitClient.cs:497 after waiting 6.67E-05s
+2016-05-02 10:34:18.9394|INFO|thread:37|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1386 at GitClient.cs:497 after blocking 0.021219s
+2016-05-02 10:34:22.1873|INFO|thread:29|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1387 at GitClient.cs:497
+2016-05-02 10:34:22.1873|INFO|thread:192|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1387 at GitClient.cs:497 after waiting 6.75E-05s
+2016-05-02 10:34:22.2422|INFO|thread:49|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1387 at GitClient.cs:497 after blocking 0.0544154s
+2016-05-02 10:34:24.2508|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1388 at GitClient.cs:497
+2016-05-02 10:34:24.2508|INFO|thread:29|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1388 at GitClient.cs:497 after waiting 6.27E-05s
+2016-05-02 10:34:24.2878|INFO|thread:31|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1388 at GitClient.cs:497 after blocking 0.0372091s
+2016-05-02 10:34:25.2983|INFO|thread:29|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1389 at GitClient.cs:497
+2016-05-02 10:34:25.2983|INFO|thread:49|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1389 at GitClient.cs:497 after waiting 7.85E-05s
+2016-05-02 10:34:25.3233|INFO|thread:29|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1389 at GitClient.cs:497 after blocking 0.025056s
+2016-05-02 10:34:26.2988|INFO|thread:29|AsyncReaderWriterLock|Acquiring concurrent scheduler for operation 1390 at GitClient.cs:497
+2016-05-02 10:34:26.2988|INFO|thread:49|AsyncReaderWriterLock|Acquired concurrent scheduler for operation: 1390 at GitClient.cs:497 after waiting 7.85E-05s
+2016-05-02 10:34:26.3199|INFO|thread:16|AsyncReaderWriterLock|Released concurrent scheduler for operation: 1390 at GitClient.cs:497 after blocking 0.0212008s
+2016-05-02 10:34:40.3463|INFO|thread: 1|AsyncReaderWriterLock|Acquiring exclusive scheduler for operation 1391 at ICommitCreator.cs:89
+2016-05-02 10:34:40.3463|INFO|thread:29|AsyncReaderWriterLock|Acquired exclusive scheduler for operation: 1391 at ICommitCreator.cs:89 after waiting 3.59E-05s
+2016-05-02 10:34:40.3463|INFO|thread:49|ExclusiveRepositoryConnection|Creating Commit
+2016-05-02 10:34:40.3523|INFO|thread:49|ExclusiveRepositoryConnection|Creating new commit with 18 file(s). Merge remote-tracking branch 'origin/master'
+
+# Conflicts:
+#	.vs/Mooshak2_Hopur5/v14/.suo
+
+2016-05-02 10:34:40.3684|INFO|thread:49|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:34:40.3684|INFO|thread:49|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:34:40.3684|INFO|thread:49|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'apply --unidiff-zero --whitespace=nowarn --cached "C:\Temp\23c0eab9-ab2a-4a30-ba58-6b1c445b6211" ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:34:40.4158|INFO|thread:181|GitEnvironment|Process set up with this SSH Agent info: 19512:/tmp/ssh-JKNYLK0TMy8h/agent.4692
+2016-05-02 10:34:40.4158|INFO|thread:181|GitEnvironment|PATH is C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\bin;C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\usr\share\git-tfs;C:\Users\harpag\AppData\Local\Apps\2.0\23HWV5R6.5XP\06Y87W33.964\gith..tion_317444273a93ac29_0003.0000_c74cce3a838f9354;C:\Users\harpag\AppData\Local\GitHub\lfs-amd64_1.1.0;C:\Program Files (x86)\MSBuild\12.0\bin;C:\Windows\System32
+2016-05-02 10:34:40.4158|INFO|thread:181|ProcessWrapper|Starting: Process - FileName: 'C:\Users\harpag\AppData\Local\GitHub\PortableGit_25d850739bc178b2eb13c3e2a9faafea2f9143c0\cmd\git.exe', Args: 'apply --unidiff-zero --whitespace=nowarn --cached "C:\Temp\23c0eab9-ab2a-4a30-ba58-6b1c445b6211" -v --check ', Working Directory: C:\Personal\HR_HAUST_2016\Vefforitun\Verkefni\Projects\Mooshak2_Hopur5\
+2016-05-02 10:34:40.4531|WARN|thread:49|ExclusiveRepositoryConnection|-----
+2016-05-02 10:34:40.4531|WARN|thread:49|ExclusiveRepositoryConnection|Patch could not be applied:
+2016-05-02 10:34:40.4531|WARN|thread:49|ExclusiveRepositoryConnection|diff --git a/Mooshak2_Hopur5/Controllers/CourseController.cs b/Mooshak2_Hopur5/Controllers/CourseController.cs
+--- a/Mooshak2_Hopur5/Controllers/CourseController.cs
++++ b/Mooshak2_Hopur5/Controllers/CourseController.cs
+@@ -16,7 +16,8 @@ namespace Mooshak_Hopur5.Controllers
+         {
+             int courseId = 1;
+             var viewModel = _service.getCourseById(courseId);
+             return View();
++            return View(viewModel);
+         }
+     }
+ }
+\ No newline at end of file
+
+2016-05-02 10:34:40.4531|WARN|thread:49|ExclusiveRepositoryConnection|-----
+2016-05-02 10:34:40.4531|INFO|thread:49|AsyncReaderWriterLock|Released exclusive scheduler for operation: 1391 at ICommitCreator.cs:89 after blocking 0.1082521s

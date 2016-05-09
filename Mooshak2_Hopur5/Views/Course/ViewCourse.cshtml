@@ -32,6 +32,9 @@
         </table>
     </div>
 </div>
-<div class="col-md-5">
+<div class="col-md-2">
     @Html.ActionLink("Create new assignment", "AddAssignment", "Assignment", new { id = Model.CourseId }, new { @class = "btn btn-assignment" })
+</div>
+<div class="col-md-2">
+    @Html.ActionLink("Create group", "Create", "UserGroup", new { id = Model.CourseId }, new { @class = "btn btn-assignment" })
 </div>
