@@ -9,10 +9,9 @@
     @foreach (var assignment in Model.OpenAssignmentList)
     {
         string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
-        <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId}, null)</li>
+        <Model.CourseIdli class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId}, null)</Model.CourseIdli>
     }
 </ul>
-
 
 <h2>Closed assignments</h2>
 <ul class="list-group">
@@ -24,3 +23,4 @@
 </ul>
 
 @Html.ActionLink("Create new assignment", "AddAssignment", "Assignment", new { id = Model.CourseId }, new { @class = "btn btn-primary" })
+@Html.ActionLink("Create group", "Create", "UserGroup", new { id = Model.CourseId }, new { @class = "btn btn-primary" })

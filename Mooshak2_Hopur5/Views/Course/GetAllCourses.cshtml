@@ -11,7 +11,7 @@
         <ul class="list-group">
            <li class="list-group-item">Nafn: @course.CourseName <br> Númer: @course.CourseNumber </li>
             @Html.ActionLink("Edit course", "EditCourse", "Course", new { id = course.CourseId } , htmlAttributes: new { @class = "btn btn-primary btn-large" })
-            @Html.ActionLink("All assignments", "ViewCourse", "Course", new { id = course.CourseId }, htmlAttributes: new { @class = "btn btn-primary btn-large" })
+            @Html.ActionLink("View course", "ViewCourse", "Course", new { id = course.CourseId }, htmlAttributes: new { @class = "btn btn-primary btn-large" })
             @Html.ActionLink("Add user", "Register", "Account", htmlAttributes: new { @class = "btn btn-primary btn-large" })
         </ul>
         </div>

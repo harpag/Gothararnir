@@ -23,7 +23,7 @@ namespace Mooshak2_Hopur5.Models.Entities
         [Required]
         public string userGroupName { get; set; }
 
-        public int userCreate { get; set; }
+        public string userCreate { get; set; }
 
         public virtual Course Course { get; set; }
 

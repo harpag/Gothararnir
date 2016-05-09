@@ -499,7 +499,8 @@ namespace Mooshak2_Hopur5.Services
             AssignmentViewModel viewModel = new AssignmentViewModel
             {
                 OpenAssignmentList = openAssignmentsList,
-                ClosedAssignmentList = closedAssignmentsList
+                ClosedAssignmentList = closedAssignmentsList,
+                CourseId = courseId
             };
 
             //Returna viewModelinu með listanum
