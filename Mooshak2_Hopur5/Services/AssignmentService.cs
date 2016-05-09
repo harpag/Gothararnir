@@ -448,7 +448,7 @@ namespace Mooshak2_Hopur5.Services
             {
                 OpenAssignmentList = openAssignmentsList,
             };
-            
+
             //Skila viewModelinu með listanum
             return viewModel;
         }
@@ -709,7 +709,7 @@ namespace Mooshak2_Hopur5.Services
                 assignmentToAdd.AssignmentId = newAssignment.assignmentId;
                 //Vista skránna sem fylgir verkefninu
                 addAssignmentFile(serverPath, assignmentToAdd);
-                addAssignmentPart(assignmentToAdd, serverPath);
+                //addAssignmentPart(assignmentToAdd, serverPath);
                 return assignmentToAdd;
             }
             catch (DbEntityValidationException e)
@@ -865,25 +865,22 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentViewModel addAssignmentPart(AssignmentViewModel assignmentToAdd, string serverPath)
+        public AssignmentPartViewModel addAssignmentPart(AssignmentPartViewModel assignmentToAdd, string serverPath)
         {
             //setja propery-in
-            for (int i = 0; i < assignmentToAdd.AssignmentPartList.Count; i++)
-            {
-                var newAssignmentPart = new AssignmentPart();
-                newAssignmentPart.assignmentId = assignmentToAdd.AssignmentId;
-                newAssignmentPart.assignmentPartName = assignmentToAdd.AssignmentPartList[i].AssignmentPartName;
-                newAssignmentPart.assignmentPartDescription = assignmentToAdd.AssignmentPartList[i].AssignmentPartDescription;
-                newAssignmentPart.weight = assignmentToAdd.AssignmentPartList[i].Weight;
-                newAssignmentPart.programmingLanguageId = assignmentToAdd.AssignmentPartList[i].ProgrammingLanguageId;
+            var newAssignmentPart = new AssignmentPart();
+            newAssignmentPart.assignmentId = assignmentToAdd.AssignmentId;
+            newAssignmentPart.assignmentPartName = assignmentToAdd.AssignmentPartName;
+            newAssignmentPart.assignmentPartDescription = assignmentToAdd.AssignmentPartDescription;
+            newAssignmentPart.weight = assignmentToAdd.Weight;
+            newAssignmentPart.programmingLanguageId = assignmentToAdd.ProgrammingLanguageId;
 
-                newAssignmentPart = _db.AssignmentPart.Add(newAssignmentPart);
-                _db.SaveChanges();
-                assignmentToAdd.AssignmentPartList[i].AssignmentPartId = newAssignmentPart.assignmentPartId;
-                addAssignmentPartTestCase(assignmentToAdd.AssignmentPartList[i]);
-                addAssignmentPartFile(serverPath, assignmentToAdd.AssignmentPartList[i]);
-            }
-            return null;
+            newAssignmentPart = _db.AssignmentPart.Add(newAssignmentPart);
+            _db.SaveChanges();
+            assignmentToAdd.AssignmentPartId = newAssignmentPart.assignmentPartId;
+            //addAssignmentPartTestCase(assignmentToAdd.AssignmentPartList[i]);
+            addAssignmentPartFile(serverPath, assignmentToAdd);
+            return assignmentToAdd;
         }
 
         public void addAssignmentPartTestCase(AssignmentPartViewModel assignmentPart)
@@ -1097,11 +1094,11 @@ namespace Mooshak2_Hopur5.Services
                     processExe.Start();
 
                     //Read the output of the program
-                    while(!processExe.StandardOutput.EndOfStream)
+                    while (!processExe.StandardOutput.EndOfStream)
                     {
                         lines.Add(processExe.StandardOutput.ReadLine());
                     }
-                    
+
                 }
             }
 

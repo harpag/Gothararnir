@@ -342,6 +342,10 @@
     <Content Include="Views\Assignment\OpenAssignments.cshtml" />
     <Content Include="Views\Assignment\ClosedAssignments.cshtml" />
     <Content Include="Views\Course\EditCourse.cshtml" />
+    <Content Include="Views\Assignment\AddPartToAssignment.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Assignment\AddTestCaseToPart.cshtml" />
+    <Content Include="Views\Assignment\ViewAssignmentParts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,117 +8,66 @@
 
 @using (Html.BeginForm("AddAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
-    <div class="container">
-        <ul class="nav nav-pills">
-            <li class="active"><a href="#tab_a" data-toggle="tab">Assignment info</a></li>
-            <li><a href="#tab_b" data-toggle="tab">Assignment Parts</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="tab_a">
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        @Html.LabelFor(m => m.AssignmentName, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.AssignmentName)
-                        @Html.EditorFor(m => m.AssignmentName, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                    <div class="col-md-6 form-group">
-                        @Html.LabelFor(m => m.CourseId, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.CourseId)
-                        @Html.DropDownListFor(m => m.CourseId, (Model.UserCourses as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 form-group">
-                        @Html.LabelFor(m => m.AssignmentDescription, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.AssignmentDescription)
-                        @Html.TextAreaFor(m => m.AssignmentDescription, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        @Html.LabelFor(m => m.Weight, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.Weight)
-                        @Html.EditorFor(m => m.Weight, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                    <div class="col-md-6 form-group">
-                        @Html.LabelFor(m => m.MaxSubmission, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.MaxSubmission)
-                        @Html.EditorFor(m => m.MaxSubmission, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        @Html.LabelFor(m => m.AssignDate, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.AssignDate)
-                        @Html.EditorFor(m => m.AssignDate, new { htmlAttributes = new { @class = "form-control", id = "datepicker" } })
-                    </div>
-                    <div class="col-md-6 form-group">
-                        @Html.LabelFor(m => m.DueDate, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.DueDate)
-                        @Html.EditorFor(m => m.DueDate, new { htmlAttributes = new { @class = "form-control", id = "datepicker" } })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="product-attachments">
-                        <div class="col-md-12 form-group product-attachment">
-                            @Html.LabelFor(m => m.AssignmentUploaded, new { @class = "control-label" })
-                            @Html.ValidationMessageFor(m => m.AssignmentUploaded)
-                            @Html.TextBoxFor(m => m.AssignmentUploaded, new { type = "file", @class = "form-control" })
-                            @*<input name="ImageUploaded" type="file" class="form-control" />*@
-                        </div>
-                    </div>
-                </div>
-                @Html.TextBoxFor(m => m.CourseId, new { style = "visibility:hidden" })
-            </div>
-            <div class="tab-pane" id="tab_b">
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        @Html.LabelFor(m => m.AssignmentPartList[0].AssignmentPartName, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.AssignmentPartList[0].AssignmentPartName)
-                        @Html.EditorFor(m => m.AssignmentPartList[0].AssignmentPartName, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                    <div class="col-md-6 form-group">
-                        @Html.LabelFor(m => m.AssignmentPartList[0].Weight, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.AssignmentPartList[0].Weight)
-                        @Html.EditorFor(m => m.AssignmentPartList[0].Weight, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 form-group">
-                        @Html.LabelFor(m => m.AssignmentPartList[0].AssignmentPartDescription, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.AssignmentPartList[0].AssignmentPartDescription)
-                        @Html.TextAreaFor(m => m.AssignmentPartList[0].AssignmentPartDescription, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        @Html.LabelFor(m => m.AssignmentPartList[0].ProgrammingLanguageId, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.AssignmentPartList[0].ProgrammingLanguageId)
-                        @Html.DropDownListFor(m => m.AssignmentPartList[0].ProgrammingLanguageId, (Model.ProgrammingLanguages as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
-                    </div>
 
-                    <div class="product-attachments">
-                        <div class="col-xs-6 form-group product-attachment">
-                            @Html.LabelFor(m => m.AssignmentPartList[0].AssignmentPartUploaded, new { @class = "control-label" })
-                            @Html.ValidationMessageFor(m => m.AssignmentPartList[0].AssignmentPartUploaded)
-                            @Html.TextBoxFor(m => m.AssignmentPartList[0].AssignmentPartUploaded, new { type = "file", @class = "form-control" })
-                            @*<input name="ImageUploaded" type="file" class="form-control" />*@
-                        </div>
-                    </div>
-                </div>
-                <h3 class="col-xs-12 form-group">Test case</h3>
-                <div class="col-xs-6 form-group">
-                    @Html.LabelFor(m => m.AssignmentPartList[0].AssignmentTestCaseList[0].input, new { @class = "control-label" })
-                    @Html.ValidationMessageFor(m => m.AssignmentPartList[0].AssignmentTestCaseList[0].input)
-                    @Html.TextAreaFor(m => m.AssignmentPartList[0].AssignmentTestCaseList[0].input, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-                <div class="col-xs-6 form-group">
-                    @Html.LabelFor(m => m.AssignmentPartList[0].AssignmentTestCaseList[0].output, new { @class = "control-label" })
-                    @Html.ValidationMessageFor(m => m.AssignmentPartList[0].AssignmentTestCaseList[0].output)
-                    @Html.TextAreaFor(m => m.AssignmentPartList[0].AssignmentTestCaseList[0].output, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="row">
+            <div class="col-md-5 form-group">
+                @Html.LabelFor(m => m.AssignmentName, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentName, null, new { @class = "text-danger" })
+                @Html.EditorFor(m => m.AssignmentName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5 form-group">
+                @Html.LabelFor(m => m.CourseId, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.CourseId, null, new { @class = "text-danger" })
+                @Html.DropDownListFor(m => m.CourseId, (Model.UserCourses as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-11 form-group">
+                @Html.LabelFor(m => m.AssignmentDescription, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentDescription, null, new { @class = "text-danger" })
+                @Html.EditorFor(m => m.AssignmentDescription, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 form-group">
+                @Html.LabelFor(m => m.Weight, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.Weight, null, new { @class = "text-danger" })
+                @Html.EditorFor(m => m.Weight, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5 form-group">
+                @Html.LabelFor(m => m.MaxSubmission, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.MaxSubmission, null, new { @class = "text-danger" })
+                @Html.EditorFor(m => m.MaxSubmission, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 form-group">
+                @Html.LabelFor(m => m.AssignDate, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignDate, null, new { @class = "text-danger" })
+                @Html.EditorFor(m => m.AssignDate, new { htmlAttributes = new { @class = "form-control", id = "datepicker" } })
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5 form-group">
+                @Html.LabelFor(m => m.DueDate, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.DueDate, null, new { @class = "text-danger" })
+                @Html.EditorFor(m => m.DueDate, new { htmlAttributes = new { @class = "form-control", id = "datepicker" } })
+            </div>
+        </div>
+        <div class="row">
+            <div class="product-attachments">
+                <div class="col-md-11 form-group">
+                    @Html.LabelFor(m => m.AssignmentUploaded, new { @class = "control-label" })
+                    @Html.ValidationMessageFor(m => m.AssignmentUploaded, null, new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.AssignmentUploaded, new { type = "file", @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8"></div>
+        <div class="col-md-3">
+            <input style="width:100%" type="submit" value="Submit" class="btn btn-assignment">
+        </div>
+        
+        @Html.TextBoxFor(m => m.CourseId, new { style = "visibility:hidden" })
 }
