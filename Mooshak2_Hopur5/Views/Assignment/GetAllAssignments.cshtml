@@ -1,0 +1,20 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.AssignmentViewModel
+@{
+    ViewBag.Title = "GetAllAssignments";
+}
+
+<h2>All assignments</h2>
+
+<div class="col-md-12">
+    <table class="table assignmentTable">
+        <caption><span class="glyphicon glyphicon-th-list"></span>All assignments</caption>
+        @foreach (var assignment in Model.AssignmentList)
+        {
+            string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
+            <tr>
+                <td>@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</td>
+                <td>@assignment.DueDate</td>
+            </tr>
+        }
+    </table>
+   

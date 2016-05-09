@@ -342,6 +342,7 @@
     <Content Include="Views\Assignment\OpenAssignments.cshtml" />
     <Content Include="Views\Assignment\ClosedAssignments.cshtml" />
     <Content Include="Views\Course\EditCourse.cshtml" />
+    <Content Include="Views\Assignment\GetAllAssignments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
