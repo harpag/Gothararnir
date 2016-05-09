@@ -227,6 +227,7 @@
     <Compile Include="Models\Entities\ProgrammingLanguage.cs" />
     <Compile Include="Models\Entities\Semester.cs" />
     <Compile Include="Models\Entities\Submission.cs" />
+    <Compile Include="Models\Entities\SubmissionFile.cs" />
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\Entities\UserAssignment.cs" />
     <Compile Include="Models\Entities\UserCourse.cs" />

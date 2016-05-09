@@ -43,14 +43,18 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public List<Submission> AssignmentSubmissionsList { get; set; }
         public List<Discussion> DiscussionsList { get; set; }
         public UserAssignment UserAssignment {get; set;}
+        public Submission UserSubmission { get; set; }
         public IEnumerable<SelectListItem> UserCourses { get; set; }
         public IEnumerable<SelectListItem> ProgrammingLanguages { get; set; }
+        public IEnumerable<SelectListItem> AssignmentParts { get; set; }
         #region extra properties
 
 
         [DisplayName("Attachment")]
-        public HttpPostedFileBase ImageUploaded { get; set; }
+        public HttpPostedFileBase AssignmentUploaded { get; set; }
 
+        [DisplayName("Attachment")]
+        public HttpPostedFileBase SubmissionUploaded { get; set; }
 
         #endregion
     }

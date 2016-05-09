@@ -3,21 +3,20 @@
     ViewBag.Title = "GetAllAnnouncements";
 }
 
-<h2>All announcements</h2>
-<!--@foreach (var announce in Model.AnnouncementList)
-{
-    <p>Tilk: @announce.Announcement</p>
-}-->
-<div class="col-md-5">
-
-    <ul class="list-group">
+<div class="col-md-12">
+    <table class="table announcementTable">
+        <caption><span class="glyphicon glyphicon-info-sign"></span>All announcements</caption>
         @foreach (var announcement in Model.AnnouncementList)
-            {
-            <li class="list-group-item">
-                <div class="comment more">
+        {
+            <tr>
+                <td>
+                    @announcement.DateCreate.Date.ToShortDateString()
+                </td>
+                <td class="more">
                     @Html.Raw(announcement.Announcement)
-                </div>
-            </li>
+                </td>
+            </tr>
         }
-    </ul>
+    </table>
+
 </div>

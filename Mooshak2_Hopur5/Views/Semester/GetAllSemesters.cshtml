@@ -2,15 +2,20 @@
 @{
     ViewBag.Title = "GetAllSemesters";
 }
-
-<h2>All Semesters</h2>
-
-
-
-<ul class="list-group">
-    @foreach (var semester in Model.SemesterList)
-    {
-        string semesterName = semester.SemesterName  + " " +  semester.DateFrom.Date.ToShortDateString() + " - " + semester.DateTo.Date.ToShortDateString();
-        <li class="list-group-item">@Html.ActionLink(semesterName, "ViewSemester", "Semester", new { id = semester.SemesterId }, null)</li>    
-    }
-</ul>
+<div class="col-md-12">
+    <table class="table beigeTable">
+        <caption><span class="glyphicon glyphicon-tasks"></span>All semesters</caption>
+        @foreach (var semester in Model.SemesterList)
+        {
+            string semesterTime = semester.DateFrom.Date.ToShortDateString() + " - " + semester.DateTo.Date.ToShortDateString();
+            <tr>
+                <td>
+                    @Html.ActionLink(semester.SemesterName, "ViewSemester", "Semester", new { id = semester.SemesterId }, null)
+                </td>
+                <td>
+                    @semesterTime    
+                </td>
+            </tr>
+        }
+    </table>
+</div>

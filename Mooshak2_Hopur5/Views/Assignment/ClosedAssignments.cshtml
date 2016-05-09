@@ -3,12 +3,16 @@
     ViewBag.Title = "ClosedAssignments";
 }
 
-
-<h2>Closed assignments</h2>
-<ul class="list-group">
-    @foreach (var assignment in Model.ClosedAssignmentList)
-    {
-        string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
-        <li class="list-group-item">@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</li>
-    }
-</ul>
+<div class="col-md-12">
+    <table class="table beigeTable">
+        <caption><span class="glyphicon glyphicon-th-list"></span>Closed assignments</caption>
+        @foreach (var assignment in Model.ClosedAssignmentList)
+        {
+            string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
+            <tr>
+                <td>@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</td>
+                <td>@assignment.DueDate</td>
+            </tr>
+        }
+    </table>
+</div>

@@ -12,7 +12,7 @@
         <div class="container">
             <div class="navbar-header">
                 <a href="@Url.Action("Index", "Home")" title="Mooshak 2.0" class="">
-                    <img alt="Mooshak 2.0" src="@Url.Content("~/Content/images/Moos.png")" style="width:50px;height:50px;">
+                    <img alt="Mooshak 2.0" src="@Url.Content("~/Content/images/Moosinn.png")" style="width:100px;height:60px;">
                 </a>
             </div>
 
@@ -65,9 +65,9 @@
                             @if (User.IsInRole("Admin"))
                             {
                                 @Html.ActionLink("Add announcement", "AddAnnouncement", "Announcement")
-                                @Html.ActionLink("View all announcements", "GetAllAnnouncements", "Announcement")
+                                @Html.ActionLink("All announcements", "GetAllAnnouncements", "Announcement")
                                 @Html.ActionLink("Add semester", "AddSemester", "Semester")
-                                @Html.ActionLink("View all semesters", "GetAllSemesters", "Semester")
+                                @Html.ActionLink("All semesters", "GetAllSemesters", "Semester")
                             }
                         </div>
                     </li>
@@ -78,7 +78,6 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
         <footer></footer>
     </div>
 

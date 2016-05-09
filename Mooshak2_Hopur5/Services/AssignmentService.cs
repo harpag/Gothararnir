@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity.Validation;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace Mooshak2_Hopur5.Services
 {
@@ -31,6 +32,7 @@ namespace Mooshak2_Hopur5.Services
                               select new { assign, course }).SingleOrDefault();
 
             var assignmentPart = getAssignmentParts(assignmentId);
+            var assignmentPartSelect = new SelectList(assignmentPart.AssignmentPartList, "AssignmentPartId", "AssignmentPartName");
 
             //Kasta villu ef ekki fannst verkefni með þessu ID-i
             if (assignment == null)
@@ -55,12 +57,78 @@ namespace Mooshak2_Hopur5.Services
                     AssignDate = assignment.assign.assignDate,
                     DueDate = assignment.assign.dueDate,
                     GradePublished = assignment.assign.gradePublished,
-                    AssignmentPartList = assignmentPart.AssignmentPartList
+                    AssignmentPartList = assignmentPart.AssignmentPartList,
+                    AssignmentParts = assignmentPartSelect
                 };
 
                 //Returna ViewModelinu með áfanganum í
                 return viewModel;
             }
+        }
+
+        //Sæki verkefni með ákveðnu ID
+        public UserAssignment getUserAssignmentById(string userId, int assignmentId)
+        {
+            //Sæki verkefni með ákveðnu ID ofan í gagnagrunn ef það er til
+            var userAssignment = (from assign in _db.Assignment
+                                  join userAssign in _db.UserAssignment on assign.assignmentId equals userAssign.assignmentId
+                                  where assign.assignmentId == assignmentId && userAssign.userId == userId
+                                  select userAssign).SingleOrDefault();
+
+            //Skila nýju tómu ef ekki fannst verkefni með þessu ID-i
+            if (userAssignment == null)
+            {
+                UserAssignment newAssignment = new UserAssignment();
+                newAssignment.userId = userId;
+                return newAssignment;
+            }
+            else
+            {
+                //ef verkefnið fannst þá skil á því
+                var viewModel = new UserAssignment
+                {
+                    userId = userAssignment.userId,
+                    userGroupId = userAssignment.userGroupId,
+                    grade = userAssignment.grade,
+                    gradeComment = userAssignment.gradeComment,
+                    assignmentId = userAssignment.assignmentId
+                };
+
+                return viewModel;
+            }
+        }
+
+        //Sæki verkefni með ákveðnu ID
+        public List<Submission> getUsersSubmissions(string userId, int assignmentId)
+        {
+            //Sæki verkefni með ákveðnu ID ofan í gagnagrunn ef það er til
+            var userSubmissions = (from submission in _db.Submission
+                                   join assignmentPart in _db.AssignmentPart on submission.assignmentPartId equals assignmentPart.assignmentPartId
+                                   join userAssign in _db.UserAssignment on assignmentPart.assignmentId equals userAssign.assignmentId
+                                   where assignmentPart.assignmentId == assignmentId && userAssign.userId == userId
+                                   select submission).ToList();
+
+            List<Submission> submissionList;
+            submissionList = new List<Submission>();
+
+            //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna hluta 
+            foreach (var entity in userSubmissions)
+            {
+                var result = new Submission
+                {
+                    submissionId = entity.submissionId,
+                    assignmentPartId = entity.assignmentPartId,
+                    userAssignmentId = entity.userAssignmentId,
+                    submissionComment = entity.submissionComment,
+                    accepted = entity.accepted,
+                    numberOfSucessTestCases = entity.numberOfSucessTestCases,
+                    testCaseFailId = entity.testCaseFailId,
+                    error = entity.error
+                };
+                submissionList.Add(result);
+            }
+
+            return submissionList;
         }
 
         public AssignmentPartViewModel getAssignmentParts(int assignmentId)
@@ -432,9 +500,9 @@ namespace Mooshak2_Hopur5.Services
         {
             //Sæki öll opin verkefni í verkefna töfluna
             var openAssignments = (from assign in _db.Assignment
-                               join course in _db.Course on assign.courseId equals course.courseId
-                               where course.courseId == courseId && assign.dueDate >= DateTime.Now
-                               select new { assign, course }).ToList();
+                                   join course in _db.Course on assign.courseId equals course.courseId
+                                   where course.courseId == courseId && assign.dueDate >= DateTime.Now
+                                   select new { assign, course }).ToList();
 
             var closedAssignments = (from assign in _db.Assignment
                                      join course in _db.Course on assign.courseId equals course.courseId
@@ -679,23 +747,18 @@ namespace Mooshak2_Hopur5.Services
 
         public Boolean addAssignmentFile(string serverPath, AssignmentViewModel assignment)
         {
-            string filePathFull = serverPath + "\\Content\\Files\\Assignments\\Full\\";
-            string filePathThumb = serverPath + "\\Content\\Files\\Assignments\\Thumb\\";
+            string filePathFull = serverPath + "\\Content\\Files\\Assignments\\";
 
             if (!Directory.Exists(filePathFull))
             {
                 Directory.CreateDirectory(filePathFull);
             }
-            if (!Directory.Exists(filePathThumb))
-            {
-                Directory.CreateDirectory(filePathThumb);
-            }
 
-            if (assignment.ImageUploaded != null)
+            if (assignment.AssignmentUploaded != null)
             {
 
-                string fileExtension = System.IO.Path.GetExtension(assignment.ImageUploaded.FileName);
-                string fileContentType = assignment.ImageUploaded.ContentType;
+                string fileExtension = System.IO.Path.GetExtension(assignment.AssignmentUploaded.FileName);
+                string fileContentType = assignment.AssignmentUploaded.ContentType;
 
                 AssignmentFile newFile = new AssignmentFile();
                 newFile.assignmentId = assignment.AssignmentId;
@@ -723,14 +786,13 @@ namespace Mooshak2_Hopur5.Services
                 }
                 string fileName = newFile.assignmentFileId.ToString();
                 newFile.path = filePathFull + fileName + fileExtension;
-                newFile.pathThumb = filePathThumb + fileName + fileExtension;
                 newFile.fileExtension = fileExtension;
 
                 _db.Entry(newFile).State = EntityState.Modified;
                 _db.SaveChanges();
 
-                FileHelper.ResizeAndSave(filePathFull, fileName, assignment.ImageUploaded.InputStream, 800, false);
-                FileHelper.ResizeAndSave(filePathThumb, fileName, assignment.ImageUploaded.InputStream, 190, false);
+                assignment.AssignmentUploaded.SaveAs(newFile.path);
+
                 return true;
             }
 
@@ -739,23 +801,18 @@ namespace Mooshak2_Hopur5.Services
 
         public Boolean addAssignmentPartFile(string serverPath, AssignmentPartViewModel assignmentPart)
         {
-            string filePathFull = serverPath + "\\Content\\Files\\AssignmentParts\\Full\\";
-            string filePathThumb = serverPath + "\\Content\\Files\\AssignmentParts\\Thumb\\";
+            string filePathFull = serverPath + "\\Content\\Files\\AssignmentParts\\";
 
             if (!Directory.Exists(filePathFull))
             {
                 Directory.CreateDirectory(filePathFull);
             }
-            if (!Directory.Exists(filePathThumb))
-            {
-                Directory.CreateDirectory(filePathThumb);
-            }
 
-            if (assignmentPart.ImageUploaded != null)
+            if (assignmentPart.AssignmentPartUploaded != null)
             {
 
-                string fileExtension = System.IO.Path.GetExtension(assignmentPart.ImageUploaded.FileName);
-                string fileContentType = assignmentPart.ImageUploaded.ContentType;
+                string fileExtension = System.IO.Path.GetExtension(assignmentPart.AssignmentPartUploaded.FileName);
+                string fileContentType = assignmentPart.AssignmentPartUploaded.ContentType;
 
                 AssignmentPartFile newFile = new AssignmentPartFile();
                 newFile.assignmentPartId = assignmentPart.AssignmentPartId;
@@ -783,14 +840,13 @@ namespace Mooshak2_Hopur5.Services
                 }
                 string fileName = newFile.assignmentPartFileId.ToString();
                 newFile.path = filePathFull + fileName + fileExtension;
-                newFile.pathThumb = filePathThumb + fileName + fileExtension;
                 newFile.fileExtension = fileExtension;
 
                 _db.Entry(newFile).State = EntityState.Modified;
                 _db.SaveChanges();
 
-                FileHelper.ResizeAndSave(filePathFull, fileName, assignmentPart.ImageUploaded.InputStream, 800, false);
-                FileHelper.ResizeAndSave(filePathThumb, fileName, assignmentPart.ImageUploaded.InputStream, 190, false);
+                assignmentPart.AssignmentPartUploaded.SaveAs(newFile.path);
+
                 return true;
             }
 
@@ -813,7 +869,7 @@ namespace Mooshak2_Hopur5.Services
         public AssignmentViewModel addAssignmentPart(AssignmentViewModel assignmentToAdd, string serverPath)
         {
             //setja propery-in
-            for(int i = 0; i < assignmentToAdd.AssignmentPartList.Count; i++)
+            for (int i = 0; i < assignmentToAdd.AssignmentPartList.Count; i++)
             {
                 var newAssignmentPart = new AssignmentPart();
                 newAssignmentPart.assignmentId = assignmentToAdd.AssignmentId;
@@ -840,21 +896,217 @@ namespace Mooshak2_Hopur5.Services
                 newAssignmentTestCase.assignmentPartId = assignmentPart.AssignmentPartId;
                 newAssignmentTestCase.input = assignmentPart.AssignmentTestCaseList[i].input;
                 newAssignmentTestCase.output = assignmentPart.AssignmentTestCaseList[i].output;
-                newAssignmentTestCase.testNumber = i+1;
+                newAssignmentTestCase.testNumber = i + 1;
 
                 newAssignmentTestCase = _db.AssignmentTestCase.Add(newAssignmentTestCase);
                 _db.SaveChanges();
             }
         }
 
-        //submittAssignment()
+        public AssignmentViewModel studentSubmitsAssignment(AssignmentViewModel submission, string serverPath)
+        {
+            //Smíða haus færslu ef hún er ekki til nú þegar
+            submission = userAssignmentCreate(submission);
 
-        //addAssignmentDiscussion()
+            //Test submissionið
+            //TODO harðkóðað eins og er
+            submission.UserSubmission.accepted = 0;
+            submission.UserSubmission.numberOfSucessTestCases = 0;
+            submission.UserSubmission.testCaseFailId = 2;// submission.AssignmentPartList[0].AssignmentTestCaseList[0].assignmentTestCaseId;
+            submission.UserSubmission.error = "Compile time error";
+            submission = addSubmission(submission);
 
-        //addAssignmentGrade()
+            //Vista skrána
+            submission = submitFile(submission, serverPath);
 
-        //editAssignmentGrade()
+            cppProgram(serverPath);
 
-        //getAssignmentStatistics() ætla að geyma þetta
+            return submission;
+        }
+
+        public AssignmentViewModel testSubmission(AssignmentViewModel submission)
+        {
+            submission.UserSubmission.accepted = 0;
+            return submission;
+
+        }
+
+
+        public AssignmentViewModel userAssignmentCreate(AssignmentViewModel submission)
+        {
+
+            var userAssignmentExists = (from userAssignment in _db.UserAssignment
+                                        where userAssignment.assignmentId == submission.AssignmentId
+                                       && userAssignment.userId == submission.UserAssignment.userId
+                                        select userAssignment).SingleOrDefault();
+
+            if (userAssignmentExists == null)
+            {
+                var newUserAssignment = new UserAssignment();
+                //setja propery-in
+                newUserAssignment.userId = submission.UserAssignment.userId;
+                newUserAssignment.assignmentId = submission.AssignmentId;
+                //try
+                //{
+                //Vista ofan í gagnagrunn
+                submission.UserAssignment = _db.UserAssignment.Add(newUserAssignment);
+                _db.SaveChanges();
+                return submission;
+                //}
+                //catch
+                //{
+                //return null;
+                //}
+            }
+            else
+            {
+                submission.UserAssignment = userAssignmentExists;
+                return submission;
+            }
+
+        }
+
+        public AssignmentViewModel submitFile(AssignmentViewModel submission, string serverPath)
+        {
+            string filePathFull = serverPath + "\\Content\\Files\\Submissions\\";
+
+            if (!Directory.Exists(filePathFull))
+            {
+                Directory.CreateDirectory(filePathFull);
+            }
+
+            string fileExtension = System.IO.Path.GetExtension(submission.SubmissionUploaded.FileName);
+            string fileContentType = submission.SubmissionUploaded.ContentType;
+
+            SubmissionFile newFile = new SubmissionFile();
+            newFile.submissionId = submission.UserSubmission.submissionId;
+            newFile.fileType = fileContentType;
+            newFile.fileExtension = fileExtension;
+
+            try
+            {
+                newFile = _db.SubmissionFile.Add(newFile);
+                _db.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+
+            string fileName = newFile.submissionFileId.ToString();
+            newFile.path = filePathFull + fileName + fileExtension;
+            newFile.fileExtension = fileExtension;
+
+            _db.Entry(newFile).State = EntityState.Modified;
+            _db.SaveChanges();
+
+            submission.SubmissionUploaded.SaveAs(newFile.path);
+
+            return submission;
+        }
+
+        public AssignmentViewModel addSubmission(AssignmentViewModel submissionToChange)
+        {
+            // Bý til nýja færslu
+            var submission = new Submission();
+
+            // Set inn breyttu upplýsingarnar
+            submission.userAssignmentId = submissionToChange.UserAssignment.userAssignmentId;
+            submission.assignmentPartId = submissionToChange.UserSubmission.assignmentPartId;
+            submission.accepted = submissionToChange.UserSubmission.accepted;
+            submission.numberOfSucessTestCases = submissionToChange.UserSubmission.numberOfSucessTestCases;
+            submission.testCaseFailId = submissionToChange.UserSubmission.testCaseFailId;
+            submission.error = submissionToChange.UserSubmission.error;
+
+
+            //Vista breytingar í gagnagrunn
+            //try
+            //{
+            _db.Submission.Add(submission);
+            _db.SaveChanges();
+            //}
+            //catch (Exception e)
+            //{
+            //  Console.WriteLine(e);
+            // TODO
+            //}
+            submissionToChange.UserSubmission = submission;
+            return submissionToChange;
+        }
+
+        public List<string> cppProgram(string serverPath)
+        {
+            var code = "#include <iostream>\n" +
+                        "using namespace std;\n" +
+                        "int main()\n" +
+                        "{\n" +
+                        "cout << \"Hello world\" << endl;\n" +
+                        "cout << \"The output should only contain two lines\" << endl;\n" +
+                        "return 0;\n" +
+                        "}";
+
+            var workingFolder = serverPath + "\\Content\\Files\\CPP\\";
+
+            if (!Directory.Exists(workingFolder))
+            {
+                Directory.CreateDirectory(workingFolder);
+            }
+
+            var cppFileName = "Hello.cpp";
+            var exeFilePath = workingFolder + "Hello.exe";
+
+            File.WriteAllText(workingFolder + cppFileName, code);
+
+            //Location of c++ compiler
+            var compilerFolder = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\";
+
+            Process compiler = new Process();
+            compiler.StartInfo.FileName = "cmd.exe";
+            compiler.StartInfo.WorkingDirectory = workingFolder;
+            compiler.StartInfo.RedirectStandardInput = true;
+            compiler.StartInfo.RedirectStandardOutput = true;
+            compiler.StartInfo.UseShellExecute = false;
+
+            compiler.Start();
+            compiler.StandardInput.WriteLine("\"" + compilerFolder + "vcvars32.bat" + "\"");
+            compiler.StandardInput.WriteLine("cl.exe /nologo /EHsc " + cppFileName);
+            compiler.StandardInput.WriteLine("exit");
+            string output = compiler.StandardOutput.ReadToEnd();
+            compiler.WaitForExit();
+
+            var lines = new List<string>();
+            if (File.Exists(exeFilePath))
+            {
+                var processInfoExe = new ProcessStartInfo(exeFilePath, "");
+                processInfoExe.UseShellExecute = false;
+                processInfoExe.RedirectStandardOutput = true;
+                processInfoExe.RedirectStandardError = true;
+                processInfoExe.CreateNoWindow = true;
+                using (var processExe = new Process())
+                {
+                    processExe.StartInfo = processInfoExe;
+                    processExe.Start();
+
+                    //Read the output of the program
+                    while(!processExe.StandardOutput.EndOfStream)
+                    {
+                        lines.Add(processExe.StandardOutput.ReadLine());
+                    }
+                    
+                }
+            }
+
+            return lines;
+        }
     }
 }
