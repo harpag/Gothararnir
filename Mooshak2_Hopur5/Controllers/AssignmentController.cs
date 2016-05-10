@@ -149,7 +149,7 @@ namespace Mooshak2_Hopur5.Controllers
         {
             string userId = User.Identity.GetUserId();
             var viewModel = new AssignmentViewModel();
-            viewModel = _service.getOpenAssignments();
+            viewModel = _service.getOpenAssignments(userId);
             return View(viewModel);
         }
 
@@ -157,7 +157,7 @@ namespace Mooshak2_Hopur5.Controllers
         {
             string userId = User.Identity.GetUserId();
             var viewModel = new AssignmentViewModel();
-            viewModel = _service.getClosedAssignments();
+            viewModel = _service.getClosedAssignments(userId);
             return View(viewModel);
         }
 
