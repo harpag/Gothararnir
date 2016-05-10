@@ -314,13 +314,14 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentViewModel getAllUserAssignments(int userId)
+        public AssignmentViewModel getAllUserAssignments(string userId)
         {
             //Sæki öll gögn í verkefna töfluna
             var assignments = (from assign in _db.Assignment
                                join course in _db.Course on assign.courseId equals course.courseId
                                join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
                                where userCourse.userId.Equals(userId)
+                               orderby assign.assignDate descending
                                select new { assign, course }).ToList();
 
             //Bý til lista af verkefnum
@@ -410,11 +411,12 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentViewModel getOpenAssignments()
+        public AssignmentViewModel getOpenAssignments(string userId)
         {
             var openAssignments = (from assign in _db.Assignment
                                    join course in _db.Course on assign.courseId equals course.courseId
-                                   where assign.dueDate >= DateTime.Now
+                                   join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
+                                   where assign.dueDate >= DateTime.Now && userCourse.userId.Equals(userId)
                                    select new { assign, course }).ToList();
 
             List<AssignmentViewModel> openAssignmentsList;
@@ -453,11 +455,12 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentViewModel getClosedAssignments()
+        public AssignmentViewModel getClosedAssignments(string userId)
         {
             var closedAssignments = (from assign in _db.Assignment
                                      join course in _db.Course on assign.courseId equals course.courseId
-                                     where assign.dueDate < DateTime.Now
+                                     join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
+                                     where assign.dueDate < DateTime.Now && userCourse.userId.Equals(userId)
                                      select new { assign, course }).ToList();
 
             List<AssignmentViewModel> closedAssignmentsList;

@@ -149,7 +149,7 @@ namespace Mooshak2_Hopur5.Controllers
         {
             string userId = User.Identity.GetUserId();
             var viewModel = new AssignmentViewModel();
-            viewModel = _service.getOpenAssignments();
+            viewModel = _service.getOpenAssignments(userId);
             return View(viewModel);
         }
 
@@ -157,11 +157,21 @@ namespace Mooshak2_Hopur5.Controllers
         {
             string userId = User.Identity.GetUserId();
             var viewModel = new AssignmentViewModel();
-            viewModel = _service.getClosedAssignments();
+            viewModel = _service.getClosedAssignments(userId);
             return View(viewModel);
         }
 
+        public ActionResult GetAllAssignments()
+        {
+            string userId = User.Identity.GetUserId();
+            var viewModel = new AssignmentViewModel();
+            viewModel = _service.getAllUserAssignments(userId);
+            return View(viewModel);
+        }
+
+
         public ActionResult ViewAssignment(int? id)
+
         {
             if(id.HasValue == false)
             {
@@ -178,6 +188,7 @@ namespace Mooshak2_Hopur5.Controllers
             return View(viewModel);
         }
 
+      
         [HttpPost]
         public ActionResult ViewAssignment(AssignmentViewModel viewModel)
         {
@@ -187,7 +198,28 @@ namespace Mooshak2_Hopur5.Controllers
                 _service.studentSubmitsAssignment(viewModel, serverPath);
             }
 
-            return RedirectToAction("ViewAssignment", "Assignment", new { id = viewModel.AssignmentId });
+            return RedirectToAction("GetAllAssignments", "ViewAssignment", "Assignment", new { id = viewModel.AssignmentId });
+        }
+
+        private ActionResult RedirectToAction(string v1, string v2, string v3, object p)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost]
+        public ActionResult EditAssignment(AssignmentViewModel newAssignment)
+        {
+            _service.editAssignment(newAssignment);
+
+            return RedirectToAction("GetAllAssignments");
+
+        }
+
+        [HttpGet]
+        public ActionResult EditAssignment(int id)
+        {
+            var viewModel = _service.getAssignmentById(id);
+            return View(viewModel);
         }
     }
 }

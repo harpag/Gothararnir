@@ -31,7 +31,7 @@
                             <div class="dropdown-content">
                                 @Html.ActionLink("Closed assignments", "ClosedAssignments", "Assignment", routeValues: null, htmlAttributes: new { id = "registerLink" })
                                 @Html.ActionLink("Open assignments", "OpenAssignments", "Assignment", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                                <a href="#">All assignments</a>
+                                @Html.ActionLink("All assignments", "GetAllAssignments", "Assignment", routeValues: null, htmlAttributes: new { id = "registerLink" })
                                 @if (User.IsInRole("Teacher"))
                                 {
                                     @Html.ActionLink("Create assignment", "AddAssignment", "Assignment")

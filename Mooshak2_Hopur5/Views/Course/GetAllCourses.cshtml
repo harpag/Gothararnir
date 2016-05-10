@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "GetAllCourse";
 }
-<<<<<<< HEAD
+
 <table class="table courseTable">
     <caption><span class="glyphicon glyphicon-book"></span>All courses</caption>
     @foreach (var course in Model.CourseList)
@@ -27,7 +27,7 @@
 </table>
 
 
-=======
+
 
 <h2><span class="glyphicon glyphicon-book"></span>All Courses</h2>
 @foreach (var course in Model.CourseList)
@@ -39,8 +39,9 @@
             @Html.ActionLink("View course", "ViewCourse", "Course", new { id = course.CourseId }, htmlAttributes: new { @class = "btn btn-primary btn-large" })
             @Html.ActionLink("Add user", "Register", "Account", htmlAttributes: new { @class = "btn btn-primary btn-large" })
         </ul>
+        
     </div>
 }
->>>>>>> e8d915a3aa19e429010efefef1c5beadd802dd97
+
 
 
