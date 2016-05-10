@@ -46,4 +46,8 @@ $(document).ready(function () {
     });
 });
 
+//Date and time picker
+$(function () {
+    $('.dateTimePicker').datetimepicker({ format: 'd/m/Y H:i', value: 'DateTime.Now' });
+});
 
