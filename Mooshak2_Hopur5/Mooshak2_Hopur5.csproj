@@ -6,9 +6,9 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+	<ProductVersion>
+    </ProductVersion>
     <ProjectGuid>{722A164E-0C3A-4AB0-9252-47D4B384B5B8}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -345,6 +345,7 @@
     <Content Include="Views\Assignment\OpenAssignments.cshtml" />
     <Content Include="Views\Assignment\ClosedAssignments.cshtml" />
     <Content Include="Views\Course\EditCourse.cshtml" />
+    <Content Include="Views\Assignment\GetAllAssignments.cshtml" />
     <Content Include="Views\Assignment\AddPartToAssignment.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Assignment\AddTestCaseToPart.cshtml" />
