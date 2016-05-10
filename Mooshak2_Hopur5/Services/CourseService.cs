@@ -135,7 +135,7 @@ namespace Mooshak2_Hopur5.Services
             var userCourses =  (from courses in _db.Course
                                 join userCourse in _db.UserCourse on courses.courseId equals userCourse.courseId
                                 where userCourse.userId == userId
-                                select courses).ToList();
+                                select courses).Distinct().ToList();
 
             //Bý til lista af áföngum(CourseViewModel)
             List<CourseViewModel> courseList;
