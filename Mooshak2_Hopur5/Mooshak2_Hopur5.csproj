@@ -346,6 +346,10 @@
     <Content Include="Views\Assignment\ClosedAssignments.cshtml" />
     <Content Include="Views\Course\EditCourse.cshtml" />
     <Content Include="Views\Assignment\GetAllAssignments.cshtml" />
+    <Content Include="Views\Assignment\AddPartToAssignment.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Assignment\AddTestCaseToPart.cshtml" />
+    <Content Include="Views\Assignment\ViewAssignmentParts.cshtml" />
     <Content Include="Views\UserGroup\Create.cshtml" />
     <Content Include="Views\UserGroup\Delete.cshtml" />
     <Content Include="Views\UserGroup\Details.cshtml" />

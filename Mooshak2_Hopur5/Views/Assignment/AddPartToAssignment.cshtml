@@ -1,0 +1,50 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.AssignmentPartViewModel
+
+@{
+    ViewBag.Title = "Add part to assignment";
+}
+
+<h2>AddPartToAssignment</h2>
+
+@using (Html.BeginForm("AddPartToAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+
+    @Html.HiddenFor(x => x.AssignmentId)
+
+    <div class="row">
+        <div class="col-md-5 form-group">
+            @Html.LabelFor(m => m.AssignmentPartName, new { @class = "control-label" })
+            @Html.ValidationMessageFor(m => m.AssignmentPartName, null, new { @class = "text-danger" })
+            @Html.EditorFor(m => m.AssignmentPartName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5 form-group">
+            @Html.LabelFor(m => m.Weight, new { @class = "control-label" })
+            @Html.ValidationMessageFor(m => m.Weight, null, new { @class = "text-danger" })
+            @Html.EditorFor(m => m.Weight, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-11 form-group">
+            @Html.LabelFor(m => m.AssignmentPartDescription, new { @class = "control-label" })
+            @Html.ValidationMessageFor(m => m.AssignmentPartDescription, null, new { @class = "text-danger" })
+            @Html.EditorFor(m => m.AssignmentPartDescription, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 form-group">
+            @Html.LabelFor(m => m.ProgrammingLanguageId, new { @class = "control-label" })
+            @Html.ValidationMessageFor(m => m.ProgrammingLanguageId, null, new { @class = "text-danger" })
+            @Html.DropDownListFor(m => m.ProgrammingLanguageId, (Model.ProgrammingLanguages as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+        </div>
+        <div class="col-md-1"></div>
+        <div class="product-attachments">
+            <div class="col-xs-5 form-group product-attachment">
+                @Html.LabelFor(m => m.AssignmentPartUploaded, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentPartUploaded, null, new { @class = "text-danger" })
+                @Html.TextBoxFor(m => m.AssignmentPartUploaded, new { type = "file", @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}

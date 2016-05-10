@@ -1,0 +1,24 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.AssignmentPartViewModel
+
+@{
+    ViewBag.Title = "Add test case";
+}
+
+<h2>AddPartToAssignment</h2>
+
+@using (Html.BeginForm("AddTestCaseToPart", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.AssignmentId)
+    @Html.HiddenFor(m => m.AssignmentPartId)
+    <div class="col-xs-6 form-group">
+        @Html.LabelFor(m => m.AssignmentTestCaseList[0].input, new { @class = "control-label" })
+        @Html.ValidationMessageFor(m => m.AssignmentTestCaseList[0].input)
+        @Html.TextAreaFor(m => m.AssignmentTestCaseList[0].input, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-xs-6 form-group">
+        @Html.LabelFor(m => m.AssignmentTestCaseList[0].output, new { @class = "control-label" })
+        @Html.ValidationMessageFor(m => m.AssignmentTestCaseList[0].output)
+        @Html.TextAreaFor(m => m.AssignmentTestCaseList[0].output, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
