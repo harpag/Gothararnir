@@ -11,6 +11,7 @@
             string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
             <tr>
                 <td>@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</td>
+                <td>@assignment.CourseName</td>
                 <td>@assignment.DueDate</td>
             </tr>
         }

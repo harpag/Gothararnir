@@ -56,7 +56,8 @@ namespace Mooshak2_Hopur5.Controllers
         {
             string userId = User.Identity.GetUserId();
             var viewModel = new CourseViewModel();
-            viewModel = _service.getAllUsersCourses(userId);
+            Session["CurrentSemesterId"] = _service.getCurrentSemester();
+            viewModel = _service.getAllUsersCoursesOnSemester(userId, int.Parse(Session["CurrentSemesterId"].ToString()));
             return View(viewModel);
         }
 

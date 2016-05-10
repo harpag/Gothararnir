@@ -416,6 +416,7 @@ namespace Mooshak2_Hopur5.Services
                                    join course in _db.Course on assign.courseId equals course.courseId
                                    join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
                                    where assign.dueDate >= DateTime.Now && userCourse.userId.Equals(userId)
+                                   orderby assign.dueDate descending
                                    select new { assign, course }).ToList();
 
             List<AssignmentViewModel> openAssignmentsList;
@@ -460,6 +461,7 @@ namespace Mooshak2_Hopur5.Services
                                      join course in _db.Course on assign.courseId equals course.courseId
                                      join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
                                      where assign.dueDate < DateTime.Now && userCourse.userId.Equals(userId)
+                                     orderby assign.dueDate descending
                                      select new { assign, course }).ToList();
 
             List<AssignmentViewModel> closedAssignmentsList;

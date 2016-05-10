@@ -17,10 +17,11 @@ namespace Mooshak2_Hopur5.Controllers
 
         public ActionResult Index()
         {
+            Session["CurrentSemesterId"] = _courseService.getCurrentSemester();
             var viewModel = new HomeViewModel();
             string userId = User.Identity.GetUserId();
-            viewModel.CourseList = _courseService.getAllUsersCourses(userId).CourseList;
-            viewModel.AssignmentList = _assignmentService.getAllAssignments().AssignmentList;
+            viewModel.CourseList = _courseService.getAllUsersCoursesOnSemester(userId, int.Parse(Session["CurrentSemesterId"].ToString())).CourseList;
+            viewModel.AssignmentList = _assignmentService.getAllUserAssignmentsOnSemester(userId, int.Parse(Session["CurrentSemesterId"].ToString())).AssignmentList;
             viewModel.AnnouncementList = _announcementService.getAllAnnouncements().AnnouncementList;
             return View(viewModel);
         }
