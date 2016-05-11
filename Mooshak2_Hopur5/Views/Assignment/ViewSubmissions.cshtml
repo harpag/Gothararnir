@@ -1,0 +1,30 @@
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.SubmissionViewModel
+
+@{
+    ViewBag.Title = "ViewSubmissions";
+}
+
+<h2>ViewSubmissions</h2>
+
+<div>Members in course: @Model.UserList.Count.ToString() </div>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Accepted</th>
+                <th>Submissions count</th>
+            </tr>
+        </thead>
+        @foreach (var user in Model.UserList)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.Success.ToString()</td>
+                <td>@user.SubmissionCount</td>
+            </tr>
+        }
+    </table>
+</div>

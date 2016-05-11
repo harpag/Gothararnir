@@ -7,6 +7,7 @@ namespace Mooshak2_Hopur5.Models.ViewModels
 {
     public class UserViewModel
     {
+        public string id { get; set; }
         public int UserId { get; set; }
         public int UserTypeId { get; set; }
         public string Name { get; set; }

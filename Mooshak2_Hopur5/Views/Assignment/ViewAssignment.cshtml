@@ -101,5 +101,11 @@
                 <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
             </div>
         }
-    </div>
+
+
+            <div class="row">
+                @Html.ActionLink("View submissions", "ViewSubmissions", "Assignment", new { assignmentId = Model.AssignmentId, courseId = Model.CourseId }, new { @class = "btn btn-small btn-assignment" })
+            </div>
+        
+            </div>
 </div>
