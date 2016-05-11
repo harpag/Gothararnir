@@ -204,9 +204,9 @@ namespace Mooshak2_Hopur5.Controllers
             return RedirectToAction("ViewAssignment", "Assignment", new { id = viewModel.AssignmentId });
         }
 
-        public ActionResult DownloadAssignment(string path, string contentType, string fileName )
+        public ActionResult DownloadFile(string path, string contentType, string fileName )
         {
-            return File(path, contentType, Server.UrlEncode(fileName));
+            return File(path, contentType, Server.UrlEncode(fileName + "." + path.Split('.')[1]));
         }
 
         [HttpPost]

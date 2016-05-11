@@ -25,15 +25,13 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public List<AssignmentPartViewModel> AssignmentPartList { get; set; }
         public List<AssignmentTestCase> AssignmentTestCaseList { get; set; }
         public IEnumerable<SelectListItem> ProgrammingLanguages { get; set; }
-        public string File { get; set; }
+        public AssignmentPartFile File { get; set; }
 
         #region extra properties
-
-
+        
         [DisplayName("Attachment")]
         public HttpPostedFileBase AssignmentPartUploaded { get; set; }
-
-
+        
         #endregion
     }
 }

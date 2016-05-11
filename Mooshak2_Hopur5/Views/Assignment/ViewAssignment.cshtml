@@ -17,7 +17,7 @@
         </table>
         @if (Model.File.path != null)
         {
-            @Html.ActionLink("Download assignment", "DownloadAssignment", "Assignment", new { path = @Model.File.path, contentType = @Model.File.fileType, fileName = @Model.AssignmentName }, new { @class = "btn btn-small btn-assignment" })
+            @Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @Model.File.path, contentType = @Model.File.fileType, fileName = @Model.AssignmentName }, new { @class = "glyphicon glyphicon-file" })
         }
         <h3>Parts</h3>
         @if (Model.AssignmentPartList.Any())
@@ -30,6 +30,7 @@
                             <th>Description</th>
                             <th>Weight of part</th>
                             <th>Max submission</th>
+                            <th>File</th>
                             @if (User.IsInRole("Teacher"))
                             {
                                 <th></th>
@@ -44,6 +45,14 @@
                             <td>@Model.AssignmentPartList[i].AssignmentPartDescription</td>
                             <td>Weight of part: @Model.AssignmentPartList[i].Weight %</td>
                             <td>Max submissions: @Model.AssignmentPartList[i].ProgrammingLanguageId</td>
+                            @if (Model.AssignmentPartList[i].File.path != null)
+                            {
+                                <td>@Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @Model.AssignmentPartList[i].File.path, contentType = @Model.AssignmentPartList[i].File.fileType, fileName = @Model.AssignmentPartList[i].AssignmentPartName }, new { @class = "glyphicon glyphicon-file" })</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
                             @*<td>@Html.ActionLink("View test cases", "ViewTestCases", "Assignment", new { partId = Model.AssignmentPartList[i].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-course" })</td>*@
                             @if (User.IsInRole("Teacher"))
                             {
@@ -122,15 +131,15 @@
                             @Html.DropDownListFor(m => m.UserAssignment.userGroupId, (Model.UserGroups as SelectList), string.Empty, new { @class = "form-control", data_placeholder = "Agent(s)." })
                         </div>
                     </div>
-                        <div class="row">
-                            @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
-                            @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
-                            @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
-                            @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
-                            @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
-                            <div class="col-md-9"></div>
-                            <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
-                        </div>
+                    <div class="row">
+                        @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
+                        <div class="col-md-9"></div>
+                        <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
+                    </div>
                 }
             }
             else
