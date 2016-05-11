@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Mooshak2_Hopur5.Models;
 using System.Web.Security;
+using Mooshak2_Hopur5.Services;
 
 namespace Mooshak2_Hopur5.Controllers
 {
@@ -19,6 +20,7 @@ namespace Mooshak2_Hopur5.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private CourseService _courseService = new CourseService();
 
         public AccountController()
         {
@@ -82,6 +84,7 @@ namespace Mooshak2_Hopur5.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    Session["CurrentSemesterId"] = _courseService.getCurrentSemester();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

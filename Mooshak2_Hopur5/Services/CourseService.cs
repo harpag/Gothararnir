@@ -56,23 +56,25 @@ namespace Mooshak2_Hopur5.Services
         public CourseViewModel getAllCourses()
         {
             //Sæki öll gögn í Course(áfanga) töfluna
-            var courses = _db.Course.ToList();
-            
+            var allCourses = (from courses in _db.Course
+                               join semester in _db.Semester on courses.semesterId equals semester.semesterId
+                               select new { semester, courses }).Distinct().ToList().OrderByDescending(x => x.semester.dateFrom);
             //Bý til lista af áföngum(CourseViewModel)
             List<CourseViewModel> courseList;
             courseList = new List<CourseViewModel>();
 
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
-            foreach(var entity in courses)
+            foreach(var entity in allCourses)
             {
                 //var courseUsers = getAllUsersInCourse(entity.courseId);
-                var courseTeachers = getAllTeachersInCourse(entity.courseId);
+                var courseTeachers = getAllTeachersInCourse(entity.courses.courseId);
                 var result = new CourseViewModel
                 {
-                    CourseId = entity.courseId,
-                    CourseName = entity.courseName,
-                    CourseNumber = entity.courseNumber,
-                    SemesterId = entity.semesterId,
+                    CourseId = entity.courses.courseId,
+                    CourseName = entity.courses.courseName,
+                    CourseNumber = entity.courses.courseNumber,
+                    SemesterId = entity.courses.semesterId,
+                    SemesterName = entity.semester.semesterName,
                     //UserList = courseUsers.UserList,
                     TeacherList = courseTeachers.TeacherList
                 };
@@ -134,8 +136,10 @@ namespace Mooshak2_Hopur5.Services
             //Sæki alla áfanga sem nemandi með ID userId er skráður í 
             var userCourses =  (from courses in _db.Course
                                 join userCourse in _db.UserCourse on courses.courseId equals userCourse.courseId
+                                join semester in _db.Semester on courses.semesterId equals semester.semesterId
                                 where userCourse.userId == userId
-                                select courses).Distinct().ToList();
+                                orderby semester.dateTo
+                                select new { semester, courses }).Distinct().ToList().OrderByDescending(x => x.semester.dateFrom); 
 
             //Bý til lista af áföngum(CourseViewModel)
             List<CourseViewModel> courseList;
@@ -145,13 +149,14 @@ namespace Mooshak2_Hopur5.Services
             foreach (var entity in userCourses)
             {
                 //var courseUsers = getAllUsersInCourse(entity.courseId);
-                var courseTeachers = getAllTeachersInCourse(entity.courseId);
+                var courseTeachers = getAllTeachersInCourse(entity.courses.courseId);
                 var result = new CourseViewModel
                 {
-                    CourseId = entity.courseId,
-                    CourseName = entity.courseName,
-                    CourseNumber = entity.courseNumber,
-                    SemesterId = entity.semesterId,
+                    CourseId = entity.courses.courseId,
+                    CourseName = entity.courses.courseName,
+                    CourseNumber = entity.courses.courseNumber,
+                    SemesterId = entity.courses.semesterId,
+                    SemesterName = entity.semester.semesterNumber,
                     //UserList = courseUsers.UserList,
                     TeacherList = courseTeachers.TeacherList
                 };
@@ -189,7 +194,9 @@ namespace Mooshak2_Hopur5.Services
                 var result = new CourseViewModel
                 {
                     CourseName = entity.courseName,
-                    CourseNumber = entity.courseNumber
+                    CourseNumber = entity.courseNumber,
+                    SemesterId = entity.semesterId,
+                    CourseId = entity.courseId
                 };
                 courseList.Add(result);
             }
@@ -456,7 +463,7 @@ namespace Mooshak2_Hopur5.Services
             }
         }
 
-        //Breyta ákveðnum áfanga
+        //Breyta önn
         public SemesterViewModel editSemester(SemesterViewModel semesterToChange)
         {
             // Sæki færsluna sem á að breyta í gagnagrunninn
@@ -483,6 +490,26 @@ namespace Mooshak2_Hopur5.Services
             }
             return semesterToChange;
         }
+
+        public int getCurrentSemester()
+        {
+            //Sæki núverandi önn
+            var semester = (from Semester in _db.Semester
+                            where DateTime.Now >= Semester.dateFrom && DateTime.Now <=Semester.dateTo
+                            select Semester).SingleOrDefault();
+
+            //Kasta villu ef ekki fannst verkefni með þessu ID-i
+            if (semester == null)
+            {
+                //TODO: Kasta villu
+                return 0;
+            }
+            else
+            {
+                return semester.semesterId;
+            }
+        }
+
 
     }
 }

@@ -1,0 +1,217 @@
+//----------------------------------------------------------------------------
+//
+//  $Id: PreviewAndPrintLabel.js 11419 2010-04-07 21:18:22Z vbuzuev $ 
+//
+// Project -------------------------------------------------------------------
+//
+//  DYMO Label Framework
+//
+// Content -------------------------------------------------------------------
+//
+//  DYMO Label Framework JavaScript Library Samples: Print label
+//
+//----------------------------------------------------------------------------
+//
+//  Copyright (c), 2010, Sanford, L.P. All Rights Reserved.
+//
+//----------------------------------------------------------------------------
+
+function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
+function PrintLabelBarcode(sName, sCompany, sContact, sArrival, sDepartmentcode, sBarcodeId, sComments, sReceptionName, sExtra) {
+    var today = new Date();
+    var date = addZero(today.getDate());
+    var month = addZero(today.getMonth() + 1);
+    var year = today.getFullYear();
+    var hours = addZero(today.getHours());
+    var minutes = addZero(today.getMinutes());
+    today = date + '.' + month + '.' + year + ' ' + hours + ':' + minutes + ':00';
+    sArrival = today;
+    try {
+
+                // open label
+                //Setja inn það label sem sérhvert fyrirtæki er að nota.
+        var labelXml = '<?xml version="1.0" encoding="utf-8"?>\
+<DieCutLabel Version="8.0" Units="twips">\
+	<PaperOrientation>Landscape</PaperOrientation>\
+	<Id>LargeAddress</Id>\
+	<PaperName>30321 Large Address</PaperName>\
+	<DrawCommands>\
+		<RoundRectangle X="0" Y="0" Width="2025" Height="5020" Rx="270" Ry="270" />\
+	</DrawCommands>\
+	<ObjectInfo>\
+		<TextObject>\
+			<Name>TEXT</Name>\
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />\
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />\
+			<LinkedObjectName></LinkedObjectName>\
+			<Rotation>Rotation0</Rotation>\
+			<IsMirrored>False</IsMirrored>\
+			<IsVariable>False</IsVariable>\
+			<HorizontalAlignment>Left</HorizontalAlignment>\
+			<VerticalAlignment>Top</VerticalAlignment>\
+			<TextFitMode>ShrinkToFit</TextFitMode>\
+			<UseFullFontHeight>True</UseFullFontHeight>\
+			<Verticalized>False</Verticalized>\
+			<StyledText>\
+				<Element>\
+					<String>Nafn: ' + sName + ' </String>\
+					<Attributes>\
+						<Font Family="Arial" Size="12" Bold="True" Italic="False" Underline="False" Strikeout="False" />\
+						<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />\
+					</Attributes>\
+				</Element>\
+			</StyledText>\
+		</TextObject>\
+		<Bounds X="322" Y="186.850402832031" Width="4613" Height="293.503936767578" />\
+	</ObjectInfo>\
+	<ObjectInfo>\
+		<TextObject>\
+			<Name>TEXT_1</Name>\
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />\
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />\
+			<LinkedObjectName></LinkedObjectName>\
+			<Rotation>Rotation0</Rotation>\
+			<IsMirrored>False</IsMirrored>\
+			<IsVariable>False</IsVariable>\
+			<HorizontalAlignment>Left</HorizontalAlignment>\
+			<VerticalAlignment>Top</VerticalAlignment>\
+			<TextFitMode>ShrinkToFit</TextFitMode>\
+			<UseFullFontHeight>True</UseFullFontHeight>\
+			<Verticalized>False</Verticalized>\
+			<StyledText>\
+				<Element>\
+					<String>Fyrirt&#230;ki: ' + sCompany + '</String>\
+					<Attributes>\
+						<Font Family="Arial" Size="12" Bold="False" Italic="False" Underline="False" Strikeout="False" />\
+						<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />\
+					</Attributes>\
+				</Element>\
+			</StyledText>\
+		</TextObject>\
+		<Bounds X="322" Y="508.700805664063" Width="3288.18896484375" Height="293.503936767578" />\
+	</ObjectInfo>\
+	<ObjectInfo>\
+		<TextObject>\
+			<Name>TEXT__1</Name>\
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />\
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />\
+			<LinkedObjectName></LinkedObjectName>\
+			<Rotation>Rotation0</Rotation>\
+			<IsMirrored>False</IsMirrored>\
+			<IsVariable>False</IsVariable>\
+			<HorizontalAlignment>Left</HorizontalAlignment>\
+			<VerticalAlignment>Top</VerticalAlignment>\
+			<TextFitMode>ShrinkToFit</TextFitMode>\
+			<UseFullFontHeight>True</UseFullFontHeight>\
+			<Verticalized>False</Verticalized>\
+			<StyledText>\
+				<Element>\
+					<String>Tengili&#240;ur: ' + sContact + '</String>\
+					<Attributes>\
+						<Font Family="Arial" Size="12" Bold="False" Italic="False" Underline="False" Strikeout="False" />\
+						<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />\
+					</Attributes>\
+				</Element>\
+			</StyledText>\
+		</TextObject>\
+		<Bounds X="322" Y="830.551147460938" Width="3288.18896484375" Height="338.503936767578" />\
+	</ObjectInfo>\
+	<ObjectInfo>\
+		<TextObject>\
+			<Name>TEXT___1</Name>\
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />\
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />\
+			<LinkedObjectName></LinkedObjectName>\
+			<Rotation>Rotation0</Rotation>\
+			<IsMirrored>False</IsMirrored>\
+			<IsVariable>False</IsVariable>\
+			<HorizontalAlignment>Left</HorizontalAlignment>\
+			<VerticalAlignment>Top</VerticalAlignment>\
+			<TextFitMode>ShrinkToFit</TextFitMode>\
+			<UseFullFontHeight>True</UseFullFontHeight>\
+			<Verticalized>False</Verticalized>\
+			<StyledText>\
+				<Element>\
+					<String>Komut&#237;mi: ' + sArrival + '</String>\
+					<Attributes>\
+						<Font Family="Arial" Size="8" Bold="False" Italic="False" Underline="False" Strikeout="False" />\
+						<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />\
+					</Attributes>\
+				</Element>\
+			</StyledText>\
+		</TextObject>\
+		<Bounds X="322" Y="1241.49609375" Width="3288.18896484375" Height="278.50390625" />\
+	</ObjectInfo>\
+	<ObjectInfo>\
+		<TextObject>\
+			<Name>TEXT_2</Name>\
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />\
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />\
+			<LinkedObjectName></LinkedObjectName>\
+			<Rotation>Rotation0</Rotation>\
+			<IsMirrored>False</IsMirrored>\
+			<IsVariable>False</IsVariable>\
+			<HorizontalAlignment>Left</HorizontalAlignment>\
+			<VerticalAlignment>Top</VerticalAlignment>\
+			<TextFitMode>ShrinkToFit</TextFitMode>\
+			<UseFullFontHeight>True</UseFullFontHeight>\
+			<Verticalized>False</Verticalized>\
+			<StyledText>\
+				<Element>\
+					<String>' + sExtra + '</String>\
+					<Attributes>\
+						<Font Family="Arial" Size="12" Bold="False" Italic="False" Underline="False" Strikeout="False" />\
+						<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />\
+					</Attributes>\
+				</Element>\
+			</StyledText>\
+		</TextObject>\
+		<Bounds X="322" Y="1580" Width="3795" Height="360" />\
+	</ObjectInfo>\
+</DieCutLabel>';
+                var label = dymo.label.framework.openLabelXml(labelXml);
+                // set label text
+                //label.setObjectText("arrival", arrival);
+                //label.setObjectText("BARCODE", "..vi" + sBarcodeId + "vi..");
+                // select printer to print on
+                // for simplicity sake just use the first LabelWriter printer
+                var printers = dymo.label.framework.getPrinters();
+                //if (printers.length == 0)
+                    //throw "No DYMO printers are installed. Install DYMO printers.";
+
+                var printerName = "";
+                for (var i = 0; i < printers.length; ++i) {
+                    var printer = printers[i];
+                    if (printer.printerType == "LabelWriterPrinter") {
+                        printerName = printer.name;  //"DYMO LabelWriter 330 Turbo-USB"; printer.name; 
+                        break;
+                    }
+                }
+
+                //if (printerName == "")
+                    //throw "No LabelWriter printers found. Install LabelWriter printer";
+
+                // finally print the label
+                label.print(printerName);
+            }
+            catch (e) {
+                //alert(e.message || e);
+            }
+        };
+    //};
+
+//    // register onload event
+//    if (window.addEventListener)
+//        window.addEventListener("load", onload, false);
+//    else if (window.attachEvent)
+//        window.attachEvent("onload", onload);
+//    else
+//        window.onload = onload;
+
+//} ());

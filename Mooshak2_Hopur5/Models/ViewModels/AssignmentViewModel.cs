@@ -36,6 +36,8 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         [Required]
         public DateTime? DueDate { get; set; }
         public int? GradePublished { get; set; }
+        [DisplayName("User group")]
+        public int UserGroupId { get; set; }
         public List<AssignmentViewModel> AssignmentList { get; set; }
         public List<AssignmentViewModel> OpenAssignmentList { get; set; }
         public List<AssignmentViewModel> ClosedAssignmentList { get; set; }
@@ -44,9 +46,12 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public List<Discussion> DiscussionsList { get; set; }
         public UserAssignment UserAssignment {get; set;}
         public Submission UserSubmission { get; set; }
+        public AssignmentFile File { get; set; }
         public IEnumerable<SelectListItem> UserCourses { get; set; }
         public IEnumerable<SelectListItem> ProgrammingLanguages { get; set; }
         public IEnumerable<SelectListItem> AssignmentParts { get; set; }
+        public IEnumerable<SelectListItem> UserGroups { get; set; }
+
         #region extra properties
 
 

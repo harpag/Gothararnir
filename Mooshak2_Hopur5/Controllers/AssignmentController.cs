@@ -180,10 +180,13 @@ namespace Mooshak2_Hopur5.Controllers
 
             var viewModel = _service.getAssignmentById(id.Value);
             string userId = User.Identity.GetUserId();
-            if(User.IsInRole("Student"))
+            viewModel.File = _service.getAssignmentFile(id.Value);
+            if (User.IsInRole("Student"))
             {
                 viewModel.UserAssignment =_service.getUserAssignmentById(userId, id.Value);
                 viewModel.AssignmentSubmissionsList = _service.getUsersSubmissions(userId, id.Value);
+                viewModel.File = _service.getAssignmentFile(id.Value);
+                viewModel.UserGroups = _service.getUserGroups(userId, viewModel.CourseId).UserGroups;
             }
             return View(viewModel);
         }
@@ -198,12 +201,12 @@ namespace Mooshak2_Hopur5.Controllers
                 _service.studentSubmitsAssignment(viewModel, serverPath);
             }
 
-            return RedirectToAction("GetAllAssignments", "ViewAssignment", "Assignment", new { id = viewModel.AssignmentId });
+            return RedirectToAction("ViewAssignment", "Assignment", new { id = viewModel.AssignmentId });
         }
 
-        private ActionResult RedirectToAction(string v1, string v2, string v3, object p)
+        public ActionResult DownloadFile(string path, string contentType, string fileName )
         {
-            throw new NotImplementedException();
+            return File(path, contentType, Server.UrlEncode(fileName + "." + path.Split('.')[1]));
         }
 
         [HttpPost]

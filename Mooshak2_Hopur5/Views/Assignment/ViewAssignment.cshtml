@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "ViewAssignment";
+    int i = 0;
 }
 
 <h2>Assignment overview: @Model.AssignmentName</h2>
@@ -14,6 +15,10 @@
             <tr><td>Deadline: @Model.DueDate</td></tr>
             <tr><td>Max submissions: @Model.MaxSubmission</td></tr>
         </table>
+        @if (Model.File.path != null)
+        {
+            @Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @Model.File.path, contentType = @Model.File.fileType, fileName = @Model.AssignmentName }, new { @class = "glyphicon glyphicon-file" })
+        }
         <h3>Parts</h3>
         @if (Model.AssignmentPartList.Any())
         {
@@ -25,10 +30,14 @@
                             <th>Description</th>
                             <th>Weight of part</th>
                             <th>Max submission</th>
-                            <th></th>
+                            <th>File</th>
+                            @if (User.IsInRole("Teacher"))
+                            {
+                                <th></th>
+                            }
                         </tr>
                     </thead>
-                    @for (int i = 0; i < Model.AssignmentPartList.Count; i++)
+                    @for (int j = 0; j < Model.AssignmentPartList.Count; j++)
                     {
 
                         <tr>
@@ -36,76 +45,113 @@
                             <td>@Model.AssignmentPartList[i].AssignmentPartDescription</td>
                             <td>Weight of part: @Model.AssignmentPartList[i].Weight %</td>
                             <td>Max submissions: @Model.AssignmentPartList[i].ProgrammingLanguageId</td>
+                            @if (Model.AssignmentPartList[i].File.path != null)
+                            {
+                                <td>@Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @Model.AssignmentPartList[i].File.path, contentType = @Model.AssignmentPartList[i].File.fileType, fileName = @Model.AssignmentPartList[i].AssignmentPartName }, new { @class = "glyphicon glyphicon-file" })</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
                             @*<td>@Html.ActionLink("View test cases", "ViewTestCases", "Assignment", new { partId = Model.AssignmentPartList[i].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-course" })</td>*@
-                            <td>@Html.ActionLink("Add test case", "AddTestCaseToPart", "Assignment", new { partId = Model.AssignmentPartList[i].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })</td>
+                            @if (User.IsInRole("Teacher"))
+                            {
+                                <td>@Html.ActionLink("Add test case", "AddTestCaseToPart", "Assignment", new { partId = Model.AssignmentPartList[i].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })</td>
+                            }
                         </tr>
                     }
                 </table>
             </div>
         }
-        @Html.ActionLink("Add part", "AddPartToAssignment", "Assignment", new { id = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })
-    </div>
-    <div class="studentSubmissions">
-        <h3>My submissions</h3>
-        @if (Model.AssignmentSubmissionsList != null)
+        @if (User.IsInRole("Teacher"))
         {
-            <table>
-                <thead>
-                    <tr>
-                        <td>Submission id</td>
-                        <td>Assignment part</td>
-                        <td>Comment</td>
-                        <td>Accepted</td>
-                        <td>Number of sucess test cases</td>
-                        <td>Test case failed</td>
-                        <td>Error</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.AssignmentSubmissionsList)
-                {
-                        <tr>
-                            <td>@item.submissionId</td>
-                            <td>@item.assignmentPartId</td>
-                            <td>@item.submissionComment</td>
-                            <td>@item.accepted</td>
-                            <td>@item.numberOfSucessTestCases</td>
-                            <td>@item.testCaseFailId</td>
-                            <td>@item.error</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            @Html.ActionLink("Add part", "AddPartToAssignment", "Assignment", new { id = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })
         }
-        @using (Html.BeginForm("ViewAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-        {
-            <div id="row">
-                <div class="col-md-6">
-                    @Html.LabelFor(m => m.SubmissionUploaded, new { @class = "control-label" })
-                    @Html.ValidationMessageFor(m => m.UserSubmission.assignmentPartId)
-                    @Html.DropDownListFor(m => m.UserSubmission.assignmentPartId, (Model.AssignmentParts as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
-                </div>
-                <div class="col-md-6 product-attachment">
-                    @Html.LabelFor(m => m.SubmissionUploaded, new { @class = "control-label" })
-                    @Html.ValidationMessageFor(m => m.SubmissionUploaded)
-                    @Html.TextBoxFor(m => m.SubmissionUploaded, new { type = "file", @class = "form-control" })
-                </div>
-            </div>
-            <div class="row">
-                @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
-                @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
-                @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
-                @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
-                @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
-                <div class="col-md-9"></div>
-                <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
-            </div>
-        }
-
-
+		
             <div class="row">
                 @Html.ActionLink("View submissions", "ViewSubmissions", "Assignment", new { assignmentId = Model.AssignmentId, courseId = Model.CourseId }, new { @class = "btn btn-small btn-assignment" })
             </div>
         
             </div>
+    </div>
+    @if (User.IsInRole("Student"))
+    {
+        <div class="studentSubmissions">
+            <h3>My submissions</h3>
+            @if (Model.AssignmentSubmissionsList != null)
+            {
+                <table class="table">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>Submission id</th>
+                            <th>Assignment part</th>
+                            <th>Comment</th>
+                            <th>Number of sucess test cases</th>
+                            <th>Test case failed</th>
+                            <th>Status</th>
+                            <th>Accepted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.AssignmentSubmissionsList)
+                        {
+                            i++;
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.assignmentPartId</td>
+                                <td>@item.submissionComment</td>
+                                <td>@item.numberOfSucessTestCases</td>
+                                <td>@item.testCaseFailId</td>
+                                <td>@item.error</td>
+                                @if (item.accepted != null && item.accepted == 1)
+                                {
+                                    <td><span class="glyphicon glyphicon-thumbs-up text-success"></span></td>
+                                }
+                                else
+                                {
+                                    <td><span class="glyphicon glyphicon-thumbs-down text-danger"></span></td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            @if (Model.DueDate > DateTime.Now)
+            {
+                using (Html.BeginForm("ViewAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                {
+                    <div id="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.UserSubmission.assignmentPartId, new { @class = "control-label" })
+                            @Html.ValidationMessageFor(m => m.UserSubmission.assignmentPartId)
+                            @Html.DropDownListFor(m => m.UserSubmission.assignmentPartId, (Model.AssignmentParts as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+                        </div>
+                        <div class="col-md-6 product-attachment">
+                            @Html.LabelFor(m => m.SubmissionUploaded, new { @class = "control-label" })
+                            @Html.ValidationMessageFor(m => m.SubmissionUploaded)
+                            @Html.TextBoxFor(m => m.SubmissionUploaded, new { type = "file", @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.UserAssignment.userGroupId, new { @class = "control-label" })
+                            @Html.ValidationMessageFor(m => m.UserAssignment.userGroupId)
+                            @Html.DropDownListFor(m => m.UserAssignment.userGroupId, (Model.UserGroups as SelectList), string.Empty, new { @class = "form-control", data_placeholder = "Agent(s)." })
+                        </div>
+                    </div>
+                    <div class="row">
+                        @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
+                        <div class="col-md-9"></div>
+                        <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>Deadline has expired</p>
+            }
+        </div>
+    }
 </div>

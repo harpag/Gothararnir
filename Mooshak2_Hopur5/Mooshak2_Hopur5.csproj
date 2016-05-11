@@ -251,7 +251,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AnnouncementService.cs" />
     <Compile Include="Services\AssignmentService.cs" />
-    <Compile Include="Services\SemesterService.cs" />
     <Compile Include="Services\CourseService.cs" />
     <Compile Include="Services\UserGroupService.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -263,6 +262,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\Mooshak.png" />
+    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -279,6 +279,9 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.datetimepicker.full.min.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
+    <Content Include="Scripts\jquery.datetimepicker.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -326,8 +329,6 @@
     <Content Include="Views\Course\ViewCourse.cshtml" />
     <Content Include="Views\Course\GetAllCourses.cshtml" />
     <Content Include="Views\Course\GetAllCoursesOnSemester.cshtml" />
-    <Content Include="Views\Course\GetAllUserCourses.cshtml" />
-    <Content Include="Views\Course\GetAllUserCoursesOnSemester.cshtml" />
     <Content Include="Views\User\GetUser.cshtml" />
     <Content Include="Views\Announcement\GetAllAnnouncements.cshtml" />
     <Content Include="Views\Announcement\GetAnnouncement.cshtml" />

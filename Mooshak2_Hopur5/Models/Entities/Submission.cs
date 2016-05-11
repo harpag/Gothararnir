@@ -2,6 +2,7 @@ namespace Mooshak2_Hopur5.Models.Entities
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -10,7 +11,7 @@ namespace Mooshak2_Hopur5.Models.Entities
     public partial class Submission
     {
         public int submissionId { get; set; }
-
+        [DisplayName("Assignment part")]
         public int assignmentPartId { get; set; }
 
         public int userAssignmentId { get; set; }
