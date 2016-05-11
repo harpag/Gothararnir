@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/jquery.datetimepicker.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -83,10 +84,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.datetimepicker.full.min.js" ></script>
     @RenderSection("scripts", required: false)
-    <script src="~/Scripts/custom.js"></script>
-    
+    <script src="~/Scripts/custom.js"></script>    
 </body>
-
-
 </html>

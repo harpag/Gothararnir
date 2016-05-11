@@ -207,5 +207,21 @@ namespace Mooshak2_Hopur5.Controllers
         {
             return File(path, contentType, Server.UrlEncode(fileName));
         }
+
+        [HttpPost]
+        public ActionResult EditAssignment(AssignmentViewModel newAssignment)
+        {
+            _service.editAssignment(newAssignment);
+
+            return RedirectToAction("GetAllAssignments");
+
+        }
+
+        [HttpGet]
+        public ActionResult EditAssignment(int id)
+        {
+            var viewModel = _service.getAssignmentById(id);
+            return View(viewModel);
+        }
     }
 }
