@@ -130,6 +130,11 @@
                             @Html.ValidationMessageFor(m => m.UserAssignment.userGroupId)
                             @Html.DropDownListFor(m => m.UserAssignment.userGroupId, (Model.UserGroups as SelectList), string.Empty, new { @class = "form-control", data_placeholder = "Agent(s)." })
                         </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.UserSubmission.submissionComment, new { @class = "control-label" })
+                            @Html.ValidationMessageFor(m => m.UserSubmission.submissionComment)
+                            @Html.TextBoxFor(m => m.UserSubmission.submissionComment, new { type = "file", @class = "form-control" })
+                        </div>
                     </div>
                     <div class="row">
                         @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
