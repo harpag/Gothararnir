@@ -245,6 +245,7 @@
     <Compile Include="Models\ViewModels\CourseViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
     <Compile Include="Models\ViewModels\SemesterViewModel.cs" />
+    <Compile Include="Models\ViewModels\SubmissionViewModel.cs" />
     <Compile Include="Models\ViewModels\UserGroupViewModel.cs" />
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -357,6 +358,7 @@
     <Content Include="Views\UserGroup\Details.cshtml" />
     <Content Include="Views\UserGroup\Edit.cshtml" />
     <Content Include="Views\UserGroup\Index.cshtml" />
+    <Content Include="Views\Assignment\ViewSubmissions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -224,5 +224,28 @@ namespace Mooshak2_Hopur5.Controllers
             var viewModel = _service.getAssignmentById(id);
             return View(viewModel);
         }
+
+
+        public ActionResult ViewSubmissions(int? assignmentId, int? courseId)
+
+        {
+            if (assignmentId.HasValue == false)
+            {
+                return View("NotFound");
+            }
+
+            /*if (User.IsInRole("Student"))
+            {
+                viewModel.UserAssignment = _service.getUserAssignmentById(userId, id.Value);
+                viewModel.AssignmentSubmissionsList = _service.getUsersSubmissions(userId, id.Value);
+            }*/
+
+
+            var viewModel = _courseService.getAllUsersInCourse((int)courseId, (int)assignmentId);
+            return View(viewModel);
+        }
+
+
     }
+
 }

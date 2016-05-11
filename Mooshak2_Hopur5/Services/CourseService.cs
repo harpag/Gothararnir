@@ -212,34 +212,64 @@ namespace Mooshak2_Hopur5.Services
         }
 
         //Sækir alla notendur sem eru skráðir í ákveðin áfanga
-        public CourseViewModel getAllUsersInCourse(int courseId)
+        public SubmissionViewModel getAllUsersInCourse(int courseId, int assignmentId)
         {
             //Sæki alla áfanga sem nemandi með ID userId er skráður í á önn semesterId
             var users = (from courses in _db.Course
-                               join userCourse in _db.UserCourse on courses.courseId equals userCourse.courseId
-                               //join user in _db.Identity on userCourse.userId equals user.userId
-                               where courses.courseId == courseId
-                               select userCourse).ToList();
+                         join userCourse in _db.UserCourse on courses.courseId equals userCourse.courseId
+                         join anUser in _db.AspNetUsers on userCourse.userId equals anUser.Id
+                         where courses.courseId == courseId
+                         select new { anUser, userCourse }).ToList();
 
             //Bý til lista af notendur(UserViewModel)
-            List<UserViewModel> userList;
-            userList = new List<UserViewModel>();
+            List<SubmissionViewModel> userList;
+            userList = new List<SubmissionViewModel>();
 
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
             foreach (var entity in users)
             {
-                var result = new UserViewModel
+                UserAssignment userAssignment = (from userAssignments in _db.UserAssignment
+                                                where userAssignments.assignmentId == assignmentId
+                                               && userAssignments.userId == entity.anUser.Id
+                                                select userAssignments).SingleOrDefault();
+
+                // = userAssignment.userAssignmentList == null
+                int iCount = 0;
+                bool bSuccess = false;
+                if (userAssignment != null)
                 {
-                    //Todo vildi ekki ger til að conflicta ekki við Bríet
+                    var submissions = (from a in _db.Submission
+                                      where a.userAssignmentId.Equals(userAssignment.userAssignmentId)
+                                      select a);
+                    iCount = submissions.Count();
+
+                    int? iAcc = null;
+                    if (iCount > 0)
+                        iAcc = submissions.Sum(s => s.accepted);
+
+                    if (iAcc != null)
+                        bSuccess = iAcc > 0;
+                }
+
+                var result = new SubmissionViewModel
+                {
+                    Email = entity.anUser.Email,
+                    UserName = entity.anUser.UserName,
+                    UserId = entity.anUser.Id,
+                    SubmissionCount = iCount,
+                    Success = bSuccess
                 };
                 userList.Add(result);
             }
 
             //Bý til nýtt CourseViewModel og set listann inn í það
-            CourseViewModel viewModel = new CourseViewModel
+            /*CourseViewModel viewModel = new CourseViewModel
             {
                 UserList = userList
-            };
+            };*/
+
+            SubmissionViewModel viewModel = new SubmissionViewModel();
+            viewModel.UserList = userList;
 
             //Returna viewModelinu með listanum
             return viewModel;

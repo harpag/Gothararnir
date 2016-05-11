@@ -67,6 +67,12 @@
         {
             @Html.ActionLink("Add part", "AddPartToAssignment", "Assignment", new { id = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })
         }
+		
+            <div class="row">
+                @Html.ActionLink("View submissions", "ViewSubmissions", "Assignment", new { assignmentId = Model.AssignmentId, courseId = Model.CourseId }, new { @class = "btn btn-small btn-assignment" })
+            </div>
+        
+            </div>
     </div>
     @if (User.IsInRole("Student"))
     {
