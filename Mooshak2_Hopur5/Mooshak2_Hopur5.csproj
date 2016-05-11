@@ -282,6 +282,7 @@
     <Content Include="Scripts\jquery.datetimepicker.full.min.js" />
     <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.datetimepicker.min.js" />
+    <Content Include="Scripts\jquery.tablesorter.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -358,7 +359,12 @@
     <Content Include="Views\UserGroup\Edit.cshtml" />
     <Content Include="Views\UserGroup\Index.cshtml" />
     <Content Include="Views\Assignment\ViewSubmissions.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Assignment\ViewUserSubmissions.cshtml" />
+=======
+    <Content Include="Views\Assignment\EditAssignment.cshtml" />
+    <Content Include="Views\Assignment\EditAssignmentPart.cshtml" />
+>>>>>>> 3c8edcd19ec54c882a4703ea9bdd7e94310a296a
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

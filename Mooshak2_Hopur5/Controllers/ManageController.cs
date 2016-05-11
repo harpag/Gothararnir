@@ -242,6 +242,7 @@ namespace Mooshak2_Hopur5.Controllers
             return View(model);
         }
 
+
         //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
@@ -253,7 +254,7 @@ namespace Mooshak2_Hopur5.Controllers
         // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
+        public async Task<ActionResult> ChangeUserPassword(SetPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {

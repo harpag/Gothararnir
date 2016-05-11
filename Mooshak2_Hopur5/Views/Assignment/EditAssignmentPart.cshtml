@@ -1,15 +1,16 @@
 ﻿@model  Mooshak2_Hopur5.Models.ViewModels.AssignmentPartViewModel
 
 @{
-    ViewBag.Title = "Add assignment part";
+    ViewBag.Title = "Edit assignment part";
 }
 
-<h2>Add assignment part</h2>
+<h2>Edit assignment part</h2>
 
-@using (Html.BeginForm("AddPartToAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("EditAssignmentPart", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
 
     @Html.HiddenFor(x => x.AssignmentId)
+    @Html.HiddenFor(x => x.AssignmentPartId)
 
     <div class="row">
         <div class="col-md-5 form-group">

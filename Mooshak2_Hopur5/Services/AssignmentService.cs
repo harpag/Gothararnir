@@ -98,6 +98,63 @@ namespace Mooshak2_Hopur5.Services
             }
         }
 
+        public AssignmentPartViewModel getAssignmentPartById(int partId)
+        {
+            //Sæki verkefni með ákveðnu ID ofan í gagnagrunn
+            var assignmentPart = (from part in _db.AssignmentPart
+                              where part.assignmentPartId == partId
+                                  select part).SingleOrDefault();
+
+            //Kasta villu ef ekki fannst verkefni með þessu ID-i
+            if (assignmentPart == null)
+            {
+                //TODO: Kasta villu
+                return null;
+            }
+            else
+            {
+                //Set verkefni inn í ViewModelið
+                var viewModel = new AssignmentPartViewModel
+                {
+                    AssignmentId = assignmentPart.assignmentId,
+                    AssignmentPartId = assignmentPart.assignmentPartId,
+                    AssignmentPartName = assignmentPart.assignmentPartName,
+                    AssignmentPartDescription = assignmentPart.assignmentPartDescription,
+                    Weight = assignmentPart.weight,
+                    ProgrammingLanguageId = assignmentPart.programmingLanguageId
+                };
+
+                //Returna ViewModelinu með áfanganum í
+                return viewModel;
+            }
+        }
+
+        public AssignmentPartViewModel editAssignmentPart(AssignmentPartViewModel assignmentPart)
+        {
+            // Sæki færsluna sem á að breyta í gagnagrunninn
+            var query = (from part in _db.AssignmentPart
+                         where part.assignmentPartId == assignmentPart.AssignmentPartId
+                         select part).SingleOrDefault();
+
+            // Set inn breyttu upplýsingarnar
+            query.assignmentPartName = assignmentPart.AssignmentPartName;
+            query.assignmentPartDescription = assignmentPart.AssignmentPartDescription;
+            query.weight = assignmentPart.Weight;
+            query.programmingLanguageId = assignmentPart.ProgrammingLanguageId;
+
+            //Vista breytingar í gagnagrunn
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // TODO
+            }
+            return assignmentPart;
+        }
+
         //Sæki verkefni með ákveðnu ID
         public List<Submission> getUsersSubmissions(string userId, int assignmentId)
         {
@@ -1048,7 +1105,10 @@ namespace Mooshak2_Hopur5.Services
                 //setja propery-in
                 newUserAssignment.userId = submission.UserAssignment.userId;
                 newUserAssignment.assignmentId = submission.AssignmentId;
+                if(submission.UserGroupId < 0)
+                { 
                 newUserAssignment.userGroupId = submission.UserGroupId;
+                }
                 //try
                 //{
                 //Vista ofan í gagnagrunn
@@ -1130,6 +1190,7 @@ namespace Mooshak2_Hopur5.Services
             submission.numberOfSucessTestCases = submissionToChange.UserSubmission.numberOfSucessTestCases;
             submission.testCaseFailId = submissionToChange.UserSubmission.testCaseFailId;
             submission.error = submissionToChange.UserSubmission.error;
+            submission.submissionComment = submissionToChange.UserSubmission.submissionComment;
 
 
             //Vista breytingar í gagnagrunn

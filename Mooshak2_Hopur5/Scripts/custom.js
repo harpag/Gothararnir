@@ -51,3 +51,8 @@ $(function () {
     $('.dateTimePicker').datetimepicker({ format: 'd/m/Y H:i', value: 'DateTime.Now' });
 });
 
+//Date and time picker
+$(function () {
+    $('.dateTimePickerEdit').datetimepicker({ format: 'd/m/Y H:i'});
+});
+

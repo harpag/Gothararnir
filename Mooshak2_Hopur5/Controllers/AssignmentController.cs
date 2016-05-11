@@ -56,6 +56,78 @@ namespace Mooshak2_Hopur5.Controllers
         }
 
 
+        //Notandi breytir verkefni
+        public ActionResult EditAssignment(int id)
+        {
+            AssignmentViewModel viewModel = _service.getAssignmentById(id);
+
+            if (viewModel == null)
+            {
+                View("NotFound");
+            }
+            string userId = User.Identity.GetUserId();
+            viewModel.UserCourses = new SelectList(_courseService.getAllUsersCourses(userId).CourseList, "CourseId", "CourseName");
+            viewModel.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditAssignment(AssignmentViewModel assignment)
+        {
+            if (ModelState.IsValid)
+            {
+                string serverPath = Server.MapPath("~");
+                assignment = _service.editAssignment(assignment);
+
+                return RedirectToAction("ViewAssignment", "Assignment", new { id = assignment.AssignmentId });
+            }
+
+            string userId = User.Identity.GetUserId();
+            assignment.UserCourses = new SelectList(_courseService.getAllUsersCourses(userId).CourseList, "CourseId", "CourseName");
+            assignment.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
+
+            return View(assignment);
+        }
+
+
+        //Notandi breytir verkefni
+        public ActionResult EditAssignmentPart(int? id)
+        {
+            if (id.HasValue == false)
+            {
+                return View("NotFound");
+            }
+
+            var assignment = _service.getAssignmentPartById(id.Value);
+            if (assignment == null)
+            {
+                return View("NotFound");
+            }
+
+
+            assignment.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
+
+            return View(assignment);
+        }
+
+        [HttpPost]
+        public ActionResult EditAssignmentPart(AssignmentPartViewModel assignment)
+        {
+            if (ModelState.IsValid)
+            {
+                assignment = _service.editAssignmentPart(assignment);
+
+                return RedirectToAction("ViewAssignment", "Assignment", new { id = assignment.AssignmentId });
+            }
+            
+            assignment.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
+
+            return View(assignment);
+        }
+
+
+
+
         public ActionResult AddPartToAssignment(int? id)
         {
             if (id.HasValue == false)
@@ -209,23 +281,7 @@ namespace Mooshak2_Hopur5.Controllers
             return File(path, contentType, Server.UrlEncode(fileName + "." + path.Split('.')[1]));
         }
 
-        [HttpPost]
-        public ActionResult EditAssignment(AssignmentViewModel newAssignment)
-        {
-            _service.editAssignment(newAssignment);
-
-            return RedirectToAction("GetAllAssignments");
-
-        }
-
-        [HttpGet]
-        public ActionResult EditAssignment(int id)
-        {
-            var viewModel = _service.getAssignmentById(id);
-            return View(viewModel);
-        }
-
-
+        
         public ActionResult ViewSubmissions(int? assignmentId, int? courseId)
 
         {

@@ -39,7 +39,7 @@ namespace Mooshak2_Hopur5.Utilities
         public static List<ApplicationUser> GetUsers()
         {
             var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            return um.Users.ToList();
+            return um.Users.OrderBy(m => m.UserName).ToList();
         }
 
         public bool CreateUser(ApplicationUser user, string password)

@@ -12,19 +12,40 @@
         @Html.DropDownListFor(m => m.CourseId, (Model.Courses as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
         <input type="checkbox" id="selectAll" />Select All
     </div>
-    <div id="checkboxes">
-        <ul class="userCourseList">
+    <table id="userTable" class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>User</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
             @for (int i = 0; i < Model.AllUsers.Count; i++)
             {
-                <li>
-                    @Html.CheckBoxFor(m => m.CheckedUsers[i], new { id = "UserList_" + i })
-                    @Html.HiddenFor(m => m.AllUsers[i].Id)
-                    @Html.DisplayFor(m => m.AllUsers[i].Email)
-                </li>
+                <tr>
+                    <td>
+                        @Html.CheckBoxFor(m => m.CheckedUsers[i], new { id = "UserList_" + i })
+                        @Html.HiddenFor(m => m.AllUsers[i].Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => m.AllUsers[i].UserName)
+                    </td>
+                    @if (Model.AllUsers[i].Roles.First().RoleId.Equals("1"))
+                    {
+                        <td>Admin</td>
+                    }
+                    @if (Model.AllUsers[i].Roles.First().RoleId.Equals("2"))
+                    {
+                        <td>Teacher</td>
+                    }
+                    @if (Model.AllUsers[i].Roles.First().RoleId.Equals("3"))
+                    {
+                        <td>Student</td>
+                    }
+                </tr>
             }
-        </ul>
-    </div>
+        </tbody>
+    </table>
     <button type="submit" class="btn btn-primary">Submit</button>
 }
-
-
