@@ -5,18 +5,31 @@
 }
 
 <h2>@ViewBag.Title</h2>
-<table>
+<table class="table">
     <thead>
         <tr>
-            <th>Name</th>
+            <th>User name</th>
+            <th>Email</th>
             <th>Role</th>
         </tr>
     </thead>
     @foreach (var user in Model.AllUsers)
     {
         <tr>
+            <td>@user.UserName</td>
             <td>@user.Email</td>
-            <td>@user.Roles.First().RoleId</td>
+            @if (user.Roles.First().RoleId.Equals("1"))
+                {
+                <td>Admin</td>
+            }
+            @if (user.Roles.First().RoleId.Equals("2"))
+                {
+                <td>Teacher</td>
+            }
+            @if (user.Roles.First().RoleId.Equals("3"))
+                {
+                <td>Student</td>
+            } 
         </tr>
     }
 </table>
