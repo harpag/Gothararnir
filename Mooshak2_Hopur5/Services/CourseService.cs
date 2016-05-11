@@ -194,7 +194,9 @@ namespace Mooshak2_Hopur5.Services
                 var result = new CourseViewModel
                 {
                     CourseName = entity.courseName,
-                    CourseNumber = entity.courseNumber
+                    CourseNumber = entity.courseNumber,
+                    SemesterId = entity.semesterId,
+                    CourseId = entity.courseId
                 };
                 courseList.Add(result);
             }

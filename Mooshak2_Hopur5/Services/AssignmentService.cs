@@ -173,864 +173,661 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentFile getAssignmentFile(int id)
+        public AssignmentViewModel getUserGroups(string userId, int courseId)
         {
-            
-            var file = _db.AssignmentFile.SingleOrDefault(x => x.assignmentId == id);
+            var userGroups = (from groups in _db.UserGroup
+                              join member in _db.UserGroupMember on groups.userGroupId equals member.userGroupId
+                              where member.userId == userId && groups.courseId == courseId
+                              select groups).ToList();
 
-            if (file == null)
+            List<UserGroup> selectGroups;
+            selectGroups = new List<UserGroup>();
+            foreach (var entity in userGroups)
             {
-                return new AssignmentFile();
-            }
-            else {
-                //Set skránna inn í ViewModelið
-                var viewModel = new AssignmentFile
+                var result = new UserGroup
                 {
-                    assignmentFileId = file.assignmentFileId,
-                    assignmentId = file.assignmentId,
-                    path = file.path,
-                    fileType = file.fileType,
-                    fileExtension = file.fileExtension
+                    userGroupId = entity.userGroupId,
+                    courseId = entity.courseId,
+                    userGroupName = entity.userGroupName,
+                    userCreate = entity.userCreate
                 };
-
-                //Returna ViewModelinu með áfanganum í
-                return viewModel;
-            }
-        }
-
-        public AssignmentPartViewModel getAssignmentPartTestCases(int assignmentPartId)
-        {
-            //Sæki öll prófunartilvik fyrir verkefnis hluta
-            var testCases = (from assignmentTestCase in _db.AssignmentTestCase
-                             join assignmentPart in _db.AssignmentPart on assignmentTestCase.assignmentPartId equals assignmentPart.assignmentPartId
-                             where assignmentTestCase.assignmentPartId == assignmentPartId
-                             select new { assignmentTestCase }).ToList();
-
-
-            //Bý til lista af prófunartilvikum
-            List<AssignmentTestCase> assignmentTestCaseList;
-            assignmentTestCaseList = new List<AssignmentTestCase>();
-
-            //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna hluta 
-            foreach (var entity in testCases)
-            {
-                var result = new AssignmentTestCase
-                {
-                    assignmentTestCaseId = entity.assignmentTestCase.assignmentTestCaseId,
-                    assignmentPartId = entity.assignmentTestCase.assignmentPartId,
-                    testNumber = entity.assignmentTestCase.testNumber,
-                    input = entity.assignmentTestCase.input,
-                    output = entity.assignmentTestCase.output
-                };
-                assignmentTestCaseList.Add(result);
+                selectGroups.Add(result);
             }
 
             //Bý til nýtt AssignmentPartViewModel og set prófunartilvika listann inn í það
-            AssignmentPartViewModel viewModel = new AssignmentPartViewModel
-            {
-                AssignmentTestCaseList = assignmentTestCaseList
-            };
-
-            //Returna viewModelinu með listanum
-            return viewModel;
-        }
-
-        //getAllAssignments()
-        //getAllAssignmentsOnSemester()
-        //getAllUserAssignments()
-        //getAllUserAssignmentsOnSemester()
-        //getAssignmentGrade()
-        //getAssignmentStatistics()
-        //editAssignment()
-        //addAssignment()
-        //addAssignmentTestCase()
-
-        //Sækir öll verkefni
-        public AssignmentViewModel getAllAssignments()
-        {
-            //Sæki öll gögn í verkefna töfluna
-            var assignments = (from assign in _db.Assignment
-                               join course in _db.Course on assign.courseId equals course.courseId
-                               select new { assign, course }).ToList();
-
-            //Bý til lista af verkefnum
-            List<AssignmentViewModel> assignmentsList;
-            assignmentsList = new List<AssignmentViewModel>();
-
-            //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
-            foreach (var entity in assignments)
-            {
-                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
-                var result = new AssignmentViewModel
-                {
-                    AssignmentId = entity.assign.assignmentId,
-                    CourseId = entity.assign.courseId,
-                    CourseName = entity.course.courseName,
-                    CourseNumber = entity.course.courseNumber,
-                    AssignmentName = entity.assign.assignmentName,
-                    AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
-                    Weight = entity.assign.weight,
-                    MaxSubmission = entity.assign.maxSubmission,
-                    AssignDate = entity.assign.assignDate,
-                    DueDate = entity.assign.dueDate,
-                    GradePublished = entity.assign.gradePublished,
-                    AssignmentPartList = assignmentParts.AssignmentPartList
-                    //AssignmentSubmissionsList =
-                    //DiscussionsList =
-                };
-                assignmentsList.Add(result);
-            }
-
-            //Bý til nýtt AssingmentViewModel og set listann inn í það
             AssignmentViewModel viewModel = new AssignmentViewModel
             {
-                AssignmentList = assignmentsList
+                UserGroups = new SelectList(selectGroups, "userGroupId", "userGroupName")
             };
-
-            //Returna viewModelinu með listanum
             return viewModel;
+
         }
 
-        public AssignmentViewModel getAllAssignmentsOnSemester(int semesterId)
+    public AssignmentFile getAssignmentFile(int id)
+    {
+
+        var file = _db.AssignmentFile.SingleOrDefault(x => x.assignmentId == id);
+
+        if (file == null)
         {
-            //Sæki öll gögn í verkefna töfluna
-            var assignments = (from assign in _db.Assignment
-                               join course in _db.Course on assign.courseId equals course.courseId
-                               join semester in _db.Semester on course.semesterId equals semester.semesterId
-                               select new { assign, course }).ToList();
-
-            //Bý til lista af verkefnum
-            List<AssignmentViewModel> assignmentsList;
-            assignmentsList = new List<AssignmentViewModel>();
-
-            //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
-            foreach (var entity in assignments)
+            return new AssignmentFile();
+        }
+        else {
+            //Set skránna inn í ViewModelið
+            var viewModel = new AssignmentFile
             {
-                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
-                var result = new AssignmentViewModel
-                {
-                    AssignmentId = entity.assign.assignmentId,
-                    CourseId = entity.assign.courseId,
-                    CourseName = entity.course.courseName,
-                    CourseNumber = entity.course.courseNumber,
-                    AssignmentName = entity.assign.assignmentName,
-                    AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
-                    Weight = entity.assign.weight,
-                    MaxSubmission = entity.assign.maxSubmission,
-                    AssignDate = entity.assign.assignDate,
-                    DueDate = entity.assign.dueDate,
-                    GradePublished = entity.assign.gradePublished,
-                    AssignmentPartList = assignmentParts.AssignmentPartList
-                    //AssignmentSubmissionsList =
-                    //DiscussionsList =
-                };
-                assignmentsList.Add(result);
-            }
-
-            //Bý til nýtt AssingmentViewModel og set listann inn í það
-            AssignmentViewModel viewModel = new AssignmentViewModel
-            {
-                AssignmentList = assignmentsList
+                assignmentFileId = file.assignmentFileId,
+                assignmentId = file.assignmentId,
+                path = file.path,
+                fileType = file.fileType,
+                fileExtension = file.fileExtension
             };
 
-            //Returna viewModelinu með listanum
+            //Returna ViewModelinu með áfanganum í
             return viewModel;
         }
+    }
 
-        public AssignmentViewModel getAllUserAssignments(string userId)
+    public AssignmentPartViewModel getAssignmentPartTestCases(int assignmentPartId)
+    {
+        //Sæki öll prófunartilvik fyrir verkefnis hluta
+        var testCases = (from assignmentTestCase in _db.AssignmentTestCase
+                         join assignmentPart in _db.AssignmentPart on assignmentTestCase.assignmentPartId equals assignmentPart.assignmentPartId
+                         where assignmentTestCase.assignmentPartId == assignmentPartId
+                         select new { assignmentTestCase }).ToList();
+
+
+        //Bý til lista af prófunartilvikum
+        List<AssignmentTestCase> assignmentTestCaseList;
+        assignmentTestCaseList = new List<AssignmentTestCase>();
+
+        //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna hluta 
+        foreach (var entity in testCases)
         {
-            //Sæki öll gögn í verkefna töfluna
-            var assignments = (from assign in _db.Assignment
-                               join course in _db.Course on assign.courseId equals course.courseId
-                               join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
-                               where userCourse.userId.Equals(userId)
-                               orderby assign.assignDate descending
-                               select new { assign, course }).ToList();
-
-            //Bý til lista af verkefnum
-            List<AssignmentViewModel> assignmentsList;
-            assignmentsList = new List<AssignmentViewModel>();
-
-            //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
-            foreach (var entity in assignments)
+            var result = new AssignmentTestCase
             {
-                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
-                var result = new AssignmentViewModel
-                {
-                    AssignmentId = entity.assign.assignmentId,
-                    CourseId = entity.assign.courseId,
-                    CourseName = entity.course.courseName,
-                    CourseNumber = entity.course.courseNumber,
-                    AssignmentName = entity.assign.assignmentName,
-                    AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
-                    Weight = entity.assign.weight,
-                    MaxSubmission = entity.assign.maxSubmission,
-                    AssignDate = entity.assign.assignDate,
-                    DueDate = entity.assign.dueDate,
-                    GradePublished = entity.assign.gradePublished,
-                    AssignmentPartList = assignmentParts.AssignmentPartList
-                    //AssignmentSubmissionsList =
-                    //DiscussionsList =
-                };
-                assignmentsList.Add(result);
-            }
-
-            //Bý til nýtt AssingmentViewModel og set listann inn í það
-            AssignmentViewModel viewModel = new AssignmentViewModel
-            {
-                AssignmentList = assignmentsList
+                assignmentTestCaseId = entity.assignmentTestCase.assignmentTestCaseId,
+                assignmentPartId = entity.assignmentTestCase.assignmentPartId,
+                testNumber = entity.assignmentTestCase.testNumber,
+                input = entity.assignmentTestCase.input,
+                output = entity.assignmentTestCase.output
             };
-
-            //Returna viewModelinu með listanum
-            return viewModel;
+            assignmentTestCaseList.Add(result);
         }
 
-        public AssignmentViewModel getAllUserAssignmentsInCourse(string userId, int courseId)
+        //Bý til nýtt AssignmentPartViewModel og set prófunartilvika listann inn í það
+        AssignmentPartViewModel viewModel = new AssignmentPartViewModel
         {
-            //Sæki öll gögn í verkefna töfluna
-            var assignments = (from assign in _db.Assignment
-                               join course in _db.Course on assign.courseId equals course.courseId
-                               join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
-                               where userCourse.userId == userId && course.courseId == courseId
-                               select new { assign, course }).ToList();
+            AssignmentTestCaseList = assignmentTestCaseList
+        };
 
-            //Bý til lista af verkefnum
-            List<AssignmentViewModel> assignmentsList;
-            assignmentsList = new List<AssignmentViewModel>();
+        //Returna viewModelinu með listanum
+        return viewModel;
+    }
 
-            //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
-            foreach (var entity in assignments)
+    //getAllAssignments()
+    //getAllAssignmentsOnSemester()
+    //getAllUserAssignments()
+    //getAllUserAssignmentsOnSemester()
+    //getAssignmentGrade()
+    //getAssignmentStatistics()
+    //editAssignment()
+    //addAssignment()
+    //addAssignmentTestCase()
+
+    //Sækir öll verkefni
+    public AssignmentViewModel getAllAssignments()
+    {
+        //Sæki öll gögn í verkefna töfluna
+        var assignments = (from assign in _db.Assignment
+                           join course in _db.Course on assign.courseId equals course.courseId
+                           select new { assign, course }).ToList();
+
+        //Bý til lista af verkefnum
+        List<AssignmentViewModel> assignmentsList;
+        assignmentsList = new List<AssignmentViewModel>();
+
+        //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
+        foreach (var entity in assignments)
+        {
+            var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+            var result = new AssignmentViewModel
             {
-                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
-                var result = new AssignmentViewModel
-                {
-                    AssignmentId = entity.assign.assignmentId,
-                    CourseId = entity.assign.courseId,
-                    CourseName = entity.course.courseName,
-                    CourseNumber = entity.course.courseNumber,
-                    AssignmentName = entity.assign.assignmentName,
-                    AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
-                    Weight = entity.assign.weight,
-                    MaxSubmission = entity.assign.maxSubmission,
-                    AssignDate = entity.assign.assignDate,
-                    DueDate = entity.assign.dueDate,
-                    GradePublished = entity.assign.gradePublished,
-                    AssignmentPartList = assignmentParts.AssignmentPartList
-                    //AssignmentSubmissionsList =
-                    //DiscussionsList =
-                };
-                assignmentsList.Add(result);
-            }
-
-            //Bý til nýtt AssingmentViewModel og set listann inn í það
-            AssignmentViewModel viewModel = new AssignmentViewModel
-            {
-                AssignmentList = assignmentsList
+                AssignmentId = entity.assign.assignmentId,
+                CourseId = entity.assign.courseId,
+                CourseName = entity.course.courseName,
+                CourseNumber = entity.course.courseNumber,
+                AssignmentName = entity.assign.assignmentName,
+                AssignmentDescription = entity.assign.assignmentDescription,
+                AssignmentFile = entity.assign.assignmentFile,
+                Weight = entity.assign.weight,
+                MaxSubmission = entity.assign.maxSubmission,
+                AssignDate = entity.assign.assignDate,
+                DueDate = entity.assign.dueDate,
+                GradePublished = entity.assign.gradePublished,
+                AssignmentPartList = assignmentParts.AssignmentPartList
+                //AssignmentSubmissionsList =
+                //DiscussionsList =
             };
-
-            //Returna viewModelinu með listanum
-            return viewModel;
+            assignmentsList.Add(result);
         }
 
-        public AssignmentViewModel getOpenAssignments(string userId)
+        //Bý til nýtt AssingmentViewModel og set listann inn í það
+        AssignmentViewModel viewModel = new AssignmentViewModel
         {
-            var openAssignments = (from assign in _db.Assignment
-                                   join course in _db.Course on assign.courseId equals course.courseId
-                                   join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
-                                   where assign.dueDate >= DateTime.Now && userCourse.userId.Equals(userId)
-                                   orderby assign.dueDate descending
-                                   select new { assign, course }).ToList();
+            AssignmentList = assignmentsList
+        };
 
-            List<AssignmentViewModel> openAssignmentsList;
-            openAssignmentsList = new List<AssignmentViewModel>();
+        //Returna viewModelinu með listanum
+        return viewModel;
+    }
 
-            foreach (var entity in openAssignments)
+    public AssignmentViewModel getAllAssignmentsOnSemester(int semesterId)
+    {
+        //Sæki öll gögn í verkefna töfluna
+        var assignments = (from assign in _db.Assignment
+                           join course in _db.Course on assign.courseId equals course.courseId
+                           join semester in _db.Semester on course.semesterId equals semester.semesterId
+                           select new { assign, course }).ToList();
+
+        //Bý til lista af verkefnum
+        List<AssignmentViewModel> assignmentsList;
+        assignmentsList = new List<AssignmentViewModel>();
+
+        //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
+        foreach (var entity in assignments)
+        {
+            var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+            var result = new AssignmentViewModel
             {
-                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
-                var result = new AssignmentViewModel
-                {
-                    AssignmentId = entity.assign.assignmentId,
-                    CourseId = entity.assign.courseId,
-                    CourseName = entity.course.courseName,
-                    CourseNumber = entity.course.courseNumber,
-                    AssignmentName = entity.assign.assignmentName,
-                    AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
-                    Weight = entity.assign.weight,
-                    MaxSubmission = entity.assign.maxSubmission,
-                    AssignDate = entity.assign.assignDate,
-                    DueDate = entity.assign.dueDate,
-                    GradePublished = entity.assign.gradePublished,
-                    AssignmentPartList = assignmentParts.AssignmentPartList
-                };
-
-                openAssignmentsList.Add(result);
-            }
-
-            //Bý til nýtt AssingmentViewModel og set listann inn í það
-            AssignmentViewModel viewModel = new AssignmentViewModel
-            {
-                OpenAssignmentList = openAssignmentsList,
+                AssignmentId = entity.assign.assignmentId,
+                CourseId = entity.assign.courseId,
+                CourseName = entity.course.courseName,
+                CourseNumber = entity.course.courseNumber,
+                AssignmentName = entity.assign.assignmentName,
+                AssignmentDescription = entity.assign.assignmentDescription,
+                AssignmentFile = entity.assign.assignmentFile,
+                Weight = entity.assign.weight,
+                MaxSubmission = entity.assign.maxSubmission,
+                AssignDate = entity.assign.assignDate,
+                DueDate = entity.assign.dueDate,
+                GradePublished = entity.assign.gradePublished,
+                AssignmentPartList = assignmentParts.AssignmentPartList
+                //AssignmentSubmissionsList =
+                //DiscussionsList =
             };
-
-            //Skila viewModelinu með listanum
-            return viewModel;
+            assignmentsList.Add(result);
         }
 
-        public AssignmentViewModel getClosedAssignments(string userId)
+        //Bý til nýtt AssingmentViewModel og set listann inn í það
+        AssignmentViewModel viewModel = new AssignmentViewModel
         {
-            var closedAssignments = (from assign in _db.Assignment
-                                     join course in _db.Course on assign.courseId equals course.courseId
-                                     join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
-                                     where assign.dueDate < DateTime.Now && userCourse.userId.Equals(userId)
-                                     orderby assign.dueDate descending
-                                     select new { assign, course }).ToList();
+            AssignmentList = assignmentsList
+        };
 
-            List<AssignmentViewModel> closedAssignmentsList;
-            closedAssignmentsList = new List<AssignmentViewModel>();
+        //Returna viewModelinu með listanum
+        return viewModel;
+    }
 
-            foreach (var entity in closedAssignments)
+    public AssignmentViewModel getAllUserAssignments(string userId)
+    {
+        //Sæki öll gögn í verkefna töfluna
+        var assignments = (from assign in _db.Assignment
+                           join course in _db.Course on assign.courseId equals course.courseId
+                           join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
+                           where userCourse.userId.Equals(userId)
+                           orderby assign.assignDate descending
+                           select new { assign, course }).ToList();
+
+        //Bý til lista af verkefnum
+        List<AssignmentViewModel> assignmentsList;
+        assignmentsList = new List<AssignmentViewModel>();
+
+        //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
+        foreach (var entity in assignments)
+        {
+            var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+            var result = new AssignmentViewModel
             {
-                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
-                var result = new AssignmentViewModel
-                {
-                    AssignmentId = entity.assign.assignmentId,
-                    CourseId = entity.assign.courseId,
-                    CourseName = entity.course.courseName,
-                    CourseNumber = entity.course.courseNumber,
-                    AssignmentName = entity.assign.assignmentName,
-                    AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
-                    Weight = entity.assign.weight,
-                    MaxSubmission = entity.assign.maxSubmission,
-                    AssignDate = entity.assign.assignDate,
-                    DueDate = entity.assign.dueDate,
-                    GradePublished = entity.assign.gradePublished,
-                    AssignmentPartList = assignmentParts.AssignmentPartList
-                };
-
-                closedAssignmentsList.Add(result);
-            }
-
-            //Bý til nýtt AssingmentViewModel og set listann inn í það
-            AssignmentViewModel viewModel = new AssignmentViewModel
-            {
-                ClosedAssignmentList = closedAssignmentsList
+                AssignmentId = entity.assign.assignmentId,
+                CourseId = entity.assign.courseId,
+                CourseName = entity.course.courseName,
+                CourseNumber = entity.course.courseNumber,
+                AssignmentName = entity.assign.assignmentName,
+                AssignmentDescription = entity.assign.assignmentDescription,
+                AssignmentFile = entity.assign.assignmentFile,
+                Weight = entity.assign.weight,
+                MaxSubmission = entity.assign.maxSubmission,
+                AssignDate = entity.assign.assignDate,
+                DueDate = entity.assign.dueDate,
+                GradePublished = entity.assign.gradePublished,
+                AssignmentPartList = assignmentParts.AssignmentPartList
+                //AssignmentSubmissionsList =
+                //DiscussionsList =
             };
-
-            //Returna viewModelinu með listanum
-            return viewModel;
+            assignmentsList.Add(result);
         }
 
-        public AssignmentViewModel getAllAssignmentsInCourse(int courseId)
+        //Bý til nýtt AssingmentViewModel og set listann inn í það
+        AssignmentViewModel viewModel = new AssignmentViewModel
         {
-            //Sæki öll opin verkefni í verkefna töfluna
-            var openAssignments = (from assign in _db.Assignment
-                                   join course in _db.Course on assign.courseId equals course.courseId
-                                   where course.courseId == courseId && assign.dueDate >= DateTime.Now
-                                   select new { assign, course }).ToList();
+            AssignmentList = assignmentsList
+        };
 
-            var closedAssignments = (from assign in _db.Assignment
-                                     join course in _db.Course on assign.courseId equals course.courseId
-                                     where course.courseId == courseId && assign.dueDate < DateTime.Now
-                                     select new { assign, course }).ToList();
+        //Returna viewModelinu með listanum
+        return viewModel;
+    }
 
-            //Bý til lista af verkefnum
-            List<AssignmentViewModel> openAssignmentsList;
-            openAssignmentsList = new List<AssignmentViewModel>();
+    public AssignmentViewModel getAllUserAssignmentsInCourse(string userId, int courseId)
+    {
+        //Sæki öll gögn í verkefna töfluna
+        var assignments = (from assign in _db.Assignment
+                           join course in _db.Course on assign.courseId equals course.courseId
+                           join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
+                           where userCourse.userId == userId && course.courseId == courseId
+                           select new { assign, course }).ToList();
 
-            List<AssignmentViewModel> closedAssignmentsList;
-            closedAssignmentsList = new List<AssignmentViewModel>();
+        //Bý til lista af verkefnum
+        List<AssignmentViewModel> assignmentsList;
+        assignmentsList = new List<AssignmentViewModel>();
 
-            //Loopa í gegnum opin verkefni
-            foreach (var entity in openAssignments)
+        //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
+        foreach (var entity in assignments)
+        {
+            var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+            var result = new AssignmentViewModel
             {
-                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
-                var result = new AssignmentViewModel
-                {
-                    AssignmentId = entity.assign.assignmentId,
-                    CourseId = entity.assign.courseId,
-                    CourseName = entity.course.courseName,
-                    CourseNumber = entity.course.courseNumber,
-                    AssignmentName = entity.assign.assignmentName,
-                    AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
-                    Weight = entity.assign.weight,
-                    MaxSubmission = entity.assign.maxSubmission,
-                    AssignDate = entity.assign.assignDate,
-                    DueDate = entity.assign.dueDate,
-                    GradePublished = entity.assign.gradePublished,
-                    AssignmentPartList = assignmentParts.AssignmentPartList
-                };
-                openAssignmentsList.Add(result);
-            }
-
-            foreach (var entity in closedAssignments)
-            {
-                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
-                var result = new AssignmentViewModel
-                {
-                    AssignmentId = entity.assign.assignmentId,
-                    CourseId = entity.assign.courseId,
-                    CourseName = entity.course.courseName,
-                    CourseNumber = entity.course.courseNumber,
-                    AssignmentName = entity.assign.assignmentName,
-                    AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
-                    Weight = entity.assign.weight,
-                    MaxSubmission = entity.assign.maxSubmission,
-                    AssignDate = entity.assign.assignDate,
-                    DueDate = entity.assign.dueDate,
-                    GradePublished = entity.assign.gradePublished,
-                    AssignmentPartList = assignmentParts.AssignmentPartList
-                };
-                closedAssignmentsList.Add(result);
-            }
-
-
-
-            //Bý til nýtt AssingmentViewModel og set listann inn í það
-            AssignmentViewModel viewModel = new AssignmentViewModel
-            {
-                OpenAssignmentList = openAssignmentsList,
-                ClosedAssignmentList = closedAssignmentsList,
-                CourseId = courseId
+                AssignmentId = entity.assign.assignmentId,
+                CourseId = entity.assign.courseId,
+                CourseName = entity.course.courseName,
+                CourseNumber = entity.course.courseNumber,
+                AssignmentName = entity.assign.assignmentName,
+                AssignmentDescription = entity.assign.assignmentDescription,
+                AssignmentFile = entity.assign.assignmentFile,
+                Weight = entity.assign.weight,
+                MaxSubmission = entity.assign.maxSubmission,
+                AssignDate = entity.assign.assignDate,
+                DueDate = entity.assign.dueDate,
+                GradePublished = entity.assign.gradePublished,
+                AssignmentPartList = assignmentParts.AssignmentPartList
+                //AssignmentSubmissionsList =
+                //DiscussionsList =
             };
-
-            //Returna viewModelinu með listanum
-            return viewModel;
+            assignmentsList.Add(result);
         }
 
-
-        public AssignmentViewModel getAllUserAssignmentsOnSemester(string userId, int semesterId)
+        //Bý til nýtt AssingmentViewModel og set listann inn í það
+        AssignmentViewModel viewModel = new AssignmentViewModel
         {
-            //Sæki öll gögn í verkefna töfluna
-            var assignments = (from assign in _db.Assignment
+            AssignmentList = assignmentsList
+        };
+
+        //Returna viewModelinu með listanum
+        return viewModel;
+    }
+
+    public AssignmentViewModel getOpenAssignments(string userId)
+    {
+        var openAssignments = (from assign in _db.Assignment
                                join course in _db.Course on assign.courseId equals course.courseId
                                join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
-                               join semester in _db.Semester on course.semesterId equals semester.semesterId
-                               where semester.semesterId == semesterId && userCourse.userId == userId
+                               where assign.dueDate >= DateTime.Now && userCourse.userId.Equals(userId)
+                               orderby assign.dueDate descending
                                select new { assign, course }).ToList();
 
-            //Bý til lista af verkefnum
-            List<AssignmentViewModel> assignmentsList;
-            assignmentsList = new List<AssignmentViewModel>();
+        List<AssignmentViewModel> openAssignmentsList;
+        openAssignmentsList = new List<AssignmentViewModel>();
 
-            //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
-            foreach (var entity in assignments)
+        foreach (var entity in openAssignments)
+        {
+            var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+            var result = new AssignmentViewModel
             {
-                var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
-                var result = new AssignmentViewModel
-                {
-                    AssignmentId = entity.assign.assignmentId,
-                    CourseId = entity.assign.courseId,
-                    CourseName = entity.course.courseName,
-                    CourseNumber = entity.course.courseNumber,
-                    AssignmentName = entity.assign.assignmentName,
-                    AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
-                    Weight = entity.assign.weight,
-                    MaxSubmission = entity.assign.maxSubmission,
-                    AssignDate = entity.assign.assignDate,
-                    DueDate = entity.assign.dueDate,
-                    GradePublished = entity.assign.gradePublished,
-                    AssignmentPartList = assignmentParts.AssignmentPartList
-                    //AssignmentSubmissionsList =
-                    //DiscussionsList =
-                };
-                assignmentsList.Add(result);
-            }
-
-            //Bý til nýtt AssingmentViewModel og set listann inn í það
-            AssignmentViewModel viewModel = new AssignmentViewModel
-            {
-                AssignmentList = assignmentsList
+                AssignmentId = entity.assign.assignmentId,
+                CourseId = entity.assign.courseId,
+                CourseName = entity.course.courseName,
+                CourseNumber = entity.course.courseNumber,
+                AssignmentName = entity.assign.assignmentName,
+                AssignmentDescription = entity.assign.assignmentDescription,
+                AssignmentFile = entity.assign.assignmentFile,
+                Weight = entity.assign.weight,
+                MaxSubmission = entity.assign.maxSubmission,
+                AssignDate = entity.assign.assignDate,
+                DueDate = entity.assign.dueDate,
+                GradePublished = entity.assign.gradePublished,
+                AssignmentPartList = assignmentParts.AssignmentPartList
             };
 
-            //Returna viewModelinu með listanum
-            return viewModel;
+            openAssignmentsList.Add(result);
         }
 
-        public AssignmentViewModel getAssignmentGrade(string userId, int assignmentId)
+        //Bý til nýtt AssingmentViewModel og set listann inn í það
+        AssignmentViewModel viewModel = new AssignmentViewModel
         {
-            //Sæki öll gögn í verkefna töfluna
-            var assignment = (from assign in _db.Assignment
-                              join userAssignment in _db.UserAssignment on assign.assignmentId equals userAssignment.assignmentId
-                              where assign.assignmentId == assignmentId && userAssignment.userId == userId
-                              select new { assign, userAssignment }).SingleOrDefault();
+            OpenAssignmentList = openAssignmentsList,
+        };
 
-            UserAssignment userAssign = null;
-            if (assignment.assign.gradePublished == 1)
+        //Skila viewModelinu með listanum
+        return viewModel;
+    }
+
+    public AssignmentViewModel getClosedAssignments(string userId)
+    {
+        var closedAssignments = (from assign in _db.Assignment
+                                 join course in _db.Course on assign.courseId equals course.courseId
+                                 join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
+                                 where assign.dueDate < DateTime.Now && userCourse.userId.Equals(userId)
+                                 orderby assign.dueDate descending
+                                 select new { assign, course }).ToList();
+
+        List<AssignmentViewModel> closedAssignmentsList;
+        closedAssignmentsList = new List<AssignmentViewModel>();
+
+        foreach (var entity in closedAssignments)
+        {
+            var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+            var result = new AssignmentViewModel
             {
-                userAssign = new UserAssignment
-                {
-                    userAssignmentId = assignment.userAssignment.userAssignmentId,
-                    userId = assignment.userAssignment.userId,
-                    userGroupId = assignment.userAssignment.userGroupId,
-                    grade = assignment.userAssignment.grade,
-                    gradeComment = assignment.userAssignment.gradeComment
-                };
-            }
-            //Bý til nýtt AssingmentViewModel og set listann inn í það
-            AssignmentViewModel viewModel = new AssignmentViewModel
-            {
-                UserAssignment = userAssign
+                AssignmentId = entity.assign.assignmentId,
+                CourseId = entity.assign.courseId,
+                CourseName = entity.course.courseName,
+                CourseNumber = entity.course.courseNumber,
+                AssignmentName = entity.assign.assignmentName,
+                AssignmentDescription = entity.assign.assignmentDescription,
+                AssignmentFile = entity.assign.assignmentFile,
+                Weight = entity.assign.weight,
+                MaxSubmission = entity.assign.maxSubmission,
+                AssignDate = entity.assign.assignDate,
+                DueDate = entity.assign.dueDate,
+                GradePublished = entity.assign.gradePublished,
+                AssignmentPartList = assignmentParts.AssignmentPartList
             };
 
-            //Returna viewModelinu með listanum
-            return viewModel;
+            closedAssignmentsList.Add(result);
         }
 
-
-        public AssignmentViewModel editAssignment(AssignmentViewModel assignmentToChange)
+        //Bý til nýtt AssingmentViewModel og set listann inn í það
+        AssignmentViewModel viewModel = new AssignmentViewModel
         {
-            // Sæki færsluna sem á að breyta í gagnagrunninn
-            var query = (from assignment in _db.Assignment
-                         where assignment.assignmentId == assignmentToChange.AssignmentId
-                         select assignment).SingleOrDefault();
+            ClosedAssignmentList = closedAssignmentsList
+        };
 
-            // Set inn breyttu upplýsingarnar
-            query.courseId = assignmentToChange.CourseId;
-            query.assignmentName = assignmentToChange.AssignmentName;
-            query.assignmentDescription = assignmentToChange.AssignmentDescription;
-            query.assignmentFile = assignmentToChange.AssignmentFile;
-            query.weight = assignmentToChange.Weight;
-            query.maxSubmission = assignmentToChange.MaxSubmission;
-            query.assignDate = assignmentToChange.AssignDate;
-            query.dueDate = assignmentToChange.DueDate;
-            query.gradePublished = assignmentToChange.GradePublished;
+        //Returna viewModelinu með listanum
+        return viewModel;
+    }
 
-            //Vista breytingar í gagnagrunn
-            try
-            {
-                _db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                // TODO
-            }
-            return assignmentToChange;
-        }
+    public AssignmentViewModel getAllAssignmentsInCourse(int courseId)
+    {
+        //Sæki öll opin verkefni í verkefna töfluna
+        var openAssignments = (from assign in _db.Assignment
+                               join course in _db.Course on assign.courseId equals course.courseId
+                               where course.courseId == courseId && assign.dueDate >= DateTime.Now
+                               select new { assign, course }).ToList();
 
-        public AssignmentViewModel addAssignment(AssignmentViewModel assignmentToAdd, string serverPath)
+        var closedAssignments = (from assign in _db.Assignment
+                                 join course in _db.Course on assign.courseId equals course.courseId
+                                 where course.courseId == courseId && assign.dueDate < DateTime.Now
+                                 select new { assign, course }).ToList();
+
+        //Bý til lista af verkefnum
+        List<AssignmentViewModel> openAssignmentsList;
+        openAssignmentsList = new List<AssignmentViewModel>();
+
+        List<AssignmentViewModel> closedAssignmentsList;
+        closedAssignmentsList = new List<AssignmentViewModel>();
+
+        //Loopa í gegnum opin verkefni
+        foreach (var entity in openAssignments)
         {
-            var newAssignment = new Assignment();
-
-            //setja propery-in
-            newAssignment.courseId = assignmentToAdd.CourseId;
-            newAssignment.assignmentName = assignmentToAdd.AssignmentName;
-            newAssignment.assignmentDescription = assignmentToAdd.AssignmentDescription;
-            newAssignment.assignmentFile = assignmentToAdd.AssignmentFile;
-            newAssignment.weight = assignmentToAdd.Weight;
-            newAssignment.maxSubmission = assignmentToAdd.MaxSubmission;
-            newAssignment.assignDate = assignmentToAdd.AssignDate;
-            newAssignment.dueDate = assignmentToAdd.DueDate;
-            newAssignment.gradePublished = assignmentToAdd.GradePublished;
-
-            try
+            var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+            var result = new AssignmentViewModel
             {
-                //Vista ofan í gagnagrunn
-                newAssignment = _db.Assignment.Add(newAssignment);
-                _db.SaveChanges();
-                assignmentToAdd.AssignmentId = newAssignment.assignmentId;
-                //Vista skránna sem fylgir verkefninu
-                addAssignmentFile(serverPath, assignmentToAdd);
-                //addAssignmentPart(assignmentToAdd, serverPath);
-                return assignmentToAdd;
-            }
-            catch (DbEntityValidationException e)
-            {
-                throw;
-            }
-        }
-
-        public Boolean addAssignmentTestCase(AssignmentTestCase assignmentTestCaseToAdd)
-        {
-            var newAssignmentTestCase = new AssignmentTestCase();
-            var testCaseCount = (from testCase in _db.AssignmentTestCase
-                                 where testCase.assignmentPartId == assignmentTestCaseToAdd.assignmentPartId
-                                 select testCase).Count();
-            //setja propery-in
-            newAssignmentTestCase.assignmentPartId = assignmentTestCaseToAdd.assignmentPartId;
-            newAssignmentTestCase.testNumber = testCaseCount + 1;
-            newAssignmentTestCase.input = assignmentTestCaseToAdd.input;
-            newAssignmentTestCase.output = assignmentTestCaseToAdd.output;
-            //Todo setja inn öll property
-
-            try
-            {
-                //Vista ofan í gagnagrunn
-                _db.AssignmentTestCase.Add(newAssignmentTestCase);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public Boolean addAssignmentFile(string serverPath, AssignmentViewModel assignment)
-        {
-            string filePathFull = serverPath + "\\Content\\Files\\Assignments\\";
-
-            if (!Directory.Exists(filePathFull))
-            {
-                Directory.CreateDirectory(filePathFull);
-            }
-
-            if (assignment.AssignmentUploaded != null)
-            {
-
-                string fileExtension = System.IO.Path.GetExtension(assignment.AssignmentUploaded.FileName);
-                string fileContentType = assignment.AssignmentUploaded.ContentType;
-
-                AssignmentFile newFile = new AssignmentFile();
-                newFile.assignmentId = assignment.AssignmentId;
-                newFile.fileType = fileContentType;
-                newFile.fileExtension = fileExtension;
-
-                try
-                {
-                    newFile = _db.AssignmentFile.Add(newFile);
-                    _db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage);
-                        }
-                    }
-                    throw;
-                }
-                string fileName = newFile.assignmentFileId.ToString();
-                newFile.path = filePathFull + fileName + fileExtension;
-                newFile.fileExtension = fileExtension;
-
-                _db.Entry(newFile).State = EntityState.Modified;
-                _db.SaveChanges();
-
-                assignment.AssignmentUploaded.SaveAs(newFile.path);
-
-                return true;
-            }
-
-            return false;
-        }
-
-        public Boolean addAssignmentPartFile(string serverPath, AssignmentPartViewModel assignmentPart)
-        {
-            string filePathFull = serverPath + "\\Content\\Files\\AssignmentParts\\";
-
-            if (!Directory.Exists(filePathFull))
-            {
-                Directory.CreateDirectory(filePathFull);
-            }
-
-            if (assignmentPart.AssignmentPartUploaded != null)
-            {
-
-                string fileExtension = System.IO.Path.GetExtension(assignmentPart.AssignmentPartUploaded.FileName);
-                string fileContentType = assignmentPart.AssignmentPartUploaded.ContentType;
-
-                AssignmentPartFile newFile = new AssignmentPartFile();
-                newFile.assignmentPartId = assignmentPart.AssignmentPartId;
-                newFile.fileType = fileContentType;
-                newFile.fileExtension = fileExtension;
-
-                try
-                {
-                    newFile = _db.AssignmentPartFile.Add(newFile);
-                    _db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage);
-                        }
-                    }
-                    throw;
-                }
-                string fileName = newFile.assignmentPartFileId.ToString();
-                newFile.path = filePathFull + fileName + fileExtension;
-                newFile.fileExtension = fileExtension;
-
-                _db.Entry(newFile).State = EntityState.Modified;
-                _db.SaveChanges();
-
-                assignmentPart.AssignmentPartUploaded.SaveAs(newFile.path);
-
-                return true;
-            }
-
-            return false;
-        }
-
-        public AssignmentViewModel getAllProgrammingLanguages()
-        {
-            //Sæki öll forritunarmál
-            var programmingLanguages = _db.ProgrammingLanguage.ToList();
-            var languages = new SelectList(programmingLanguages, "ProgrammingLanguageId", "ProgrammingLanguageName");
-            //Returna viewModelinu með listanum
-            AssignmentViewModel viewModel = new AssignmentViewModel
-            {
-                ProgrammingLanguages = languages
+                AssignmentId = entity.assign.assignmentId,
+                CourseId = entity.assign.courseId,
+                CourseName = entity.course.courseName,
+                CourseNumber = entity.course.courseNumber,
+                AssignmentName = entity.assign.assignmentName,
+                AssignmentDescription = entity.assign.assignmentDescription,
+                AssignmentFile = entity.assign.assignmentFile,
+                Weight = entity.assign.weight,
+                MaxSubmission = entity.assign.maxSubmission,
+                AssignDate = entity.assign.assignDate,
+                DueDate = entity.assign.dueDate,
+                GradePublished = entity.assign.gradePublished,
+                AssignmentPartList = assignmentParts.AssignmentPartList
             };
-            return viewModel;
+            openAssignmentsList.Add(result);
         }
 
-        public AssignmentPartViewModel addAssignmentPart(AssignmentPartViewModel assignmentToAdd, string serverPath)
+        foreach (var entity in closedAssignments)
         {
-            //setja propery-in
-            var newAssignmentPart = new AssignmentPart();
-            newAssignmentPart.assignmentId = assignmentToAdd.AssignmentId;
-            newAssignmentPart.assignmentPartName = assignmentToAdd.AssignmentPartName;
-            newAssignmentPart.assignmentPartDescription = assignmentToAdd.AssignmentPartDescription;
-            newAssignmentPart.weight = assignmentToAdd.Weight;
-            newAssignmentPart.programmingLanguageId = assignmentToAdd.ProgrammingLanguageId;
+            var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+            var result = new AssignmentViewModel
+            {
+                AssignmentId = entity.assign.assignmentId,
+                CourseId = entity.assign.courseId,
+                CourseName = entity.course.courseName,
+                CourseNumber = entity.course.courseNumber,
+                AssignmentName = entity.assign.assignmentName,
+                AssignmentDescription = entity.assign.assignmentDescription,
+                AssignmentFile = entity.assign.assignmentFile,
+                Weight = entity.assign.weight,
+                MaxSubmission = entity.assign.maxSubmission,
+                AssignDate = entity.assign.assignDate,
+                DueDate = entity.assign.dueDate,
+                GradePublished = entity.assign.gradePublished,
+                AssignmentPartList = assignmentParts.AssignmentPartList
+            };
+            closedAssignmentsList.Add(result);
+        }
 
-            newAssignmentPart = _db.AssignmentPart.Add(newAssignmentPart);
+
+
+        //Bý til nýtt AssingmentViewModel og set listann inn í það
+        AssignmentViewModel viewModel = new AssignmentViewModel
+        {
+            OpenAssignmentList = openAssignmentsList,
+            ClosedAssignmentList = closedAssignmentsList,
+            CourseId = courseId
+        };
+
+        //Returna viewModelinu með listanum
+        return viewModel;
+    }
+
+
+    public AssignmentViewModel getAllUserAssignmentsOnSemester(string userId, int semesterId)
+    {
+        //Sæki öll gögn í verkefna töfluna
+        var assignments = (from assign in _db.Assignment
+                           join course in _db.Course on assign.courseId equals course.courseId
+                           join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
+                           join semester in _db.Semester on course.semesterId equals semester.semesterId
+                           where semester.semesterId == semesterId && userCourse.userId == userId
+                           select new { assign, course }).ToList();
+
+        //Bý til lista af verkefnum
+        List<AssignmentViewModel> assignmentsList;
+        assignmentsList = new List<AssignmentViewModel>();
+
+        //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna listann
+        foreach (var entity in assignments)
+        {
+            var assignmentParts = getAssignmentParts(entity.assign.assignmentId);
+            var result = new AssignmentViewModel
+            {
+                AssignmentId = entity.assign.assignmentId,
+                CourseId = entity.assign.courseId,
+                CourseName = entity.course.courseName,
+                CourseNumber = entity.course.courseNumber,
+                AssignmentName = entity.assign.assignmentName,
+                AssignmentDescription = entity.assign.assignmentDescription,
+                AssignmentFile = entity.assign.assignmentFile,
+                Weight = entity.assign.weight,
+                MaxSubmission = entity.assign.maxSubmission,
+                AssignDate = entity.assign.assignDate,
+                DueDate = entity.assign.dueDate,
+                GradePublished = entity.assign.gradePublished,
+                AssignmentPartList = assignmentParts.AssignmentPartList
+                //AssignmentSubmissionsList =
+                //DiscussionsList =
+            };
+            assignmentsList.Add(result);
+        }
+
+        //Bý til nýtt AssingmentViewModel og set listann inn í það
+        AssignmentViewModel viewModel = new AssignmentViewModel
+        {
+            AssignmentList = assignmentsList
+        };
+
+        //Returna viewModelinu með listanum
+        return viewModel;
+    }
+
+    public AssignmentViewModel getAssignmentGrade(string userId, int assignmentId)
+    {
+        //Sæki öll gögn í verkefna töfluna
+        var assignment = (from assign in _db.Assignment
+                          join userAssignment in _db.UserAssignment on assign.assignmentId equals userAssignment.assignmentId
+                          where assign.assignmentId == assignmentId && userAssignment.userId == userId
+                          select new { assign, userAssignment }).SingleOrDefault();
+
+        UserAssignment userAssign = null;
+        if (assignment.assign.gradePublished == 1)
+        {
+            userAssign = new UserAssignment
+            {
+                userAssignmentId = assignment.userAssignment.userAssignmentId,
+                userId = assignment.userAssignment.userId,
+                userGroupId = assignment.userAssignment.userGroupId,
+                grade = assignment.userAssignment.grade,
+                gradeComment = assignment.userAssignment.gradeComment
+            };
+        }
+        //Bý til nýtt AssingmentViewModel og set listann inn í það
+        AssignmentViewModel viewModel = new AssignmentViewModel
+        {
+            UserAssignment = userAssign
+        };
+
+        //Returna viewModelinu með listanum
+        return viewModel;
+    }
+
+
+    public AssignmentViewModel editAssignment(AssignmentViewModel assignmentToChange)
+    {
+        // Sæki færsluna sem á að breyta í gagnagrunninn
+        var query = (from assignment in _db.Assignment
+                     where assignment.assignmentId == assignmentToChange.AssignmentId
+                     select assignment).SingleOrDefault();
+
+        // Set inn breyttu upplýsingarnar
+        query.courseId = assignmentToChange.CourseId;
+        query.assignmentName = assignmentToChange.AssignmentName;
+        query.assignmentDescription = assignmentToChange.AssignmentDescription;
+        query.assignmentFile = assignmentToChange.AssignmentFile;
+        query.weight = assignmentToChange.Weight;
+        query.maxSubmission = assignmentToChange.MaxSubmission;
+        query.assignDate = assignmentToChange.AssignDate;
+        query.dueDate = assignmentToChange.DueDate;
+        query.gradePublished = assignmentToChange.GradePublished;
+
+        //Vista breytingar í gagnagrunn
+        try
+        {
             _db.SaveChanges();
-            assignmentToAdd.AssignmentPartId = newAssignmentPart.assignmentPartId;
-            //addAssignmentPartTestCase(assignmentToAdd.AssignmentPartList[i]);
-            addAssignmentPartFile(serverPath, assignmentToAdd);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            // TODO
+        }
+        return assignmentToChange;
+    }
+
+    public AssignmentViewModel addAssignment(AssignmentViewModel assignmentToAdd, string serverPath)
+    {
+        var newAssignment = new Assignment();
+
+        //setja propery-in
+        newAssignment.courseId = assignmentToAdd.CourseId;
+        newAssignment.assignmentName = assignmentToAdd.AssignmentName;
+        newAssignment.assignmentDescription = assignmentToAdd.AssignmentDescription;
+        newAssignment.assignmentFile = assignmentToAdd.AssignmentFile;
+        newAssignment.weight = assignmentToAdd.Weight;
+        newAssignment.maxSubmission = assignmentToAdd.MaxSubmission;
+        newAssignment.assignDate = assignmentToAdd.AssignDate;
+        newAssignment.dueDate = assignmentToAdd.DueDate;
+        newAssignment.gradePublished = assignmentToAdd.GradePublished;
+
+        try
+        {
+            //Vista ofan í gagnagrunn
+            newAssignment = _db.Assignment.Add(newAssignment);
+            _db.SaveChanges();
+            assignmentToAdd.AssignmentId = newAssignment.assignmentId;
+            //Vista skránna sem fylgir verkefninu
+            addAssignmentFile(serverPath, assignmentToAdd);
+            //addAssignmentPart(assignmentToAdd, serverPath);
             return assignmentToAdd;
         }
-
-        public void addAssignmentPartTestCase(AssignmentPartViewModel assignmentPart)
+        catch (DbEntityValidationException e)
         {
-            //setja propery-in
-            for (int i = 0; i < assignmentPart.AssignmentTestCaseList.Count; i++)
-            {
-                var newAssignmentTestCase = new AssignmentTestCase();
-                newAssignmentTestCase.assignmentPartId = assignmentPart.AssignmentPartId;
-                newAssignmentTestCase.input = assignmentPart.AssignmentTestCaseList[i].input;
-                newAssignmentTestCase.output = assignmentPart.AssignmentTestCaseList[i].output;
-                newAssignmentTestCase.testNumber = i + 1;
+            throw;
+        }
+    }
 
-                newAssignmentTestCase = _db.AssignmentTestCase.Add(newAssignmentTestCase);
-                _db.SaveChanges();
-            }
+    public Boolean addAssignmentTestCase(AssignmentTestCase assignmentTestCaseToAdd)
+    {
+        var newAssignmentTestCase = new AssignmentTestCase();
+        var testCaseCount = (from testCase in _db.AssignmentTestCase
+                             where testCase.assignmentPartId == assignmentTestCaseToAdd.assignmentPartId
+                             select testCase).Count();
+        //setja propery-in
+        newAssignmentTestCase.assignmentPartId = assignmentTestCaseToAdd.assignmentPartId;
+        newAssignmentTestCase.testNumber = testCaseCount + 1;
+        newAssignmentTestCase.input = assignmentTestCaseToAdd.input;
+        newAssignmentTestCase.output = assignmentTestCaseToAdd.output;
+        //Todo setja inn öll property
+
+        try
+        {
+            //Vista ofan í gagnagrunn
+            _db.AssignmentTestCase.Add(newAssignmentTestCase);
+            _db.SaveChanges();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public Boolean addAssignmentFile(string serverPath, AssignmentViewModel assignment)
+    {
+        string filePathFull = serverPath + "\\Content\\Files\\Assignments\\";
+
+        if (!Directory.Exists(filePathFull))
+        {
+            Directory.CreateDirectory(filePathFull);
         }
 
-        public AssignmentViewModel studentSubmitsAssignment(AssignmentViewModel submission, string serverPath)
-        {
-            //Smíða haus færslu ef hún er ekki til nú þegar
-            submission = userAssignmentCreate(submission);
-
-            //Test submissionið
-            submission = addSubmission(submission);
-
-            //Vista skrána
-            var submissionFile = submitFile(submission, serverPath);
-
-            List<AssignmentTestCase> testCases = getAssignmentPartTestCases(submission.UserSubmission.assignmentPartId).AssignmentTestCaseList;
-
-            if (testCases != null)
-            {
-                submission.UserSubmission = cppProgram(submission.UserSubmission, serverPath + "Content\\Files\\Submissions\\", submissionFile.submissionFileId.ToString() + submissionFile.fileExtension, testCases);
-                editSubmission(submission.UserSubmission);               
-            }
-            return submission;
-        }
-
-        private Submission editSubmission(Submission submissionToEdit)
-        {
-            // Sæki færsluna sem á að breyta í gagnagrunninn
-            var query = (from submission in _db.Submission
-                         where submission.submissionId == submissionToEdit.submissionId
-                         select submission).SingleOrDefault();
-
-            // Set inn breyttu upplýsingarnar
-            query.accepted = submissionToEdit.accepted;
-            query.numberOfSucessTestCases = submissionToEdit.numberOfSucessTestCases;
-            query.testCaseFailId = submissionToEdit.testCaseFailId;
-            query.error = submissionToEdit.error;
-
-            //Vista breytingar í gagnagrunn
-            try
-            {
-                _db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                // TODO
-            }
-            return submissionToEdit;
-        }
-
-        public AssignmentViewModel userAssignmentCreate(AssignmentViewModel submission)
+        if (assignment.AssignmentUploaded != null)
         {
 
-            var userAssignmentExists = (from userAssignment in _db.UserAssignment
-                                        where userAssignment.assignmentId == submission.AssignmentId
-                                       && userAssignment.userId == submission.UserAssignment.userId
-                                        select userAssignment).SingleOrDefault();
+            string fileExtension = System.IO.Path.GetExtension(assignment.AssignmentUploaded.FileName);
+            string fileContentType = assignment.AssignmentUploaded.ContentType;
 
-            if (userAssignmentExists == null)
-            {
-                var newUserAssignment = new UserAssignment();
-                //setja propery-in
-                newUserAssignment.userId = submission.UserAssignment.userId;
-                newUserAssignment.assignmentId = submission.AssignmentId;
-                //try
-                //{
-                //Vista ofan í gagnagrunn
-                submission.UserAssignment = _db.UserAssignment.Add(newUserAssignment);
-                _db.SaveChanges();
-                return submission;
-                //}
-                //catch
-                //{
-                //return null;
-                //}
-            }
-            else
-            {
-                submission.UserAssignment = userAssignmentExists;
-                return submission;
-            }
-
-        }
-
-        public SubmissionFile submitFile(AssignmentViewModel submission, string serverPath)
-        {
-            string filePathFull = serverPath + "\\Content\\Files\\Submissions\\";
-
-            if (!Directory.Exists(filePathFull))
-            {
-                Directory.CreateDirectory(filePathFull);
-            }
-
-            string fileExtension = System.IO.Path.GetExtension(submission.SubmissionUploaded.FileName);
-            string fileContentType = submission.SubmissionUploaded.ContentType;
-
-            SubmissionFile newFile = new SubmissionFile();
-            newFile.submissionId = submission.UserSubmission.submissionId;
+            AssignmentFile newFile = new AssignmentFile();
+            newFile.assignmentId = assignment.AssignmentId;
             newFile.fileType = fileContentType;
             newFile.fileExtension = fileExtension;
 
             try
             {
-                newFile = _db.SubmissionFile.Add(newFile);
+                newFile = _db.AssignmentFile.Add(newFile);
                 _db.SaveChanges();
             }
             catch (DbEntityValidationException e)
@@ -1047,123 +844,357 @@ namespace Mooshak2_Hopur5.Services
                 }
                 throw;
             }
-
-            string fileName = newFile.submissionFileId.ToString();
+            string fileName = newFile.assignmentFileId.ToString();
             newFile.path = filePathFull + fileName + fileExtension;
             newFile.fileExtension = fileExtension;
 
             _db.Entry(newFile).State = EntityState.Modified;
             _db.SaveChanges();
 
-            submission.SubmissionUploaded.SaveAs(newFile.path);
+            assignment.AssignmentUploaded.SaveAs(newFile.path);
 
-            return newFile;
+            return true;
         }
 
-        public AssignmentViewModel addSubmission(AssignmentViewModel submissionToChange)
+        return false;
+    }
+
+    public Boolean addAssignmentPartFile(string serverPath, AssignmentPartViewModel assignmentPart)
+    {
+        string filePathFull = serverPath + "\\Content\\Files\\AssignmentParts\\";
+
+        if (!Directory.Exists(filePathFull))
         {
-            // Bý til nýja færslu
-            var submission = new Submission();
+            Directory.CreateDirectory(filePathFull);
+        }
 
-            // Set inn breyttu upplýsingarnar
-            submission.userAssignmentId = submissionToChange.UserAssignment.userAssignmentId;
-            submission.assignmentPartId = submissionToChange.UserSubmission.assignmentPartId;
-            submission.accepted = submissionToChange.UserSubmission.accepted;
-            submission.numberOfSucessTestCases = submissionToChange.UserSubmission.numberOfSucessTestCases;
-            submission.testCaseFailId = submissionToChange.UserSubmission.testCaseFailId;
-            submission.error = submissionToChange.UserSubmission.error;
+        if (assignmentPart.AssignmentPartUploaded != null)
+        {
 
+            string fileExtension = System.IO.Path.GetExtension(assignmentPart.AssignmentPartUploaded.FileName);
+            string fileContentType = assignmentPart.AssignmentPartUploaded.ContentType;
 
-            //Vista breytingar í gagnagrunn
+            AssignmentPartFile newFile = new AssignmentPartFile();
+            newFile.assignmentPartId = assignmentPart.AssignmentPartId;
+            newFile.fileType = fileContentType;
+            newFile.fileExtension = fileExtension;
+
+            try
+            {
+                newFile = _db.AssignmentPartFile.Add(newFile);
+                _db.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+            string fileName = newFile.assignmentPartFileId.ToString();
+            newFile.path = filePathFull + fileName + fileExtension;
+            newFile.fileExtension = fileExtension;
+
+            _db.Entry(newFile).State = EntityState.Modified;
+            _db.SaveChanges();
+
+            assignmentPart.AssignmentPartUploaded.SaveAs(newFile.path);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public AssignmentViewModel getAllProgrammingLanguages()
+    {
+        //Sæki öll forritunarmál
+        var programmingLanguages = _db.ProgrammingLanguage.ToList();
+        var languages = new SelectList(programmingLanguages, "ProgrammingLanguageId", "ProgrammingLanguageName");
+        //Returna viewModelinu með listanum
+        AssignmentViewModel viewModel = new AssignmentViewModel
+        {
+            ProgrammingLanguages = languages
+        };
+        return viewModel;
+    }
+
+    public AssignmentPartViewModel addAssignmentPart(AssignmentPartViewModel assignmentToAdd, string serverPath)
+    {
+        //setja propery-in
+        var newAssignmentPart = new AssignmentPart();
+        newAssignmentPart.assignmentId = assignmentToAdd.AssignmentId;
+        newAssignmentPart.assignmentPartName = assignmentToAdd.AssignmentPartName;
+        newAssignmentPart.assignmentPartDescription = assignmentToAdd.AssignmentPartDescription;
+        newAssignmentPart.weight = assignmentToAdd.Weight;
+        newAssignmentPart.programmingLanguageId = assignmentToAdd.ProgrammingLanguageId;
+
+        newAssignmentPart = _db.AssignmentPart.Add(newAssignmentPart);
+        _db.SaveChanges();
+        assignmentToAdd.AssignmentPartId = newAssignmentPart.assignmentPartId;
+        //addAssignmentPartTestCase(assignmentToAdd.AssignmentPartList[i]);
+        addAssignmentPartFile(serverPath, assignmentToAdd);
+        return assignmentToAdd;
+    }
+
+    public void addAssignmentPartTestCase(AssignmentPartViewModel assignmentPart)
+    {
+        //setja propery-in
+        for (int i = 0; i < assignmentPart.AssignmentTestCaseList.Count; i++)
+        {
+            var newAssignmentTestCase = new AssignmentTestCase();
+            newAssignmentTestCase.assignmentPartId = assignmentPart.AssignmentPartId;
+            newAssignmentTestCase.input = assignmentPart.AssignmentTestCaseList[i].input;
+            newAssignmentTestCase.output = assignmentPart.AssignmentTestCaseList[i].output;
+            newAssignmentTestCase.testNumber = i + 1;
+
+            newAssignmentTestCase = _db.AssignmentTestCase.Add(newAssignmentTestCase);
+            _db.SaveChanges();
+        }
+    }
+
+    public AssignmentViewModel studentSubmitsAssignment(AssignmentViewModel submission, string serverPath)
+    {
+        //Smíða haus færslu ef hún er ekki til nú þegar
+        submission = userAssignmentCreate(submission);
+
+        //Test submissionið
+        submission = addSubmission(submission);
+
+        //Vista skrána
+        var submissionFile = submitFile(submission, serverPath);
+
+        List<AssignmentTestCase> testCases = getAssignmentPartTestCases(submission.UserSubmission.assignmentPartId).AssignmentTestCaseList;
+
+        if (testCases != null)
+        {
+            submission.UserSubmission = cppProgram(submission.UserSubmission, serverPath + "Content\\Files\\Submissions\\", submissionFile.submissionFileId.ToString() + submissionFile.fileExtension, testCases);
+            editSubmission(submission.UserSubmission);
+        }
+        return submission;
+    }
+
+    private Submission editSubmission(Submission submissionToEdit)
+    {
+        // Sæki færsluna sem á að breyta í gagnagrunninn
+        var query = (from submission in _db.Submission
+                     where submission.submissionId == submissionToEdit.submissionId
+                     select submission).SingleOrDefault();
+
+        // Set inn breyttu upplýsingarnar
+        query.accepted = submissionToEdit.accepted;
+        query.numberOfSucessTestCases = submissionToEdit.numberOfSucessTestCases;
+        query.testCaseFailId = submissionToEdit.testCaseFailId;
+        query.error = submissionToEdit.error;
+
+        //Vista breytingar í gagnagrunn
+        try
+        {
+            _db.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            // TODO
+        }
+        return submissionToEdit;
+    }
+
+    public AssignmentViewModel userAssignmentCreate(AssignmentViewModel submission)
+    {
+
+        var userAssignmentExists = (from userAssignment in _db.UserAssignment
+                                    where userAssignment.assignmentId == submission.AssignmentId
+                                   && userAssignment.userId == submission.UserAssignment.userId
+                                    select userAssignment).SingleOrDefault();
+
+        if (userAssignmentExists == null)
+        {
+            var newUserAssignment = new UserAssignment();
+            //setja propery-in
+            newUserAssignment.userId = submission.UserAssignment.userId;
+            newUserAssignment.assignmentId = submission.AssignmentId;
+            newUserAssignment.userGroupId = submission.UserGroupId;
             //try
             //{
-            _db.Submission.Add(submission);
+            //Vista ofan í gagnagrunn
+            submission.UserAssignment = _db.UserAssignment.Add(newUserAssignment);
             _db.SaveChanges();
+            return submission;
             //}
-            //catch (Exception e)
+            //catch
             //{
-            //  Console.WriteLine(e);
-            // TODO
+            //return null;
             //}
-            submissionToChange.UserSubmission = submission;
-            return submissionToChange;
+        }
+        else
+        {
+            submission.UserAssignment = userAssignmentExists;
+            return submission;
         }
 
-        public Submission cppProgram(Submission studentSubmission,string workingPath, string cppFileName, List<AssignmentTestCase> testCases)
+    }
+
+    public SubmissionFile submitFile(AssignmentViewModel submission, string serverPath)
+    {
+        string filePathFull = serverPath + "\\Content\\Files\\Submissions\\";
+
+        if (!Directory.Exists(filePathFull))
         {
-            var exeFilePath = workingPath + cppFileName.Split('.')[0] + ".exe";
+            Directory.CreateDirectory(filePathFull);
+        }
 
-            //Location of c++ compiler
-            var compilerFolder = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\";
+        string fileExtension = System.IO.Path.GetExtension(submission.SubmissionUploaded.FileName);
+        string fileContentType = submission.SubmissionUploaded.ContentType;
 
-            Process compiler = new Process();
-            compiler.StartInfo.FileName = "cmd.exe";
-            compiler.StartInfo.WorkingDirectory = workingPath;
-            compiler.StartInfo.RedirectStandardInput = true;
-            compiler.StartInfo.RedirectStandardOutput = true;
-            compiler.StartInfo.UseShellExecute = false;
+        SubmissionFile newFile = new SubmissionFile();
+        newFile.submissionId = submission.UserSubmission.submissionId;
+        newFile.fileType = fileContentType;
+        newFile.fileExtension = fileExtension;
 
-            compiler.Start();
-            compiler.StandardInput.WriteLine("\"" + compilerFolder + "vcvars32.bat" + "\"");
-            compiler.StandardInput.WriteLine("cl.exe /nologo /EHsc " + cppFileName);
-            compiler.StandardInput.WriteLine("exit");
-            string output = compiler.StandardOutput.ReadToEnd();
-            compiler.WaitForExit();
-            
-            if (File.Exists(exeFilePath))                
+        try
+        {
+            newFile = _db.SubmissionFile.Add(newFile);
+            _db.SaveChanges();
+        }
+        catch (DbEntityValidationException e)
+        {
+            foreach (var eve in e.EntityValidationErrors)
             {
-                studentSubmission.numberOfSucessTestCases = 0;
-                foreach (var test in testCases)
+                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                foreach (var ve in eve.ValidationErrors)
                 {
-                    var lines = new List<string>();
-                    var processInfoExe = new ProcessStartInfo(exeFilePath, " ");
-                    processInfoExe.UseShellExecute = false;
-                    processInfoExe.RedirectStandardInput = true;
-                    processInfoExe.RedirectStandardOutput = true;
-                    processInfoExe.RedirectStandardError = true;
-                    processInfoExe.CreateNoWindow = true;
-                    using (var processExe = new Process())
-                    {
-                        processExe.StartInfo = processInfoExe;
-                        processExe.Start();
-                        if (test.input != null)
-                        {
-                            processExe.StandardInput.WriteLine(test.input);
-                        }
-                        //Read the output of the program
-                        while (!processExe.StandardOutput.EndOfStream)
-                        {
-                            lines.Add(processExe.StandardOutput.ReadLine());
-                        }
+                    Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                        ve.PropertyName, ve.ErrorMessage);
+                }
+            }
+            throw;
+        }
 
-                    }
-                    var expectedResult = test.output.Split('\n');
-                    for (int i = 0; i < expectedResult.Length; i++)
+        string fileName = newFile.submissionFileId.ToString();
+        newFile.path = filePathFull + fileName + fileExtension;
+        newFile.fileExtension = fileExtension;
+
+        _db.Entry(newFile).State = EntityState.Modified;
+        _db.SaveChanges();
+
+        submission.SubmissionUploaded.SaveAs(newFile.path);
+
+        return newFile;
+    }
+
+    public AssignmentViewModel addSubmission(AssignmentViewModel submissionToChange)
+    {
+        // Bý til nýja færslu
+        var submission = new Submission();
+
+        // Set inn breyttu upplýsingarnar
+        submission.userAssignmentId = submissionToChange.UserAssignment.userAssignmentId;
+        submission.assignmentPartId = submissionToChange.UserSubmission.assignmentPartId;
+        submission.accepted = submissionToChange.UserSubmission.accepted;
+        submission.numberOfSucessTestCases = submissionToChange.UserSubmission.numberOfSucessTestCases;
+        submission.testCaseFailId = submissionToChange.UserSubmission.testCaseFailId;
+        submission.error = submissionToChange.UserSubmission.error;
+
+
+        //Vista breytingar í gagnagrunn
+        //try
+        //{
+        _db.Submission.Add(submission);
+        _db.SaveChanges();
+        //}
+        //catch (Exception e)
+        //{
+        //  Console.WriteLine(e);
+        // TODO
+        //}
+        submissionToChange.UserSubmission = submission;
+        return submissionToChange;
+    }
+
+    public Submission cppProgram(Submission studentSubmission, string workingPath, string cppFileName, List<AssignmentTestCase> testCases)
+    {
+        var exeFilePath = workingPath + cppFileName.Split('.')[0] + ".exe";
+
+        //Location of c++ compiler
+        var compilerFolder = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\";
+
+        Process compiler = new Process();
+        compiler.StartInfo.FileName = "cmd.exe";
+        compiler.StartInfo.WorkingDirectory = workingPath;
+        compiler.StartInfo.RedirectStandardInput = true;
+        compiler.StartInfo.RedirectStandardOutput = true;
+        compiler.StartInfo.UseShellExecute = false;
+
+        compiler.Start();
+        compiler.StandardInput.WriteLine("\"" + compilerFolder + "vcvars32.bat" + "\"");
+        compiler.StandardInput.WriteLine("cl.exe /nologo /EHsc " + cppFileName);
+        compiler.StandardInput.WriteLine("exit");
+        string output = compiler.StandardOutput.ReadToEnd();
+        compiler.WaitForExit();
+
+        if (File.Exists(exeFilePath))
+        {
+            studentSubmission.numberOfSucessTestCases = 0;
+            foreach (var test in testCases)
+            {
+                var lines = new List<string>();
+                var processInfoExe = new ProcessStartInfo(exeFilePath, " ");
+                processInfoExe.UseShellExecute = false;
+                processInfoExe.RedirectStandardInput = true;
+                processInfoExe.RedirectStandardOutput = true;
+                processInfoExe.RedirectStandardError = true;
+                processInfoExe.CreateNoWindow = true;
+                using (var processExe = new Process())
+                {
+                    processExe.StartInfo = processInfoExe;
+                    processExe.Start();
+                    if (test.input != null)
                     {
-                        if (expectedResult[i] != lines[i])
-                        {
-                            studentSubmission.numberOfSucessTestCases = i;
-                            studentSubmission.testCaseFailId = test.assignmentTestCaseId;
-                            studentSubmission.accepted = 0;
-                            studentSubmission.error = "Output was not correct";
-                        }
-                        else if(i == expectedResult.Length-1)
-                        {
-                            studentSubmission.error = "Accepted";
-                            studentSubmission.accepted = 1;
-                            studentSubmission.numberOfSucessTestCases = studentSubmission.numberOfSucessTestCases + 1;
-                        }
+                        processExe.StandardInput.WriteLine(test.input);
+                    }
+                    //Read the output of the program
+                    while (!processExe.StandardOutput.EndOfStream)
+                    {
+                        lines.Add(processExe.StandardOutput.ReadLine());
+                    }
+
+                }
+                var expectedResult = test.output.Split('\n');
+                for (int i = 0; i < expectedResult.Length; i++)
+                {
+                    if (expectedResult[i] != lines[i])
+                    {
+                        studentSubmission.numberOfSucessTestCases = i;
+                        studentSubmission.testCaseFailId = test.assignmentTestCaseId;
+                        studentSubmission.accepted = 0;
+                        studentSubmission.error = "Output was not correct";
+                    }
+                    else if (i == expectedResult.Length - 1)
+                    {
+                        studentSubmission.error = "Accepted";
+                        studentSubmission.accepted = 1;
+                        studentSubmission.numberOfSucessTestCases = studentSubmission.numberOfSucessTestCases + 1;
                     }
                 }
             }
-            else
-            {
-                studentSubmission.numberOfSucessTestCases = 0;
-                studentSubmission.accepted = 0;
-                studentSubmission.error = "Compile error";
-            }
-
-            return studentSubmission;
         }
+        else
+        {
+            studentSubmission.numberOfSucessTestCases = 0;
+            studentSubmission.accepted = 0;
+            studentSubmission.error = "Compile error";
+        }
+
+        return studentSubmission;
     }
+}
 }

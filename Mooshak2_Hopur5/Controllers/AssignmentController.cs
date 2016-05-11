@@ -186,6 +186,7 @@ namespace Mooshak2_Hopur5.Controllers
                 viewModel.UserAssignment =_service.getUserAssignmentById(userId, id.Value);
                 viewModel.AssignmentSubmissionsList = _service.getUsersSubmissions(userId, id.Value);
                 viewModel.File = _service.getAssignmentFile(id.Value);
+                viewModel.UserGroups = _service.getUserGroups(userId, viewModel.CourseId).UserGroups;
             }
             return View(viewModel);
         }

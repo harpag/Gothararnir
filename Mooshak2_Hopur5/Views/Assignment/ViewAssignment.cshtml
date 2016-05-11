@@ -107,7 +107,7 @@
                 {
                     <div id="row">
                         <div class="col-md-6">
-                            @Html.LabelFor(m => m.SubmissionUploaded, new { @class = "control-label" })
+                            @Html.LabelFor(m => m.UserSubmission.assignmentPartId, new { @class = "control-label" })
                             @Html.ValidationMessageFor(m => m.UserSubmission.assignmentPartId)
                             @Html.DropDownListFor(m => m.UserSubmission.assignmentPartId, (Model.AssignmentParts as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
                         </div>
@@ -116,16 +116,21 @@
                             @Html.ValidationMessageFor(m => m.SubmissionUploaded)
                             @Html.TextBoxFor(m => m.SubmissionUploaded, new { type = "file", @class = "form-control" })
                         </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.UserAssignment.userGroupId, new { @class = "control-label" })
+                            @Html.ValidationMessageFor(m => m.UserAssignment.userGroupId)
+                            @Html.DropDownListFor(m => m.UserAssignment.userGroupId, (Model.UserGroups as SelectList), string.Empty, new { @class = "form-control", data_placeholder = "Agent(s)." })
+                        </div>
                     </div>
-                    <div class="row">
-                        @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
-                        @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
-                        @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
-                        @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
-                        @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
-                        <div class="col-md-9"></div>
-                        <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
-                    </div>
+                        <div class="row">
+                            @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
+                            @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
+                            @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
+                            @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
+                            @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
+                            <div class="col-md-9"></div>
+                            <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
+                        </div>
                 }
             }
             else
