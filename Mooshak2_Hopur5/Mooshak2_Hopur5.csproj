@@ -358,6 +358,7 @@
     <Content Include="Views\UserGroup\Edit.cshtml" />
     <Content Include="Views\UserGroup\Index.cshtml" />
     <Content Include="Views\Assignment\ViewSubmissions.cshtml" />
+    <Content Include="Views\Assignment\ViewUserSubmissions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

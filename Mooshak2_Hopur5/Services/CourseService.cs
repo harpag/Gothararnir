@@ -219,18 +219,24 @@ namespace Mooshak2_Hopur5.Services
                          join userCourse in _db.UserCourse on courses.courseId equals userCourse.courseId
                          join anUser in _db.AspNetUsers on userCourse.userId equals anUser.Id
                          where courses.courseId == courseId
-                         select new { anUser, userCourse }).ToList();
+                         select anUser).ToList();
+
+            //Fix þegar mörgum sinnum skráður í sama áfangann
+            var uniquePeople = from p in users
+                               group p by new { p.Id } //or group by new {p.ID, p.Name, p.Whatever}
+                               into mygroup
+                               select mygroup.FirstOrDefault();
 
             //Bý til lista af notendur(UserViewModel)
-            List<SubmissionViewModel> userList;
+            List < SubmissionViewModel > userList;
             userList = new List<SubmissionViewModel>();
 
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
-            foreach (var entity in users)
+            foreach (var entity in uniquePeople)
             {
                 UserAssignment userAssignment = (from userAssignments in _db.UserAssignment
                                                 where userAssignments.assignmentId == assignmentId
-                                               && userAssignments.userId == entity.anUser.Id
+                                               && userAssignments.userId == entity.Id
                                                 select userAssignments).SingleOrDefault();
 
                 // = userAssignment.userAssignmentList == null
@@ -253,9 +259,9 @@ namespace Mooshak2_Hopur5.Services
 
                 var result = new SubmissionViewModel
                 {
-                    Email = entity.anUser.Email,
-                    UserName = entity.anUser.UserName,
-                    UserId = entity.anUser.Id,
+                    Email = entity.Email,
+                    UserName = entity.UserName,
+                    UserId = entity.Id,
                     SubmissionCount = iCount,
                     Success = bSuccess
                 };

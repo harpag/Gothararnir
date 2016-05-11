@@ -23,7 +23,7 @@
                 <td>@user.UserName</td>
                 <td>@user.Email</td>
                 <td>@user.Success.ToString()</td>
-                <td>@user.SubmissionCount</td>
+                <td>@Html.ActionLink(@user.SubmissionCount.ToString(), "ViewUserSubmissions", "Assignment", new { userId = user.UserId, assignmentId = Request.QueryString["assignmentId"] }, null)</td>
             </tr>
         }
     </table>
