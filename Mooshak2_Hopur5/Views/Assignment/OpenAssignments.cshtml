@@ -13,7 +13,14 @@
             <tr>
                 <td>@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</td>
                 <td>@assignment.CourseName</td>
-                <td>@assignment.DueDate</td>
+                @if (assignment.DueDate.HasValue)
+                {
+                    <td>@assignment.DueDate.Value.ToString("d.MMM yyyy HH:mm")</td>
+                }
+                else
+                {
+                    <td>Not yet determined</td>
+                }
             </tr>
         }
     </table>

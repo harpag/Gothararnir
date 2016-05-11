@@ -44,9 +44,11 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public List<Discussion> DiscussionsList { get; set; }
         public UserAssignment UserAssignment {get; set;}
         public Submission UserSubmission { get; set; }
+        public AssignmentFile File { get; set; }
         public IEnumerable<SelectListItem> UserCourses { get; set; }
         public IEnumerable<SelectListItem> ProgrammingLanguages { get; set; }
         public IEnumerable<SelectListItem> AssignmentParts { get; set; }
+        
         #region extra properties
 
 

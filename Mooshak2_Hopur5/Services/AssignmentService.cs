@@ -173,6 +173,31 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
+        public AssignmentFile getAssignmentFile(int id)
+        {
+            
+            var file = _db.AssignmentFile.SingleOrDefault(x => x.assignmentId == id);
+
+            if (file == null)
+            {
+                return new AssignmentFile();
+            }
+            else {
+                //Set skránna inn í ViewModelið
+                var viewModel = new AssignmentFile
+                {
+                    assignmentFileId = file.assignmentFileId,
+                    assignmentId = file.assignmentId,
+                    path = file.path,
+                    fileType = file.fileType,
+                    fileExtension = file.fileExtension
+                };
+
+                //Returna ViewModelinu með áfanganum í
+                return viewModel;
+            }
+        }
+
         public AssignmentPartViewModel getAssignmentPartTestCases(int assignmentPartId)
         {
             //Sæki öll prófunartilvik fyrir verkefnis hluta
@@ -314,13 +339,14 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentViewModel getAllUserAssignments(int userId)
+        public AssignmentViewModel getAllUserAssignments(string userId)
         {
             //Sæki öll gögn í verkefna töfluna
             var assignments = (from assign in _db.Assignment
                                join course in _db.Course on assign.courseId equals course.courseId
                                join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
                                where userCourse.userId.Equals(userId)
+                               orderby assign.assignDate descending
                                select new { assign, course }).ToList();
 
             //Bý til lista af verkefnum
@@ -910,28 +936,46 @@ namespace Mooshak2_Hopur5.Services
             submission = userAssignmentCreate(submission);
 
             //Test submissionið
-            //TODO harðkóðað eins og er
-            submission.UserSubmission.accepted = 0;
-            submission.UserSubmission.numberOfSucessTestCases = 0;
-            submission.UserSubmission.testCaseFailId = 2;// submission.AssignmentPartList[0].AssignmentTestCaseList[0].assignmentTestCaseId;
-            submission.UserSubmission.error = "Compile time error";
             submission = addSubmission(submission);
 
             //Vista skrána
-            submission = submitFile(submission, serverPath);
+            var submissionFile = submitFile(submission, serverPath);
 
-            cppProgram(serverPath);
+            List<AssignmentTestCase> testCases = getAssignmentPartTestCases(submission.UserSubmission.assignmentPartId).AssignmentTestCaseList;
 
+            if (testCases != null)
+            {
+                submission.UserSubmission = cppProgram(submission.UserSubmission, serverPath + "Content\\Files\\Submissions\\", submissionFile.submissionFileId.ToString() + submissionFile.fileExtension, testCases);
+                editSubmission(submission.UserSubmission);               
+            }
             return submission;
         }
 
-        public AssignmentViewModel testSubmission(AssignmentViewModel submission)
+        private Submission editSubmission(Submission submissionToEdit)
         {
-            submission.UserSubmission.accepted = 0;
-            return submission;
+            // Sæki færsluna sem á að breyta í gagnagrunninn
+            var query = (from submission in _db.Submission
+                         where submission.submissionId == submissionToEdit.submissionId
+                         select submission).SingleOrDefault();
 
+            // Set inn breyttu upplýsingarnar
+            query.accepted = submissionToEdit.accepted;
+            query.numberOfSucessTestCases = submissionToEdit.numberOfSucessTestCases;
+            query.testCaseFailId = submissionToEdit.testCaseFailId;
+            query.error = submissionToEdit.error;
+
+            //Vista breytingar í gagnagrunn
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // TODO
+            }
+            return submissionToEdit;
         }
-
 
         public AssignmentViewModel userAssignmentCreate(AssignmentViewModel submission)
         {
@@ -967,7 +1011,7 @@ namespace Mooshak2_Hopur5.Services
 
         }
 
-        public AssignmentViewModel submitFile(AssignmentViewModel submission, string serverPath)
+        public SubmissionFile submitFile(AssignmentViewModel submission, string serverPath)
         {
             string filePathFull = serverPath + "\\Content\\Files\\Submissions\\";
 
@@ -1013,7 +1057,7 @@ namespace Mooshak2_Hopur5.Services
 
             submission.SubmissionUploaded.SaveAs(newFile.path);
 
-            return submission;
+            return newFile;
         }
 
         public AssignmentViewModel addSubmission(AssignmentViewModel submissionToChange)
@@ -1045,35 +1089,16 @@ namespace Mooshak2_Hopur5.Services
             return submissionToChange;
         }
 
-        public List<string> cppProgram(string serverPath)
+        public Submission cppProgram(Submission studentSubmission,string workingPath, string cppFileName, List<AssignmentTestCase> testCases)
         {
-            var code = "#include <iostream>\n" +
-                        "using namespace std;\n" +
-                        "int main()\n" +
-                        "{\n" +
-                        "cout << \"Hello world\" << endl;\n" +
-                        "cout << \"The output should only contain two lines\" << endl;\n" +
-                        "return 0;\n" +
-                        "}";
-
-            var workingFolder = serverPath + "\\Content\\Files\\CPP\\";
-
-            if (!Directory.Exists(workingFolder))
-            {
-                Directory.CreateDirectory(workingFolder);
-            }
-
-            var cppFileName = "Hello.cpp";
-            var exeFilePath = workingFolder + "Hello.exe";
-
-            File.WriteAllText(workingFolder + cppFileName, code);
+            var exeFilePath = workingPath + cppFileName.Split('.')[0] + ".exe";
 
             //Location of c++ compiler
             var compilerFolder = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\";
 
             Process compiler = new Process();
             compiler.StartInfo.FileName = "cmd.exe";
-            compiler.StartInfo.WorkingDirectory = workingFolder;
+            compiler.StartInfo.WorkingDirectory = workingPath;
             compiler.StartInfo.RedirectStandardInput = true;
             compiler.StartInfo.RedirectStandardOutput = true;
             compiler.StartInfo.UseShellExecute = false;
@@ -1084,30 +1109,61 @@ namespace Mooshak2_Hopur5.Services
             compiler.StandardInput.WriteLine("exit");
             string output = compiler.StandardOutput.ReadToEnd();
             compiler.WaitForExit();
-
-            var lines = new List<string>();
-            if (File.Exists(exeFilePath))
+            
+            if (File.Exists(exeFilePath))                
             {
-                var processInfoExe = new ProcessStartInfo(exeFilePath, "");
-                processInfoExe.UseShellExecute = false;
-                processInfoExe.RedirectStandardOutput = true;
-                processInfoExe.RedirectStandardError = true;
-                processInfoExe.CreateNoWindow = true;
-                using (var processExe = new Process())
+                studentSubmission.numberOfSucessTestCases = 0;
+                foreach (var test in testCases)
                 {
-                    processExe.StartInfo = processInfoExe;
-                    processExe.Start();
-
-                    //Read the output of the program
-                    while (!processExe.StandardOutput.EndOfStream)
+                    var lines = new List<string>();
+                    var processInfoExe = new ProcessStartInfo(exeFilePath, " ");
+                    processInfoExe.UseShellExecute = false;
+                    processInfoExe.RedirectStandardInput = true;
+                    processInfoExe.RedirectStandardOutput = true;
+                    processInfoExe.RedirectStandardError = true;
+                    processInfoExe.CreateNoWindow = true;
+                    using (var processExe = new Process())
                     {
-                        lines.Add(processExe.StandardOutput.ReadLine());
-                    }
+                        processExe.StartInfo = processInfoExe;
+                        processExe.Start();
+                        if (test.input != null)
+                        {
+                            processExe.StandardInput.WriteLine(test.input);
+                        }
+                        //Read the output of the program
+                        while (!processExe.StandardOutput.EndOfStream)
+                        {
+                            lines.Add(processExe.StandardOutput.ReadLine());
+                        }
 
+                    }
+                    var expectedResult = test.output.Split('\n');
+                    for (int i = 0; i < expectedResult.Length; i++)
+                    {
+                        if (expectedResult[i] != lines[i])
+                        {
+                            studentSubmission.numberOfSucessTestCases = i;
+                            studentSubmission.testCaseFailId = test.assignmentTestCaseId;
+                            studentSubmission.accepted = 0;
+                            studentSubmission.error = "Output was not correct";
+                        }
+                        else if(i == expectedResult.Length-1)
+                        {
+                            studentSubmission.error = "Accepted";
+                            studentSubmission.accepted = 1;
+                            studentSubmission.numberOfSucessTestCases = studentSubmission.numberOfSucessTestCases + 1;
+                        }
+                    }
                 }
             }
+            else
+            {
+                studentSubmission.numberOfSucessTestCases = 0;
+                studentSubmission.accepted = 0;
+                studentSubmission.error = "Compile error";
+            }
 
-            return lines;
+            return studentSubmission;
         }
     }
 }

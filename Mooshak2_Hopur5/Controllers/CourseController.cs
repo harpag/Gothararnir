@@ -115,13 +115,17 @@ namespace Mooshak2_Hopur5.Controllers
         }
 
         //Bæta notendum við áfanga
-        public ActionResult AddUsersToCourse()
+        public ActionResult AddUsersToCourse(int? id)
         {
             if(User.IsInRole("Admin"))
             { 
             CourseUsersViewModel viewModel = new CourseUsersViewModel();
             viewModel.AllUsers = IdentityManager.GetUsers();
             viewModel.Courses = new SelectList(_service.getAllCourses().CourseList, "CourseId", "CourseName");
+                if(id.HasValue)
+                {
+                    viewModel.CourseId = id.Value;
+                }
             return View(viewModel);
             }
             else

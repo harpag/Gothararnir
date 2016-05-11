@@ -161,7 +161,17 @@ namespace Mooshak2_Hopur5.Controllers
             return View(viewModel);
         }
 
+        public ActionResult GetAllAssignments()
+        {
+            string userId = User.Identity.GetUserId();
+            var viewModel = new AssignmentViewModel();
+            viewModel = _service.getAllUserAssignments(userId);
+            return View(viewModel);
+        }
+
+
         public ActionResult ViewAssignment(int? id)
+
         {
             if(id.HasValue == false)
             {
@@ -170,14 +180,17 @@ namespace Mooshak2_Hopur5.Controllers
 
             var viewModel = _service.getAssignmentById(id.Value);
             string userId = User.Identity.GetUserId();
-            if(User.IsInRole("Student"))
+            viewModel.File = _service.getAssignmentFile(id.Value);
+            if (User.IsInRole("Student"))
             {
                 viewModel.UserAssignment =_service.getUserAssignmentById(userId, id.Value);
                 viewModel.AssignmentSubmissionsList = _service.getUsersSubmissions(userId, id.Value);
+                viewModel.File = _service.getAssignmentFile(id.Value);
             }
             return View(viewModel);
         }
 
+      
         [HttpPost]
         public ActionResult ViewAssignment(AssignmentViewModel viewModel)
         {
@@ -188,6 +201,11 @@ namespace Mooshak2_Hopur5.Controllers
             }
 
             return RedirectToAction("ViewAssignment", "Assignment", new { id = viewModel.AssignmentId });
+        }
+
+        public ActionResult DownloadAssignment(string path, string contentType, string fileName )
+        {
+            return File(path, contentType, Server.UrlEncode(fileName));
         }
     }
 }

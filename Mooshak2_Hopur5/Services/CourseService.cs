@@ -56,23 +56,25 @@ namespace Mooshak2_Hopur5.Services
         public CourseViewModel getAllCourses()
         {
             //Sæki öll gögn í Course(áfanga) töfluna
-            var courses = _db.Course.ToList();
-            
+            var allCourses = (from courses in _db.Course
+                               join semester in _db.Semester on courses.semesterId equals semester.semesterId
+                               select new { semester, courses }).Distinct().ToList().OrderByDescending(x => x.semester.dateFrom);
             //Bý til lista af áföngum(CourseViewModel)
             List<CourseViewModel> courseList;
             courseList = new List<CourseViewModel>();
 
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
-            foreach(var entity in courses)
+            foreach(var entity in allCourses)
             {
                 //var courseUsers = getAllUsersInCourse(entity.courseId);
-                var courseTeachers = getAllTeachersInCourse(entity.courseId);
+                var courseTeachers = getAllTeachersInCourse(entity.courses.courseId);
                 var result = new CourseViewModel
                 {
-                    CourseId = entity.courseId,
-                    CourseName = entity.courseName,
-                    CourseNumber = entity.courseNumber,
-                    SemesterId = entity.semesterId,
+                    CourseId = entity.courses.courseId,
+                    CourseName = entity.courses.courseName,
+                    CourseNumber = entity.courses.courseNumber,
+                    SemesterId = entity.courses.semesterId,
+                    SemesterName = entity.semester.semesterName,
                     //UserList = courseUsers.UserList,
                     TeacherList = courseTeachers.TeacherList
                 };
@@ -136,8 +138,8 @@ namespace Mooshak2_Hopur5.Services
                                 join userCourse in _db.UserCourse on courses.courseId equals userCourse.courseId
                                 join semester in _db.Semester on courses.semesterId equals semester.semesterId
                                 where userCourse.userId == userId
-                                orderby semester.dateTo descending
-                                select new { semester, courses }).Distinct().ToList();
+                                orderby semester.dateTo
+                                select new { semester, courses }).Distinct().ToList().OrderByDescending(x => x.semester.dateFrom); 
 
             //Bý til lista af áföngum(CourseViewModel)
             List<CourseViewModel> courseList;
