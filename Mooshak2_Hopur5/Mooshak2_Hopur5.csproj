@@ -359,12 +359,9 @@
     <Content Include="Views\UserGroup\Edit.cshtml" />
     <Content Include="Views\UserGroup\Index.cshtml" />
     <Content Include="Views\Assignment\ViewSubmissions.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Assignment\ViewUserSubmissions.cshtml" />
-=======
     <Content Include="Views\Assignment\EditAssignment.cshtml" />
     <Content Include="Views\Assignment\EditAssignmentPart.cshtml" />
->>>>>>> 3c8edcd19ec54c882a4703ea9bdd7e94310a296a
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -501,7 +501,7 @@ namespace Mooshak2_Hopur5.Services
         {
             //Sæki núverandi önn
             var semester = (from Semester in _db.Semester
-                            where DateTime.Now >= Semester.dateFrom && DateTime.Now <=Semester.dateTo
+                            where DateTime.Now >= Semester.dateFrom && DateTime.Now <= Semester.dateTo
                             select Semester).SingleOrDefault();
 
             //Kasta villu ef ekki fannst verkefni með þessu ID-i
