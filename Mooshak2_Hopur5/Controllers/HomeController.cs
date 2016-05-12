@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Mooshak2_Hopur5.Controllers
@@ -23,6 +19,7 @@ namespace Mooshak2_Hopur5.Controllers
             viewModel.CourseList = _courseService.getAllUsersCoursesOnSemester(userId, int.Parse(Session["CurrentSemesterId"].ToString())).CourseList;
             viewModel.AssignmentList = _assignmentService.getAllUserAssignmentsOnSemester(userId, int.Parse(Session["CurrentSemesterId"].ToString())).AssignmentList;
             viewModel.AnnouncementList = _announcementService.getAllAnnouncements().AnnouncementList;
+
             return View(viewModel);
         }
 
@@ -30,6 +27,7 @@ namespace Mooshak2_Hopur5.Controllers
         {
             var viewModel = new HomeViewModel();
             viewModel.AnnouncementList = _announcementService.getAllAnnouncements().AnnouncementList;
+
             return View(viewModel);
         }
     }

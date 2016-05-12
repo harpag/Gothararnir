@@ -1,9 +1,5 @@
 ﻿using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Mooshak2_Hopur5.Controllers
@@ -11,7 +7,6 @@ namespace Mooshak2_Hopur5.Controllers
     public class SemesterController : Controller
     {
         private CourseService _service = new CourseService();
-        // GET: Semester
         public ActionResult Index()
         {
             return View();
@@ -29,7 +24,6 @@ namespace Mooshak2_Hopur5.Controllers
             bool announcement = _service.addSemester(newSemester);
 
             return RedirectToAction("GetAllSemesters");
-
         }
 
         [HttpPost]
@@ -38,7 +32,6 @@ namespace Mooshak2_Hopur5.Controllers
             _service.editSemester(newSemester);
 
             return RedirectToAction("GetAllSemesters");
-
         }
 
         public ActionResult GetAllSemesters()
