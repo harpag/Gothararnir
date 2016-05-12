@@ -1,27 +1,19 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Mooshak2_Hopur5.Models;
 using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using Mooshak2_Hopur5.Utilities;
 
 namespace Mooshak2_Hopur5.Controllers
 {
     public class CourseController : Controller
     {
-        //Upphafstilli hvaða service þarf að nota í þessum controller
+        //Upphafstilling á service
         private CourseService _service = new CourseService();
         private AssignmentService _assignmentService = new AssignmentService();
         private UserService _userService = new UserService();
-
-
-        //Sæki ákveðinn áfanga
+        
         public ActionResult ViewCourse(int id)
         {
             string userId = User.Identity.GetUserId();
@@ -30,7 +22,7 @@ namespace Mooshak2_Hopur5.Controllers
             return View(viewModel);
         }
 
-        //Sæki alla áfanga sem notandi hefur aðgang að
+        //Sækir alla áfanga sem notandi hefur aðgang að
         public ActionResult GetAllCourses()
         {
             var viewModel = new CourseViewModel();
@@ -51,7 +43,7 @@ namespace Mooshak2_Hopur5.Controllers
             return View(viewModel);
         }
 
-        //Sæki alla áfanga notanda til að birta í nav bar
+        //Sækir alla áfanga notanda til að birta í navigation barnum
         public ActionResult ViewAllMyCourses()
         {
             string userId = User.Identity.GetUserId();
@@ -61,6 +53,7 @@ namespace Mooshak2_Hopur5.Controllers
             return View(viewModel);
         }
 
+        //Sækir alla áfanga á önn
         public ActionResult GetAllCoursesOnSemester()
         {
             int semesterId = 2;
@@ -68,25 +61,8 @@ namespace Mooshak2_Hopur5.Controllers
             viewModel = _service.getAllCoursesOnSemester(semesterId);
             return View(viewModel);
         }
-
-        //public ActionResult GetAllUserCourses()
-        //{
-        //    string userID = User.Identity.GetUserId();
-        //    var viewModel = new CourseViewModel();
-        //    viewModel = _service.getAllUsersCourses(userID);
-        //    return View(viewModel);
-        //}
-
-        //public ActionResult GetAllUserCoursesOnSemester()
-        //{
-        //    string userId = "3";
-        //    int semesterId = 1;
-        //    var viewModel = new CourseViewModel();
-        //    viewModel = _service.getAllUsersCoursesOnSemester(userId, semesterId);
-        //    return View(viewModel);
-        //}
-
-        //Stofna nýjan áfanga
+        
+        //Stofnar nýjan áfanga
         public ActionResult CreateCourse()
         {
             if (User.IsInRole("Admin"))
@@ -101,7 +77,7 @@ namespace Mooshak2_Hopur5.Controllers
             }
         }
 
-        //Vista nýjan áfanga
+        //Vistar nýjan áfanga
         [HttpPost]
         public ActionResult CreateCourse(CourseViewModel newCourse)
         {
@@ -134,7 +110,7 @@ namespace Mooshak2_Hopur5.Controllers
             }
         }
 
-        //Vista notendur saman við áfanga
+        //Vistar notendur í áfanga
         [HttpPost]
         public ActionResult AddUsersToCourse(CourseUsersViewModel newCourseUsers)
         {
@@ -151,8 +127,7 @@ namespace Mooshak2_Hopur5.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
-        //Breyta áfanga
+        
         [HttpGet]
         public ActionResult EditCourse(int id)
         {
@@ -161,7 +136,6 @@ namespace Mooshak2_Hopur5.Controllers
             return View(viewModel);
         }
 
-        //Vista breytingar á áfanga
         [HttpPost]
         public ActionResult EditCourse(CourseViewModel newCourse)
         {
@@ -172,9 +146,6 @@ namespace Mooshak2_Hopur5.Controllers
             }
         
             return View(newCourse);
-
         }
-
-       
     }
 }
