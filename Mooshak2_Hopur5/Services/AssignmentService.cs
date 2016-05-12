@@ -19,7 +19,7 @@ namespace Mooshak2_Hopur5.Services
         {
             _db = new DataModel();
         }
-        
+
         public AssignmentViewModel getAssignmentById(int assignmentId)
         {
             var assignment = (from assign in _db.Assignment
@@ -31,7 +31,7 @@ namespace Mooshak2_Hopur5.Services
             var assignmentPartSelect = new SelectList(assignmentPart.AssignmentPartList, "AssignmentPartId", "AssignmentPartName");
 
             //Kastar villu ef ekki fannst verkefni með þessu ID-i
-            if (assignment == null) 
+            if (assignment == null)
             {
                 throw new ArgumentException("Parameter cannot be null");
             }
@@ -58,7 +58,7 @@ namespace Mooshak2_Hopur5.Services
                 return viewModel;
             }
         }
-        
+
         public UserAssignment getUserAssignmentById(string userId, int assignmentId)
         {
             var userAssignment = (from assign in _db.Assignment
@@ -94,7 +94,7 @@ namespace Mooshak2_Hopur5.Services
             var assignmentPart = (from part in _db.AssignmentPart
                                   where part.assignmentPartId == partId
                                   select part).SingleOrDefault();
-            
+
             if (assignmentPart == null)
             {
                 throw new ArgumentException("Parameter cannot be null");
@@ -119,12 +119,12 @@ namespace Mooshak2_Hopur5.Services
             var query = (from part in _db.AssignmentPart
                          where part.assignmentPartId == assignmentPart.AssignmentPartId
                          select part).SingleOrDefault();
-            
+
             query.assignmentPartName = assignmentPart.AssignmentPartName;
             query.assignmentPartDescription = assignmentPart.AssignmentPartDescription;
             query.weight = assignmentPart.Weight;
             query.programmingLanguageId = assignmentPart.ProgrammingLanguageId;
-            
+
             try
             {
                 _db.SaveChanges();
@@ -152,7 +152,7 @@ namespace Mooshak2_Hopur5.Services
                                    orderby submission.numberOfSucessTestCases descending
                                    select submission);
 
-           
+
             List<SubmissionViewModel> submissionList;
             submissionList = new List<SubmissionViewModel>();
 
@@ -1095,9 +1095,9 @@ namespace Mooshak2_Hopur5.Services
                 //setja propery-in
                 newUserAssignment.userId = submission.UserAssignment.userId;
                 newUserAssignment.assignmentId = submission.AssignmentId;
-                if(submission.UserGroupId < 0)
-                { 
-                newUserAssignment.userGroupId = submission.UserGroupId;
+                if (submission.UserGroupId < 0)
+                {
+                    newUserAssignment.userGroupId = submission.UserGroupId;
                 }
                 //try
                 //{

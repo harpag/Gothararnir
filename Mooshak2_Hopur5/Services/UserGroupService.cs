@@ -1,8 +1,5 @@
 ﻿using Mooshak2_Hopur5.Models.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Mooshak2_Hopur5.Models.ViewModels;
 
 namespace Mooshak2_Hopur5.Services
@@ -16,21 +13,19 @@ namespace Mooshak2_Hopur5.Services
             _db = new DataModel();
         }
 
-        public UserGroupViewModel GetViewWithUsers()
+        public UserGroupViewModel GetUsers()
         {
-            UserGroupViewModel res = new UserGroupViewModel();
+            UserGroupViewModel result = new UserGroupViewModel();
+            result.AllUsers = Utilities.IdentityManager.GetUsers();
 
-            res.AllUsers = Utilities.IdentityManager.GetUsers();
-
-            return res;
+            return result;
         }
 
-        //Bæta við notendum í hópa
+        //Bætir við notendum í hópa
         public Boolean addUsersToGroup(string userId, int groupId)
         {
             var member = new UserGroupMember();
 
-            //Setja property-in
             member.userGroupId = groupId;
             member.userId = userId;
 
