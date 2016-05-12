@@ -4,9 +4,11 @@ using Mooshak2_Hopur5.Services;
 using System;
 using System.Web.Mvc;
 using Mooshak2_Hopur5.Utilities;
+using Mooshak2_Hopur5.Handlers;
 
 namespace Mooshak2_Hopur5.Controllers
 {
+    [CustomHandleErrorAttribute]
     public class CourseController : Controller
     {
         //Upphafstilling á service

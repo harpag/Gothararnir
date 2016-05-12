@@ -1,9 +1,11 @@
-﻿using Mooshak2_Hopur5.Models.ViewModels;
+﻿using Mooshak2_Hopur5.Handlers;
+using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
 using System.Web.Mvc;
 
 namespace Mooshak2_Hopur5.Controllers
 {
+    [CustomHandleErrorAttribute]
     public class SemesterController : Controller
     {
         private CourseService _service = new CourseService();

@@ -6,10 +6,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Mooshak2_Hopur5.Models;
+using Mooshak2_Hopur5.Handlers;
 
 namespace Mooshak2_Hopur5.Controllers
 {
     [Authorize]
+    [CustomHandleErrorAttribute]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
