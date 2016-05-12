@@ -1,10 +1,10 @@
-﻿@model  Mooshak2_Hopur5.Models.ViewModels.SubmissionViewModel
+﻿@model  Mooshak2_Hopur5.Models.ViewModels.SubmissionOverviewViewModel
 
 @{
     ViewBag.Title = "ViewSubmissions";
 }
 
-<h2>ViewSubmissions</h2>
+<h2>View submissions</h2>
 
 <div>Members in course: @Model.UserList.Count.ToString() </div>
 <div>
@@ -22,7 +22,14 @@
             <tr>
                 <td>@user.UserName</td>
                 <td>@user.Email</td>
-                <td>@user.Success.ToString()</td>
+                @if (user.Success)
+                {
+                    <td><span class="glyphicon glyphicon-thumbs-up text-success"></span></td>
+                }
+                else
+                {
+                    <td><span class="glyphicon glyphicon-thumbs-down text-danger"></span></td>
+                }
                 <td>@Html.ActionLink(@user.SubmissionCount.ToString(), "ViewUserSubmissions", "Assignment", new { userId = user.UserId, assignmentId = Request.QueryString["assignmentId"] }, null)</td>
             </tr>
         }

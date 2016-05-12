@@ -290,8 +290,11 @@ namespace Mooshak2_Hopur5.Controllers
             }
             
             var submissionList = _service.getUsersSubmissions(userId, (int)assignmentId);
+            var assignmentParts = _service.getAssignmentParts(assignmentId.Value);
             AssignmentViewModel viewModel = new AssignmentViewModel();
+            viewModel.UserName = Utilities.IdentityManager.GetUserById(userId).UserName;
             viewModel.AssignmentSubmissionsList = submissionList;
+            viewModel.AssignmentPartList = assignmentParts.AssignmentPartList;
 
             return View(viewModel);
         }
