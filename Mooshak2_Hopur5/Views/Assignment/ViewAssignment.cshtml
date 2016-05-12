@@ -8,7 +8,7 @@
 <h2>Assignment overview: @Model.AssignmentName</h2>
 
 <div class="form-inline">
-    <div class="list-group-item">
+    <div class="list-group-item well">
         <table>
             <tr><td>Description: @Model.AssignmentDescription </td></tr>
             <tr><td>Weight: @Model.Weight %</td></tr>
@@ -77,7 +77,7 @@
 </div>
 @if (User.IsInRole("Student"))
 {
-    <div class="studentSubmissions">
+    <div class="studentSubmissions well">
         <h3>My submissions</h3>
         @if (Model.AssignmentSubmissionsList != null)
         {
@@ -119,39 +119,47 @@
         }
         @if (Model.DueDate > DateTime.Now)
         {
-            using (Html.BeginForm("ViewAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+            if (Model.MaxSubmission < Model.AssignmentSubmissionsList.Count)
             {
-                <div id="row">
-                    <div class="col-md-6">
-                        @Html.LabelFor(m => m.UserSubmission.assignmentPartId, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.UserSubmission.assignmentPartId)
-                        @Html.DropDownListFor(m => m.UserSubmission.assignmentPartId, (Model.AssignmentParts as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+                <p class="text-danger">You have reached maximum number of submissions</p>
+
+            }
+            else
+            {
+                using (Html.BeginForm("ViewAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                {
+                    <div id="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.UserSubmission.assignmentPartId, new { @class = "control-label" })
+                            @Html.ValidationMessageFor(m => m.UserSubmission.assignmentPartId)
+                            @Html.DropDownListFor(m => m.UserSubmission.assignmentPartId, (Model.AssignmentParts as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+                        </div>
+                        <div class="col-md-6 product-attachment">
+                            @Html.LabelFor(m => m.SubmissionUploaded, new { @class = "control-label" })
+                            @Html.ValidationMessageFor(m => m.SubmissionUploaded)
+                            @Html.TextBoxFor(m => m.SubmissionUploaded, new { type = "file", @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.UserAssignment.userGroupId, new { @class = "control-label" })
+                            @Html.ValidationMessageFor(m => m.UserAssignment.userGroupId)
+                            @Html.DropDownListFor(m => m.UserAssignment.userGroupId, (Model.UserGroups as SelectList), string.Empty, new { @class = "form-control", data_placeholder = "Agent(s)." })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.UserSubmission.submissionComment, new { @class = "control-label" })
+                            @Html.ValidationMessageFor(m => m.UserSubmission.submissionComment)
+                            @Html.TextBoxFor(m => m.UserSubmission.submissionComment, new { @class = "form-control" })
+                        </div>
                     </div>
-                    <div class="col-md-6 product-attachment">
-                        @Html.LabelFor(m => m.SubmissionUploaded, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.SubmissionUploaded)
-                        @Html.TextBoxFor(m => m.SubmissionUploaded, new { type = "file", @class = "form-control" })
+                    <div class="row">
+                        @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
+                        @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
+                        <div class="col-md-9"></div>
+                        <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
                     </div>
-                    <div class="col-md-6">
-                        @Html.LabelFor(m => m.UserAssignment.userGroupId, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.UserAssignment.userGroupId)
-                        @Html.DropDownListFor(m => m.UserAssignment.userGroupId, (Model.UserGroups as SelectList), string.Empty, new { @class = "form-control", data_placeholder = "Agent(s)." })
-                    </div>
-                    <div class="col-md-6">
-                        @Html.LabelFor(m => m.UserSubmission.submissionComment, new { @class = "control-label" })
-                        @Html.ValidationMessageFor(m => m.UserSubmission.submissionComment)
-                        @Html.TextBoxFor(m => m.UserSubmission.submissionComment, new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="row">
-                    @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
-                    @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
-                    @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
-                    @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
-                    @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
-                    <div class="col-md-9"></div>
-                    <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
-                </div>
+                }
             }
         }
         else
