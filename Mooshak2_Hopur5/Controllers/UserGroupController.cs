@@ -8,9 +8,11 @@ using Mooshak2_Hopur5.Models.Entities;
 using Microsoft.AspNet.Identity;
 using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
+using Mooshak2_Hopur5.Handlers;
 
 namespace Mooshak2_Hopur5.Controllers
 {
+    [CustomHandleErrorAttribute]
     public class UserGroupController : Controller
     {
         private UserGroupService _service = new UserGroupService();
@@ -38,6 +40,7 @@ namespace Mooshak2_Hopur5.Controllers
 
         public ActionResult Create(int? id)
         {
+            throw new Exception("Villa villa");
             if (id == null)
                 throw new NotImplementedException();
 

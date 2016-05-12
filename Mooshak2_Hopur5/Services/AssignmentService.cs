@@ -1,12 +1,10 @@
-﻿using Mooshak2_Hopur5.Utilities;
-using Mooshak2_Hopur5.Models.Entities;
+﻿using Mooshak2_Hopur5.Models.Entities;
 using Mooshak2_Hopur5.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Data.Entity.Validation;
 using System.Web.Mvc;
 using System.Diagnostics;
@@ -21,11 +19,9 @@ namespace Mooshak2_Hopur5.Services
         {
             _db = new DataModel();
         }
-
-        //Sæki verkefni með ákveðnu ID
+        
         public AssignmentViewModel getAssignmentById(int assignmentId)
         {
-            //Sæki verkefni með ákveðnu ID ofan í gagnagrunn
             var assignment = (from assign in _db.Assignment
                               join course in _db.Course on assign.courseId equals course.courseId
                               where assign.assignmentId == assignmentId
@@ -34,15 +30,14 @@ namespace Mooshak2_Hopur5.Services
             var assignmentPart = getAssignmentParts(assignmentId);
             var assignmentPartSelect = new SelectList(assignmentPart.AssignmentPartList, "AssignmentPartId", "AssignmentPartName");
 
-            //Kasta villu ef ekki fannst verkefni með þessu ID-i
-            if (assignment == null)
+            //Kastar villu ef ekki fannst verkefni með þessu ID-i
+            if (assignment == null) 
             {
-                //TODO: Kasta villu
-                return null;
+                throw new ArgumentException("Parameter cannot be null");
             }
             else
             {
-                //Set verkefni inn í ViewModelið
+                //Annars er verkefnið sett í viewModel
                 var viewModel = new AssignmentViewModel
                 {
                     AssignmentId = assignment.assign.assignmentId,
@@ -60,16 +55,12 @@ namespace Mooshak2_Hopur5.Services
                     AssignmentPartList = assignmentPart.AssignmentPartList,
                     AssignmentParts = assignmentPartSelect
                 };
-
-                //Returna ViewModelinu með áfanganum í
                 return viewModel;
             }
         }
-
-        //Sæki verkefni með ákveðnu ID
+        
         public UserAssignment getUserAssignmentById(string userId, int assignmentId)
         {
-            //Sæki verkefni með ákveðnu ID ofan í gagnagrunn ef það er til
             var userAssignment = (from assign in _db.Assignment
                                   join userAssign in _db.UserAssignment on assign.assignmentId equals userAssign.assignmentId
                                   where assign.assignmentId == assignmentId && userAssign.userId == userId
@@ -100,20 +91,16 @@ namespace Mooshak2_Hopur5.Services
 
         public AssignmentPartViewModel getAssignmentPartById(int partId)
         {
-            //Sæki verkefni með ákveðnu ID ofan í gagnagrunn
             var assignmentPart = (from part in _db.AssignmentPart
-                              where part.assignmentPartId == partId
+                                  where part.assignmentPartId == partId
                                   select part).SingleOrDefault();
-
-            //Kasta villu ef ekki fannst verkefni með þessu ID-i
+            
             if (assignmentPart == null)
             {
-                //TODO: Kasta villu
-                return null;
+                throw new ArgumentException("Parameter cannot be null");
             }
             else
             {
-                //Set verkefni inn í ViewModelið
                 var viewModel = new AssignmentPartViewModel
                 {
                     AssignmentId = assignmentPart.assignmentId,
@@ -123,26 +110,21 @@ namespace Mooshak2_Hopur5.Services
                     Weight = assignmentPart.weight,
                     ProgrammingLanguageId = assignmentPart.programmingLanguageId
                 };
-
-                //Returna ViewModelinu með áfanganum í
                 return viewModel;
             }
         }
 
         public AssignmentPartViewModel editAssignmentPart(AssignmentPartViewModel assignmentPart)
         {
-            // Sæki færsluna sem á að breyta í gagnagrunninn
             var query = (from part in _db.AssignmentPart
                          where part.assignmentPartId == assignmentPart.AssignmentPartId
                          select part).SingleOrDefault();
-
-            // Set inn breyttu upplýsingarnar
+            
             query.assignmentPartName = assignmentPart.AssignmentPartName;
             query.assignmentPartDescription = assignmentPart.AssignmentPartDescription;
             query.weight = assignmentPart.Weight;
             query.programmingLanguageId = assignmentPart.ProgrammingLanguageId;
-
-            //Vista breytingar í gagnagrunn
+            
             try
             {
                 _db.SaveChanges();
@@ -150,7 +132,9 @@ namespace Mooshak2_Hopur5.Services
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                // TODO
+                {
+                    throw new Exception();
+                }
             }
             return assignmentPart;
         }
