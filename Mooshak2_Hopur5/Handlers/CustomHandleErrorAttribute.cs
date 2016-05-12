@@ -17,7 +17,7 @@ namespace Mooshak2_Hopur5.Handlers
             {
                 viewName = "Error";
             }
-            
+
             HandleErrorInfo model = new
             HandleErrorInfo(filterContext.Exception, currentController, currentActionName);
             ViewResult result = new ViewResult
@@ -30,7 +30,7 @@ namespace Mooshak2_Hopur5.Handlers
 
             filterContext.Result = result;
             filterContext.ExceptionHandled = true;
-         
+
             base.OnException(filterContext);
         }
     }

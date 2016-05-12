@@ -18,8 +18,8 @@ namespace Mooshak2_Hopur5.Controllers
             AssignmentViewModel viewModel = new AssignmentViewModel();
 
             //Ef notandi kemur frá ákveðnum áfanga er það frumstillt
-            if(id.HasValue)
-            { 
+            if (id.HasValue)
+            {
                 viewModel.CourseId = id.Value;
             }
 
@@ -38,7 +38,7 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 string serverPath = Server.MapPath("~");
                 assignment = _service.addAssignment(assignment, serverPath);
-                
+
                 return RedirectToAction("ViewCourse", "Course", new { id = assignment.CourseId });
             }
 
@@ -82,7 +82,7 @@ namespace Mooshak2_Hopur5.Controllers
 
             return View(assignment);
         }
-        
+
         //Notandi breytir verkefnahluta
         public ActionResult EditAssignmentPart(int? id)
         {
@@ -96,7 +96,7 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 return View("NotFound");
             }
-            
+
             assignment.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
 
             return View(assignment);
@@ -111,12 +111,12 @@ namespace Mooshak2_Hopur5.Controllers
 
                 return RedirectToAction("ViewAssignment", "Assignment", new { id = assignment.AssignmentId });
             }
-            
+
             assignment.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
 
             return View(assignment);
         }
-        
+
         public ActionResult AddPartToAssignment(int? id)
         {
             if (id.HasValue == false)
@@ -125,11 +125,11 @@ namespace Mooshak2_Hopur5.Controllers
             }
 
             var assignment = _service.getAssignmentById(id.Value);
-            if(assignment == null)
+            if (assignment == null)
             {
                 return View("NotFound");
             }
-            
+
             AssignmentPartViewModel model = new AssignmentPartViewModel();
             model.AssignmentId = id.Value;
             string userId = User.Identity.GetUserId();
@@ -141,7 +141,7 @@ namespace Mooshak2_Hopur5.Controllers
         [HttpPost]
         public ActionResult AddPartToAssignment(AssignmentPartViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 string userId = User.Identity.GetUserId();
                 model.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
@@ -189,7 +189,7 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 string userId = User.Identity.GetUserId();
                 var assignment = _service.getAssignmentById(model.AssignmentId);
-                
+
                 if (assignment == null)
                 {
                     return View("NotFound");
@@ -204,7 +204,7 @@ namespace Mooshak2_Hopur5.Controllers
                 return View(model);
             }
         }
-        
+
         public ActionResult OpenAssignments()
         {
             string userId = User.Identity.GetUserId();
@@ -231,11 +231,10 @@ namespace Mooshak2_Hopur5.Controllers
 
             return View(viewModel);
         }
-        
-        public ActionResult ViewAssignment(int? id)
 
+        public ActionResult ViewAssignment(int? id)
         {
-            if(id.HasValue == false)
+            if (id.HasValue == false)
             {
                 return View("NotFound");
             }
@@ -245,7 +244,7 @@ namespace Mooshak2_Hopur5.Controllers
             viewModel.File = _service.getAssignmentFile(id.Value);
             if (User.IsInRole("Student"))
             {
-                viewModel.UserAssignment =_service.getUserAssignmentById(userId, id.Value);
+                viewModel.UserAssignment = _service.getUserAssignmentById(userId, id.Value);
                 viewModel.AssignmentSubmissionsList = _service.getUsersSubmissions(userId, id.Value);
                 viewModel.File = _service.getAssignmentFile(id.Value);
                 viewModel.UserGroups = _service.getUserGroups(userId, viewModel.CourseId).UserGroups;
@@ -265,7 +264,7 @@ namespace Mooshak2_Hopur5.Controllers
             return RedirectToAction("ViewAssignment", "Assignment", new { id = viewModel.AssignmentId });
         }
 
-        public ActionResult DownloadFile(string path, string contentType, string fileName )
+        public ActionResult DownloadFile(string path, string contentType, string fileName)
         {
             return File(path, contentType, Server.UrlEncode(fileName + "." + path.Split('.')[1]));
         }
@@ -276,7 +275,7 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 return View("NotFound");
             }
-            
+
             var viewModel = _courseService.getAllUsersInCourse((int)courseId, (int)assignmentId);
             return View(viewModel);
         }
@@ -287,7 +286,7 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 return View("NotFound");
             }
-            
+
             var submissionList = _service.getUsersSubmissions(userId, (int)assignmentId);
             var assignmentParts = _service.getAssignmentParts(assignmentId.Value);
             AssignmentViewModel viewModel = new AssignmentViewModel();
