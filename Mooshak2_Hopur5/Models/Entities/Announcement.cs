@@ -11,7 +11,7 @@ namespace Mooshak2_Hopur5.Models.Entities
     {
         public int announcementId { get; set; }
 
-        public int userId { get; set; }
+        public string userId { get; set; }
 
         [Column("announcement")]
         [Required]
@@ -19,6 +19,6 @@ namespace Mooshak2_Hopur5.Models.Entities
 
         public DateTime dateCreate { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual AspNetUsers User { get; set; }
     }
 }

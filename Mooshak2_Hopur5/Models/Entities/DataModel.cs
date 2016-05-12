@@ -29,13 +29,11 @@ namespace Mooshak2_Hopur5.Models.Entities
         public virtual DbSet<Semester> Semester { get; set; }
         public virtual DbSet<Submission> Submission { get; set; }
         public virtual DbSet<SubmissionFile> SubmissionFile { get; set; }
-        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserAssignment> UserAssignment { get; set; }
         public virtual DbSet<UserCourse> UserCourse { get; set; }
         public virtual DbSet<UserGroup> UserGroup { get; set; }
         public virtual DbSet<UserGroupMember> UserGroupMember { get; set; }
         public virtual DbSet<UserLogin> UserLogin { get; set; }
-        public virtual DbSet<UserType> UserType { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -220,40 +218,6 @@ namespace Mooshak2_Hopur5.Models.Entities
                 .Property(e => e.error)
                 .IsUnicode(false);
             
-            modelBuilder.Entity<User>()
-                .Property(e => e.name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.userName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.ssn)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.password)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.salt)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.email)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Announcement)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.UserLogin)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<UserAssignment>()
                 .Property(e => e.gradeComment)
                 .IsUnicode(false);
@@ -275,15 +239,6 @@ namespace Mooshak2_Hopur5.Models.Entities
             modelBuilder.Entity<UserGroup>()
                 .HasMany(e => e.UserGroupMember)
                 .WithRequired(e => e.UserGroup)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<UserType>()
-                .Property(e => e.userTypeName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserType>()
-                .HasMany(e => e.User)
-                .WithRequired(e => e.UserType)
                 .WillCascadeOnDelete(false);
         }
     }

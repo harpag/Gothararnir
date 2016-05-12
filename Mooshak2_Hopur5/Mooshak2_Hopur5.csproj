@@ -229,13 +229,11 @@
     <Compile Include="Models\Entities\Semester.cs" />
     <Compile Include="Models\Entities\Submission.cs" />
     <Compile Include="Models\Entities\SubmissionFile.cs" />
-    <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\Entities\UserAssignment.cs" />
     <Compile Include="Models\Entities\UserCourse.cs" />
     <Compile Include="Models\Entities\UserGroup.cs" />
     <Compile Include="Models\Entities\UserGroupMember.cs" />
     <Compile Include="Models\Entities\UserLogin.cs" />
-    <Compile Include="Models\Entities\UserType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\AnnouncementViewModel.cs" />
@@ -255,7 +253,6 @@
     <Compile Include="Services\AssignmentService.cs" />
     <Compile Include="Services\CourseService.cs" />
     <Compile Include="Services\UserGroupService.cs" />
-    <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\FileHelper.cs" />
     <Compile Include="Utilities\IdentityManager.cs" />

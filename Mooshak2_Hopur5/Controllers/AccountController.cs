@@ -145,7 +145,7 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                //var newUser = UserManager.FindByName(model.UserName);
+ 
                 UserManager.AddToRole(user.Id, model.RoleName);
                 if (result.Succeeded)
                 {

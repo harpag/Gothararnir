@@ -40,7 +40,6 @@ namespace Mooshak2_Hopur5.Controllers
 
         public ActionResult Create(int? id)
         {
-            throw new Exception("Villa villa");
             if (id == null)
                 throw new NotImplementedException();
 

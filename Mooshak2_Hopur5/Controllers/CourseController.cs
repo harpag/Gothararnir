@@ -14,7 +14,6 @@ namespace Mooshak2_Hopur5.Controllers
         //Upphafstilling á service
         private CourseService _service = new CourseService();
         private AssignmentService _assignmentService = new AssignmentService();
-        private UserService _userService = new UserService();
         
         public ActionResult ViewCourse(int id)
         {

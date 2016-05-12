@@ -15,6 +15,6 @@ namespace Mooshak2_Hopur5.Models.Entities
 
         public DateTime timeOfLogin { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual AspNetUsers User { get; set; }
     }
 }
