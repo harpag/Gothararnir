@@ -1,9 +1,5 @@
 ﻿using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Mooshak2_Hopur5.Controllers
@@ -12,12 +8,11 @@ namespace Mooshak2_Hopur5.Controllers
     {
         private AnnouncementService _service = new AnnouncementService();
 
-        // GET: Announcement
         public ActionResult Index()
         {
             return View();
         }
-
+        
         public ActionResult GetAnnouncement()
         {
             int announcementId = 5;
@@ -38,7 +33,6 @@ namespace Mooshak2_Hopur5.Controllers
             bool announcement = _service.addAnnouncement(newAnnouncement);
             
             return RedirectToAction("GetAllAnnouncements", "Announcement");
-
         }
         
         public ActionResult GetAllAnnouncements()
