@@ -83,7 +83,7 @@ namespace Mooshak2_Hopur5.Controllers
             return View(assignment);
         }
         
-        //Notandi breytir verkefni
+        //Notandi breytir verkefnahluta
         public ActionResult EditAssignmentPart(int? id)
         {
             if (id.HasValue == false)
@@ -270,9 +270,7 @@ namespace Mooshak2_Hopur5.Controllers
             return File(path, contentType, Server.UrlEncode(fileName + "." + path.Split('.')[1]));
         }
 
-        
         public ActionResult ViewSubmissions(int? assignmentId, int? courseId)
-
         {
             if (assignmentId.HasValue == false)
             {
@@ -284,7 +282,6 @@ namespace Mooshak2_Hopur5.Controllers
         }
 
         public ActionResult ViewUserSubmissions(int? assignmentId, string userId)
-
         {
             if ((assignmentId == null) || (userId == null))
             {

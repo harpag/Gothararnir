@@ -1,9 +1,7 @@
 ﻿using Mooshak2_Hopur5.Models.ViewModels;
-using Mooshak2_Hopur5.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Mooshak2_Hopur5.Models.Entities;
 
 namespace Mooshak2_Hopur5.Services
@@ -504,11 +502,9 @@ namespace Mooshak2_Hopur5.Services
                             where DateTime.Now >= Semester.dateFrom && DateTime.Now <= Semester.dateTo
                             select Semester).SingleOrDefault();
 
-            //Kasta villu ef ekki fannst verkefni með þessu ID-i
             if (semester == null)
             {
-                //TODO: Kasta villu
-                return 0;
+                throw new Exception();
             }
             else
             {

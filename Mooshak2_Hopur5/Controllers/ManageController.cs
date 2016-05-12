@@ -243,7 +243,6 @@ namespace Mooshak2_Hopur5.Controllers
                 }
                 AddErrors(result);
             }
-
             return View(model);
         }
 

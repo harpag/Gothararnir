@@ -87,7 +87,6 @@ namespace Mooshak2_Hopur5.Controllers
                 Boolean course = _service.addCourse(newCourse);
                 return RedirectToAction("GetAllCourses");
             }
-
             return View(newCourse);
         }
 
@@ -125,7 +124,6 @@ namespace Mooshak2_Hopur5.Controllers
                     }
                 }
             }
-
             return RedirectToAction("Index", "Home");
         }
         
@@ -145,7 +143,6 @@ namespace Mooshak2_Hopur5.Controllers
                 _service.editCourse(newCourse);
                 return RedirectToAction("GetAllCourses");
             }
-        
             return View(newCourse);
         }
     }
