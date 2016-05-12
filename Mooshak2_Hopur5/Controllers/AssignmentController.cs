@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
-using Mooshak2_Hopur5.Models.Entities;
 using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Mooshak2_Hopur5.Controllers
@@ -15,25 +10,22 @@ namespace Mooshak2_Hopur5.Controllers
         private AssignmentService _service = new AssignmentService();
         private CourseService _courseService = new CourseService();
 
-        // GET: Assignment
-        public ActionResult Index()
-        {
-            //TODO:
-            return View();
-        }
-
         //Notandi býr til nýtt assignment
         public ActionResult AddAssignment(int? id)
         {
             AssignmentViewModel viewModel = new AssignmentViewModel();
-            //Ef notandi kemur frá ákveðnum áfanga þá frumstilli ég það
+
+            //Ef notandi kemur frá ákveðnum áfanga er það frumstillt
             if(id.HasValue)
             { 
                 viewModel.CourseId = id.Value;
             }
+
             string userId = User.Identity.GetUserId();
+
             viewModel.UserCourses = new SelectList(_courseService.getAllUsersCourses(userId).CourseList, "CourseId", "CourseName");
             viewModel.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
+
             return View(viewModel);
         }
 
@@ -55,7 +47,6 @@ namespace Mooshak2_Hopur5.Controllers
             return View(assignment);
         }
 
-
         //Notandi breytir verkefni
         public ActionResult EditAssignment(int id)
         {
@@ -68,6 +59,7 @@ namespace Mooshak2_Hopur5.Controllers
             string userId = User.Identity.GetUserId();
             viewModel.UserCourses = new SelectList(_courseService.getAllUsersCourses(userId).CourseList, "CourseId", "CourseName");
             viewModel.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
+
             return View(viewModel);
         }
 
@@ -88,8 +80,7 @@ namespace Mooshak2_Hopur5.Controllers
 
             return View(assignment);
         }
-
-
+        
         //Notandi breytir verkefni
         public ActionResult EditAssignmentPart(int? id)
         {
@@ -103,8 +94,7 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 return View("NotFound");
             }
-
-
+            
             assignment.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
 
             return View(assignment);
@@ -124,10 +114,7 @@ namespace Mooshak2_Hopur5.Controllers
 
             return View(assignment);
         }
-
-
-
-
+        
         public ActionResult AddPartToAssignment(int? id)
         {
             if (id.HasValue == false)
@@ -140,8 +127,7 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 return View("NotFound");
             }
-
-
+            
             AssignmentPartViewModel model = new AssignmentPartViewModel();
             model.AssignmentId = id.Value;
             string userId = User.Identity.GetUserId();
@@ -190,6 +176,7 @@ namespace Mooshak2_Hopur5.Controllers
             model.AssignmentId = assignmentId.Value;
             string userId = User.Identity.GetUserId();
             model.AssignmentPartId = partId.Value;
+
             return View(model);
         }
 
@@ -199,7 +186,6 @@ namespace Mooshak2_Hopur5.Controllers
             if (ModelState.IsValid)
             {
                 string userId = User.Identity.GetUserId();
-
                 var assignment = _service.getAssignmentById(model.AssignmentId);
                 
                 if (assignment == null)
@@ -208,6 +194,7 @@ namespace Mooshak2_Hopur5.Controllers
                 }
                 string serverPath = Server.MapPath("~");
                 _service.addAssignmentPartTestCase(model);
+
                 return RedirectToAction("ViewAssignment", "Assignment", new { id = model.AssignmentId });
             }
             else
@@ -215,13 +202,13 @@ namespace Mooshak2_Hopur5.Controllers
                 return View(model);
             }
         }
-
-
+        
         public ActionResult OpenAssignments()
         {
             string userId = User.Identity.GetUserId();
             var viewModel = new AssignmentViewModel();
             viewModel = _service.getOpenAssignments(userId);
+
             return View(viewModel);
         }
 
@@ -230,6 +217,7 @@ namespace Mooshak2_Hopur5.Controllers
             string userId = User.Identity.GetUserId();
             var viewModel = new AssignmentViewModel();
             viewModel = _service.getClosedAssignments(userId);
+
             return View(viewModel);
         }
 
@@ -238,10 +226,10 @@ namespace Mooshak2_Hopur5.Controllers
             string userId = User.Identity.GetUserId();
             var viewModel = new AssignmentViewModel();
             viewModel = _service.getAllUserAssignments(userId);
+
             return View(viewModel);
         }
-
-
+        
         public ActionResult ViewAssignment(int? id)
 
         {
@@ -263,7 +251,6 @@ namespace Mooshak2_Hopur5.Controllers
             return View(viewModel);
         }
 
-      
         [HttpPost]
         public ActionResult ViewAssignment(AssignmentViewModel viewModel)
         {
@@ -289,14 +276,7 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 return View("NotFound");
             }
-
-            /*if (User.IsInRole("Student"))
-            {
-                viewModel.UserAssignment = _service.getUserAssignmentById(userId, id.Value);
-                viewModel.AssignmentSubmissionsList = _service.getUsersSubmissions(userId, id.Value);
-            }*/
-
-
+            
             var viewModel = _courseService.getAllUsersInCourse((int)courseId, (int)assignmentId);
             return View(viewModel);
         }
@@ -308,17 +288,11 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 return View("NotFound");
             }
-
-            /*if (User.IsInRole("Student"))
-            {
-                viewModel.UserAssignment = _service.getUserAssignmentById(userId, id.Value);
-                viewModel.AssignmentSubmissionsList = _service.getUsersSubmissions(userId, id.Value);
-            }*/
-
-
+            
             var submissionList = _service.getUsersSubmissions(userId, (int)assignmentId);
             AssignmentViewModel viewModel = new AssignmentViewModel();
             viewModel.AssignmentSubmissionsList = submissionList;
+
             return View(viewModel);
         }
     }
