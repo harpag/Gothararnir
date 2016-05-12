@@ -2,27 +2,65 @@
 
 @{
     ViewBag.Title = "ViewUserSubmissions";
+    int maxSuccess = 0;
+    if (Model.AssignmentSubmissionsList.Any())
+    {
+        maxSuccess = Model.AssignmentSubmissionsList.Max(m => m.NumberOfSucessTestCases).Value;
+    }
+    string maxClass = "";
 }
 
-<h2>ViewUserSubmissions</h2>
+<h2>@Model.UserName submissions</h2>
 
-<div>Members in course: @Model.AssignmentSubmissionsList.Count.ToString() </div>
+@foreach (var part in Model.AssignmentPartList)
+{
+    var currentList = Model.AssignmentSubmissionsList.Where(m => m.AssignmentPartId == part.AssignmentPartId);
+    if (Model.AssignmentSubmissionsList.Any())
+    {
+        maxSuccess = currentList.Max(m => m.NumberOfSucessTestCases).Value;
+    }
 <div>
     <table class="table table-striped">
+        <caption class="submissionTable">Part: @part.AssignmentPartName</caption>
         <thead>
             <tr>
                 <th>Accepted</th>
                 <th>Comment</th>
                 <th>Successed test cases</th>
+                <th>Submission file</th>
             </tr>
         </thead>
-        @foreach (var submission in Model.AssignmentSubmissionsList)
+        @foreach (var submission in currentList)
         {
-            <tr>
-                <td>@submission.accepted</td>
-                <td>@submission.error</td>
-                <td>@submission.numberOfSucessTestCases.ToString()</td>
+            if (maxSuccess == submission.NumberOfSucessTestCases)
+            {
+                maxClass = "success";
+            }
+            else
+            {
+                maxClass = "";
+            }
+            <tr class="@maxClass">
+                @if (submission.Accepted != null && submission.Accepted == 1)
+                {
+                    <td><span class="glyphicon glyphicon-thumbs-up text-success"></span></td>
+                }
+                else
+                {
+                    <td><span class="glyphicon glyphicon-thumbs-down text-danger"></span></td>
+                }
+                <td>@submission.Error</td>
+                <td>@submission.NumberOfSucessTestCases.ToString()</td>
+                @if (submission.File.path != null)
+                {
+                    <td>@Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @submission.File.path, contentType = @submission.File.fileType, fileName = @submission.AssignmentPartId }, new { @class = "glyphicon glyphicon-file" })</td>
+                }
+                else
+                {
+                    <td></td>
+                }
             </tr>
         }
     </table>
 </div>
+}

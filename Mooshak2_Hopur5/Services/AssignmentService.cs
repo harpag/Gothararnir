@@ -140,31 +140,37 @@ namespace Mooshak2_Hopur5.Services
         }
 
         //Sæki verkefni með ákveðnu ID
-        public List<Submission> getUsersSubmissions(string userId, int assignmentId)
+        public List<SubmissionViewModel> getUsersSubmissions(string userId, int assignmentId)
         {
             //Sæki verkefni með ákveðnu ID ofan í gagnagrunn ef það er til
-            var userSubmissions = (from submission in _db.Submission
-                                   join assignmentPart in _db.AssignmentPart on submission.assignmentPartId equals assignmentPart.assignmentPartId
-                                   join userAssign in _db.UserAssignment on assignmentPart.assignmentId equals userAssign.assignmentId
-                                   where assignmentPart.assignmentId == assignmentId && userAssign.userId == userId
-                                   select submission).ToList();
+            var userSubmissions = (from part in _db.AssignmentPart
+                                   join userAssign in _db.UserAssignment on part.assignmentId equals userAssign.assignmentId
+                                   join submission in _db.Submission on part.assignmentPartId equals submission.assignmentPartId
+                                   where part.assignmentId == assignmentId
+                                   && userAssign.userId == userId
+                                   && submission.userAssignmentId == userAssign.userAssignmentId
+                                   orderby submission.numberOfSucessTestCases descending
+                                   select submission);
 
-            List<Submission> submissionList;
-            submissionList = new List<Submission>();
+           
+            List<SubmissionViewModel> submissionList;
+            submissionList = new List<SubmissionViewModel>();
 
             //Loopa í gegnum listann úr gagnagrunninum og set inn í verkefna hluta 
             foreach (var entity in userSubmissions)
             {
-                var result = new Submission
+                var file = getSubmissionFile(entity.submissionId);
+                var result = new SubmissionViewModel
                 {
-                    submissionId = entity.submissionId,
-                    assignmentPartId = entity.assignmentPartId,
-                    userAssignmentId = entity.userAssignmentId,
-                    submissionComment = entity.submissionComment,
-                    accepted = entity.accepted,
-                    numberOfSucessTestCases = entity.numberOfSucessTestCases,
-                    testCaseFailId = entity.testCaseFailId,
-                    error = entity.error
+                    SubmissionId = entity.submissionId,
+                    AssignmentPartId = entity.assignmentPartId,
+                    UserAssignmentId = entity.userAssignmentId,
+                    SubmissionComment = entity.submissionComment,
+                    Accepted = entity.accepted,
+                    NumberOfSucessTestCases = entity.numberOfSucessTestCases,
+                    TestCaseFailId = entity.testCaseFailId,
+                    Error = entity.error,
+                    File = file
                 };
                 submissionList.Add(result);
             }
@@ -1245,15 +1251,19 @@ namespace Mooshak2_Hopur5.Services
                     {
                         if (expectedResult[i] != lines[i])
                         {
-                            studentSubmission.numberOfSucessTestCases = i;
+                            //studentSubmission.numberOfSucessTestCases = i;
                             studentSubmission.testCaseFailId = test.assignmentTestCaseId;
                             studentSubmission.accepted = 0;
                             studentSubmission.error = "Output was not correct";
+                            return studentSubmission;
                         }
                         else if (i == expectedResult.Length - 1)
                         {
-                            studentSubmission.error = "Accepted";
-                            studentSubmission.accepted = 1;
+                            if (test.assignmentTestCaseId == testCases.Last().assignmentTestCaseId)
+                            {
+                                studentSubmission.error = "Accepted";
+                                studentSubmission.accepted = 1;
+                            }
                             studentSubmission.numberOfSucessTestCases = studentSubmission.numberOfSucessTestCases + 1;
                         }
                     }
@@ -1261,9 +1271,12 @@ namespace Mooshak2_Hopur5.Services
             }
             else
             {
+                string outputError = output.Replace("\"" + compilerFolder + "vcvars32.bat" + "\"", "");
+                outputError = outputError.Replace("cl.exe / nologo / EHsc " + cppFileName, "");
+                outputError = outputError.Replace("exit", "");
                 studentSubmission.numberOfSucessTestCases = 0;
                 studentSubmission.accepted = 0;
-                studentSubmission.error = "Compile error";
+                studentSubmission.error = "Compile error: " + outputError;
             }
 
             return studentSubmission;

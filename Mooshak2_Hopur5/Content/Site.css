@@ -353,3 +353,8 @@ fieldset[disabled] .btn-assignment.active {
   border-color: #4eabb3;
 }
 
+
+.submissionTable
+{
+    font-size: x-large;
+}

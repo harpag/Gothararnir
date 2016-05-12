@@ -38,11 +38,12 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public int? GradePublished { get; set; }
         [DisplayName("User group")]
         public int UserGroupId { get; set; }
+        public string UserName { get; set; }
         public List<AssignmentViewModel> AssignmentList { get; set; }
         public List<AssignmentViewModel> OpenAssignmentList { get; set; }
         public List<AssignmentViewModel> ClosedAssignmentList { get; set; }
         public List<AssignmentPartViewModel> AssignmentPartList { get; set; }
-        public List<Submission> AssignmentSubmissionsList { get; set; }
+        public List<SubmissionViewModel> AssignmentSubmissionsList { get; set; }
         public List<Discussion> DiscussionsList { get; set; }
         public UserAssignment UserAssignment {get; set;}
         public Submission UserSubmission { get; set; }

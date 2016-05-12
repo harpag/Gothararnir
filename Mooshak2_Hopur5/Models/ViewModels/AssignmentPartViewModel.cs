@@ -24,6 +24,7 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public int ProgrammingLanguageId { get; set;  }
         public List<AssignmentPartViewModel> AssignmentPartList { get; set; }
         public List<AssignmentTestCase> AssignmentTestCaseList { get; set; }
+        public List<SubmissionViewModel> PartSubmissionsList { get; set; }
         public IEnumerable<SelectListItem> ProgrammingLanguages { get; set; }
         public AssignmentPartFile File { get; set; }
 

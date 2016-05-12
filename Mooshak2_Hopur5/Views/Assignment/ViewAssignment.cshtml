@@ -33,7 +33,6 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Weight of part</th>
-                            <th>Max submission</th>
                             <th>File</th>
                             @if (User.IsInRole("Teacher"))
                             {
@@ -45,13 +44,12 @@
                     {
 
                         <tr>
-                            <td>@Model.AssignmentPartList[i].AssignmentPartName</td>
-                            <td>@Model.AssignmentPartList[i].AssignmentPartDescription</td>
-                            <td>Weight of part: @Model.AssignmentPartList[i].Weight %</td>
-                            <td>Max submissions: @Model.AssignmentPartList[i].ProgrammingLanguageId</td>
-                            @if (Model.AssignmentPartList[i].File.path != null)
+                            <td>@Model.AssignmentPartList[j].AssignmentPartName</td>
+                            <td>@Model.AssignmentPartList[j].AssignmentPartDescription</td>
+                            <td>Weight of part: @Model.AssignmentPartList[j].Weight %</td>
+                            @if (Model.AssignmentPartList[j].File.path != null)
                             {
-                                <td>@Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @Model.AssignmentPartList[i].File.path, contentType = @Model.AssignmentPartList[i].File.fileType, fileName = @Model.AssignmentPartList[i].AssignmentPartName }, new { @class = "glyphicon glyphicon-file" })</td>
+                                <td>@Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @Model.AssignmentPartList[j].File.path, contentType = @Model.AssignmentPartList[j].File.fileType, fileName = @Model.AssignmentPartList[j].AssignmentPartName }, new { @class = "glyphicon glyphicon-file" })</td>
                             }
                             else
                             {
@@ -60,8 +58,8 @@
                             @*<td>@Html.ActionLink("View test cases", "ViewTestCases", "Assignment", new { partId = Model.AssignmentPartList[i].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-course" })</td>*@
                             @if (User.IsInRole("Teacher"))
                             {
-                                <td>@Html.ActionLink("Add test case", "AddTestCaseToPart", "Assignment", new { partId = Model.AssignmentPartList[i].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })</td>
-                                <td>@Html.ActionLink("Edit part", "EditAssignmentPart", "Assignment", new { id = Model.AssignmentPartList[i].AssignmentPartId }, new { @class = "btn btn-small btn-assignment" })</td>
+                                <td>@Html.ActionLink("Add test case", "AddTestCaseToPart", "Assignment", new { partId = Model.AssignmentPartList[j].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })</td>
+                                <td>@Html.ActionLink("Edit part", "EditAssignmentPart", "Assignment", new { id = Model.AssignmentPartList[j].AssignmentPartId }, new { @class = "btn btn-small btn-assignment" })</td>
                             }
                         </tr>
                     }
@@ -71,7 +69,7 @@
         @if (User.IsInRole("Teacher"))
         {
             @Html.ActionLink("Add part", "AddPartToAssignment", "Assignment", new { id = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })
-            @Html.ActionLink("View submissions", "ViewSubmissions", "Assignment", new { assignmentId = Model.AssignmentId, courseId = Model.CourseId }, new { @class = "btn btn-small btn-assignment" })
+            @Html.ActionLink("View submissions", "ViewSubmissions", "Assignment", new { assignmentId = Model.AssignmentId, courseId = Model.CourseId }, new { @class = "btn btn-small btn-course" })
         }
     </div>
 </div>
@@ -94,17 +92,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.AssignmentSubmissionsList)
+                    @foreach (var item in Model.AssignmentSubmissionsList.OrderBy(m => m.SubmissionId))
                     {
                         i++;
                         <tr>
                             <td>@i</td>
-                            <td>@item.assignmentPartId</td>
-                            <td>@item.submissionComment</td>
-                            <td>@item.numberOfSucessTestCases</td>
-                            <td>@item.testCaseFailId</td>
-                            <td>@item.error</td>
-                            @if (item.accepted != null && item.accepted == 1)
+                            <td>@item.AssignmentPartId</td>
+                            <td>@item.SubmissionComment</td>
+                            <td>@item.NumberOfSucessTestCases</td>
+                            <td>@item.TestCaseFailId</td>
+                            <td>@item.Error</td>
+                            @if (item.Accepted != null && item.Accepted == 1)
                             {
                                 <td><span class="glyphicon glyphicon-thumbs-up text-success"></span></td>
                             }

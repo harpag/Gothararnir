@@ -212,7 +212,7 @@ namespace Mooshak2_Hopur5.Services
         }
 
         //Sækir alla notendur sem eru skráðir í ákveðin áfanga
-        public SubmissionViewModel getAllUsersInCourse(int courseId, int assignmentId)
+        public SubmissionOverviewViewModel getAllUsersInCourse(int courseId, int assignmentId)
         {
             //Sæki alla áfanga sem nemandi með ID userId er skráður í á önn semesterId
             var users = (from courses in _db.Course
@@ -228,8 +228,8 @@ namespace Mooshak2_Hopur5.Services
                                select mygroup.FirstOrDefault();
 
             //Bý til lista af notendur(UserViewModel)
-            List < SubmissionViewModel > userList;
-            userList = new List<SubmissionViewModel>();
+            List < SubmissionOverviewViewModel > userList;
+            userList = new List<SubmissionOverviewViewModel>();
 
             //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
             foreach (var entity in uniquePeople)
@@ -257,7 +257,7 @@ namespace Mooshak2_Hopur5.Services
                         bSuccess = iAcc > 0;
                 }
 
-                var result = new SubmissionViewModel
+                var result = new SubmissionOverviewViewModel
                 {
                     Email = entity.Email,
                     UserName = entity.UserName,
@@ -274,7 +274,7 @@ namespace Mooshak2_Hopur5.Services
                 UserList = userList
             };*/
 
-            SubmissionViewModel viewModel = new SubmissionViewModel();
+            SubmissionOverviewViewModel viewModel = new SubmissionOverviewViewModel();
             viewModel.UserList = userList;
 
             //Returna viewModelinu með listanum
