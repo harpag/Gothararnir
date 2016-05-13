@@ -140,12 +140,12 @@
                                 @Html.TextBoxFor(m => m.SubmissionUploaded, new { type = "file", @class = "form-control" })
                             </div>
                             <div class="col-md-6">
-                                @Html.LabelFor(m => m.UserAssignment.userGroupId, new { @class = "control-label" })
+                                <label class="control-label" for="UserSubmission_userGroupId">Student group</label>
                                 @Html.ValidationMessageFor(m => m.UserAssignment.userGroupId)
                                 @Html.DropDownListFor(m => m.UserAssignment.userGroupId, (Model.UserGroups as SelectList), string.Empty, new { @class = "form-control", data_placeholder = "Agent(s)." })
                             </div>
                             <div class="col-md-6">
-                                @Html.LabelFor(m => m.UserSubmission.submissionComment, new { @class = "control-label" })
+                                <label class="control-label" for="UserSubmission_submissionComment">Submission comment</label>
                                 @Html.ValidationMessageFor(m => m.UserSubmission.submissionComment)
                                 @Html.TextBoxFor(m => m.UserSubmission.submissionComment, new { @class = "form-control" })
                             </div>

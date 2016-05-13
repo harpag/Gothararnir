@@ -190,7 +190,7 @@ namespace Mooshak2_Hopur5.Services
             List<SubmissionOverviewViewModel> userList;
             userList = new List<SubmissionOverviewViewModel>();
 
-            //Loopa í gegnum listann úr gagnagrunninum og set inn í áfanga listann
+            //Loopa í gegnum listann úr gagnagrunninum inn í skila listann
             foreach (var entity in uniquePeople)
             {
                 UserAssignment userAssignment = (from userAssignments in _db.UserAssignment
@@ -200,20 +200,37 @@ namespace Mooshak2_Hopur5.Services
 
                 int iCount = 0;
                 bool bSuccess = false;
+                int iUserGroup = 0;
+                string sUserGroupName = "";
 
                 if (userAssignment != null)
                 {
                     var submissions = (from a in _db.Submission
+                                       join u in _db.UserAssignment on a.userAssignmentId equals u.userAssignmentId
                                        where a.userAssignmentId.Equals(userAssignment.userAssignmentId)
-                                       select a);
+                                       select new { a, u });
                     iCount = submissions.Count();
 
                     int? iAcc = null;
                     if (iCount > 0)
-                        iAcc = submissions.Sum(s => s.accepted);
-
+                    {
+                        iAcc = submissions.Sum(s => s.a.accepted);
+                    }
                     if (iAcc != null)
+                    {
                         bSuccess = iAcc > 0;
+                    }
+
+                    if (submissions.First().u.userGroupId.HasValue)
+                    {
+                        iUserGroup = submissions.First().u.userGroupId.Value;
+                    }
+                    
+                    if (iUserGroup > 0)
+                    {
+                        var group = _db.UserGroup.Where(x => x.userGroupId == iUserGroup).FirstOrDefault();
+                        sUserGroupName = group.userGroupName;
+                    }
                 }
 
                 var result = new SubmissionOverviewViewModel
@@ -222,7 +239,9 @@ namespace Mooshak2_Hopur5.Services
                     UserName = entity.UserName,
                     UserId = entity.Id,
                     SubmissionCount = iCount,
-                    Success = bSuccess
+                    Success = bSuccess,
+                    UserGroupName = sUserGroupName,
+                    UserGroupId = iUserGroup
                 };
                 userList.Add(result);
             }

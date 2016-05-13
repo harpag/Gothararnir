@@ -13,7 +13,8 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public bool Success { get; set; }
         public int SubmissionCount { get; set; }
         public DateTime LastDate { get; set; }
-
+        public int UserGroupId { get; set; }
+        public string UserGroupName { get; set; }
         public List<SubmissionOverviewViewModel> UserList { get; set; }
     }
 }

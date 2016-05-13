@@ -1044,9 +1044,9 @@ namespace Mooshak2_Hopur5.Services
                 //setja propery-in
                 newUserAssignment.userId = submission.UserAssignment.userId;
                 newUserAssignment.assignmentId = submission.AssignmentId;
-                if (submission.UserGroupId < 0)
+                if (submission.UserAssignment.userGroupId > 0)
                 {
-                    newUserAssignment.userGroupId = submission.UserGroupId;
+                    newUserAssignment.userGroupId = submission.UserAssignment.userGroupId;
                 }
                 //Vista ofan í gagnagrunn
                 submission.UserAssignment = _db.UserAssignment.Add(newUserAssignment);

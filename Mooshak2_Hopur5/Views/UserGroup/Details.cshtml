@@ -4,39 +4,41 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="well m-60">
+    <h2>Details</h2>
 
-<div>
-    <h4>UserGroup</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Course.courseNumber)
-        </dt>
+    <div>
+        <h4>UserGroup</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.courseNumber)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course.courseNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Course.courseNumber)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.userGroupName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.userGroupName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.userGroupName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.userGroupName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.userCreate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.userCreate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.userCreate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.userCreate)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.userGroupId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.userGroupId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
