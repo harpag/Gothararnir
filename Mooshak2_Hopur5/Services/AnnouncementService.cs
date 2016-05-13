@@ -23,7 +23,7 @@ namespace Mooshak2_Hopur5.Services
 
             if (announcement == null)
             {
-                throw new ArgumentException("Parameter cannot be null");
+                throw new Exception();
             }
 
             //Tilkynning sett inn í ViewModelið
