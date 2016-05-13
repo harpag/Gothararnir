@@ -404,7 +404,9 @@ namespace Mooshak2_Hopur5.Services
                 var result = new SemesterViewModel
                 {
                     SemesterId = entity.semesterId,
-                    SemesterName = entity.semesterName
+                    SemesterName = entity.semesterName,
+                    DateFrom = entity.dateFrom,
+                    DateTo = entity.dateTo
                 };
                 semesterlist.Add(result);
             }
@@ -499,9 +501,10 @@ namespace Mooshak2_Hopur5.Services
 
         public int getCurrentSemester()
         {
+            var date = DateTime.Now;
             //Sæki núverandi önn
             var semester = (from Semester in _db.Semester
-                            where DateTime.Now >= Semester.dateFrom && DateTime.Now <= Semester.dateTo
+                            where date >= Semester.dateFrom && date <= Semester.dateTo
                             select Semester).SingleOrDefault();
 
             //Kasta villu ef ekki fannst verkefni með þessu ID-i
