@@ -18,9 +18,10 @@ namespace Mooshak2_Hopur5.Controllers
         {
             Session["CurrentSemesterId"] = _courseService.getCurrentSemester();
             var viewModel = new HomeViewModel();
-            string userId = User.Identity.GetUserId();
-            viewModel.CourseList = _courseService.getAllUsersCoursesOnSemester(userId, int.Parse(Session["CurrentSemesterId"].ToString())).CourseList;
-            viewModel.AssignmentList = _assignmentService.getAllUserAssignmentsOnSemester(userId, int.Parse(Session["CurrentSemesterId"].ToString())).AssignmentList;
+            string sUserId = User.Identity.GetUserId();
+            viewModel.CourseList = _courseService.getAllUsersCoursesOnSemester(sUserId, int.Parse(Session["CurrentSemesterId"].ToString())).CourseList;
+            bool bIsStudent = User.IsInRole("Student");
+            viewModel.AssignmentList = _assignmentService.getAllUserAssignmentsOnSemester(bIsStudent, sUserId, int.Parse(Session["CurrentSemesterId"].ToString())).AssignmentList;
             viewModel.AnnouncementList = _announcementService.getAllAnnouncements().AnnouncementList;
 
             return View(viewModel);

@@ -2,6 +2,7 @@
 using Mooshak2_Hopur5.Handlers;
 using Mooshak2_Hopur5.Models.ViewModels;
 using Mooshak2_Hopur5.Services;
+using System;
 using System.Web.Mvc;
 
 namespace Mooshak2_Hopur5.Controllers
@@ -211,7 +212,12 @@ namespace Mooshak2_Hopur5.Controllers
         {
             string userId = User.Identity.GetUserId();
             var viewModel = new AssignmentViewModel();
-            viewModel = _service.getOpenAssignments(userId);
+            Boolean bIsStudent = false;
+            if(User.IsInRole("Student"))
+            {
+                bIsStudent = true;
+            }
+            viewModel = _service.getOpenAssignments(bIsStudent,userId);
 
             return View(viewModel);
         }
@@ -220,7 +226,8 @@ namespace Mooshak2_Hopur5.Controllers
         {
             string userId = User.Identity.GetUserId();
             var viewModel = new AssignmentViewModel();
-            viewModel = _service.getClosedAssignments(userId);
+            Boolean bIsStudent = User.IsInRole("Student");
+            viewModel = _service.getClosedAssignments(bIsStudent,userId);
 
             return View(viewModel);
         }
@@ -229,7 +236,8 @@ namespace Mooshak2_Hopur5.Controllers
         {
             string userId = User.Identity.GetUserId();
             var viewModel = new AssignmentViewModel();
-            viewModel = _service.getAllUserAssignments(userId);
+            Boolean bIsStudent = User.IsInRole("Student");
+            viewModel = _service.getAllUserAssignments(bIsStudent,userId);
 
             return View(viewModel);
         }

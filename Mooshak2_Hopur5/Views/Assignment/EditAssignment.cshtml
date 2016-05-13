@@ -38,12 +38,12 @@
             <div class="col-md-6 form-group">
                 @Html.LabelFor(m => m.AssignDate, new { @class = "control-label" })
                 @Html.ValidationMessageFor(m => m.AssignDate, null, new { @class = "text-danger" })
-                @Html.EditorFor(m => m.AssignDate, new { htmlAttributes = new { @class = "form-control dateTimePicker" } })
+                @Html.EditorFor(m => m.AssignDate, new { htmlAttributes = new { @class = "form-control dateTimePickerEdit" } })
             </div>
             <div class="col-md-6 pull-right form-group">
                 @Html.LabelFor(m => m.DueDate, new { @class = "control-label" })
                 @Html.ValidationMessageFor(m => m.DueDate, null, new { @class = "text-danger" })
-                @Html.EditorFor(m => m.DueDate, new { htmlAttributes = new { @class = "form-control dateTimePicker" } })
+                @Html.EditorFor(m => m.DueDate, new { htmlAttributes = new { @class = "form-control dateTimePickerEdit" } })
             </div>
         </div>
         <div class="row">

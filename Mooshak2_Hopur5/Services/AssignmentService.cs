@@ -126,11 +126,9 @@ namespace Mooshak2_Hopur5.Services
             query.programmingLanguageId = assignmentPart.ProgrammingLanguageId;
 
             _db.SaveChanges();
-            
-            if(assignmentPart.File != null)
-            {
-                addAssignmentPartFile(serverPath, assignmentPart);
-            }
+
+            addAssignmentPartFile(serverPath, assignmentPart);
+
             return assignmentPart;
         }
 
@@ -333,14 +331,19 @@ namespace Mooshak2_Hopur5.Services
             //Returna viewModelinu með listanum
             return viewModel;
         }
-        
+
         //Sækir öll verkefni
-        public AssignmentViewModel getAllAssignments()
+        public AssignmentViewModel getAllAssignments(Boolean bIsStudent)
         {
             //Sæki öll gögn í verkefna töfluna
             var assignments = (from assign in _db.Assignment
                                join course in _db.Course on assign.courseId equals course.courseId
                                select new { assign, course }).ToList();
+
+            if (bIsStudent)
+            {
+                assignments = assignments.Where(m => m.assign.assignDate <= DateTime.Now).ToList();
+            }
 
             //Bý til lista af verkefnum
             List<AssignmentViewModel> assignmentsList;
@@ -428,7 +431,7 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentViewModel getAllUserAssignments(string userId)
+        public AssignmentViewModel getAllUserAssignments(Boolean bIsStudent, string userId)
         {
             //Sæki öll gögn í verkefna töfluna
             var assignments = (from assign in _db.Assignment
@@ -437,6 +440,11 @@ namespace Mooshak2_Hopur5.Services
                                where userCourse.userId.Equals(userId)
                                orderby assign.assignDate descending
                                select new { assign, course }).ToList();
+
+            if (bIsStudent)
+            {
+                assignments = assignments.Where(m => m.assign.assignDate <= DateTime.Now).ToList();
+            }
 
             //Bý til lista af verkefnum
             List<AssignmentViewModel> assignmentsList;
@@ -525,7 +533,7 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentViewModel getOpenAssignments(string userId)
+        public AssignmentViewModel getOpenAssignments(Boolean bIsStudent, string userId)
         {
             var openAssignments = (from assign in _db.Assignment
                                    join course in _db.Course on assign.courseId equals course.courseId
@@ -533,6 +541,11 @@ namespace Mooshak2_Hopur5.Services
                                    where assign.dueDate >= DateTime.Now && userCourse.userId.Equals(userId)
                                    orderby assign.dueDate descending
                                    select new { assign, course }).ToList();
+
+            if (bIsStudent)
+            {
+                openAssignments = openAssignments.Where(m => m.assign.assignDate <= DateTime.Now).ToList();
+            }
 
             List<AssignmentViewModel> openAssignmentsList;
             openAssignmentsList = new List<AssignmentViewModel>();
@@ -570,7 +583,7 @@ namespace Mooshak2_Hopur5.Services
             return viewModel;
         }
 
-        public AssignmentViewModel getClosedAssignments(string userId)
+        public AssignmentViewModel getClosedAssignments(Boolean bIsStudent, string userId)
         {
             var closedAssignments = (from assign in _db.Assignment
                                      join course in _db.Course on assign.courseId equals course.courseId
@@ -578,6 +591,11 @@ namespace Mooshak2_Hopur5.Services
                                      where assign.dueDate < DateTime.Now && userCourse.userId.Equals(userId)
                                      orderby assign.dueDate descending
                                      select new { assign, course }).ToList();
+
+            if (bIsStudent)
+            {
+                closedAssignments = closedAssignments.Where(m => m.assign.assignDate <= DateTime.Now).ToList();
+            }
 
             List<AssignmentViewModel> closedAssignmentsList;
             closedAssignmentsList = new List<AssignmentViewModel>();
@@ -695,15 +713,20 @@ namespace Mooshak2_Hopur5.Services
         }
 
 
-        public AssignmentViewModel getAllUserAssignmentsOnSemester(string userId, int semesterId)
+        public AssignmentViewModel getAllUserAssignmentsOnSemester(Boolean bIsStudent, string userId, int semesterId)
         {
-            //Sæki öll gögn í verkefna töfluna
+            //Sæki gögn í verkefna töflu
             var assignments = (from assign in _db.Assignment
                                join course in _db.Course on assign.courseId equals course.courseId
                                join userCourse in _db.UserCourse on course.courseId equals userCourse.courseId
                                join semester in _db.Semester on course.semesterId equals semester.semesterId
                                where semester.semesterId == semesterId && userCourse.userId == userId
                                select new { assign, course }).ToList();
+            
+            if(bIsStudent)
+            {
+                assignments = assignments.Where(m => m.assign.assignDate <= DateTime.Now).ToList();
+            }
 
             //Bý til lista af verkefnum
             List<AssignmentViewModel> assignmentsList;
@@ -728,8 +751,6 @@ namespace Mooshak2_Hopur5.Services
                     DueDate = entity.assign.dueDate,
                     GradePublished = entity.assign.gradePublished,
                     AssignmentPartList = assignmentParts.AssignmentPartList
-                    //AssignmentSubmissionsList =
-                    //DiscussionsList =
                 };
                 assignmentsList.Add(result);
             }
@@ -794,12 +815,11 @@ namespace Mooshak2_Hopur5.Services
             query.gradePublished = assignmentToChange.GradePublished;
 
 
-            _db.SaveChanges();
             //Vista breytingar í gagnagrunn
-            if (assignmentToChange.File != null)
-            { 
+            _db.SaveChanges();
+            //Vista viðhengi
             addAssignmentFile(serverPath, assignmentToChange);
-            }
+
 
             return assignmentToChange;
         }
@@ -995,7 +1015,6 @@ namespace Mooshak2_Hopur5.Services
             newAssignmentPart = _db.AssignmentPart.Add(newAssignmentPart);
             _db.SaveChanges();
             assignmentToAdd.AssignmentPartId = newAssignmentPart.assignmentPartId;
-            //addAssignmentPartTestCase(assignmentToAdd.AssignmentPartList[i]);
             addAssignmentPartFile(serverPath, assignmentToAdd);
             return assignmentToAdd;
         }
