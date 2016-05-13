@@ -4,70 +4,66 @@
     ViewBag.Title = "Edit assignment";
 }
 
-<h2>Create new assignment</h2>
+<div class="well m-60">
+    <h2>Edit assignment</h2>
 
-@using (Html.BeginForm("EditAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-{
-    @Html.HiddenFor(model => model.AssignmentId)
-    <div class="row">
-        <div class="col-md-5 form-group">
-            @Html.LabelFor(m => m.AssignmentName, new { @class = "control-label" })
-            @Html.ValidationMessageFor(m => m.AssignmentName, null, new { @class = "text-danger" })
-            @Html.EditorFor(m => m.AssignmentName, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-5 form-group">
-            @Html.LabelFor(m => m.CourseId, new { @class = "control-label" })
-            @Html.ValidationMessageFor(m => m.CourseId, null, new { @class = "text-danger" })
-            @Html.DropDownListFor(m => m.CourseId, (Model.UserCourses as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
-        </div>
-    </div>
+    @using (Html.BeginForm("EditAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(model => model.AssignmentId)
         <div class="row">
-            <div class="col-md-11 form-group">
-                @Html.LabelFor(m => m.AssignmentDescription, new { @class = "control-label" })
-                @Html.ValidationMessageFor(m => m.AssignmentDescription, null, new { @class = "text-danger" })
-                @Html.EditorFor(m => m.AssignmentDescription, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-6 form-group">
+                @Html.LabelFor(m => m.AssignmentName, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentName, null, new { @class = "text-danger" })
+                @Html.EditorFor(m => m.AssignmentName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-6 pull-right form-group">
+                @Html.LabelFor(m => m.CourseId, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.CourseId, null, new { @class = "text-danger" })
+                @Html.DropDownListFor(m => m.CourseId, (Model.UserCourses as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
             </div>
         </div>
         <div class="row">
-            <div class="col-md-5 form-group">
+            <div class="col-md-6 form-group">
+                @Html.LabelFor(m => m.AssignmentDescription, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignmentDescription, null, new { @class = "text-danger" })
+                @Html.TextAreaFor(m => m.AssignmentDescription, new { @class = "form-control" })
+            </div>
+            <div class="col-md-6 pull-right form-group">
                 @Html.LabelFor(m => m.Weight, new { @class = "control-label" })
                 @Html.ValidationMessageFor(m => m.Weight, null, new { @class = "text-danger" })
                 @Html.EditorFor(m => m.Weight, new { htmlAttributes = new { @class = "form-control" } })
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5 form-group">
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                @Html.LabelFor(m => m.AssignDate, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.AssignDate, null, new { @class = "text-danger" })
+                @Html.EditorFor(m => m.AssignDate, new { htmlAttributes = new { @class = "form-control dateTimePicker" } })
+            </div>
+            <div class="col-md-6 pull-right form-group">
+                @Html.LabelFor(m => m.DueDate, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.DueDate, null, new { @class = "text-danger" })
+                @Html.EditorFor(m => m.DueDate, new { htmlAttributes = new { @class = "form-control dateTimePicker" } })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
                 @Html.LabelFor(m => m.MaxSubmission, new { @class = "control-label" })
                 @Html.ValidationMessageFor(m => m.MaxSubmission, null, new { @class = "text-danger" })
                 @Html.EditorFor(m => m.MaxSubmission, new { htmlAttributes = new { @class = "form-control" } })
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5 form-group">
-                @Html.LabelFor(m => m.AssignDate, new { @class = "control-label" })
-                @Html.ValidationMessageFor(m => m.AssignDate, null, new { @class = "text-danger" })
-                @Html.EditorFor(m => m.AssignDate, new { htmlAttributes = new { @class = "form-control dateTimePickerEdit" } })
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5 form-group">
-                @Html.LabelFor(m => m.DueDate, new { @class = "control-label" })
-                @Html.ValidationMessageFor(m => m.DueDate, null, new { @class = "text-danger" })
-                @Html.EditorFor(m => m.DueDate, new { htmlAttributes = new { @class = "form-control dateTimePickerEdit" } })
-            </div>
-        </div>
-        <div class="row">
             <div class="product-attachments">
-                <div class="col-md-11 form-group">
+                <div class="col-md-6 pull-right form-group">
                     @Html.LabelFor(m => m.AssignmentUploaded, new { @class = "control-label" })
                     @Html.ValidationMessageFor(m => m.AssignmentUploaded, null, new { @class = "text-danger" })
                     @Html.TextBoxFor(m => m.AssignmentUploaded, new { type = "file", @class = "form-control" })
                 </div>
             </div>
         </div>
-        <div class="col-md-8"></div>
-        <div class="col-md-3">
-            <input style="width:100%" type="submit" value="Save" class="btn btn-assignment">
+        <div class="pull-right">
+            <input type="submit" value="Submit" class="btn btn-assignment btn-wider">
         </div>
 
         @Html.TextBoxFor(m => m.CourseId, new { style = "visibility:hidden" })
-}
+    }
+</div>

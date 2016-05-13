@@ -4,18 +4,20 @@
     ViewBag.Title = "Add Announcement";
 }
 
-<h2>Add Announcement</h2>
+<div class="well m-60">
+    <h2>Add Announcement</h2>
 
-@using (Html.BeginForm("AddAnnouncement", "Announcement", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-{
-<div class="form-group">
-    @Html.ValidationMessageFor(m => m.Announcement)
-    @Html.TextAreaFor(m => m.Announcement, new { htmlAttributes = new { @class = "form-control", id = "announcement" } })
+    @using (Html.BeginForm("AddAnnouncement", "Announcement", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            @Html.ValidationMessageFor(m => m.Announcement, null, new { @class = "text-danger" })
+            @Html.TextAreaFor(m => m.Announcement, new { @class = "form-control", id = "announcement" })
+        </div>
+        <div>
+            <button type="submit" class="btn btn-announcement">Submit</button>
+        </div>
+    }
 </div>
-<div>
-    <button type="submit" class="btn btn-announcement">Submit</button>
-</div>
-}
 
    
      

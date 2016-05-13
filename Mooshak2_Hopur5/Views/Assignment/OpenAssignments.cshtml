@@ -5,14 +5,13 @@
 }
 
 <div class="col-md-12">
-    <table class="table assignmentTable">
+    <table class="table assignmentTable m-60">
         <caption><span class="glyphicon glyphicon-th-list"></span>Open assignments</caption>
         @foreach (var assignment in Model.OpenAssignmentList)
         {
-            string assignmentName = assignment.AssignmentName + "  -  " + assignment.DueDate;
             <tr>
-                <td>@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</td>
-                <td>@assignment.CourseName</td>
+                <td>@Html.ActionLink(assignment.AssignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</td>
+                <td>@Html.ActionLink(assignment.CourseName, "ViewCourse", "Course", new { id = assignment.CourseId }, null)</td>
                 @if (assignment.DueDate.HasValue)
                 {
                     <td>@assignment.DueDate.Value.ToString("d.MMM yyyy HH:mm")</td>

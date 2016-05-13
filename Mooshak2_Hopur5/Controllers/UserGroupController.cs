@@ -17,7 +17,7 @@ namespace Mooshak2_Hopur5.Controllers
     {
         private UserGroupService _service = new UserGroupService();
         private DataModel db = new DataModel();
-        
+
         public ActionResult Index()
         {
             var userGroup = db.UserGroup.Include(u => u.Course);
@@ -49,7 +49,7 @@ namespace Mooshak2_Hopur5.Controllers
             var course = crs.getCourseById((int)id);
             ViewData["courseName"] = course.CourseNumber + "-" + course.CourseName;
 
-            var viewModel = _service.GetViewWithUsers();
+            var viewModel = _service.GetUsers();
             return View(viewModel);
         }
 
@@ -67,7 +67,7 @@ namespace Mooshak2_Hopur5.Controllers
 
                 UserGroup newUG = db.UserGroup.Add(grp);
                 db.SaveChanges();
-                
+
                 for (int i = 0; i < userGroup.AllUsers.Count; i++)
                 {
                     if (userGroup.CheckedUsers[i])
@@ -134,7 +134,7 @@ namespace Mooshak2_Hopur5.Controllers
             var members = from a in db.UserGroupMember
                           where a.userGroupId.Equals(id)
                           select a;
-            
+
             db.UserGroupMember.RemoveRange(members);
 
             UserGroup userGroup = db.UserGroup.Find(id);

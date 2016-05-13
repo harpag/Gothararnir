@@ -3,49 +3,51 @@
     ViewBag.Title = "Add users to course";
 }
 
-<h2>Add user to course</h2>
+<div class="m-60 well">
+    <h2>Add user to course</h2>
 
-@using (Html.BeginForm("AddUsersToCourse", "Course", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-{
-    <div class="form-group">
-        @Html.ValidationMessageFor(m => m.CourseId)
-        @Html.DropDownListFor(m => m.CourseId, (Model.Courses as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
-        <input type="checkbox" id="selectAll" />Select All
-    </div>
-    <table id="userTable" class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>User</th>
-                <th>Role</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.AllUsers.Count; i++)
-            {
+    @using (Html.BeginForm("AddUsersToCourse", "Course", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            @Html.ValidationMessageFor(m => m.CourseId)
+            @Html.DropDownListFor(m => m.CourseId, (Model.Courses as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+            <input type="checkbox" id="selectAll" />Select All
+        </div>
+        <table id="userTable" class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.CheckBoxFor(m => m.CheckedUsers[i], new { id = "UserList_" + i })
-                        @Html.HiddenFor(m => m.AllUsers[i].Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => m.AllUsers[i].UserName)
-                    </td>
-                    @if (Model.AllUsers[i].Roles.First().RoleId.Equals("1"))
-                    {
-                        <td>Admin</td>
-                    }
-                    @if (Model.AllUsers[i].Roles.First().RoleId.Equals("2"))
-                    {
-                        <td>Teacher</td>
-                    }
-                    @if (Model.AllUsers[i].Roles.First().RoleId.Equals("3"))
-                    {
-                        <td>Student</td>
-                    }
+                    <th></th>
+                    <th>User</th>
+                    <th>Role</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <button type="submit" class="btn btn-primary">Submit</button>
-}
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.AllUsers.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.CheckedUsers[i], new { id = "UserList_" + i })
+                            @Html.HiddenFor(m => m.AllUsers[i].Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.AllUsers[i].UserName)
+                        </td>
+                        @if (Model.AllUsers[i].Roles.First().RoleId.Equals("1"))
+                    {
+                            <td>Admin</td>
+                        }
+                        @if (Model.AllUsers[i].Roles.First().RoleId.Equals("2"))
+                    {
+                            <td>Teacher</td>
+                        }
+                        @if (Model.AllUsers[i].Roles.First().RoleId.Equals("3"))
+                    {
+                            <td>Student</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    }
+</div>

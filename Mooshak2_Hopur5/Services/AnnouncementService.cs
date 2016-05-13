@@ -20,7 +20,7 @@ namespace Mooshak2_Hopur5.Services
             //Sækir tilkynningu með ákveðnu ID ofan í gagnagrunn
             var announcement = _db.Announcement.SingleOrDefault(x => x.announcementId == announcementId);
             //Kastar villu ef ekki fannst tilkynning með þessu ID
-            
+
             if (announcement == null)
             {
                 throw new ArgumentException("Parameter cannot be null");
@@ -40,7 +40,7 @@ namespace Mooshak2_Hopur5.Services
             var announcements = (from a in _db.Announcement
                                  orderby a.dateCreate descending
                                  select a).ToList();
-            
+
             List<AnnouncementViewModel> announcementList;
             announcementList = new List<AnnouncementViewModel>();
 
@@ -54,18 +54,18 @@ namespace Mooshak2_Hopur5.Services
                 };
                 announcementList.Add(result);
             }
-            
+
             AnnouncementViewModel viewModel = new AnnouncementViewModel
             {
                 AnnouncementList = announcementList
             };
             return viewModel;
         }
-        
+
         public Boolean addAnnouncement(AnnouncementViewModel announcementToAdd)
         {
             var newAnnouncement = new Announcement();
-            
+
             newAnnouncement.announcement = announcementToAdd.Announcement;
             newAnnouncement.userId = announcementToAdd.UserId;
             newAnnouncement.dateCreate = DateTime.Now;

@@ -7,30 +7,34 @@
 {
     if (User.IsInRole("Teacher") || User.IsInRole("Student"))
     {
-        <div class="col-md-5">
-            <table class="table assignmentTable">
-                <caption><span class="glyphicon glyphicon-th-list"></span>Assignments</caption>
-                @foreach (var assignment in Model.AssignmentList.Take(3))
+        <div class="col-md-12">
+            <table class="table assignmentTable m-60">
+                <caption><span class="m-10 glyphicon glyphicon-th-list"></span>Assignments</caption>
+                @foreach (var assignment in Model.AssignmentList.Take(10))
                     {
                         string assignmentName = assignment.AssignmentName;
                     <tr>
+                        <td class="w-100">@assignment.DueDate.Value.ToString("d.MMM yyyy HH:mm")</td>
                         <td>@Html.ActionLink(assignmentName, "ViewAssignment", "Assignment", new { id = assignment.AssignmentId }, null)</td>
-                        <td>@assignment.DueDate</td>
+                        <td>@Html.ActionLink("  ","ViewAssignment", "Assignment", new { id = assignment.AssignmentId}, new { @class = "glyphicon glyphicon-plus" })</td>
                     </tr>
                 }
             </table>
             @Html.ActionLink(" View all", "GetAllAssignments", "Assignment", routeValues: null, htmlAttributes: new { @class = "btn btn-assignment" })
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-12">
             <table class="table courseTable">
-                <caption><span class="glyphicon glyphicon-book"></span>Courses</caption>
-                @foreach (var course in Model.CourseList.Take(3))
+                <caption><span class="m-10 glyphicon glyphicon-book"></span>Courses</caption>
+                @foreach (var course in Model.CourseList.Take(5))
                     {
                         string courseName = course.CourseNumber + "-" + course.CourseName;
                     <tr>
                         <td>
                             @Html.ActionLink(courseName, "ViewCourse", "Course", new { id = course.CourseId }, null)
+                        </td>
+                        <td>
+                            @Html.ActionLink("  ", "ViewCourse", "Course", new { id = course.CourseId }, new { @class = "glyphicon glyphicon-plus" })
                         </td>
                     </tr>
                 }
@@ -38,16 +42,16 @@
             @Html.ActionLink(" View all", "GetAllCourses", "Course", routeValues: null, htmlAttributes: new { @class = "btn btn-course" })
         </div>
     }
-    <div class="col-md-5">
+    <div class="col-md-12">
         <table class="table announcementTable">
-            <caption><span class="glyphicon glyphicon-info-sign"></span>Announcements</caption>
-            @foreach (var announcement in Model.AnnouncementList.Take(3))
+            <caption><span class="m-10 glyphicon glyphicon-info-sign"></span>Announcements</caption>
+            @foreach (var announcement in Model.AnnouncementList.Take(5))
                 {
                 <tr>
                     <td>
                         @announcement.DateCreate.Date.ToShortDateString()
                     </td>
-                    <td class="comment more">
+                    <td class="more">
                         @Html.Raw(announcement.Announcement)
                     </td>
                 </tr>
@@ -56,23 +60,6 @@
         @Html.ActionLink("Add announcement ", "AddAnnouncement", "Announcement", routeValues: null, htmlAttributes: new { @class = "btn btn-announcement" })
         @Html.ActionLink(" View all", "GetAllAnnouncements", "Announcement", routeValues: null, htmlAttributes: new { @class = "btn btn-announcement" })
     </div>
-    if (User.IsInRole("Admin"))
-    {
-        <div class="col-md-5">
-            <table class="table shourcutTable">
-                <tr>
-                    <td>
-                        @Html.ActionLink("Create user", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-course btn-large" })
-                    </td>
-                        </tr>
-                <tr>
-                    <td>
-                        @Html.ActionLink("Create course", "CreateCourse", "Course", routeValues: null, htmlAttributes: new { @class = "btn btn-course btn-large" })
-                    </td>
-                        </tr>
-            </table>
-        </div>
-    }
 }
 else
 {

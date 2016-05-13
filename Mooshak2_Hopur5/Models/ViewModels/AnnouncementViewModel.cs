@@ -14,6 +14,7 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public int AnnouncementId { get; set; }
         public string UserId { get; set; }
         public string UserName { get; set; }
+        [Required]
         public string Announcement { get; set; }
         public DateTime DateCreate {get; set;}
         public List<AnnouncementViewModel> AnnouncementList { get; set; }

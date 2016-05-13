@@ -3,167 +3,169 @@
 @{
     ViewBag.Title = "ViewAssignment";
     int i = 0;
+    string sCourse = Model.CourseNumber + " - " + Model.CourseName;
 }
 
-<h2>Assignment overview: @Model.AssignmentName</h2>
+<div class="m-60">
+    <h2>@sCourse</h2>
+    <h2>@Model.AssignmentName</h2>
+    <div class="form-inline">
+        <div class="list-group-item well">
+            <table>
+                <tr><td>Description: @Model.AssignmentDescription </td></tr>
+                <tr><td>Weight: @Model.Weight %</td></tr>
+                <tr><td>Deadline: @Model.DueDate.Value.ToString("d.MMM yyyy HH:mm")</td></tr>
+                <tr><td>Max submissions: @Model.MaxSubmission</td></tr>
+            </table>
+            @if (Model.File.path != null)
+            {
+                @Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @Model.File.path, contentType = @Model.File.fileType, fileName = @Model.AssignmentName }, new { @class = "glyphicon glyphicon-file" })
+            }
+            @if (User.IsInRole("Teacher"))
+            {
+                @Html.ActionLink("Edit assignment", "EditAssignment", "Assignment", new { id = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })
+            }
+            <h3>Parts</h3>
+            @if (Model.AssignmentPartList.Any())
+            {
+                <div id="assignmentPart" class="list-group-item">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Weight of part</th>
+                                <th>File</th>
+                                @if (User.IsInRole("Teacher"))
+                                {
+                                    <th></th>
+                                }
+                            </tr>
+                        </thead>
+                        @for (int j = 0; j < Model.AssignmentPartList.Count; j++)
+                        {
 
-<div class="form-inline">
-    <div class="list-group-item well">
-        <table>
-            <tr><td>Description: @Model.AssignmentDescription </td></tr>
-            <tr><td>Weight: @Model.Weight %</td></tr>
-            <tr><td>Deadline: @Model.DueDate</td></tr>
-            <tr><td>Max submissions: @Model.MaxSubmission</td></tr>
-        </table>
-        @if (Model.File.path != null)
-        {
-            @Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @Model.File.path, contentType = @Model.File.fileType, fileName = @Model.AssignmentName }, new { @class = "glyphicon glyphicon-file" })
-        }
-        @if (User.IsInRole("Teacher"))
-        {
-            @Html.ActionLink("Edit assignment", "EditAssignment", "Assignment", new { id = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })
-        }
-        <h3>Parts</h3>
-        @if (Model.AssignmentPartList.Any())
-        {
-            <div id="assignmentPart" class="list-group-item">
+                            <tr>
+                                <td>@Model.AssignmentPartList[j].AssignmentPartName</td>
+                                <td>@Model.AssignmentPartList[j].AssignmentPartDescription</td>
+                                <td>@Model.AssignmentPartList[j].Weight %</td>
+                                @if (Model.AssignmentPartList[j].File.path != null)
+                                {
+                                    <td>@Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @Model.AssignmentPartList[j].File.path, contentType = @Model.AssignmentPartList[j].File.fileType, fileName = @Model.AssignmentPartList[j].AssignmentPartName }, new { @class = "glyphicon glyphicon-file" })</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                @*<td>@Html.ActionLink("View test cases", "ViewTestCases", "Assignment", new { partId = Model.AssignmentPartList[i].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-course" })</td>*@
+                                @if (User.IsInRole("Teacher"))
+                                {
+                                    <td>@Html.ActionLink("Add test case", "AddTestCaseToPart", "Assignment", new { partId = Model.AssignmentPartList[j].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })</td>
+                                    <td>@Html.ActionLink("Edit part", "EditAssignmentPart", "Assignment", new { id = Model.AssignmentPartList[j].AssignmentPartId }, new { @class = "btn btn-small btn-assignment" })</td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
+            @if (User.IsInRole("Teacher"))
+            {
+                @Html.ActionLink("Add part", "AddPartToAssignment", "Assignment", new { id = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment m-10" })
+                @Html.ActionLink("View submissions", "ViewSubmissions", "Assignment", new { assignmentId = Model.AssignmentId, courseId = Model.CourseId }, new { @class = "btn btn-small btn-course" })
+            }
+        </div>
+    </div>
+    @if (User.IsInRole("Student"))
+    {
+        <div class="studentSubmissions well">
+            <h3>My submissions</h3>
+            @if (Model.AssignmentSubmissionsList != null)
+            {
                 <table class="table">
-                    <thead>
+                    <thead class="thead-inverse">
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Weight of part</th>
-                            <th>File</th>
-                            @if (User.IsInRole("Teacher"))
-                            {
-                                <th></th>
-                            }
+                            <th>Submission id</th>
+                            <th>Assignment part</th>
+                            <th>Comment</th>
+                            <th>Number of sucess test cases</th>
+                            <th>Test case failed</th>
+                            <th>Status</th>
+                            <th>Accepted</th>
                         </tr>
                     </thead>
-                    @for (int j = 0; j < Model.AssignmentPartList.Count; j++)
-                    {
-
-                        <tr>
-                            <td>@Model.AssignmentPartList[j].AssignmentPartName</td>
-                            <td>@Model.AssignmentPartList[j].AssignmentPartDescription</td>
-                            <td>Weight of part: @Model.AssignmentPartList[j].Weight %</td>
-                            @if (Model.AssignmentPartList[j].File.path != null)
-                            {
-                                <td>@Html.ActionLink(" ", "DownloadFile", "Assignment", new { path = @Model.AssignmentPartList[j].File.path, contentType = @Model.AssignmentPartList[j].File.fileType, fileName = @Model.AssignmentPartList[j].AssignmentPartName }, new { @class = "glyphicon glyphicon-file" })</td>
-                            }
-                            else
-                            {
-                                <td></td>
-                            }
-                            @*<td>@Html.ActionLink("View test cases", "ViewTestCases", "Assignment", new { partId = Model.AssignmentPartList[i].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-course" })</td>*@
-                            @if (User.IsInRole("Teacher"))
-                            {
-                                <td>@Html.ActionLink("Add test case", "AddTestCaseToPart", "Assignment", new { partId = Model.AssignmentPartList[j].AssignmentPartId, assignmentId = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })</td>
-                                <td>@Html.ActionLink("Edit part", "EditAssignmentPart", "Assignment", new { id = Model.AssignmentPartList[j].AssignmentPartId }, new { @class = "btn btn-small btn-assignment" })</td>
-                            }
-                        </tr>
-                    }
-                </table>
-            </div>
-        }
-        @if (User.IsInRole("Teacher"))
-        {
-            @Html.ActionLink("Add part", "AddPartToAssignment", "Assignment", new { id = Model.AssignmentId }, new { @class = "btn btn-small btn-assignment" })
-            @Html.ActionLink("View submissions", "ViewSubmissions", "Assignment", new { assignmentId = Model.AssignmentId, courseId = Model.CourseId }, new { @class = "btn btn-small btn-course" })
-        }
-    </div>
-</div>
-@if (User.IsInRole("Student"))
-{
-    <div class="studentSubmissions well">
-        <h3>My submissions</h3>
-        @if (Model.AssignmentSubmissionsList != null)
-        {
-            <table class="table">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th>Submission id</th>
-                        <th>Assignment part</th>
-                        <th>Comment</th>
-                        <th>Number of sucess test cases</th>
-                        <th>Test case failed</th>
-                        <th>Status</th>
-                        <th>Accepted</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.AssignmentSubmissionsList.OrderBy(m => m.SubmissionId))
+                    <tbody>
+                        @foreach (var item in Model.AssignmentSubmissionsList.OrderBy(m => m.SubmissionId))
                     {
                         i++;
-                        <tr>
-                            <td>@i</td>
-                            <td>@item.AssignmentPartId</td>
-                            <td>@item.SubmissionComment</td>
-                            <td>@item.NumberOfSucessTestCases</td>
-                            <td>@item.TestCaseFailId</td>
-                            <td>@item.Error</td>
-                            @if (item.Accepted != null && item.Accepted == 1)
-                            {
-                                <td><span class="glyphicon glyphicon-thumbs-up text-success"></span></td>
-                            }
-                            else
-                            {
-                                <td><span class="glyphicon glyphicon-thumbs-down text-danger"></span></td>
-                            }
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        @if (Model.DueDate > DateTime.Now)
-        {
-            if (Model.MaxSubmission < Model.AssignmentSubmissionsList.Count)
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.AssignmentPartId</td>
+                                <td>@item.SubmissionComment</td>
+                                <td>@item.NumberOfSucessTestCases</td>
+                                <td>@item.TestCaseFailId</td>
+                                <td>@item.Error</td>
+                                @if (item.Accepted != null && item.Accepted == 1)
+                                {
+                                    <td><span class="glyphicon glyphicon-thumbs-up text-success"></span></td>
+                                }
+                                else
+                                {
+                                    <td><span class="glyphicon glyphicon-thumbs-down text-danger"></span></td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            @if (Model.DueDate > DateTime.Now)
             {
-                <p class="text-danger">You have reached maximum number of submissions</p>
+                if (Model.MaxSubmission < Model.AssignmentSubmissionsList.Count)
+                {
+                    <p class="text-danger">You have reached maximum number of submissions</p>
 
+                }
+                else
+                {
+                    using (Html.BeginForm("ViewAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                    {
+                        <div id="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(m => m.UserSubmission.assignmentPartId, new { @class = "control-label" })
+                                @Html.ValidationMessageFor(m => m.UserSubmission.assignmentPartId)
+                                @Html.DropDownListFor(m => m.UserSubmission.assignmentPartId, (Model.AssignmentParts as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
+                            </div>
+                            <div class="col-md-6 product-attachment">
+                                @Html.LabelFor(m => m.SubmissionUploaded, new { @class = "control-label" })
+                                @Html.ValidationMessageFor(m => m.SubmissionUploaded)
+                                @Html.TextBoxFor(m => m.SubmissionUploaded, new { type = "file", @class = "form-control" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(m => m.UserAssignment.userGroupId, new { @class = "control-label" })
+                                @Html.ValidationMessageFor(m => m.UserAssignment.userGroupId)
+                                @Html.DropDownListFor(m => m.UserAssignment.userGroupId, (Model.UserGroups as SelectList), string.Empty, new { @class = "form-control", data_placeholder = "Agent(s)." })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(m => m.UserSubmission.submissionComment, new { @class = "control-label" })
+                                @Html.ValidationMessageFor(m => m.UserSubmission.submissionComment)
+                                @Html.TextBoxFor(m => m.UserSubmission.submissionComment, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
+                            @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
+                            @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
+                            @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
+                            @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
+                            <div class="col-md-9"></div>
+                            <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
+                        </div>
+                    }
+                }
             }
             else
             {
-                using (Html.BeginForm("ViewAssignment", "Assignment", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-                {
-                    <div id="row">
-                        <div class="col-md-6">
-                            @Html.LabelFor(m => m.UserSubmission.assignmentPartId, new { @class = "control-label" })
-                            @Html.ValidationMessageFor(m => m.UserSubmission.assignmentPartId)
-                            @Html.DropDownListFor(m => m.UserSubmission.assignmentPartId, (Model.AssignmentParts as SelectList), new { @class = "form-control", data_placeholder = "Agent(s)." })
-                        </div>
-                        <div class="col-md-6 product-attachment">
-                            @Html.LabelFor(m => m.SubmissionUploaded, new { @class = "control-label" })
-                            @Html.ValidationMessageFor(m => m.SubmissionUploaded)
-                            @Html.TextBoxFor(m => m.SubmissionUploaded, new { type = "file", @class = "form-control" })
-                        </div>
-                        <div class="col-md-6">
-                            @Html.LabelFor(m => m.UserAssignment.userGroupId, new { @class = "control-label" })
-                            @Html.ValidationMessageFor(m => m.UserAssignment.userGroupId)
-                            @Html.DropDownListFor(m => m.UserAssignment.userGroupId, (Model.UserGroups as SelectList), string.Empty, new { @class = "form-control", data_placeholder = "Agent(s)." })
-                        </div>
-                        <div class="col-md-6">
-                            @Html.LabelFor(m => m.UserSubmission.submissionComment, new { @class = "control-label" })
-                            @Html.ValidationMessageFor(m => m.UserSubmission.submissionComment)
-                            @Html.TextBoxFor(m => m.UserSubmission.submissionComment, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        @Html.TextBoxFor(m => m.AssignmentId, new { style = "visibility:hidden" })
-                        @Html.TextBoxFor(m => m.AssignmentName, new { style = "visibility:hidden" })
-                        @Html.TextBoxFor(m => m.AssignmentDescription, new { style = "visibility:hidden" })
-                        @Html.TextBoxFor(m => m.DueDate, new { style = "visibility:hidden" })
-                        @Html.TextBoxFor(m => m.UserAssignment.userId, new { style = "visibility:hidden" })
-                        <div class="col-md-9"></div>
-                        <button type="submit" class="col-md-3 btn btn-assignment">Hand in my solution</button>
-                    </div>
-                }
+                <p>Deadline has expired</p>
             }
-        }
-        else
-        {
-            <p>Deadline has expired</p>
-        }
-    </div>
-}
+        </div>
+    }
 </div>

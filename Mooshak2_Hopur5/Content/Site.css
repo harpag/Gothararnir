@@ -110,7 +110,7 @@ label#textBoxArea
 .assignmentTable
 {
     margin-top: 35px;
-    background: #92d5db;
+    background: rgba(87,190,199,0.3);
     border: 1px solid #57BEC7;
 }
 
@@ -137,11 +137,16 @@ label#textBoxArea
   border-top: 1px solid #57BEC7;
 }
 
+.assignmentTable tr,td
+{
+    padding: 10px;
+}
+
 /*beinhvít tafla*/
 .beigeTable
 {
     margin-top: 35px;
-    background: #fafbf3;
+    background: rgba(243,247,227,0.3);
     border: 1px solid #f3f7e3;
 }
 
@@ -173,8 +178,8 @@ label#textBoxArea
 .courseTable
 {
     margin-top: 35px;
-    background: #f7d45b;
-    border: 1px solid #F3C110;
+    background: rgba(255,179,71,0.3);
+    border: 1px solid rgb(255,179,71);
 }
 
 .courseTable caption
@@ -182,8 +187,14 @@ label#textBoxArea
     font-size: 30px;
     text-align: left;
     padding: 5px;
-    background: #F3C110;
+    background: rgb(255,179,71);
 }
+
+.courseTable td:last-child
+{
+    text-align: right;
+}
+
 
 
 .courseTable a
@@ -192,14 +203,14 @@ label#textBoxArea
 }
 
 .courseTable tbody > tr > td{
-  border-top: 1px solid #F3C110;;
+  border-top: 1px solid rgb(255,179,71);
 }
 
 /*Announcement tafla á forsíðu*/
 .announcementTable
 {
     margin-top: 35px;
-    background: #e76e90;
+    background: rgba(243,126,135,0.3);
     border: 1px solid #E24B75;
 }
 
@@ -213,7 +224,7 @@ label#textBoxArea
     font-size: 30px;
     text-align: left;
     padding: 5px;
-    background: #E24B75;
+    background: rgb(243,126,135);
 }
 
 
@@ -223,13 +234,13 @@ label#textBoxArea
 }
 
 .announcementTable tbody > tr > td{
-  border-top: 1px solid #E24B75;
+  border-top: 1px solid rgb(243,126,135);
 }
 
 /*Announcement hnappur*/
 .btn-announcement {
-  color: #ffffff;
-  background-color: #E24B75;
+  color: #000;
+  background-color: rgba(243,126,135,0.3);
   border-color: #b43c5d;
 }
 
@@ -239,7 +250,7 @@ label#textBoxArea
 .btn-announcement.active,
 .open .dropdown-toggle.btn-announcement {
   color: #ffffff;
-  background-color: #b43c5d;
+  background-color: rgb(243,126,135);
   border-color: #9e3451;
 }
 
@@ -271,9 +282,9 @@ fieldset[disabled] .btn-announcement.active {
 
 /*course hnappur*/
 .btn-course {
-  color: #ffffff;
-  background-color: #F3C110;
-  border-color: #daad0e;
+  color: #000;
+  background-color: rgba(255,179,71,0.3);;
+  border-color: rgb(255,179,71);
 }
 
 .btn-course:hover,
@@ -282,8 +293,8 @@ fieldset[disabled] .btn-announcement.active {
 .btn-course.active,
 .open .dropdown-toggle.btn-course {
   color: #ffffff;
-  background-color: #daad0e;
-  border-color: #c29a0c;
+  background-color: rgb(255,179,71);
+  border-color: rgba(255,179,71,0.3);
 }
 
 .btn-course:active,
@@ -313,8 +324,8 @@ fieldset[disabled] .btn-course.active {
 
 /*assignment hnappur*/
 .btn-assignment {
-  color: #ffffff;
-  background-color: #57BEC7;
+  color: #000;
+  background-color: rgba(87,190,199,0.3);
   border-color: #4eabb3;
 }
 
@@ -357,4 +368,46 @@ fieldset[disabled] .btn-assignment.active {
 .submissionTable
 {
     font-size: x-large;
+}
+
+.m-10
+{
+    margin: 0 10px;
+}
+
+.p-10
+{
+    padding: 0 10px;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+    padding-top: 25px;
+}
+
+.moos
+{
+    margin-top: 10px;
+    width: 100px;
+    height:60px;
+}
+
+.navbar-default
+{
+    border-bottom: 2px solid grey;
+}
+
+.m-60
+{
+    margin-top: 60px;
+}
+
+.w-100
+{
+    width: 160px;
+}
+
+.btn-wider
+{
+    width: 150px;
 }

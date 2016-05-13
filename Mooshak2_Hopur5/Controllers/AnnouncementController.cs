@@ -35,7 +35,7 @@ namespace Mooshak2_Hopur5.Controllers
             if (ModelState.IsValid)
             {
                 newAnnouncement.UserId = User.Identity.GetUserId();
-                bool announcement = _service.addAnnouncement(newAnnouncement);
+                bool bAnnouncement = _service.addAnnouncement(newAnnouncement);
 
                 return RedirectToAction("GetAllAnnouncements", "Announcement");
             }

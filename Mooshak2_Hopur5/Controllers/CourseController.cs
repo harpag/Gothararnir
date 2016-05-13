@@ -14,7 +14,7 @@ namespace Mooshak2_Hopur5.Controllers
         //Upphafstilling á service
         private CourseService _service = new CourseService();
         private AssignmentService _assignmentService = new AssignmentService();
-        
+
         public ActionResult ViewCourse(int id)
         {
             string userId = User.Identity.GetUserId();
@@ -29,9 +29,9 @@ namespace Mooshak2_Hopur5.Controllers
             var viewModel = new CourseViewModel();
             if (User.IsInRole("Teacher") || User.IsInRole("Student"))
             {
-                string userId = User.Identity.GetUserId();
+                string suserId = User.Identity.GetUserId();
 
-                viewModel = _service.getAllUsersCourses(userId);
+                viewModel = _service.getAllUsersCourses(suserId);
             }
             else if (User.IsInRole("Admin"))
             {
@@ -62,7 +62,7 @@ namespace Mooshak2_Hopur5.Controllers
             viewModel = _service.getAllCoursesOnSemester(semesterId);
             return View(viewModel);
         }
-        
+
         //Stofnar nýjan áfanga
         public ActionResult CreateCourse()
         {
@@ -87,23 +87,22 @@ namespace Mooshak2_Hopur5.Controllers
                 Boolean course = _service.addCourse(newCourse);
                 return RedirectToAction("GetAllCourses");
             }
-
             return View(newCourse);
         }
 
         //Bæta notendum við áfanga
         public ActionResult AddUsersToCourse(int? id)
         {
-            if(User.IsInRole("Admin"))
-            { 
-            CourseUsersViewModel viewModel = new CourseUsersViewModel();
-            viewModel.AllUsers = IdentityManager.GetUsers();
-            viewModel.Courses = new SelectList(_service.getAllCourses().CourseList, "CourseId", "CourseName");
-                if(id.HasValue)
+            if (User.IsInRole("Admin"))
+            {
+                CourseUsersViewModel viewModel = new CourseUsersViewModel();
+                viewModel.AllUsers = IdentityManager.GetUsers();
+                viewModel.Courses = new SelectList(_service.getAllCourses().CourseList, "CourseId", "CourseName");
+                if (id.HasValue)
                 {
                     viewModel.CourseId = id.Value;
                 }
-            return View(viewModel);
+                return View(viewModel);
             }
             else
             {
@@ -125,10 +124,9 @@ namespace Mooshak2_Hopur5.Controllers
                     }
                 }
             }
-
             return RedirectToAction("Index", "Home");
         }
-        
+
         [HttpGet]
         public ActionResult EditCourse(int id)
         {
@@ -140,12 +138,11 @@ namespace Mooshak2_Hopur5.Controllers
         [HttpPost]
         public ActionResult EditCourse(CourseViewModel newCourse)
         {
-            if(ModelState.IsValid)
-            { 
+            if (ModelState.IsValid)
+            {
                 _service.editCourse(newCourse);
                 return RedirectToAction("GetAllCourses");
             }
-        
             return View(newCourse);
         }
     }

@@ -4,8 +4,8 @@
     ViewBag.Title = "GetAllCourse";
 }
 
-<table class="table courseTable">
-    <caption><span class="glyphicon glyphicon-book"></span>All courses</caption>
+<table class="table courseTable m-60">
+    <caption><span class="glyphicon glyphicon-book m-10"></span>All courses</caption>
     @foreach (var course in Model.CourseList)
     {
         string courseName = course.CourseNumber + "-" + course.CourseName;

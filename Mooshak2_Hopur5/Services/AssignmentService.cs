@@ -19,7 +19,7 @@ namespace Mooshak2_Hopur5.Services
         {
             _db = new DataModel();
         }
-        
+
         public AssignmentViewModel getAssignmentById(int assignmentId)
         {
             var assignment = (from assign in _db.Assignment
@@ -31,7 +31,7 @@ namespace Mooshak2_Hopur5.Services
             var assignmentPartSelect = new SelectList(assignmentPart.AssignmentPartList, "AssignmentPartId", "AssignmentPartName");
 
             //Kastar villu ef ekki fannst verkefni með þessu ID-i
-            if (assignment == null) 
+            if (assignment == null)
             {
                 throw new ArgumentException("Parameter cannot be null");
             }
@@ -58,7 +58,7 @@ namespace Mooshak2_Hopur5.Services
                 return viewModel;
             }
         }
-        
+
         public UserAssignment getUserAssignmentById(string userId, int assignmentId)
         {
             var userAssignment = (from assign in _db.Assignment
@@ -89,15 +89,15 @@ namespace Mooshak2_Hopur5.Services
             }
         }
 
-        public AssignmentPartViewModel getAssignmentPartById(int partId)
+        public AssignmentPartViewModel getAssignmentPartById(string serverPath, int partId)
         {
             var assignmentPart = (from part in _db.AssignmentPart
                                   where part.assignmentPartId == partId
                                   select part).SingleOrDefault();
-            
+
             if (assignmentPart == null)
             {
-                throw new ArgumentException("Parameter cannot be null");
+                throw new Exception();
             }
             else
             {
@@ -114,27 +114,22 @@ namespace Mooshak2_Hopur5.Services
             }
         }
 
-        public AssignmentPartViewModel editAssignmentPart(AssignmentPartViewModel assignmentPart)
+        public AssignmentPartViewModel editAssignmentPart(string serverPath, AssignmentPartViewModel assignmentPart)
         {
             var query = (from part in _db.AssignmentPart
                          where part.assignmentPartId == assignmentPart.AssignmentPartId
                          select part).SingleOrDefault();
-            
+
             query.assignmentPartName = assignmentPart.AssignmentPartName;
             query.assignmentPartDescription = assignmentPart.AssignmentPartDescription;
             query.weight = assignmentPart.Weight;
             query.programmingLanguageId = assignmentPart.ProgrammingLanguageId;
+
+            _db.SaveChanges();
             
-            try
+            if(assignmentPart.File != null)
             {
-                _db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                {
-                    throw new Exception();
-                }
+                addAssignmentPartFile(serverPath, assignmentPart);
             }
             return assignmentPart;
         }
@@ -152,7 +147,7 @@ namespace Mooshak2_Hopur5.Services
                                    orderby submission.numberOfSucessTestCases descending
                                    select submission);
 
-           
+
             List<SubmissionViewModel> submissionList;
             submissionList = new List<SubmissionViewModel>();
 
@@ -338,17 +333,7 @@ namespace Mooshak2_Hopur5.Services
             //Returna viewModelinu með listanum
             return viewModel;
         }
-
-        //getAllAssignments()
-        //getAllAssignmentsOnSemester()
-        //getAllUserAssignments()
-        //getAllUserAssignmentsOnSemester()
-        //getAssignmentGrade()
-        //getAssignmentStatistics()
-        //editAssignment()
-        //addAssignment()
-        //addAssignmentTestCase()
-
+        
         //Sækir öll verkefni
         public AssignmentViewModel getAllAssignments()
         {
@@ -790,7 +775,7 @@ namespace Mooshak2_Hopur5.Services
         }
 
 
-        public AssignmentViewModel editAssignment(AssignmentViewModel assignmentToChange)
+        public AssignmentViewModel editAssignment(string serverPath, AssignmentViewModel assignmentToChange)
         {
             // Sæki færsluna sem á að breyta í gagnagrunninn
             var query = (from assignment in _db.Assignment
@@ -808,16 +793,14 @@ namespace Mooshak2_Hopur5.Services
             query.dueDate = assignmentToChange.DueDate;
             query.gradePublished = assignmentToChange.GradePublished;
 
+
+            _db.SaveChanges();
             //Vista breytingar í gagnagrunn
-            try
-            {
-                _db.SaveChanges();
+            if (assignmentToChange.File != null)
+            { 
+            addAssignmentFile(serverPath, assignmentToChange);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                // TODO
-            }
+
             return assignmentToChange;
         }
 
@@ -844,7 +827,6 @@ namespace Mooshak2_Hopur5.Services
                 assignmentToAdd.AssignmentId = newAssignment.assignmentId;
                 //Vista skránna sem fylgir verkefninu
                 addAssignmentFile(serverPath, assignmentToAdd);
-                //addAssignmentPart(assignmentToAdd, serverPath);
                 return assignmentToAdd;
             }
             catch (DbEntityValidationException e)
@@ -1095,9 +1077,9 @@ namespace Mooshak2_Hopur5.Services
                 //setja propery-in
                 newUserAssignment.userId = submission.UserAssignment.userId;
                 newUserAssignment.assignmentId = submission.AssignmentId;
-                if(submission.UserGroupId < 0)
-                { 
-                newUserAssignment.userGroupId = submission.UserGroupId;
+                if (submission.UserGroupId < 0)
+                {
+                    newUserAssignment.userGroupId = submission.UserGroupId;
                 }
                 //try
                 //{

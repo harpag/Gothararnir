@@ -24,7 +24,7 @@ namespace Mooshak2_Hopur5.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -36,9 +36,9 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -110,7 +110,7 @@ namespace Mooshak2_Hopur5.Controllers
                 return View(model);
             }
 
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -123,7 +123,7 @@ namespace Mooshak2_Hopur5.Controllers
                     return View(model);
             }
         }
-        
+
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -132,7 +132,7 @@ namespace Mooshak2_Hopur5.Controllers
             RegisterViewModel viewModel = new RegisterViewModel();
             var roles = roleManager.Roles.ToList();
             viewModel.Roles = new SelectList(roleManager.Roles.ToList(), "name", "name");
-            
+
             return View(viewModel);
         }
 
@@ -145,12 +145,12 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
- 
+
                 UserManager.AddToRole(user.Id, model.RoleName);
                 if (result.Succeeded)
                 {
                     await SignInManager.CreateUserIdentityAsync(user);
-                    
+
                     return RedirectToAction("GetAllUsers", "User");
                 }
                 AddErrors(result);
@@ -189,7 +189,7 @@ namespace Mooshak2_Hopur5.Controllers
                     return View("ForgotPasswordConfirmation");
                 }
             }
-            
+
             return View(model);
         }
 
@@ -227,7 +227,7 @@ namespace Mooshak2_Hopur5.Controllers
             AddErrors(result);
             return View();
         }
-        
+
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
@@ -264,7 +264,7 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 return View();
             }
-            
+
             if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
                 return View("Error");
@@ -332,7 +332,7 @@ namespace Mooshak2_Hopur5.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -340,7 +340,7 @@ namespace Mooshak2_Hopur5.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
-        
+
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {

@@ -23,9 +23,14 @@ namespace Mooshak2_Hopur5.Controllers
         [HttpPost]
         public ActionResult AddSemester(SemesterViewModel newSemester)
         {
-            bool announcement = _service.addSemester(newSemester);
+            if (ModelState.IsValid)
+            {
+                _service.addSemester(newSemester);
 
-            return RedirectToAction("GetAllSemesters");
+                return RedirectToAction("GetAllSemesters");
+            }
+
+            return View();
         }
 
         [HttpPost]

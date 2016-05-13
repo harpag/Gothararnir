@@ -33,9 +33,9 @@ namespace Mooshak2_Hopur5.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -243,7 +243,6 @@ namespace Mooshak2_Hopur5.Controllers
                 }
                 AddErrors(result);
             }
-
             return View(model);
         }
 
@@ -297,7 +296,7 @@ namespace Mooshak2_Hopur5.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
@@ -347,6 +346,6 @@ namespace Mooshak2_Hopur5.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

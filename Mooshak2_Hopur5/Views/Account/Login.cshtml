@@ -4,8 +4,9 @@
     ViewBag.Title = "Log in";
     Layout = "~/Views/Shared/_Logon_Layout.cshtml";
 }
-<h2>@ViewBag.Title</h2>
-<div class="row">
+
+<div class="row  m-60 well">
+    <h2>@ViewBag.Title</h2>
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -37,13 +38,9 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Log in" class="btn btn-default" />
+                                <input type="submit" value="Log in" class="btn btn-course" />
                             </div>
                         </div>
-                        @* Enable this once you have account confirmation enabled for password reset functionality
-                            <p>
-                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                            </p>*@
             }
         </section>
     </div>
