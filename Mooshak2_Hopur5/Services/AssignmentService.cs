@@ -33,7 +33,7 @@ namespace Mooshak2_Hopur5.Services
             //Kastar villu ef ekki fannst verkefni með þessu ID-i
             if (assignment == null)
             {
-                throw new ArgumentException("Parameter cannot be null");
+                throw new Exception();
             }
             else
             {
@@ -46,7 +46,6 @@ namespace Mooshak2_Hopur5.Services
                     CourseNumber = assignment.course.courseNumber,
                     AssignmentName = assignment.assign.assignmentName,
                     AssignmentDescription = assignment.assign.assignmentDescription,
-                    AssignmentFile = assignment.assign.assignmentFile,
                     Weight = assignment.assign.weight,
                     MaxSubmission = assignment.assign.maxSubmission,
                     AssignDate = assignment.assign.assignDate,
@@ -196,7 +195,6 @@ namespace Mooshak2_Hopur5.Services
                     AssignmentName = entity.assignment.assignmentName,
                     AssignmentPartName = entity.assignmentPart.assignmentPartName,
                     AssignmentPartDescription = entity.assignmentPart.assignmentPartDescription,
-                    AssignmentPartFile = entity.assignmentPart.assignmentPartFile,
                     Weight = entity.assignmentPart.weight,
                     ProgrammingLanguageId = entity.assignmentPart.programmingLanguageId,
                     AssignmentTestCaseList = testCases.AssignmentTestCaseList,
@@ -361,7 +359,6 @@ namespace Mooshak2_Hopur5.Services
                     CourseNumber = entity.course.courseNumber,
                     AssignmentName = entity.assign.assignmentName,
                     AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
                     Weight = entity.assign.weight,
                     MaxSubmission = entity.assign.maxSubmission,
                     AssignDate = entity.assign.assignDate,
@@ -408,7 +405,6 @@ namespace Mooshak2_Hopur5.Services
                     CourseNumber = entity.course.courseNumber,
                     AssignmentName = entity.assign.assignmentName,
                     AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
                     Weight = entity.assign.weight,
                     MaxSubmission = entity.assign.maxSubmission,
                     AssignDate = entity.assign.assignDate,
@@ -462,7 +458,6 @@ namespace Mooshak2_Hopur5.Services
                     CourseNumber = entity.course.courseNumber,
                     AssignmentName = entity.assign.assignmentName,
                     AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
                     Weight = entity.assign.weight,
                     MaxSubmission = entity.assign.maxSubmission,
                     AssignDate = entity.assign.assignDate,
@@ -510,7 +505,6 @@ namespace Mooshak2_Hopur5.Services
                     CourseNumber = entity.course.courseNumber,
                     AssignmentName = entity.assign.assignmentName,
                     AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
                     Weight = entity.assign.weight,
                     MaxSubmission = entity.assign.maxSubmission,
                     AssignDate = entity.assign.assignDate,
@@ -561,7 +555,6 @@ namespace Mooshak2_Hopur5.Services
                     CourseNumber = entity.course.courseNumber,
                     AssignmentName = entity.assign.assignmentName,
                     AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
                     Weight = entity.assign.weight,
                     MaxSubmission = entity.assign.maxSubmission,
                     AssignDate = entity.assign.assignDate,
@@ -611,7 +604,6 @@ namespace Mooshak2_Hopur5.Services
                     CourseNumber = entity.course.courseNumber,
                     AssignmentName = entity.assign.assignmentName,
                     AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
                     Weight = entity.assign.weight,
                     MaxSubmission = entity.assign.maxSubmission,
                     AssignDate = entity.assign.assignDate,
@@ -665,7 +657,6 @@ namespace Mooshak2_Hopur5.Services
                     CourseNumber = entity.course.courseNumber,
                     AssignmentName = entity.assign.assignmentName,
                     AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
                     Weight = entity.assign.weight,
                     MaxSubmission = entity.assign.maxSubmission,
                     AssignDate = entity.assign.assignDate,
@@ -687,7 +678,6 @@ namespace Mooshak2_Hopur5.Services
                     CourseNumber = entity.course.courseNumber,
                     AssignmentName = entity.assign.assignmentName,
                     AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
                     Weight = entity.assign.weight,
                     MaxSubmission = entity.assign.maxSubmission,
                     AssignDate = entity.assign.assignDate,
@@ -744,7 +734,6 @@ namespace Mooshak2_Hopur5.Services
                     CourseNumber = entity.course.courseNumber,
                     AssignmentName = entity.assign.assignmentName,
                     AssignmentDescription = entity.assign.assignmentDescription,
-                    AssignmentFile = entity.assign.assignmentFile,
                     Weight = entity.assign.weight,
                     MaxSubmission = entity.assign.maxSubmission,
                     AssignDate = entity.assign.assignDate,
@@ -807,7 +796,6 @@ namespace Mooshak2_Hopur5.Services
             query.courseId = assignmentToChange.CourseId;
             query.assignmentName = assignmentToChange.AssignmentName;
             query.assignmentDescription = assignmentToChange.AssignmentDescription;
-            query.assignmentFile = assignmentToChange.AssignmentFile;
             query.weight = assignmentToChange.Weight;
             query.maxSubmission = assignmentToChange.MaxSubmission;
             query.assignDate = assignmentToChange.AssignDate;
@@ -832,7 +820,6 @@ namespace Mooshak2_Hopur5.Services
             newAssignment.courseId = assignmentToAdd.CourseId;
             newAssignment.assignmentName = assignmentToAdd.AssignmentName;
             newAssignment.assignmentDescription = assignmentToAdd.AssignmentDescription;
-            newAssignment.assignmentFile = assignmentToAdd.AssignmentFile;
             newAssignment.weight = assignmentToAdd.Weight;
             newAssignment.maxSubmission = assignmentToAdd.MaxSubmission;
             newAssignment.assignDate = assignmentToAdd.AssignDate;
@@ -901,25 +888,9 @@ namespace Mooshak2_Hopur5.Services
                 newFile.fileType = fileContentType;
                 newFile.fileExtension = fileExtension;
 
-                try
-                {
-                    newFile = _db.AssignmentFile.Add(newFile);
-                    _db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage);
-                        }
-                    }
-                    throw;
-                }
+                newFile = _db.AssignmentFile.Add(newFile);
+                _db.SaveChanges();
+                
                 string fileName = newFile.assignmentFileId.ToString();
                 newFile.path = filePathFull + fileName + fileExtension;
                 newFile.fileExtension = fileExtension;
@@ -954,26 +925,10 @@ namespace Mooshak2_Hopur5.Services
                 newFile.assignmentPartId = assignmentPart.AssignmentPartId;
                 newFile.fileType = fileContentType;
                 newFile.fileExtension = fileExtension;
-
-                try
-                {
-                    newFile = _db.AssignmentPartFile.Add(newFile);
-                    _db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage);
-                        }
-                    }
-                    throw;
-                }
+                
+                newFile = _db.AssignmentPartFile.Add(newFile);
+                _db.SaveChanges();
+                
                 string fileName = newFile.assignmentPartFileId.ToString();
                 newFile.path = filePathFull + fileName + fileExtension;
                 newFile.fileExtension = fileExtension;
@@ -1070,15 +1025,8 @@ namespace Mooshak2_Hopur5.Services
             query.error = submissionToEdit.error;
 
             //Vista breytingar í gagnagrunn
-            try
-            {
-                _db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                // TODO
-            }
+            _db.SaveChanges();
+            
             return submissionToEdit;
         }
 
@@ -1100,17 +1048,10 @@ namespace Mooshak2_Hopur5.Services
                 {
                     newUserAssignment.userGroupId = submission.UserGroupId;
                 }
-                //try
-                //{
                 //Vista ofan í gagnagrunn
                 submission.UserAssignment = _db.UserAssignment.Add(newUserAssignment);
                 _db.SaveChanges();
                 return submission;
-                //}
-                //catch
-                //{
-                //return null;
-                //}
             }
             else
             {
@@ -1137,26 +1078,9 @@ namespace Mooshak2_Hopur5.Services
             newFile.fileType = fileContentType;
             newFile.fileExtension = fileExtension;
 
-            try
-            {
-                newFile = _db.SubmissionFile.Add(newFile);
-                _db.SaveChanges();
-            }
-            catch (DbEntityValidationException e)
-            {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                throw;
-            }
-
+            newFile = _db.SubmissionFile.Add(newFile);
+            _db.SaveChanges();
+            
             string fileName = newFile.submissionFileId.ToString();
             newFile.path = filePathFull + fileName + fileExtension;
             newFile.fileExtension = fileExtension;
@@ -1185,16 +1109,9 @@ namespace Mooshak2_Hopur5.Services
 
 
             //Vista breytingar í gagnagrunn
-            //try
-            //{
             _db.Submission.Add(submission);
             _db.SaveChanges();
-            //}
-            //catch (Exception e)
-            //{
-            //  Console.WriteLine(e);
-            // TODO
-            //}
+
             submissionToChange.UserSubmission = submission;
             return submissionToChange;
         }
@@ -1203,7 +1120,7 @@ namespace Mooshak2_Hopur5.Services
         {
             var exeFilePath = workingPath + cppFileName.Split('.')[0] + ".exe";
 
-            //Location of c++ compiler
+            //Staðsetning á C++ compilernum
             var compilerFolder = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\";
 
             Process compiler = new Process();
@@ -1240,7 +1157,7 @@ namespace Mooshak2_Hopur5.Services
                         {
                             processExe.StandardInput.WriteLine(test.input);
                         }
-                        //Read the output of the program
+                        //Les úttakið frá forritinu
                         while (!processExe.StandardOutput.EndOfStream)
                         {
                             lines.Add(processExe.StandardOutput.ReadLine());
@@ -1252,7 +1169,6 @@ namespace Mooshak2_Hopur5.Services
                     {
                         if (expectedResult[i] != lines[i])
                         {
-                            //studentSubmission.numberOfSucessTestCases = i;
                             studentSubmission.testCaseFailId = test.assignmentTestCaseId;
                             studentSubmission.accepted = 0;
                             studentSubmission.error = "Output was not correct";

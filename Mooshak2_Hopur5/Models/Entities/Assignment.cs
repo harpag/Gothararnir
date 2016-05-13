@@ -26,9 +26,7 @@ namespace Mooshak2_Hopur5.Models.Entities
 
         [Required]
         public string assignmentDescription { get; set; }
-
-        public byte[] assignmentFile { get; set; }
-
+        
         public int weight { get; set; }
 
         public int? maxSubmission { get; set; }

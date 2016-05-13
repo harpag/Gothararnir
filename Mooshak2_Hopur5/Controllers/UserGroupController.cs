@@ -41,8 +41,9 @@ namespace Mooshak2_Hopur5.Controllers
         public ActionResult Create(int? id)
         {
             if (id == null)
-                throw new NotImplementedException();
-
+            {
+                throw new Exception();
+            }
             ViewData["courseId"] = id;
 
             CourseService crs = new CourseService();
@@ -58,7 +59,7 @@ namespace Mooshak2_Hopur5.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "userGroupId,courseId,userGroupName,AllUsers,CheckedUsers")] UserGroupViewModel userGroup)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && userGroup.AllUsers.Any())
             {
                 UserGroup grp = new UserGroup();
                 grp.courseId = userGroup.courseId;
@@ -79,6 +80,7 @@ namespace Mooshak2_Hopur5.Controllers
             }
 
             ViewBag.courseId = new SelectList(db.Course, "courseId", "courseNumber", userGroup.courseId);
+            userGroup = _service.GetUsers();
             return View(userGroup);
         }
 

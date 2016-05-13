@@ -160,6 +160,7 @@ namespace Mooshak2_Hopur5.Controllers
             }
             else
             {
+                model.ProgrammingLanguages = _service.getAllProgrammingLanguages().ProgrammingLanguages;
                 return View(model);
             }
         }
