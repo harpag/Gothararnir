@@ -54,15 +54,6 @@ namespace Mooshak2_Hopur5.Controllers
             return View(viewModel);
         }
 
-        //Sækir alla áfanga á önn
-        public ActionResult GetAllCoursesOnSemester()
-        {
-            int semesterId = 2;
-            var viewModel = new CourseViewModel();
-            viewModel = _service.getAllCoursesOnSemester(semesterId);
-            return View(viewModel);
-        }
-
         //Stofnar nýjan áfanga
         public ActionResult CreateCourse()
         {

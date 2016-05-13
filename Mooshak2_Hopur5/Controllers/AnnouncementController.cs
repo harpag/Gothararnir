@@ -16,13 +16,6 @@ namespace Mooshak2_Hopur5.Controllers
             return View();
         }
 
-        public ActionResult GetAnnouncement()
-        {
-            int announcementId = 5;
-            var viewModel = _service.getAnnouncementById(announcementId);
-            return View(viewModel);
-        }
-
         public ActionResult AddAnnouncement()
         {
             AnnouncementViewModel viewModel = new AnnouncementViewModel();
