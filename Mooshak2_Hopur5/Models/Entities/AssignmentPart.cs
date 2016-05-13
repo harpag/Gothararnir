@@ -24,9 +24,7 @@ namespace Mooshak2_Hopur5.Models.Entities
         public string assignmentPartName { get; set; }
 
         public string assignmentPartDescription { get; set; }
-
-        public byte[] assignmentPartFile { get; set; }
-
+        
         public int weight { get; set; }
 
         public int programmingLanguageId { get; set; }

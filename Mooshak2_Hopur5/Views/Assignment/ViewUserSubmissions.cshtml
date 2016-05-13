@@ -10,14 +10,17 @@
     string maxClass = "";
 }
 
-<h2>@Model.UserName submissions</h2>
+<h2 class="m-60">@Model.UserName submissions</h2>
 
 @foreach (var part in Model.AssignmentPartList)
 {
     var currentList = Model.AssignmentSubmissionsList.Where(m => m.AssignmentPartId == part.AssignmentPartId);
     if (Model.AssignmentSubmissionsList.Any())
     {
-        maxSuccess = currentList.Max(m => m.NumberOfSucessTestCases).Value;
+        if(currentList.Max(m => m.NumberOfSucessTestCases).HasValue)
+        {
+            maxSuccess = currentList.Max(m => m.NumberOfSucessTestCases).Value;
+        }
     }
 <div>
     <table class="table table-striped">

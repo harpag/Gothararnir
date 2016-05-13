@@ -88,15 +88,8 @@ namespace Mooshak2_Hopur5.Services
             query.dateCreate = announcementToChange.DateCreate;
 
             //Breytingar vistaðar í gagnagrunninn
-            try
-            {
-                _db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                // TODO
-            }
+            _db.SaveChanges();
+            
             return announcementToChange;
         }
     }

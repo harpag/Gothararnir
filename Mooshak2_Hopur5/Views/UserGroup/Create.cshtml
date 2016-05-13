@@ -7,16 +7,16 @@
 @using (Html.BeginForm("Create", "UserGroup", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h2>Create user group</h2>
         <h4>Course: @ViewData["courseName"]</h4>
-        
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+
         @Html.Hidden("courseId", ViewData["courseId"])
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.userGroupName, "Group name: ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -26,18 +26,21 @@
         </div>
 
         <div id="checkboxes">
-            <ul class="userCourseList">
+            <table class="table table-striped">
                 @for (int i = 0; i < Model.AllUsers.Count; i++)
                 {
-                    <li>
-                        @Html.CheckBoxFor(m => m.CheckedUsers[i], new { id = "UserList_" + i })
-                        @Html.HiddenFor(m => m.AllUsers[i].Id)
-                        @Html.DisplayFor(m => m.AllUsers[i].Email)
-                    </li>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.CheckedUsers[i], new { id = "UserList_" + i })
+                            @Html.HiddenFor(m => m.AllUsers[i].Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.AllUsers[i].Email)
+                        </td>
+                    </tr>
                 }
-            </ul>
+            </table>
         </div>
-
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
