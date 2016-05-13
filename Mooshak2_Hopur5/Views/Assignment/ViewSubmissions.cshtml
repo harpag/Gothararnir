@@ -4,34 +4,36 @@
     ViewBag.Title = "ViewSubmissions";
 }
 
-<h2>View submissions</h2>
+<div class="m-60">
+    <h2>View submissions</h2>
 
-<div>Members in course: @Model.UserList.Count.ToString() </div>
-<div>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Accepted</th>
-                <th>Submissions count</th>
-            </tr>
-        </thead>
-        @foreach (var user in Model.UserList)
-        {
-            <tr>
-                <td>@user.UserName</td>
-                <td>@user.Email</td>
-                @if (user.Success)
+    <div>Members in course: @Model.UserList.Count.ToString() </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Accepted</th>
+                    <th>Submissions count</th>
+                </tr>
+            </thead>
+            @foreach (var user in Model.UserList)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    @if (user.Success)
                 {
-                    <td><span class="glyphicon glyphicon-thumbs-up text-success"></span></td>
-                }
-                else
-                {
-                    <td><span class="glyphicon glyphicon-thumbs-down text-danger"></span></td>
-                }
-                <td>@Html.ActionLink(@user.SubmissionCount.ToString(), "ViewUserSubmissions", "Assignment", new { userId = user.UserId, assignmentId = Request.QueryString["assignmentId"] }, null)</td>
-            </tr>
-        }
-    </table>
+                        <td><span class="glyphicon glyphicon-thumbs-up text-success"></span></td>
+                    }
+                    else
+                    {
+                        <td><span class="glyphicon glyphicon-thumbs-down text-danger"></span></td>
+                    }
+                    <td>@Html.ActionLink(@user.SubmissionCount.ToString(), "ViewUserSubmissions", "Assignment", new { userId = user.UserId, assignmentId = Request.QueryString["assignmentId"] }, null)</td>
+                </tr>
+            }
+        </table>
+    </div>
 </div>

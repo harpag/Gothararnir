@@ -25,33 +25,22 @@
             </div>
         </div>
 
-        <table id="userTable" class="table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>User</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div id="checkboxes">
+            <table class="table table-striped">
                 @for (int i = 0; i < Model.AllUsers.Count; i++)
                 {
-                    if (Model.AllUsers[i].Roles.First().RoleId.Equals("3"))
-                    {
                     <tr>
                         <td>
                             @Html.CheckBoxFor(m => m.CheckedUsers[i], new { id = "UserList_" + i })
                             @Html.HiddenFor(m => m.AllUsers[i].Id)
                         </td>
                         <td>
-                            @Html.DisplayFor(m => m.AllUsers[i].UserName)
+                            @Html.DisplayFor(m => m.AllUsers[i].Email)
                         </td>
                     </tr>
-                    }
                 }
-            </tbody>
-        </table>
-
-
+            </table>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
