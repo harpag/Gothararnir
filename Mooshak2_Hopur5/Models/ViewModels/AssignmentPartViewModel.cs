@@ -14,7 +14,6 @@ namespace Mooshak2_Hopur5.Models.ViewModels
         public int AssignmentPartId { get; set; }
         [Required]
         public int AssignmentId { get; set; }
-        [Required]
         public string AssignmentName { get; set; }
         [DisplayName("Part name")]
         [Required]

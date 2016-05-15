@@ -10,6 +10,11 @@
 {
     @Html.HiddenFor(m => m.AssignmentId)
     @Html.HiddenFor(m => m.AssignmentPartId)
+    //Bætt við fyrir kynningu
+    @Html.HiddenFor(m => m.AssignmentPartName)
+    //Bætt við fyrir kyningu
+    @Html.HiddenFor(m => m.AssignmentPartDescription)
+
     <div class="col-xs-6 form-group">
         @Html.LabelFor(m => m.AssignmentTestCaseList[0].input, new { @class = "control-label" })
         @Html.ValidationMessageFor(m => m.AssignmentTestCaseList[0].input)
