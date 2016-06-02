@@ -181,7 +181,6 @@ namespace Mooshak2_Hopur5.Controllers
             AssignmentPartViewModel model = new AssignmentPartViewModel();
             model.AssignmentId = assignmentId.Value;
             string userId = User.Identity.GetUserId();
-            //Bætt við fyrir kynningu
             model = _service.getAssignmentPartById(Server.MapPath("~"), partId.Value);
             model.AssignmentPartId = partId.Value;
 
